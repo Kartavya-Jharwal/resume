@@ -9,7 +9,7 @@
   "homepage": "https://resume.kartavya.tech",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kartavya-Jharwal/Kartavya-Jharwal.github.io"
+    "url": "https://github.com/Kartavya-Jharwal/resume"
   },
   "scripts": {
     "build": "bun run bun/src/build.js",
