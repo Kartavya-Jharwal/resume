@@ -2179,8 +2179,8 @@
     },
     {
       "id": "all",
-      "role": "Polymath",
-      "industry": "Universal",
+      "role": "Universal Resume",
+      "industry": "All Experience",
       "targeted": false,
       "weight": 0,
       "description": "A multi-disciplinary professional operating at the intersection of systems engineering, product strategy, and economic theory.",
@@ -2189,14 +2189,14 @@
         "Experience": "10+ Yrs",
         "Projects": "50+",
         "Impact": "Multi-Domain",
-        "Specialization": "Omni"
+        "Specialization": "Cross-domain"
       },
       "requiredKeywords": [
         "Multi-disciplinary",
         "Strategy",
         "Cross-domain"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Polymath_Universal.pdf",
+      "pdfFilename": "Kartavya_Jharwal_Resume_Universal.pdf",
       "fallback": true
     }
   ]

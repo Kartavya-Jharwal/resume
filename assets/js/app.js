@@ -70,7 +70,7 @@ function esc(s) {
 function nb(s) { return String(s).replace(/(\d)\s+(?=[A-Za-z%$€£])/g, '$1\u00a0'); }
 function slug(s) { return String(s).replace(/\s+/g, '_').replace(/[^\w]/g, ''); }
 function pdfName(p) { return p.pdfFilename || ('Kartavya_Jharwal_Resume_' + slug(p.role) + '_' + slug(p.industry) + '.pdf'); }
-function pdfHref(p) { return 'public/resumes/' + pdfName(p); }
+function pdfHref(p) { return 'resumes/' + pdfName(p); }
 function track(ev, obj) { try { console.log('[telemetry]', ev, obj); } catch (e) {} }
 
 /* =================================================================
@@ -83,6 +83,7 @@ var stageResizeTimer = null;
 var stageObserver = null;
 var lastMobileMode = null;
 var A4_RUNTIME_KEY = '__RESUME_A4_RUNTIME__';
+var BUILD_FIT_MODE = new URLSearchParams(location.search).get('_fit') === '1';
 
 function isMobileLayout() {
   return window.matchMedia('(max-width: 1023px)').matches;
@@ -113,6 +114,11 @@ function industries(role) {
 function pickInit() {
   if (!P.length) return null;
   var sp = new URLSearchParams(location.search);
+  var profileId = sp.get('_profile');
+  if (profileId) {
+    var exactProfile = byId(profileId);
+    if (exactProfile) return exactProfile;
+  }
   var role = sp.get('role');
   var industry = sp.get('industry');
   if (role && industry) {
@@ -123,14 +129,6 @@ function pickInit() {
     }
   }
 
-  var targeted = [];
-  for (var j = 0; j < P.length; j++) {
-    if (P[j].targeted) {
-      var weight = P[j].weight || 1;
-      for (var k = 0; k < weight; k++) targeted.push(P[j]);
-    }
-  }
-  if (targeted.length) return targeted[Math.floor(Math.random() * targeted.length)];
   return P.find(function(profile) { return profile.fallback; }) || P[0];
 }
 
@@ -214,6 +212,10 @@ function updateTarget(elId, newHTML, delay) {
   if (!el) return;
   el.classList.remove('up-in');
   el.innerHTML = newHTML;
+  if (BUILD_FIT_MODE) {
+    el.classList.add('up-in');
+    return;
+  }
   setTimeout(function() {
     el.classList.add('up-in');
   }, delay || 10);
@@ -233,22 +235,27 @@ function renderContact(p) {
   var c = p.contact || {};
   var parts = [];
   if (c.location) parts.push('<span class="ctc-part" data-part="location">' + esc(c.location) + '</span>');
-  if (c.email) parts.push('<span class="ctc-part" data-part="email"><span class="sensitive">' + esc(c.email) + '</span></span>');
-  if (c.phone) parts.push('<span class="ctc-part" data-part="phone"><span class="sensitive">' + esc(c.phone) + '</span></span>');
-  if (c.url) parts.push('<span class="ctc-part" data-part="url">' + esc(c.url) + '</span>');
+  if (c.email) parts.push('<span class="ctc-part sensitive" data-part="email"><a href="mailto:' + encodeURIComponent(c.email) + '">' + esc(c.email) + '</a></span>');
+  if (c.phone) parts.push('<span class="ctc-part sensitive" data-part="phone"><a href="tel:' + esc(c.phone.replace(/[^+\d]/g, '')) + '">' + esc(c.phone) + '</a></span>');
+  if (c.url) parts.push('<span class="ctc-part" data-part="url"><a href="' + esc(c.url) + '">' + esc(c.url.replace(/^https?:\/\//, '')) + '</a></span>');
   if (c.profiles && c.profiles.length) {
     for (var i = 0; i < c.profiles.length; i++) {
       var prof = c.profiles[i];
-      parts.push('<span class="ctc-part" data-part="profile">' + esc(prof.network) + ': ' + esc(prof.username) + '</span>');
+      parts.push('<span class="ctc-part" data-part="profile"><a href="' + esc(prof.url) + '">' + esc(prof.network) + ': ' + esc(prof.username) + '</a></span>');
     }
   }
 
-  el.innerHTML = parts.join('<span class="sep">|</span>');
-  setTimeout(function() { el.classList.add('up-in'); }, 10);
+  el.innerHTML = parts.join('<span class="sep">\u202f|\u202f</span>');
+  if (BUILD_FIT_MODE) el.classList.add('up-in');
+  else setTimeout(function() { el.classList.add('up-in'); }, 10);
 }
 
 function renderSummary(p) {
-  var html = '<div class="r-lbl">Areas of Focus</div>'
+  if (!p.summary) {
+    updateTarget('r-summary', '', 30);
+    return;
+  }
+  var html = '<h2 class="r-lbl" id="r-summary-label">Areas of Focus</h2>'
     + '<p class="r-prose summary-text">' + nb(esc(p.summary || '')) + '</p>';
   updateTarget('r-summary', html, 30);
 }
@@ -259,7 +266,7 @@ function renderExperience(p) {
     return;
   }
 
-  var pieces = ['<div class="r-lbl">Relevant Experience</div>'];
+  var pieces = ['<h2 class="r-lbl" id="r-experience-label">Relevant Experience</h2>'];
   p.experience.forEach(function(e, idx) {
     var highlights = (e.highlights || []).map(function(b) {
       return '<li class="bl-item">' + nb(esc(b)) + '</li>';
@@ -283,7 +290,7 @@ function renderProjects(p) {
     return;
   }
 
-  var pieces = ['<div class="r-lbl">Related Projects</div>'];
+  var pieces = ['<h2 class="r-lbl" id="r-projects-label">Related Projects</h2>'];
   p.projects.forEach(function(pr, idx) {
     var highlights = (pr.highlights || []).map(function(b) {
       return '<li class="bl-item">' + nb(esc(b)) + '</li>';
@@ -307,7 +314,7 @@ function renderEducation(p) {
     return;
   }
 
-  var pieces = ['<div class="r-lbl">Education</div>'];
+  var pieces = ['<h2 class="r-lbl" id="r-education-label">Education</h2>'];
   p.education.forEach(function(e, idx) {
     var degree = [e.studyType, e.area].filter(Boolean).join(', ');
     pieces.push(
@@ -332,16 +339,16 @@ function renderAdditional(p) {
     parts.push('<p class="r-prose skills-text"><b>Skills: </b>' + esc(a.skills.join(', ')) + '</p>');
   }
   if (a.certifications && a.certifications.length) {
-    parts.push('<p class="r-prose" style="margin-top:calc(var(--u)/2)"><b>Certifications: </b>' + esc(a.certifications.join(', ')) + '</p>');
+    parts.push('<p class="r-prose"><b>Certifications: </b>' + esc(a.certifications.join(', ')) + '</p>');
   }
   if (a.languages && a.languages.length) {
-    parts.push('<p class="r-prose" style="margin-top:calc(var(--u)/2)"><b>Languages: </b>' + esc(a.languages.join(', ')) + '</p>');
+    parts.push('<p class="r-prose"><b>Languages: </b>' + esc(a.languages.join(', ')) + '</p>');
   }
   if (a.workAuthorization) {
-    parts.push('<p class="r-prose" style="margin-top:calc(var(--u)/2)"><b>Work authorization: </b>' + esc(a.workAuthorization) + '</p>');
+    parts.push('<p class="r-prose"><b>Work authorization: </b>' + esc(a.workAuthorization) + '</p>');
   }
   if (a.leadership && a.leadership.length) {
-    parts.push('<p class="r-prose" style="margin-top:calc(var(--u)/2)"><b>Leadership: </b>' + esc(a.leadership.join(' | ')) + '</p>');
+    parts.push('<p class="r-prose"><b>Leadership: </b>' + esc(a.leadership.join(' \u202f|\u202f ')) + '</p>');
   }
 
   if (!parts.length) {
@@ -349,7 +356,7 @@ function renderAdditional(p) {
     return;
   }
 
-  updateTarget('r-additional', '<div class="r-lbl">Additional Information</div>' + parts.join(''), 120);
+  updateTarget('r-additional', '<h2 class="r-lbl" id="r-additional-label">Additional Information</h2>' + parts.join(''), 120);
 }
 
 
@@ -410,196 +417,153 @@ function showPop(e, opts, key) {
   setTimeout(function() { window.addEventListener('click', off); }, 10);
 }
 
-/* =================================================================
-   A4 OVERFLOW POLICY — TRUNCATE IN JS, NEVER CSS-CLIP CONTENT
-   ================================================================= */
-function hasSheetOverflow() {
-  var sheet = document.getElementById('sheet');
-  if (!sheet) return false;
-  /* Temporarily expose overflow so scrollHeight reflects true content height */
-  var prev = sheet.style.overflow;
-  sheet.style.overflow = 'visible';
-  var over = (sheet.scrollHeight - sheet.clientHeight) > 1;
-  sheet.style.overflow = prev || '';
-  return over;
-}
-
-function pruneEmptySection(sectionId, selector) {
-  var section = document.getElementById(sectionId);
-  if (!section) return;
-  if (!section.querySelector(selector)) section.innerHTML = '';
-}
-
-function trimLastNode(selector, label, removed) {
-  var nodes = document.querySelectorAll(selector);
-  if (!nodes.length) return false;
-  nodes[nodes.length - 1].remove();
-  removed.push(label);
-  return true;
-}
-
-function trimAdditional(removed) {
-  var section = document.getElementById('r-additional');
-  if (!section || !section.innerHTML) return false;
-
-  var paragraphs = section.querySelectorAll('p');
-  if (paragraphs.length) {
-    paragraphs[paragraphs.length - 1].remove();
-    if (!section.querySelector('p')) section.innerHTML = '';
-    removed.push('additional paragraph');
-    return true;
-  }
-
-  if (section.textContent.trim()) {
-    section.innerHTML = '';
-    removed.push('additional section');
-    return true;
-  }
-
-  return false;
-}
-
-function trimProjects(removed) {
-  var section = document.getElementById('r-projects');
-  if (!section || !section.innerHTML) return false;
-
-  if (trimLastNode('#r-projects .proj-block li', 'project highlight', removed)) return true;
-  if (trimLastNode('#r-projects .proj-block .proj-desc', 'project description', removed)) return true;
-  if (trimLastNode('#r-projects .proj-block', 'project entry', removed)) {
-    pruneEmptySection('r-projects', '.proj-block');
-    return true;
-  }
-  if (section.textContent.trim()) {
-    section.innerHTML = '';
-    removed.push('projects section');
-    return true;
-  }
-
-  return false;
-}
-
-function trimExperience(removed) {
-  var section = document.getElementById('r-experience');
-  if (!section || !section.innerHTML) return false;
-
-  if (trimLastNode('#r-experience .exp-block li', 'experience highlight', removed)) return true;
-  if (trimLastNode('#r-experience .exp-block', 'experience entry', removed)) {
-    pruneEmptySection('r-experience', '.exp-block');
-    return true;
-  }
-  if (section.textContent.trim()) {
-    section.innerHTML = '';
-    removed.push('experience section');
-    return true;
-  }
-
-  return false;
-}
-
-function trimContact(removed) {
-  var contact = document.getElementById('r-ctc');
-  if (!contact) return false;
-
-  var parts = contact.querySelectorAll('.ctc-part');
-  if (parts.length <= 2) return false;
-
-  var last = parts[parts.length - 1];
-  var prev = last.previousElementSibling;
-  if (prev && prev.classList.contains('sep')) prev.remove();
-  last.remove();
-  removed.push('contact part');
-  return true;
-}
-
-function trimSummary(removed) {
-  var textEl = document.querySelector('#r-summary .summary-text');
-  var section = document.getElementById('r-summary');
-  if (!textEl || !section) return false;
-
-  var text = textEl.textContent.replace(/\u2026$/, '').trim();
-  var words = text ? text.split(/\s+/) : [];
-  if (words.length > 18) {
-    words.pop();
-    textEl.textContent = words.join(' ') + '…';
-    removed.push('summary text');
-    return true;
-  }
-
-  if (section.textContent.trim()) {
-    section.innerHTML = '';
-    removed.push('summary section');
-    return true;
-  }
-
-  return false;
-}
-
-function trimEducation(removed) {
-  var section = document.getElementById('r-education');
-  if (!section || !section.innerHTML) return false;
-
-  if (trimLastNode('#r-education .edu-summary', 'education detail', removed)) return true;
-  if (trimLastNode('#r-education .edu-block', 'education entry', removed)) {
-    pruneEmptySection('r-education', '.edu-block');
-    return true;
-  }
-  if (section.textContent.trim()) {
-    section.innerHTML = '';
-    removed.push('education section');
-    return true;
-  }
-
-  return false;
-}
-
-
-function enforceDesktopA4Fit() {
-  var sheet = document.getElementById('sheet');
-  if (!sheet || !cur) return;
-
-  var removed = [];
-  var truncated = false;
-  var guard = 0;
-
-  while (hasSheetOverflow() && guard < 200) {
-    guard += 1;
-    var changed = trimAdditional(removed)
-      || trimProjects(removed)
-      || trimExperience(removed)
-      || trimContact(removed)
-      || trimSummary(removed)
-      || trimEducation(removed);
-
-    if (!changed) break;
-    truncated = true;
-  }
-
-  var resolved = !hasSheetOverflow();
-
-  setA4RuntimeState({
-    profileId: cur.id,
-    removed: removed,
-    truncated: truncated,
-    resolved: resolved
-  });
-
-  if (truncated) {
-    console.warn('[resume:a4] Truncated content to preserve the desktop A4 sheet.', window[A4_RUNTIME_KEY]);
-  }
-  if (!resolved) {
-    console.error('[resume:a4] Content still exceeds the available A4 space after truncation.', window[A4_RUNTIME_KEY]);
-  }
-}
-
 function scheduleFinalizeLayout() {
   var token = ++finalizeToken;
   requestAnimationFrame(function() {
     requestAnimationFrame(function() {
       if (token !== finalizeToken) return;
       applyDesktopSheetScale();
-      enforceDesktopA4Fit();
+      validateDesktopA4Fit();
     });
   });
+}
+
+function measureA4Layout() {
+  var sheet = document.getElementById('sheet');
+  if (!sheet) return { overflowPx: 0, resolved: false, titleOverflows: [] };
+
+  var previousTransform = sheet.style.transform;
+  sheet.style.transform = 'none';
+  var overflowPx = Math.max(0, sheet.scrollHeight - sheet.clientHeight);
+  var titleOverflows = [];
+
+  sheet.querySelectorAll('.r-co').forEach(function(title) {
+    var lineHeight = parseFloat(getComputedStyle(title).lineHeight) || 1;
+    var lines = Math.ceil(title.getBoundingClientRect().height / lineHeight);
+    if (lines > 2) titleOverflows.push({ text: title.textContent.trim(), lines: lines });
+  });
+
+  sheet.style.transform = previousTransform;
+  return {
+    overflowPx: Number(overflowPx.toFixed(3)),
+    resolved: overflowPx <= 1 && titleOverflows.length === 0,
+    titleOverflows: titleOverflows
+  };
+}
+
+function validateDesktopA4Fit() {
+  if (!cur) return;
+  var measurement = measureA4Layout();
+  setA4RuntimeState({
+    profileId: cur.id,
+    removed: cur.omissions || [],
+    truncated: Boolean(cur.omissions && cur.omissions.length),
+    resolved: measurement.resolved,
+    overflowPx: measurement.overflowPx,
+    titleOverflows: measurement.titleOverflows
+  });
+
+  if (!measurement.resolved) {
+    console.error('[resume:a4] Profile violates the fixed A4 layout.', window[A4_RUNTIME_KEY]);
+  }
+}
+
+function cloneProfile(profile) {
+  return typeof structuredClone === 'function'
+    ? structuredClone(profile)
+    : JSON.parse(JSON.stringify(profile));
+}
+
+function omitLast(array, label, omissions) {
+  if (!array || !array.length) return false;
+  var value = array.pop();
+  omissions.push({ type: label, value: typeof value === 'string' ? value : (value.name || value.company || value.institution || '') });
+  return true;
+}
+
+function removeNextOptional(profile, omissions) {
+  var additional = profile.additional || {};
+  if (omitLast(additional.leadership, 'leadership', omissions)) return true;
+  if (omitLast(additional.certifications, 'certification', omissions)) return true;
+  if (omitLast(additional.languages, 'language', omissions)) return true;
+  if (additional.workAuthorization) {
+    omissions.push({ type: 'workAuthorization', value: additional.workAuthorization });
+    additional.workAuthorization = '';
+    return true;
+  }
+  if (additional.skills && additional.skills.length > 8) {
+    return omitLast(additional.skills, 'skill', omissions);
+  }
+
+  for (var projectIndex = profile.projects.length - 1; projectIndex >= 0; projectIndex -= 1) {
+    var project = profile.projects[projectIndex];
+    if (project.highlights && project.highlights.length > 1) {
+      return omitLast(project.highlights, 'projectHighlight', omissions);
+    }
+    if (project.description) {
+      omissions.push({ type: 'projectDescription', value: project.name });
+      project.description = '';
+      return true;
+    }
+  }
+  if (profile.projects && profile.projects.length) return omitLast(profile.projects, 'project', omissions);
+
+  for (var experienceIndex = profile.experience.length - 1; experienceIndex >= 0; experienceIndex -= 1) {
+    var experience = profile.experience[experienceIndex];
+    if (experience.highlights && experience.highlights.length > 1) {
+      return omitLast(experience.highlights, 'experienceHighlight', omissions);
+    }
+  }
+  if (profile.experience && profile.experience.length > 2) return omitLast(profile.experience, 'experience', omissions);
+
+  for (var educationIndex = profile.education.length - 1; educationIndex >= 0; educationIndex -= 1) {
+    if (profile.education[educationIndex].summary) {
+      omissions.push({ type: 'educationSummary', value: profile.education[educationIndex].institution });
+      profile.education[educationIndex].summary = '';
+      return true;
+    }
+  }
+  if (profile.education && profile.education.length > 1) return omitLast(profile.education, 'education', omissions);
+
+  if (profile.summary) {
+    omissions.push({ type: 'summary', value: profile.summary });
+    profile.summary = '';
+    return true;
+  }
+  return false;
+}
+
+function settleDocumentLayout() {
+  var fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+  if (BUILD_FIT_MODE) return Promise.resolve(fontsReady);
+  return Promise.resolve(fontsReady)
+    .then(function() {
+      return new Promise(function(resolve) {
+        requestAnimationFrame(function() { requestAnimationFrame(resolve); });
+      });
+    });
+}
+
+async function fitProfileForBuild(profileId) {
+  var source = byId(profileId);
+  if (!source) throw new Error('Unknown profile: ' + profileId);
+
+  var candidate = cloneProfile(source);
+  var omissions = [];
+  for (var pass = 0; pass < 300; pass += 1) {
+    candidate.omissions = omissions;
+    cur = candidate;
+    renderProfile(candidate);
+    await settleDocumentLayout();
+    var measurement = measureA4Layout();
+    if (measurement.resolved) {
+      return { profile: candidate, measurement: measurement, passes: pass + 1, omissions: omissions };
+    }
+    if (!removeNextOptional(candidate, omissions)) {
+      throw new Error(profileId + ' cannot fit A4 after exhausting optional content; overflow=' + measurement.overflowPx + 'px');
+    }
+  }
+  throw new Error(profileId + ' exceeded the 300-pass fit guard');
 }
 
 /* =================================================================
@@ -628,7 +592,8 @@ function renderProfile(p) {
   renderAdditional(p);
   renderMx();
   updateDownloadLink(p);
-  scheduleFinalizeLayout();
+  document.title = p.name + ' — ' + p.role + ' Résumé';
+  if (!BUILD_FIT_MODE) scheduleFinalizeLayout();
 }
 
 function sel(id, skipHist) {
@@ -652,6 +617,7 @@ function sel(id, skipHist) {
    ================================================================= */
 
 function initStageObserver() {
+  if (BUILD_FIT_MODE) return;
   var stage = document.querySelector('.stage');
   if (!stage || typeof ResizeObserver === 'undefined' || stageObserver) return;
   stageObserver = new ResizeObserver(function() {
@@ -667,15 +633,15 @@ function handleStageResize() {
     applyDesktopSheetScale();
 
     if (lastMobileMode !== mobileMode && cur) {
-      /* Layout mode flipped — full re-render (re-enforces A4 fit) */
+      /* Layout mode flipped — full re-render at the new display scale. */
       lastMobileMode = mobileMode;
       renderProfile(cur);
       return;
     }
 
-    /* Same mode, but stage size may have changed — re-enforce A4 fit */
+    /* The built payload is already fitted; resizing only revalidates it. */
     if (!mobileMode && cur) {
-      enforceDesktopA4Fit();
+      validateDesktopA4Fit();
     }
 
     lastMobileMode = mobileMode;
@@ -696,11 +662,42 @@ if (!P.length) {
   console.error('[engine] No profiles loaded — public/data.js may be missing');
   document.getElementById('sheet').innerHTML = '<div style="padding:40pt;text-align:center;color:#999">Loading profiles...</div>';
 } else {
+  window.__RESUME_BUILD__ = {
+    profileIds: P.map(function(profile) { return profile.id; }),
+    fitProfile: fitProfileForBuild,
+    renderProfile: async function(profile) {
+      var next = typeof profile === 'string' ? byId(profile) : profile;
+      if (!next) throw new Error('Unknown profile');
+      cur = next;
+      renderProfile(next);
+      await settleDocumentLayout();
+      return measureA4Layout();
+    },
+    measure: measureA4Layout
+  };
   cur = pickInit();
   lastMobileMode = isMobileLayout();
   initStageObserver();
   zoomReset();
   renderProfile(cur);
+  document.documentElement.dataset.resumeReady = 'true';
+
+  if (BUILD_FIT_MODE && new URLSearchParams(location.search).get('_fitAll') === '1') {
+    Promise.resolve().then(async function() {
+      var results = [];
+      for (var profileIndex = 0; profileIndex < P.length; profileIndex += 1) {
+        results.push(await fitProfileForBuild(P[profileIndex].id));
+      }
+      var output = document.createElement('pre');
+      output.id = 'fit-output';
+      output.hidden = true;
+      output.textContent = btoa(unescape(encodeURIComponent(JSON.stringify(results))));
+      document.body.appendChild(output);
+      document.documentElement.dataset.fitComplete = 'true';
+    }).catch(function(error) {
+      document.documentElement.dataset.fitError = error && error.message ? error.message : String(error);
+    });
+  }
 
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(function() {

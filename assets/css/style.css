@@ -1,6 +1,24 @@
 /* =================================================================
-   DESIGN TOKENS — PRECISION OBSIDIAN + SPEC V1.0
+   DESIGN TOKENS — PRECISION OBSIDIAN + TYPESETTING SPEC V1.5
    ================================================================= */
+@page { size: A4; margin: 0; }
+
+@font-face {
+  font-family: 'Source Serif 4 Resume';
+  src: url('../fonts/source-serif-4-variable-roman.woff2') format('woff2-variations');
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Source Serif 4 Resume';
+  src: url('../fonts/source-serif-4-variable-italic.woff2') format('woff2-variations');
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: block;
+}
+
 :root {
   /* Palette: Precision Obsidian */
   --bg-obsidian: #0d0d0d;
@@ -12,7 +30,7 @@
   --muted-dark: #525252;
   --border-obsidian: #262626;
 
-  /* Spec v1.3 Typesetting Units (A4 derived) — scaled via --u */
+  /* v1.5 §1–§2: one generative unit, minor-third type scale. */
   /*
    * Scale derivation (r = 1.2, λ = 1.272):
    *   --u  = 14pt  (base unit, 1 pica + 2pt)
@@ -21,30 +39,30 @@
    *   --s2 = s0·r² = 11×1.44 = 15.8→16pt (name)
    * All spacing tokens (var(--u) multiples) scale with it.
    */
-  --u:  14pt;
+  --u: 14pt;
   --s0: 11pt;
   --s1: 13pt;
   --s2: 16pt;
 
-  /* A4 derived margins (n=12), shifted up one --u at top, reduced footing */
-  --margin-lr: 17.5mm;
-  --margin-top: 12mm;             /* was 16.5mm — reduced by ~1u (4.23mm) */
-  --margin-bottom: 18mm;          /* was 33mm — reduced footing */
+  /* v1.5 §3: A4, n=12, symmetric sides and 1:2 footing. */
+  --margin-x: 17.5mm;
+  --margin-top: 16.5mm;
+  --margin-bottom: 33mm;
 
-  /* Spec v1.3 Typesetting additions */
-  --date-reserved-width: 54pt;
-  --col-gutter: 6pt;
-  --cap-offset-s2: 0pt;
-  --sp-section: calc(var(--u) * 1.55);
-  --sp-entry: calc(var(--u) * 0.72);
-  --sp-tight: calc(var(--u) * 0.32);
-  --sp-label-gap: calc(var(--u) * 0.68);
+  /* Build-time font extraction overrides these fallbacks in dist. */
+  --date-reserved-width: 105pt;
+  --col-gutter: calc(var(--u) / 2);
+  --cap-offset-s2: 5.86pt;
+  --hang-bullet: 0.04em;
+  --font-x-height: 0.475em;
 
-  /* Heuristic tracking */
+  /* v1.5 §8–§9. */
   --track-display: -0.015em;
   --track-body: 0;
   --track-label: 0.06em;
-  --hang-bullet: 0.22em;
+  --weight-regular: 400;
+  --weight-emphasis: 600;
+  --rule-color: #8c8c8c;
 
   /* UI Transitions */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -57,7 +75,7 @@
    ================================================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-obsidian); color: var(--text-obsidian); }
-body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; font-kerning: normal; }
+body { font-family: system-ui, sans-serif; -webkit-font-smoothing: antialiased; font-kerning: normal; }
 button, select { font-family: inherit; color: inherit; border: none; background: none; }
 img { display: block; max-width: 100%; }
 
@@ -116,7 +134,7 @@ img { display: block; max-width: 100%; }
 }
 
 /* =================================================================
-   PRECISION SHEET (Spec v1.0)
+   PRECISION SHEET (Typesetting Spec v1.5)
    ================================================================= */
 
 /*
@@ -143,17 +161,24 @@ img { display: block; max-width: 100%; }
   height: 297mm;
   background: #fff;
   color: #111;
-  padding: var(--margin-top) var(--margin-lr) var(--margin-bottom) var(--margin-lr);
-  font-family: 'Source Serif 4', serif;
+  padding: var(--margin-top) var(--margin-x) var(--margin-bottom) var(--margin-x);
+  font-family: 'Source Serif 4 Resume', serif;
   font-size: var(--s0);
   line-height: var(--u);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   text-rendering: optimizeLegibility;
   font-optical-sizing: auto;
+  font-variation-settings: 'opsz' 11, 'wght' 400;
+  font-variant-ligatures: common-ligatures;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  text-align: left;
+  widows: 2;
+  orphans: 2;
+  hyphens: none;
   /* JS sets scale() here; top-left origin keeps the sheet pinned to
      the wrap's top-left corner so the wrap dimensions exactly match
      the visual footprint. */
@@ -161,16 +186,6 @@ img { display: block; max-width: 100%; }
   backface-visibility: hidden;
   will-change: transform;
   isolation: isolate;
-}
-
-/* Paper Texture overlay */
-.sheet::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.03;
-  background: url('https://www.transparenttextures.com/patterns/paper.png');
 }
 
 /* =================================================================
@@ -216,18 +231,15 @@ img { display: block; max-width: 100%; }
 
 /* Resume Components */
 .r-name {
-  font-family: 'Inter', sans-serif;
   font-size: var(--s2);
-  /* 20pt name needs ≥ 2u (24pt) leading to stay on grid; gives 1.2 ratio */
   line-height: calc(var(--u) * 2);
   letter-spacing: var(--track-display);
   text-align: center;
-  font-weight: 400;
+  font-weight: var(--weight-regular);
   text-wrap: balance;
   text-box-trim: trim-both;
   text-box-edge: cap alphabetic;
-  /* gap below name before CTC row */
-  margin-bottom: calc(var(--u) * 0.22);
+  margin-bottom: 0;
 }
 @supports not (text-box-trim: trim-both) {
   .r-name { margin-top: calc(-1 * var(--cap-offset-s2)); }
@@ -236,39 +248,43 @@ img { display: block; max-width: 100%; }
 /* CTC — contact row, sits directly after name, full --u gap before sections */
 .r-ctc {
   min-height: var(--u);
-  display: flex; justify-content: center; align-items: center; gap: 3px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0;
   flex-wrap: wrap;
   font-size: var(--s0);
-  line-height: calc(var(--u) * 0.92);
+  line-height: var(--u);
   color: #555;
-  font-family: 'Inter', sans-serif;
-  margin-bottom: calc(var(--u) * 0.82);
+  margin-bottom: 0;
   font-variant-numeric: tabular-nums lining-nums;
 }
 .r-ctc span { white-space: nowrap; }
-.r-ctc span.sep { color: #bbb; font-weight: 300; margin: 0 3px; }
+.r-ctc span.sep { color: #777; font-weight: 400; margin: 0; }
 .ctc-part { max-width: 100%; }
 
 .r-lbl {
-  /* min-height rather than fixed height — avoids clipping small-caps */
-  min-height: calc(var(--u) * 0.9);
-  font-family: 'Inter', sans-serif;
-  /* s2 (16pt) declared so rendered small-caps land visually equal to or bigger than r-co (11pt) */
-  font-size: var(--s2);
-  font-weight: 500;
-  font-variant-caps: all-small-caps;
-  line-height: calc(var(--u) * 0.92);
+  min-height: var(--u);
+  font-size: var(--s0);
+  font-weight: var(--weight-regular);
+  font-variant-caps: small-caps;
+  font-feature-settings: 'smcp' 1, 'case' 1;
+  line-height: var(--u);
   letter-spacing: var(--track-label);
-  border-bottom: 0.5pt solid #ccc;
-  padding-bottom: 2px;
-  margin-bottom: var(--sp-label-gap);
+  margin-bottom: var(--u);
   text-box-trim: trim-both;
   text-box-edge: cap alphabetic;
 }
 
-.r-sec { margin-bottom: var(--sp-section); break-inside: avoid; }
+.r-sec { break-inside: avoid; margin-top: calc(var(--u) * 2); }
+.r-sec:empty { display: none; }
 
-.r-prose { font-variant-numeric: oldstyle-nums proportional-nums; text-align: justify; text-wrap: pretty; hyphens: auto; }
+.r-prose {
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  text-align: left;
+  text-wrap: pretty;
+  hyphens: none;
+}
 
 /*
  * Entry header: company left, date right-flush on same baseline.
@@ -279,24 +295,23 @@ img { display: block; max-width: 100%; }
  */
 .r-item-hdr {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) max-content;
+  grid-template-columns: minmax(0, calc(100% - var(--date-reserved-width) - var(--col-gutter))) var(--date-reserved-width);
   align-items: baseline;
   min-height: var(--u);
   gap: var(--col-gutter);
 }
 .r-co {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-weight: var(--weight-emphasis);
   font-size: var(--s0);
   min-width: 0;
-  line-height: calc(var(--u) * 0.92);
+  line-height: var(--u);
   white-space: normal;
+  overflow-wrap: normal;
 }
 .r-date {
-  font-family: 'Inter', sans-serif;
   font-variant-numeric: tabular-nums lining-nums;
   font-size: var(--s0);
-  line-height: calc(var(--u) * 0.92);
+  line-height: var(--u);
   color: #666;
   min-width: var(--date-reserved-width);
   white-space: nowrap;
@@ -304,64 +319,39 @@ img { display: block; max-width: 100%; }
 }
 
 .r-role {
-  font-style: italic;
-  min-height: calc(var(--u) * 0.9);
-  line-height: calc(var(--u) * 0.92);
-  margin-bottom: var(--sp-tight);
+  font-size: var(--s1);
+  font-style: normal;
+  font-weight: var(--weight-regular);
+  min-height: var(--u);
+  line-height: var(--u);
+  margin-bottom: var(--u);
 }
 
-/*
- * Bullet hanging into the left margin (§6 — optical alignment):
- *
- * Text is FLUSH with the section left edge (padding-left: 0 on li).
- * The bullet circle lives inside the sheet's 17.5mm left margin via a
- * negative left offset on the ::before pseudo-element.
- *
- * Geometry (at s0 = 9.5pt, u = 12pt):
- *   Margin = 17.5mm ≈ 50pt.  Bullet at left: -0.75em ≈ -7pt into margin.
- *   Circle diameter = 3pt.
- *   Vertical optical centre of cap-height ≈ top: 0.38em at this leading.
- *
- * The ::before has no display content (''), so it cannot shift line spacing.
- */
+/* v1.5 §6: the marker's LSB is extracted from the actual font at build time. */
 .r-ul { list-style: none; padding: 0; margin: 0; }
 .r-ul li {
   position: relative;
-  padding-left: 0;       /* text flush with surrounding content */
-  margin-bottom: var(--sp-tight);
-  line-height: inherit;
+  padding-left: 0;
+  margin-left: calc(-1 * var(--hang-bullet));
+  line-height: var(--u);
   text-wrap: pretty;
   text-box-trim: trim-both;
   text-box-edge: cap alphabetic;
 }
-.r-ul li:last-child { margin-bottom: 0; }
+.r-ul li + li { margin-top: var(--u); }
 .r-ul li::before {
-  content: '';
-  display: block;
+  content: '\2022';
   position: absolute;
-  /* ── sits in the left margin of the sheet ── */
-  left: -0.75em;         /* ≈ −7pt; tweak if margin-lr changes */
-  /* ── optical vertical centre at s0 / u ── */
-  top: 0.38em;           /* cap-height midpoint minus half circle radius */
-  width:  3pt;
-  height: 3pt;
-  background: #999;      /* muted grey — calibrate to §13 median grey */
-  border-radius: 50%;
+  left: calc(-0.72em - var(--hang-bullet));
+  color: #777;
 }
 
 .exp-block, .proj-block, .edu-block { break-inside: avoid; }
-
-.exp-block + .exp-block,
-.proj-block + .proj-block {
-  margin-top: var(--sp-entry);
-}
-
-.edu-block + .edu-block {
-  margin-top: calc(var(--u) * 0.45);
-}
+.exp-block, .proj-block, .edu-block { margin-bottom: var(--u); }
+.exp-block:last-child, .proj-block:last-child, .edu-block:last-child { margin-bottom: 0; }
 
 .proj-desc {
-  margin-bottom: var(--sp-tight);
+  margin-bottom: var(--u);
 }
 
 .edu-meta {
@@ -369,7 +359,7 @@ img { display: block; max-width: 100%; }
   justify-content: space-between;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 4px 12px;
+  gap: 0 var(--u);
   margin-top: 0;
 }
 
@@ -539,10 +529,19 @@ img { display: block; max-width: 100%; }
 }
 .zoom-btn:hover { background: rgba(255,255,255,0.1); color: #fff; transform: scale(1.1); }
 .zoom-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.08); margin: 0 8px; }
+.ti { display: inline-block; width: 1em; text-align: center; font-style: normal; }
+.ti-zoom-in::before { content: '+'; }
+.ti-zoom-out::before { content: '−'; }
+.ti-maximize::before { content: '⤢'; }
+.ti-eye-off::before { content: '◐'; }
+.ti-download::before { content: '↓'; }
+
+#r-additional p + p { margin-top: var(--u); }
 
 /* Utilities & New UI Components */
 .mt-auto { margin-top: auto; }
 .action-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.action-stack a { text-decoration: none; text-align: center; }
 .microcopy { font-size: 11px; color: var(--muted-obsidian); margin-top: 16px; line-height: 1.4; font-weight: 500; }
 .signature-box {
   margin-top: auto;
@@ -626,3 +625,70 @@ body.redact-mode #btnRedact {
 .mtx-opt { display: block; width: 100%; border: 0; padding: 12px 16px; background: transparent; color: inherit; font: inherit; font-size: 13px; text-align: left; cursor: pointer; transition: background .2s, color .2s; }
 .mtx-opt:hover { background: rgba(255,255,255,0.03); color: var(--accent-cyan); }
 .mtx-opt.sel { color: var(--accent-cyan); font-weight: 600; }
+
+/* =================================================================
+   PRINT — SAME A4 GEOMETRY, ZERO MICROSITE CHROME
+   ================================================================= */
+@media print {
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .aside,
+  .mobile-brand,
+  .mtx-pop {
+    display: none !important;
+  }
+
+  .app,
+  .stage {
+    display: block;
+    width: 210mm;
+    height: 297mm;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .stage::before,
+  .stage::after {
+    display: none;
+  }
+
+  .wrap {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0;
+    overflow: visible;
+    filter: none;
+  }
+
+  .sheet {
+    width: 210mm;
+    height: 297mm;
+    transform: none !important;
+    transform-origin: top left;
+    overflow: visible;
+    font-variation-settings: 'opsz' 11, 'wght' 400;
+  }
+
+  #r-name,
+  #r-ctc,
+  #r-summary,
+  #r-experience,
+  #r-projects,
+  #r-education,
+  #r-additional {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  a { color: inherit; text-decoration: none; }
+}
