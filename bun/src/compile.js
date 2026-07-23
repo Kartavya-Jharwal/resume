@@ -23,6 +23,7 @@ const variantsDoc = JSON.parse(readFileSync(resolve(ROOT, 'data/variants.json'),
 const variants = variantsDoc.variants;
 
 const limits = resume.custom?.limits || {};
+const universal = resume.custom?.universal || {};
 
 /* ── Derive profile for each variant ── */
 const profiles = variants.map(v => {
@@ -33,27 +34,27 @@ const profiles = variants.map(v => {
   const work = pickPreferredEntries(
     (resume.work || []).map(w => {
       const split = splitVariantItems(w.highlights || [], vid);
-      const highlights = (split.direct.length ? split.direct : split.global).map(h => h.text);
+      const highlights = (split.direct.length ? split.direct : split.global)
+        .slice(0, limitOrInfinity(limits.experienceHighlights))
+        .map(h => h.text);
       if (!highlights.length) return null;
 
       return {
         company: w.name,
         role: w.position,
-        url: w.url,
         date: formatDateRange(w.startDate, w.endDate),
-        summary: w.summary,
         highlights,
-        keywords: w.keywords || [],
         direct: split.direct.length > 0,
         global: split.direct.length === 0 && split.global.length > 0,
+        featured: getFeaturedRank(universal.experience, w.name, vid),
         score: scoreEntry(keywordBank, [w.name, w.position, w.summary, ...(w.keywords || []), ...highlights]),
         recency: toComparableDate(w.endDate || '9999-12-31')
       };
     })
       .filter(Boolean)
-      .sort((a, b) => Number(b.direct) - Number(a.direct) || (b.score - a.score) || (b.recency - a.recency)),
+      .sort((a, b) => (a.featured - b.featured) || Number(b.direct) - Number(a.direct) || (b.score - a.score) || (b.recency - a.recency)),
     limits.experience
-  ).map(({ score, recency, direct, global, ...entry }) => entry);
+  ).map(({ score, recency, direct, global, featured, ...entry }) => entry);
 
   /* Filter projects tagged for this variant or globally tagged with "all" */
   const projects = pickPreferredEntries(
@@ -62,23 +63,24 @@ const profiles = variants.map(v => {
       if (!projectScope.direct && !projectScope.global) return null;
 
       const split = splitVariantItems(p.highlights || [], vid);
-      const highlights = (split.direct.length ? split.direct : split.global).map(h => h.text);
+      const highlights = (split.direct.length ? split.direct : split.global)
+        .slice(0, limitOrInfinity(limits.projectHighlights))
+        .map(h => h.text);
 
       return {
         name: p.name,
-        description: p.description,
-        url: p.url,
-        keywords: p.keywords || [],
+        description: limits.projectDescriptions === false ? '' : p.description,
         highlights,
         direct: projectScope.direct || split.direct.length > 0,
         global: !(projectScope.direct || split.direct.length > 0) && (projectScope.global || split.global.length > 0),
+        featured: getFeaturedRank(universal.projects, p.name, vid),
         score: scoreEntry(keywordBank, [p.name, p.description, ...(p.keywords || []), ...highlights])
       };
     })
       .filter(Boolean)
-      .sort((a, b) => Number(b.direct) - Number(a.direct) || (b.score - a.score)),
+      .sort((a, b) => (a.featured - b.featured) || Number(b.direct) - Number(a.direct) || (b.score - a.score)),
     limits.projects
-  ).map(({ score, direct, global, ...entry }) => entry);
+  ).map(({ score, direct, global, featured, ...entry }) => entry);
 
   /* Education (non-optional) — all education entries */
   const education = (resume.education || []).map(e => ({
@@ -97,10 +99,14 @@ const profiles = variants.map(v => {
       keywords: s.keywords || []
     }))
   );
-  const skills = unique((skillBuckets.direct.length ? skillBuckets.direct : skillBuckets.global).flatMap(s => s.keywords || []));
+  const availableSkills = unique((skillBuckets.direct.length ? skillBuckets.direct : skillBuckets.global).flatMap(s => s.keywords || []));
+  const skills = (vid === 'all' && Array.isArray(universal.skills) ? universal.skills : availableSkills)
+    .slice(0, limitOrInfinity(limits.skills));
 
   /* Languages */
-  const languages = (resume.languages || []).map(l => `${l.language} (${l.fluency})`);
+  const languages = (resume.languages || [])
+    .map(l => `${l.language} (${l.fluency})`)
+    .slice(0, limitOrInfinity(limits.languages));
 
   /* Certifications filtered by variant */
   const certificateBuckets = partitionEntriesByVariant(
@@ -111,7 +117,8 @@ const profiles = variants.map(v => {
     }))
   );
   const certifications = (certificateBuckets.direct.length ? certificateBuckets.direct : certificateBuckets.global)
-    .map(c => c.name);
+    .map(c => c.name)
+    .slice(0, limitOrInfinity(limits.certifications));
 
   /* Leadership / activities */
   const leadershipBuckets = partitionEntriesByVariant(
@@ -125,22 +132,17 @@ const profiles = variants.map(v => {
   );
   const leadership = (leadershipBuckets.direct.length ? leadershipBuckets.direct : leadershipBuckets.global)
     .map(item => `${item.organization}${item.position ? `, ${item.position}` : ''}: ${item.summary || ''}`.trim())
-    .filter(Boolean);
-
-  /* Derived tagline from variant requiredKeywords */
-  const tagline = (v.requiredKeywords || []).slice(0, 3).join('  |  ');
+    .filter(Boolean)
+    .slice(0, limitOrInfinity(limits.leadership));
 
   return {
     id: v.id,
     role: v.role,
     industry: v.industry,
-    targeted: v.targeted,
-    weight: v.weight,
     fallback: v.fallback || false,
 
     /* Identity */
     name: resume.basics.name,
-    label: resume.basics.label,
 
     /* Contact — uses variant location, but canonical contact info from resume */
     contact: {
@@ -150,9 +152,6 @@ const profiles = variants.map(v => {
       url: resume.basics.url,
       profiles: resume.basics.profiles || []
     },
-
-    /* Tagline — focus areas derived from variant keywords */
-    tagline: tagline,
 
     /* Summary from variant description */
     summary: v.description || resume.basics.summary || '',
@@ -167,12 +166,9 @@ const profiles = variants.map(v => {
       skills: skills,
       languages: languages,
       certifications: certifications,
-      workAuthorization: resume.basics.workAuthorization || '',
+      workAuthorization: limits.includeWorkAuthorization === false ? '' : (resume.basics.workAuthorization || ''),
       leadership: leadership
     },
-
-    /* Metrics for right sidebar */
-    metrics: v.metrics || {},
 
     /* PDF */
     pdfFilename: v.pdfFilename || '',
@@ -208,11 +204,6 @@ function formatDateRange(start, end) {
     return `${months[parseInt(m)-1]} ${y}`;
   };
   return `${fmt(start)} – ${fmt(end)}`;
-}
-
-function matchesVariant(tags, variantId) {
-  if (!Array.isArray(tags) || tags.length === 0) return true;
-  return tags.includes(variantId) || tags.includes('all');
 }
 
 function hasExactVariant(tags, variantId) {
@@ -256,12 +247,22 @@ function partitionEntriesByVariant(entries) {
 
 function pickPreferredEntries(entries, limit) {
   const buckets = partitionEntriesByVariant(entries);
-  const max = limit || entries.length;
+  const max = Number.isInteger(limit) ? limit : entries.length;
   const chosen = buckets.direct.slice(0, max);
   if (chosen.length < max) {
     chosen.push(...buckets.global.slice(0, max - chosen.length));
   }
   return chosen;
+}
+
+function limitOrInfinity(value) {
+  return Number.isInteger(value) ? value : Infinity;
+}
+
+function getFeaturedRank(names, name, variantId) {
+  if (variantId !== 'all' || !Array.isArray(names)) return Number.MAX_SAFE_INTEGER;
+  const index = names.indexOf(name);
+  return index === -1 ? Number.MAX_SAFE_INTEGER : index;
 }
 
 function unique(items) {

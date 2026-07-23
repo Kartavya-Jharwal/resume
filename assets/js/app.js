@@ -20,16 +20,7 @@ const useStore = createStore((set) => ({
 useStore.subscribe((state, prevState) => {
   // Handle Redact
   if (state.isRedacted !== prevState.isRedacted) {
-    if (state.isRedacted) {
-      document.body.classList.add('redact-mode');
-    } else {
-      document.body.classList.remove('redact-mode');
-    }
-    var redactButton = document.getElementById('btnRedact');
-    if (redactButton) {
-      redactButton.setAttribute('aria-pressed', String(state.isRedacted));
-      redactButton.setAttribute('aria-label', state.isRedacted ? 'Show contact details' : 'Hide contact details');
-    }
+    applyRedactionState(state.isRedacted);
   }
 
   // Handle Zoom
@@ -42,7 +33,6 @@ useStore.subscribe((state, prevState) => {
     var p = byId(state.profileId);
     if (p) {
       cur = p;
-      track('view_pair', { pair: p.id });
 
       // Update URL without polluting history (replaceState)
       var url = new URL(location.href);
@@ -71,7 +61,6 @@ function nb(s) { return String(s).replace(/(\d)\s+(?=[A-Za-z%$€£])/g, '$1\u00
 function slug(s) { return String(s).replace(/\s+/g, '_').replace(/[^\w]/g, ''); }
 function pdfName(p) { return p.pdfFilename || ('Kartavya_Jharwal_Resume_' + slug(p.role) + '_' + slug(p.industry) + '.pdf'); }
 function pdfHref(p) { return 'resumes/' + pdfName(p); }
-function track(ev, obj) { try { console.log('[telemetry]', ev, obj); } catch (e) {} }
 
 /* =================================================================
    STATE & RUNTIME FLAGS
@@ -165,9 +154,9 @@ function applyDesktopSheetScale() {
   var els = getStageEls();
   if (!els.stage || !els.wrap || !els.sheet) return;
 
-  var isMobile = isMobileLayout();
-  var padX = isMobile ? 16 : 40;
-  var padY = isMobile ? 92 : 40;
+  var stageStyle = getComputedStyle(els.stage);
+  var padX = parseFloat(stageStyle.paddingLeft) + parseFloat(stageStyle.paddingRight);
+  var padY = parseFloat(stageStyle.paddingTop) + parseFloat(stageStyle.paddingBottom);
 
   /* Measure the sheet at its natural CSS dimensions (unscaled) */
   var prevTransform = els.sheet.style.transform;
@@ -177,11 +166,12 @@ function applyDesktopSheetScale() {
   els.sheet.style.transform = prevTransform;
 
   // Stage now purely flexes, no absolute floating controls overlapping it
-  var availableWidth = Math.max(els.stage.clientWidth - (padX * 2), naturalWidth * 0.3);
-  var availableHeight = Math.max(els.stage.clientHeight - (padY * 2), naturalHeight * 0.3);
+  var availableWidth = Math.max(els.stage.clientWidth - padX, naturalWidth * 0.3);
+  var availableHeight = Math.max(els.stage.clientHeight - padY, naturalHeight * 0.3);
 
   fitScale = Math.min(availableWidth / naturalWidth, availableHeight / naturalHeight, 1);
-  var appliedScale = Math.max(fitScale * useStore.getState().zoomLevel, 0.25);
+  var zoomLevel = useStore.getState().zoomLevel;
+  var appliedScale = Math.max(fitScale * zoomLevel, 0.25);
 
   /* Size the wrap to the visual (post-scale) footprint so flexbox centres it correctly */
   els.wrap.style.width = Math.round(naturalWidth * appliedScale) + 'px';
@@ -192,6 +182,21 @@ function applyDesktopSheetScale() {
   /* Scale from top-left so wrap clip stays perfectly aligned */
   els.sheet.style.transformOrigin = 'top left';
   els.sheet.style.transform = 'scale(' + appliedScale + ')';
+  els.stage.classList.toggle('is-zoomed', zoomLevel > 1.001);
+
+  var zoomValue = document.getElementById('zoomValue');
+  if (zoomValue) zoomValue.textContent = Math.round(zoomLevel * 100) + '%';
+  var zoomInButton = document.getElementById('btnZoomIn');
+  var zoomOutButton = document.getElementById('btnZoomOut');
+  if (zoomInButton) zoomInButton.disabled = zoomLevel >= 2.5;
+  if (zoomOutButton) zoomOutButton.disabled = zoomLevel <= 0.85;
+
+  requestAnimationFrame(function() {
+    if (zoomLevel > 1.001) {
+      els.stage.scrollLeft = Math.max(0, (els.stage.scrollWidth - els.stage.clientWidth) / 2);
+      els.stage.scrollTop = Math.max(0, (els.stage.scrollHeight - els.stage.clientHeight) / 2);
+    }
+  });
 
   setA4RuntimeState({ appliedScale: appliedScale });
 }
@@ -202,6 +207,28 @@ function zoom(delta) {
 
 function zoomReset() {
   useStore.getState().setZoom(1);
+}
+
+function applyRedactionState(isRedacted) {
+  document.body.classList.toggle('redact-mode', isRedacted);
+  var redactButton = document.getElementById('btnRedact');
+  if (redactButton) {
+    redactButton.setAttribute('aria-pressed', String(isRedacted));
+    redactButton.setAttribute('aria-label', isRedacted ? 'Show contact details' : 'Hide contact details');
+  }
+  document.querySelectorAll('.sensitive').forEach(function(item) {
+    if (isRedacted) item.setAttribute('aria-label', 'Contact detail hidden');
+    else item.removeAttribute('aria-label');
+    item.querySelectorAll('a').forEach(function(link) {
+      if (isRedacted) {
+        link.setAttribute('aria-hidden', 'true');
+        link.setAttribute('tabindex', '-1');
+      } else {
+        link.removeAttribute('aria-hidden');
+        link.removeAttribute('tabindex');
+      }
+    });
+  });
 }
 
 /* =================================================================
@@ -246,6 +273,7 @@ function renderContact(p) {
   }
 
   el.innerHTML = parts.join('<span class="sep">\u202f|\u202f</span>');
+  applyRedactionState(useStore.getState().isRedacted);
   if (BUILD_FIT_MODE) el.classList.add('up-in');
   else setTimeout(function() { el.classList.add('up-in'); }, 10);
 }
@@ -434,7 +462,20 @@ function measureA4Layout() {
 
   var previousTransform = sheet.style.transform;
   sheet.style.transform = 'none';
-  var overflowPx = Math.max(0, sheet.scrollHeight - sheet.clientHeight);
+  var sheetStyle = getComputedStyle(sheet);
+  var sheetRect = sheet.getBoundingClientRect();
+  var paddingBottom = parseFloat(sheetStyle.paddingBottom) || 0;
+  var contentBoundary = sheetRect.bottom - paddingBottom;
+  var renderedSections = Array.from(sheet.children).filter(function(child) {
+    var rect = child.getBoundingClientRect();
+    return rect.width > 0 && rect.height > 0;
+  });
+  var actualContentBottom = renderedSections.reduce(function(bottom, child) {
+    return Math.max(bottom, child.getBoundingClientRect().bottom);
+  }, sheetRect.top);
+  var sheetOverflow = sheet.scrollHeight - sheet.clientHeight;
+  var marginOverflow = actualContentBottom - contentBoundary;
+  var overflowPx = Math.max(0, sheetOverflow, marginOverflow);
   var titleOverflows = [];
 
   sheet.querySelectorAll('.r-co').forEach(function(title) {
@@ -447,7 +488,9 @@ function measureA4Layout() {
   return {
     overflowPx: Number(overflowPx.toFixed(3)),
     resolved: overflowPx <= 1 && titleOverflows.length === 0,
-    titleOverflows: titleOverflows
+    titleOverflows: titleOverflows,
+    bottomMarginPx: Number(paddingBottom.toFixed(3)),
+    remainingBottomSpacePx: Number(Math.max(0, sheetRect.bottom - actualContentBottom).toFixed(3))
   };
 }
 
@@ -506,7 +549,6 @@ function removeNextOptional(profile, omissions) {
       return true;
     }
   }
-  if (profile.projects && profile.projects.length) return omitLast(profile.projects, 'project', omissions);
 
   for (var experienceIndex = profile.experience.length - 1; experienceIndex >= 0; experienceIndex -= 1) {
     var experience = profile.experience[experienceIndex];
@@ -514,6 +556,7 @@ function removeNextOptional(profile, omissions) {
       return omitLast(experience.highlights, 'experienceHighlight', omissions);
     }
   }
+  if (profile.projects && profile.projects.length) return omitLast(profile.projects, 'project', omissions);
   if (profile.experience && profile.experience.length > 2) return omitLast(profile.experience, 'experience', omissions);
 
   for (var educationIndex = profile.education.length - 1; educationIndex >= 0; educationIndex -= 1) {
@@ -571,8 +614,10 @@ async function fitProfileForBuild(profileId) {
    ================================================================= */
 function updateDownloadLink(p) {
   var dl = document.getElementById('dlBtn');
+  var status = document.getElementById('pdfStatus');
   if (!dl) return;
   dl.hidden = !p.pdfAvailable;
+  if (status) status.hidden = p.pdfAvailable;
   if (!p.pdfAvailable) {
     dl.removeAttribute('href');
     dl.removeAttribute('download');
@@ -603,7 +648,6 @@ function sel(id, skipHist) {
   if (skipHist) {
     // If skipping history (e.g. from popstate), just render directly to avoid loop
     cur = p;
-    track('view_pair', { pair: p.id });
     renderProfile(p);
     useStore.setState({ profileId: p.id });
   } else {

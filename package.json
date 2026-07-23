@@ -17,8 +17,8 @@
     "metrics": "bun run bun/src/font-metrics.js",
     "validate": "bun run bun/src/validate.js",
     "test": "bun run build && bun run bun/src/test.js",
-    "serve": "bun run compile && bunx serve . --port 3000",
-    "preview": "bunx serve dist --port 3000",
+    "serve": "bun run build && bunx serve dist -l 3000",
+    "preview": "bunx serve dist -l 3000",
     "clean": "bun -e \"for(const p of ['dist','.build-cache']){if(p==='dist'||p==='.build-cache')require('node:fs').rmSync(p,{recursive:true,force:true})}\""
   },
   "devDependencies": {

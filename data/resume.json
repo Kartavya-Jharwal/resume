@@ -1,13 +1,39 @@
 {
   "meta": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "canonical": "https://resume.kartavya.tech/data/resume.json",
-    "lastModified": "2026-07-21"
+    "lastModified": "2026-07-23"
   },
   "custom": {
     "limits": {
-      "experience": 6,
-      "projects": 8
+      "experience": 3,
+      "experienceHighlights": 1,
+      "projects": 1,
+      "projectHighlights": 1,
+      "projectDescriptions": false,
+      "skills": 6,
+      "certifications": 0,
+      "languages": 0,
+      "leadership": 0,
+      "includeWorkAuthorization": false
+    },
+    "universal": {
+      "experience": [
+        "Margadarshaka",
+        "AstroPatshala",
+        "SRBS / Hotel Savi"
+      ],
+      "projects": [
+        "Independent Software Development and Systems Engineering"
+      ],
+      "skills": [
+        "Python",
+        "JavaScript",
+        "FastAPI",
+        "SQL",
+        "Excel",
+        "product strategy"
+      ]
     }
   },
   "basics": {

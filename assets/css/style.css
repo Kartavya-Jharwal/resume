@@ -74,6 +74,7 @@
    RESET & BASE
    ================================================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
 html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-obsidian); color: var(--text-obsidian); }
 body { font-family: system-ui, sans-serif; -webkit-font-smoothing: antialiased; font-kerning: normal; }
 button, select { font-family: inherit; color: inherit; border: none; background: none; }
@@ -108,9 +109,9 @@ img { display: block; max-width: 100%; }
   background: var(--stage-obsidian);
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  align-items: safe center;
+  justify-content: safe center;
+  overflow: auto;
   padding: var(--stage-pad) var(--stage-pad-right) var(--stage-pad) var(--stage-pad);
 }
 
@@ -219,9 +220,7 @@ img { display: block; max-width: 100%; }
   transform: translateY(0) !important;
 }
 
-/* Future: odometer-style digit animation & text manipulation hooks */
 .r-name-inner,
-.r-tagline-inner,
 .ctc-part,
 .bl-item,
 .summary-text,
@@ -324,8 +323,9 @@ img { display: block; max-width: 100%; }
   font-weight: var(--weight-regular);
   min-height: var(--u);
   line-height: var(--u);
-  margin-bottom: var(--u);
+  margin-bottom: 0;
 }
+.r-role + .r-ul { margin-top: var(--u); }
 
 /* v1.5 §6: the marker's LSB is extracted from the actual font at build time. */
 .r-ul { list-style: none; padding: 0; margin: 0; }
@@ -351,8 +351,10 @@ img { display: block; max-width: 100%; }
 .exp-block:last-child, .proj-block:last-child, .edu-block:last-child { margin-bottom: 0; }
 
 .proj-desc {
-  margin-bottom: var(--u);
+  margin-bottom: 0;
 }
+.proj-desc + .r-ul { margin-top: var(--u); }
+.proj-block .r-item-hdr + .r-ul { margin-top: var(--u); }
 
 .edu-meta {
   display: flex;
@@ -528,7 +530,16 @@ img { display: block; max-width: 100%; }
   cursor: pointer; transition: all .2s var(--ease-out-expo);
 }
 .zoom-btn:hover { background: rgba(255,255,255,0.1); color: #fff; transform: scale(1.1); }
+.zoom-btn:disabled { opacity: 0.28; cursor: not-allowed; transform: none; }
 .zoom-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.08); margin: 0 8px; }
+.zoom-value {
+  min-width: 38px;
+  color: var(--muted-obsidian);
+  font-size: 9px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
 .ti { display: inline-block; width: 1em; text-align: center; font-style: normal; }
 .ti-zoom-in::before { content: '+'; }
 .ti-zoom-out::before { content: '−'; }
@@ -543,18 +554,11 @@ img { display: block; max-width: 100%; }
 .action-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
 .action-stack a { text-decoration: none; text-align: center; }
 .microcopy { font-size: 11px; color: var(--muted-obsidian); margin-top: 16px; line-height: 1.4; font-weight: 500; }
-.signature-box {
-  margin-top: auto;
-  padding: 24px 0;
-  display: flex; justify-content: center; align-items: center;
-  border-top: 1px dashed rgba(255, 255, 255, 0.05);
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
-  background: rgba(255, 255, 255, 0.01);
-  margin-bottom: 24px;
-  min-height: 100px;
-  border-radius: 4px;
+.download-status {
+  color: var(--muted-obsidian);
+  font-size: 11px;
+  line-height: 1.45;
 }
-.signature-placeholder { height: 60px; max-width: 100%; object-fit: contain; }
 
 /* =================================================================
    REDACT MODE
@@ -564,16 +568,12 @@ body.redact-mode .sensitive {
   color: transparent !important;
   border-radius: 2px;
   user-select: none;
-  position: relative;
   display: inline-block;
 }
-body.redact-mode .sensitive::before {
-  content: '';
-  position: absolute;
-  inset: -1px -3px;
-  background-color: #111;
-  border-radius: 2px;
-  z-index: -1;
+body.redact-mode .sensitive a {
+  color: transparent !important;
+  text-decoration: none !important;
+  pointer-events: none;
 }
 body.redact-mode #btnRedact {
   color: var(--accent-cyan);
@@ -585,16 +585,81 @@ body.redact-mode #btnRedact {
    ================================================================= */
 @media (max-width: 1023px) {
   body { overflow: auto; }
-  .aside { display: none; }
   .app { flex-direction: column; height: auto; min-height: 100vh; }
-  .stage { padding: 92px 16px 120px; display: flex; align-items: flex-start; justify-content: center; }
-  .zoom-ctrl { display: none; }
+  .aside {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+  }
+  .aside.l {
+    padding: 16px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border-obsidian);
+  }
+  .aside.l > div:first-child { width: 100%; }
+  .aside.l .brand-lockup,
+  .aside.l > .mt-auto,
+  .aside.l .microcopy { display: none; }
+  .aside.l .sec-title { margin-bottom: 10px; }
+  .aside.l .card {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 10px;
+    padding: 14px;
+  }
+  .aside.l .field { margin: 0; }
+  .aside.l .action-stack { flex-direction: row; margin-top: 0; }
+  .aside.l .action-stack > * { flex: 1; }
+  .stage {
+    width: 100%;
+    height: calc(100vh - 152px);
+    min-height: 540px;
+    padding: 88px 16px 88px;
+    display: flex;
+    align-items: safe center;
+    justify-content: safe center;
+  }
+  .aside.r {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 80;
+    height: 72px;
+    padding: 10px 12px;
+    border: 0;
+    border-top: 1px solid var(--border-obsidian);
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    background: rgba(13,13,13,0.94);
+    backdrop-filter: blur(16px);
+  }
+  .aside.r .sec-title,
+  .aside.r .download-status { display: none; }
+  .aside.r .zoom-ctrl {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 4px;
+  }
+  .aside.r .zoom-btn { width: 34px; height: 34px; }
+  .aside.r .zoom-sep { margin: 0 3px; }
+  .aside.r .dl-btn {
+    flex: 1;
+    margin: 0;
+    padding: 14px 16px;
+  }
   .mobile-brand { display: block; }
   .brand-mark { width: 44px; height: 44px; border-radius: 12px; }
 }
 
-@media screen and (max-width: 210mm) {
-  .page-wrapper { transform: scale(min(1, calc(100vw / 210mm))); transform-origin: top left; }
+@media (max-width: 560px) {
+  .aside.l .card { grid-template-columns: 1fr; }
+  .aside.l .action-stack { flex-direction: column; }
+  .stage { height: calc(100vh - 260px); }
+  .zoom-value,
+  .zoom-sep:nth-of-type(3) { display: none; }
 }
 
 @media (min-width: 1280px) {

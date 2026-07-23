@@ -25,14 +25,15 @@ https://resume.kartavya.tech/?role=Agentic+Systems+Architect&industry=FinTech+Au
 bun ci                 # install the lockfile exactly
 bun run validate       # validate source data and variant references
 bun run metrics        # extract font metrics used by the CSS
-bun run compile        # create the development public/data.js payload
-bun run serve          # compile, then serve the source site on port 3000
+bun run compile        # create an unfitted source payload for compiler debugging
+bun run serve          # rebuild dist/PDFs, then serve the verified site
 bun run build          # create dist/ and all 102 PDFs
 bun run test           # full build followed by production-artifact tests
-bun run preview        # serve dist/ on port 3000
+bun run preview        # reopen the last verified dist without rebuilding
 ```
 
 `bun run build` deletes the previous `dist/` and `.build-cache/` directories before rebuilding. Do not edit anything in those directories by hand.
+`bun run serve` intentionally performs that full build first, so its initial start takes several minutes. Use `bun run preview` when `dist/` is already current.
 
 ## Build contract
 
@@ -41,7 +42,7 @@ The build performs these steps in order:
 1. Validate `data/resume.json` and `data/variants.json`.
 2. Inspect the official Source Serif 4 variable TTF for required OpenType features, Unicode coverage, date width, cap offset, x-height, and bullet sidebearing.
 3. Compile every curated profile.
-4. Ask the pinned Chromium engine to measure the actual A4 DOM and deterministically omit low-priority optional items until the profile fits. Every omission is recorded in `.build-cache/fit-report.json`; words are never clipped or ellipsized.
+4. Ask the pinned Chromium engine to measure the actual A4 DOM, including the reserved 33 mm bottom margin, and deterministically omit low-priority optional items only when a curated profile still exceeds that boundary. Every omission is recorded in `.build-cache/fit-report.json`; words are never clipped or ellipsized.
 5. Bundle/minify the browser JavaScript and CSS, copy self-hosted fonts/assets, and write `dist/`.
 6. Render all variant PDFs from the fitted payload with tagged-PDF export enabled.
 7. Fail unless every PDF has exactly one A4 page.
@@ -70,5 +71,9 @@ GitHub Actions builds and deploys only `dist/` from `main`. The workflow install
 ## Editing content
 
 Edit only the JSON source, then run `bun run test`. Variant tags must reference an ID declared in `data/variants.json`. A content change may alter build-time omissions in multiple PDFs, so inspect `.build-cache/fit-report.json` and visually check representative output before committing.
+
+`data/resume.json#custom.limits` is the editorial page-capacity policy: three relevant roles, one evidence bullet per role, one project, one project bullet, and six skills. The universal résumé has explicit experience, project, and skill priorities under `custom.universal`; targeted variants continue to rank their directly tagged evidence first.
+
+Redaction is a presentation control for screen sharing. It visually blocks contact details and removes their links from keyboard and accessibility navigation, but it is not a secrecy boundary: the static source and downloadable PDF still contain the canonical contact information.
 
 The complete geometric and typographic rules are normative in [TYPESETTING.md](./TYPESETTING.md). Implementation decisions and fitting policy are summarized in [ARCHITECTURE.md](./ARCHITECTURE.md).

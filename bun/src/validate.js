@@ -51,6 +51,23 @@ requireText(resume.meta?.lastModified, 'resume.meta.lastModified');
 requireText(resume.basics?.name, 'resume.basics.name');
 requireText(resume.basics?.email, 'resume.basics.email');
 
+const limits = resume.custom?.limits || {};
+for (const field of ['experience', 'experienceHighlights', 'projects', 'projectHighlights', 'skills']) {
+  if (!Number.isInteger(limits[field]) || limits[field] < 1) {
+    errors.push(`resume.custom.limits.${field} must be a positive integer`);
+  }
+}
+for (const field of ['certifications', 'languages', 'leadership']) {
+  if (!Number.isInteger(limits[field]) || limits[field] < 0) {
+    errors.push(`resume.custom.limits.${field} must be a non-negative integer`);
+  }
+}
+for (const field of ['projectDescriptions', 'includeWorkAuthorization']) {
+  if (typeof limits[field] !== 'boolean') {
+    errors.push(`resume.custom.limits.${field} must be a boolean`);
+  }
+}
+
 for (const [field, value] of [['email', resume.basics?.email], ['phone', resume.basics?.phone]]) {
   if (/dummy|example\.com|000000/i.test(String(value || ''))) {
     errors.push(`resume.basics.${field} contains placeholder contact information`);
@@ -103,6 +120,25 @@ for (const [index, project] of requireArray(resume.projects, 'resume.projects').
 for (const field of ['skills', 'certificates', 'volunteer']) {
   for (const [index, entry] of requireArray(resume[field] || [], `resume.${field}`).entries()) {
     checkTags(entry.variants, `resume.${field}[${index}].variants`);
+  }
+}
+
+const universal = resume.custom?.universal || {};
+const sourceNames = {
+  experience: new Set((resume.work || []).map(entry => entry.name)),
+  projects: new Set((resume.projects || []).map(entry => entry.name)),
+  skills: new Set((resume.skills || []).flatMap(entry => entry.keywords || []))
+};
+for (const field of ['experience', 'projects', 'skills']) {
+  const values = requireArray(universal[field], `resume.custom.universal.${field}`);
+  checkUnique(values, `resume.custom.universal.${field}`);
+  for (const value of values) {
+    if (!sourceNames[field].has(value)) {
+      errors.push(`resume.custom.universal.${field} references unknown value "${value}"`);
+    }
+  }
+  if (values.length > limits[field]) {
+    errors.push(`resume.custom.universal.${field} contains more values than resume.custom.limits.${field}`);
   }
 }
 

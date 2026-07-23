@@ -8,7 +8,7 @@ This is a personal résumé product. Keep changes traceable to source data or to
 2. Add or change curated variants in `data/variants.json` when needed.
 3. Run `bun run validate` while editing.
 4. Run `bun run test` before committing; this rebuilds all PDFs.
-5. Review `.build-cache/fit-report.json` for changed omissions and visually inspect representative PDFs.
+5. Review `.build-cache/fit-report.json` for changed omissions and visually inspect representative PDFs, including the reserved bottom footing.
 
 Variant IDs are lowercase kebab-case. Every tag other than `all` must reference an existing variant ID. PDF filenames are declared by the variant and generated automatically; never hand-edit or commit files in `dist/`.
 
@@ -16,7 +16,7 @@ Variant IDs are lowercase kebab-case. Every tag other than `all` must reference 
 
 Read `TYPESETTING.md` before editing the résumé CSS. Do not solve overflow by reducing font size, tightening margins, changing page dimensions, adding line clamps, clipping, or browser-time deletion. Change the source content priority or the deterministic fitting policy and keep the omission auditable.
 
-Font-dependent measurements belong in `bun/src/font-metrics.js`, not handwritten CSS constants. A typeface change must revalidate required OpenType features and character coverage.
+Font-dependent measurements belong in `bun/src/font-metrics.js`, not handwritten CSS constants. A typeface change must revalidate required OpenType features and character coverage. Layout measurement must enforce the inner content boundary (`sheet bottom − padding-bottom`), not merely the physical sheet edge.
 
 ## Implementation constraints
 

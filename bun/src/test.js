@@ -22,6 +22,7 @@ const profiles = JSON.parse(match[1]);
 assert(profiles.length === variants.length, 'production profile count must match variant count');
 assert(new Set(profiles.map(profile => profile.id)).size === profiles.length, 'profile ids must be unique');
 assert(profiles.some(profile => profile.fallback), 'a canonical fallback profile is required');
+assert(profiles.find(profile => profile.fallback).omissions.length === 0, 'the universal resume must fit without build-time omissions');
 
 const localReferences = [...html.matchAll(/(?:href|src)=["']([^"']+)["']/g)]
   .map(result => result[1])
