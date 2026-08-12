@@ -314,7 +314,8 @@ Rationale: this is a dense reference document read in short scanning bursts, not
 |---|---|---|
 | Before a section label (e.g. EXPERIENCE, EDUCATION) | **2u (28pt)** | Unconditionally — regardless of what precedes it |
 | Section label → first line of content | **1u (14pt)** | Unconditionally |
-| Between bullets within the same role | **1u (14pt)** | When bullets exist |
+| Role/project lead-in → first bullet | **0.5u (7pt)** | When bullets exist |
+| Between bullets within the same role | **0.5u (7pt)** | When bullets exist; wrapped lines inside a bullet retain 1u leading |
 | **End of any entry → next entry** | **1u (14pt)** | **Unconditionally — with or without bullets. Does not fall back to a default margin under any content condition.** |
 
 The last row is load-bearing (§0a): an entry with zero bullets gets exactly the same trailing space as an entry with five — there is no content-dependent branch in this rule.
@@ -325,6 +326,7 @@ A divider, if present (§16), subdivides the 2u pre-label budget rather than add
 .section-label { margin-top: var(--u); } /* halved from 2u when a divider is present, §16 */
 .entry { margin-bottom: var(--u); }
 .entry:last-of-type { margin-bottom: 0; } /* avoid double-spacing before the following section-label rule */
+.role + ul, li + li { margin-top: calc(var(--u) / 2); }
 ```
 
 ---
@@ -674,7 +676,7 @@ a:hover, a:focus { text-decoration: underline; }
 - Donald E. Knuth, *The Metafont Book* (1986) — parametric letterform construction, ancestor of computing with font metrics programmatically (§4, §6)
 - D. E. Knuth & M. F. Plass, "Breaking Paragraphs into Lines," *Software: Practice and Experience*, 1981
 - Hermann Zapf, writings on the URW hz-program
-- MDN Web Docs, `text-box-trim` / `text-box-edge` / `@page` / CSS Paged Media specifications
+- MDN Web Docs, `text-box-trim` / `text-box-edge` / `@page` / CSS Paged wMedia specifications
 - W3C, Web Content Accessibility Guidelines 2.x, Success Criterion 1.4.3 (Contrast — Minimum) — §13a
 - ISO 14289-1 (PDF/UA) — accessible-PDF structural standard, §15
 - ISO 19005 (PDF/A) — archival-PDF permanence standard, §19

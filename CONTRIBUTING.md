@@ -24,6 +24,7 @@ Font-dependent measurements belong in `bun/src/font-metrics.js`, not handwritten
 - Bun owns validation, compilation, minification, fitting orchestration, and the build lifecycle.
 - The exact Playwright version pins Chromium; do not silently switch the PDF engine.
 - Browser code stays small and dependency-light. Self-host assets needed for deterministic rendering.
+- Artifact tests derive content expectations from the JSON source; do not duplicate mutable résumé facts in test code.
 - `public/data.js`, `.build-cache/`, and `dist/` are generated.
 - Do not claim PDF/A or PDF/UA compliance without reports from dedicated validators.
 

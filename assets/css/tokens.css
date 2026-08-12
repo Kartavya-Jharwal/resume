@@ -1,0 +1,140 @@
+/* =================================================================
+   KJ DESIGN SYSTEM - FOUNDATIONS
+
+   Primitive values, semantic aliases, type, spacing, shape, motion and
+   A4 document geometry live here. Component rules belong in style.css.
+   ================================================================= */
+
+:root {
+  color-scheme: dark;
+
+  /* Primitive palette */
+  --ink-1000: #070909;
+  --ink-950: #0b0e0e;
+  --ink-900: #101414;
+  --ink-850: #151a1a;
+  --ink-800: #1b2121;
+  --ink-700: #293131;
+  --ink-500: #687271;
+  --ink-400: #8e9997;
+  --ink-200: #cbd2d1;
+  --ink-100: #edf1f0;
+  --ink-050: #f8faf9;
+  --mint-500: #54d8c6;
+  --mint-400: #72e5d6;
+  --mint-300: #9aeee4;
+  --paper: #ffffff;
+  --paper-ink: #111313;
+
+  /* Semantic colour aliases - backwards-compatible names are intentional. */
+  --bg-canvas: var(--ink-950);
+  --bg-stage: var(--ink-1000);
+  --bg-surface: var(--ink-900);
+  --bg-surface-raised: var(--ink-850);
+  --bg-surface-hover: var(--ink-800);
+  --text-primary: var(--ink-050);
+  --text-secondary: var(--ink-200);
+  --text-tertiary: var(--ink-400);
+  --text-disabled: var(--ink-500);
+  --border-subtle: color-mix(in srgb, var(--ink-200) 9%, transparent);
+  --border-strong: color-mix(in srgb, var(--ink-200) 17%, transparent);
+  --accent: var(--mint-500);
+  --accent-bright: var(--mint-300);
+  --accent-soft: color-mix(in srgb, var(--mint-500) 12%, transparent);
+  --accent-line: color-mix(in srgb, var(--mint-500) 44%, transparent);
+
+  --bg-obsidian: var(--bg-canvas);
+  --stage-obsidian: var(--bg-stage);
+  --surface-obsidian: var(--bg-surface-raised);
+  --accent-cyan: var(--accent);
+  --text-obsidian: var(--text-primary);
+  --muted-obsidian: var(--text-tertiary);
+  --muted-dark: var(--text-disabled);
+  --border-obsidian: var(--border-subtle);
+
+  /* Interface typography */
+  --font-ui: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-resume-text: "Source Serif 4 Resume Text", Georgia, serif;
+  --font-resume-title: "Source Serif 4 Resume Title", Georgia, serif;
+  --font-resume-display: "Source Serif 4 Resume Display", Georgia, serif;
+  --text-2xs: 0.5625rem;
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-md: 0.9375rem;
+  --text-lg: 1.125rem;
+  --tracking-label: 0.16em;
+  --tracking-display-ui: -0.025em;
+
+  /* Interface spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+
+  /* Shape and elevation */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+  --radius-control: var(--radius-sm);
+  --shadow-border: inset 0 0 0 1px var(--border-subtle);
+  --shadow-border-hover: inset 0 0 0 1px var(--border-strong);
+  --shadow-control: 0 1px 2px rgb(0 0 0 / 0.24), 0 12px 30px rgb(0 0 0 / 0.16);
+  --shadow-floating: 0 24px 80px rgb(0 0 0 / 0.58);
+  --shadow-sheet: 0 3px 10px rgb(0 0 0 / 0.34), 0 36px 96px rgb(0 0 0 / 0.72);
+  --image-outline: rgb(255 255 255 / 0.1);
+
+  /* Motion primitives */
+  --duration-instant: 90ms;
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-slow: 620ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: linear(0, 0.573 8.4%, 0.892 16.7%, 1.048 25.1%, 1.104 33.5%, 1.086 41.9%, 1.024 58.6%, 1.002 75.3%, 1);
+  --ease-out-expo: var(--ease-emphasized);
+  --ease-interactive: var(--ease-standard);
+
+  /* Microsite layout */
+  --rail-width: clamp(280px, 22vw, 368px);
+  --rail-width-compact: 232px;
+  --stage-pad: 40px;
+  --stage-pad-right: 88px;
+
+  /* Resume typesetting: fixed semantic scale */
+  --u: 11.7pt;
+  --micro-gap: calc(var(--u) / 2);
+  --s0: 9.35pt;
+  --s1: 9.8pt;
+  --s2: 23pt;
+  --margin-x: 17.5mm;
+  --margin-top: 16.5mm;
+  --margin-bottom: 33mm;
+
+  /* Build-time font extraction overrides these fallbacks in dist/tokens.css. */
+  --date-reserved-width: 105pt;
+  --col-gutter: calc(var(--u) / 2);
+  --cap-offset-s2: 5.86pt;
+  --hang-bullet: 0.04em;
+  --font-x-height: 0.475em;
+
+  --track-display: -0.015em;
+  --track-body: 0;
+  --track-label: 0.06em;
+  --weight-regular: 400;
+  --weight-emphasis: 600;
+  --rule-color: #8c8c8c;
+}
+
+@media (prefers-color-scheme: light) {
+  :root { --image-outline: rgb(0 0 0 / 0.1); }
+}

@@ -11,7 +11,7 @@ resume.json + variants.json + Source Serif 4
                     |
        deterministic optional-content fitting
                     |
-       minified site + 102 searchable A4 PDFs
+       minified site + 109 searchable A4 PDFs
                     |
                   dist/
                     |
@@ -20,11 +20,13 @@ resume.json + variants.json + Source Serif 4
 
 ## One source, two representations
 
-`data/resume.json` is the single content source. `data/variants.json` defines curated role × industry views. The compiler ranks direct variant matches ahead of global fallbacks and produces browser-ready profiles.
+`data/resume.json` is the single content source. `data/variants.json` defines curated role × industry views and may group related precise titles under a shared selector `family`. The compiler ranks direct variant matches ahead of global fallbacks and produces browser-ready profiles while preserving both the navigation family and the exact résumé title.
 
 The fitted production payload drives both the on-screen A4 document and PDF generation. This prevents a download from silently containing different text than the selected résumé. `bun run serve` rebuilds and serves that production artifact; the unfitted `public/data.js` is reserved for compiler debugging and is generated/ignored.
 
-Page capacity is primarily an editorial concern, not a renderer escape hatch. `data/resume.json#custom.limits` constrains every compiled profile before layout, and `custom.universal` declares the canonical résumé’s evidence order explicitly. The current policy yields three roles, one bullet per role, one project, one project bullet, and six skills.
+Education is structured data too: entries may carry institution links and locations, expected dates, scores, honors, and keyword-tagged coursework. The compiler selects bounded, profile-relevant coursework; the renderer preserves the institution relationship as an accessible link in the microsite and readable, underlined evidence in the generated PDF.
+
+Page capacity is primarily an editorial concern, not a renderer escape hatch. `data/resume.json#custom.limits` constrains every compiled profile before layout, and `custom.universal` declares the canonical résumé’s evidence order explicitly. The current policy yields exactly two evidence blocks—two roles, one role plus one project, or two projects—with up to two bullets per block. Directly tagged technical profiles may add a bounded, categorized skill map; other profiles omit Technical Qualifications entirely.
 
 ## Typesetting
 
@@ -40,7 +42,7 @@ Page capacity is primarily an editorial concern, not a renderer escape hatch. `d
 
 ## Fitting policy
 
-Runtime truncation is forbidden. During the build, Chromium renders each curated profile against the fixed page and checks physical sheet overflow, the actual final content edge against the 33 mm bottom-margin boundary, and overlong entry titles. If it does not fit, the builder removes optional data in a stable priority order and measures again. It never cuts a word, clamps a line, shrinks type, changes margins, or hides overflow.
+Runtime truncation is forbidden. During the build, Chromium renders each curated profile against the fixed page and checks physical sheet overflow, the actual final content edge against the 33 mm bottom-margin boundary, and overlong entry titles. If it does not fit, the builder removes optional data in a stable priority order and measures again. Layout measurement uses untransformed document geometry so screen entrance transitions cannot masquerade as content overflow. The fitter never cuts a word, clamps a line, shrinks type, changes margins, or hides overflow.
 
 The retained candidate must pass measurement or the build fails. Omitted values remain auditable in `.build-cache/fit-report.json` and in each compiled profile’s `omissions` array.
 

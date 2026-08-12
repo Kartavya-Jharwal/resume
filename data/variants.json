@@ -2,11 +2,11 @@
   "variants": [
     {
       "id": "early-stage-operator-yc-alumni-startups",
-      "role": "Early-Stage Operator",
-      "industry": "YC Alumni Startups",
+      "role": "Startup Operations Manager",
+      "industry": "Early-Stage Technology Startups",
       "targeted": true,
       "weight": 10,
-      "description": "I build Zero-to-One Ops & GTM Strategy for Early-Stage Tech.",
+      "description": "Zero-to-one startup operator building go-to-market systems, operating cadence, and scalable processes for early-stage technology companies.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -15,64 +15,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Startup GTM",
-        "Operational lead",
-        "founder's associate",
-        "co founder"
+        "Startup Operations",
+        "Business Operations",
+        "Go-to-Market",
+        "Process Design",
+        "Founder Support",
+        "Early-Stage Startups"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Early_Stage_Operator_YC_Alumni_Startups.pdf"
-    },
-    {
-      "id": "early-stage-operator-stealth-web3-protocols",
-      "role": "Early-Stage Operator",
-      "industry": "Stealth Web3 Protocols",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Zero-to-One Ops & GTM Strategy for Early-Stage Tech.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Startup GTM",
-        "Operational lead",
-        "founder's associate",
-        "co founder"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Early_Stage_Operator_Stealth_Web3_Protocols.pdf"
-    },
-    {
-      "id": "early-stage-operator-boutique-saas",
-      "role": "Early-Stage Operator",
-      "industry": "Boutique SaaS",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Zero-to-One Ops & GTM Strategy for Early-Stage Tech.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Startup GTM",
-        "Operational lead",
-        "founder's associate",
-        "co founder"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Early_Stage_Operator_Boutique_SaaS.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Startup_Operations_Manager_Early_Stage_Technology.pdf"
     },
     {
       "id": "venture-diligence-analyst-pre-seed-funds",
-      "role": "Venture Diligence Analyst",
-      "industry": "Pre-Seed Funds",
+      "role": "Venture Capital Analyst",
+      "industry": "Early-Stage Funds",
       "targeted": true,
       "weight": 10,
-      "description": "I build Underwriting Models & Technical Audits for Venture Capital.",
+      "description": "Venture capital analyst evaluating early-stage markets, teams, products, business models, and investment narratives.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -81,64 +39,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "VC due diligence",
-        "Deal sourcing and underwriting",
-        "Fractional CFO",
-        "Business Analyst"
+        "Venture Capital",
+        "Early-Stage Investing",
+        "Market Analysis",
+        "Startup Diligence",
+        "Business Models",
+        "Investment Memos"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Venture_Diligence_Analyst_Pre_Seed_Funds.pdf"
-    },
-    {
-      "id": "venture-diligence-analyst-family-offices",
-      "role": "Venture Diligence Analyst",
-      "industry": "Family Offices",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Underwriting Models & Technical Audits for Venture Capital.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "VC due diligence",
-        "Deal sourcing and underwriting",
-        "Fractional CFO",
-        "Business Analyst"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Venture_Diligence_Analyst_Family_Offices.pdf"
-    },
-    {
-      "id": "venture-diligence-analyst-deeptech-syndicates",
-      "role": "Venture Diligence Analyst",
-      "industry": "DeepTech Syndicates",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Underwriting Models & Technical Audits for Venture Capital.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "VC due diligence",
-        "Deal sourcing and underwriting",
-        "Fractional CFO",
-        "Business Analyst"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Venture_Diligence_Analyst_DeepTech_Syndicates.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Venture_Capital_Analyst_Early_Stage_Funds.pdf"
     },
     {
       "id": "executive-translation-lead-fortune-500-strategy",
-      "role": "Executive Translation Lead",
-      "industry": "Fortune 500 Strategy",
+      "role": "Strategy & Operations Associate",
+      "industry": "Corporate Strategy",
       "targeted": true,
       "weight": 10,
-      "description": "I build Operational Bridges for Managing Directors & Executive Teams.",
+      "description": "Supports strategy and operating-model work through structured analysis, market research, financial thinking, and executive-ready communication.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -147,20 +63,23 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Associate to the Managing director",
-        "Consultant",
-        "Storyteller",
-        "Operational lead"
+        "Strategy Consulting",
+        "Operating Models",
+        "Market Analysis",
+        "Financial Analysis",
+        "Executive Communication",
+        "Stakeholder Management"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Executive_Translation_Lead_Fortune_500_Strategy.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Corporate_Strategy.pdf",
+      "family": "Strategy & Investment"
     },
     {
       "id": "executive-translation-lead-private-equity-operations",
-      "role": "Executive Translation Lead",
+      "role": "Strategy & Operations Associate",
       "industry": "Private Equity Operations",
       "targeted": true,
       "weight": 10,
-      "description": "I build Operational Bridges for Managing Directors & Executive Teams.",
+      "description": "Supports strategy and operating-model work through structured analysis, market research, financial thinking, and executive-ready communication.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -169,20 +88,23 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Associate to the Managing director",
-        "Consultant",
-        "Storyteller",
-        "Operational lead"
+        "Strategy Consulting",
+        "Operating Models",
+        "Market Analysis",
+        "Financial Analysis",
+        "Executive Communication",
+        "Stakeholder Management"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Executive_Translation_Lead_Private_Equity_Operations.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Private_Equity_Operations.pdf",
+      "family": "Strategy & Investment"
     },
     {
       "id": "executive-translation-lead-tech-conglomerates",
-      "role": "Executive Translation Lead",
-      "industry": "Tech Conglomerates",
+      "role": "Strategy & Operations Associate",
+      "industry": "Technology Strategy",
       "targeted": true,
       "weight": 10,
-      "description": "I build Operational Bridges for Managing Directors & Executive Teams.",
+      "description": "Supports strategy and operating-model work through structured analysis, market research, financial thinking, and executive-ready communication.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -191,20 +113,23 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Associate to the Managing director",
-        "Consultant",
-        "Storyteller",
-        "Operational lead"
+        "Strategy Consulting",
+        "Operating Models",
+        "Market Analysis",
+        "Financial Analysis",
+        "Executive Communication",
+        "Stakeholder Management"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Executive_Translation_Lead_Tech_Conglomerates.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Technology_Strategy.pdf",
+      "family": "Strategy & Investment"
     },
     {
       "id": "innovation-ecosystem-architect-startup-accelerators",
-      "role": "Innovation Ecosystem Architect",
+      "role": "Innovation Program Manager",
       "industry": "Startup Accelerators",
       "targeted": true,
       "weight": 10,
-      "description": "I build Mentorship & Community Flow for Tech Incubators.",
+      "description": "Designs and delivers founder programs, mentorship networks, partnerships, and innovation communities.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -213,19 +138,23 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Mentor in incubator programs",
-        "Club president",
-        "Business Development Rep"
+        "Innovation Programs",
+        "Startup Mentoring",
+        "Community Building",
+        "Partnerships"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Ecosystem_Architect_Startup_Accelerators.pdf"
+      "limits": {
+        "leadership": 1
+      },
+      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_Startup_Accelerators.pdf"
     },
     {
       "id": "innovation-ecosystem-architect-university-innovation-hubs",
-      "role": "Innovation Ecosystem Architect",
+      "role": "Innovation Program Manager",
       "industry": "University Innovation Hubs",
       "targeted": true,
       "weight": 10,
-      "description": "I build Mentorship & Community Flow for Tech Incubators.",
+      "description": "Designs and delivers founder programs, mentorship networks, partnerships, and innovation communities.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -234,19 +163,20 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Mentor in incubator programs",
-        "Club president",
-        "Business Development Rep"
+        "Innovation Programs",
+        "Startup Mentoring",
+        "Community Building",
+        "Partnerships"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Ecosystem_Architect_University_Innovation_Hubs.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_University_Innovation_Hubs.pdf"
     },
     {
       "id": "innovation-ecosystem-architect-corporate-venture-labs",
-      "role": "Innovation Ecosystem Architect",
+      "role": "Innovation Program Manager",
       "industry": "Corporate Venture Labs",
       "targeted": true,
       "weight": 10,
-      "description": "I build Mentorship & Community Flow for Tech Incubators.",
+      "description": "Designs and delivers founder programs, mentorship networks, partnerships, and innovation communities.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -255,63 +185,20 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Mentor in incubator programs",
-        "Club president",
-        "Business Development Rep"
+        "Innovation Programs",
+        "Startup Mentoring",
+        "Community Building",
+        "Partnerships"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Ecosystem_Architect_Corporate_Venture_Labs.pdf"
-    },
-    {
-      "id": "forward-deployed-innovator-defensetech",
-      "role": "Forward-Deployed Innovator",
-      "industry": "DefenseTech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Applied AI Pipelines & Client Integrations for DeepTech.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Junior forward deployed associate",
-        "Solutions Architect",
-        "Value Engineer",
-        "AI Pipeline Engineer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Forward_Deployed_Innovator_DefenseTech.pdf"
-    },
-    {
-      "id": "forward-deployed-innovator-spacetech",
-      "role": "Forward-Deployed Innovator",
-      "industry": "SpaceTech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Applied AI Pipelines & Client Integrations for DeepTech.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Junior forward deployed associate",
-        "Solutions Architect",
-        "Value Engineer",
-        "AI Pipeline Engineer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Forward_Deployed_Innovator_SpaceTech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_Corporate_Venture_Labs.pdf"
     },
     {
       "id": "forward-deployed-innovator-enterprise-ai",
-      "role": "Forward-Deployed Innovator",
-      "industry": "Enterprise AI",
+      "role": "Forward-Deployed Engineer",
+      "industry": "Enterprise & Applied AI",
       "targeted": true,
       "weight": 10,
-      "description": "I build Applied AI Pipelines & Client Integrations for DeepTech.",
+      "description": "Forward-deployed engineer who turns ambiguous operational needs into production-ready AI workflows, integrations, and measurable delivery.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -320,20 +207,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Junior forward deployed associate",
-        "Solutions Architect",
-        "Value Engineer",
-        "AI Pipeline Engineer"
+        "Forward-Deployed Engineer",
+        "Applied AI",
+        "Systems Integration",
+        "Technical Discovery",
+        "Deployment",
+        "Customer Delivery"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Forward_Deployed_Innovator_Enterprise_AI.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Forward_Deployed_Engineer_Enterprise_Applied_AI.pdf"
     },
     {
       "id": "agentic-systems-architect-autonomous-ai-labs",
-      "role": "Agentic Systems Architect",
-      "industry": "Autonomous AI Labs",
+      "role": "AI Agent Engineer",
+      "industry": "Agentic AI & Automation",
       "targeted": true,
       "weight": 10,
-      "description": "I build Autonomous Agents & Prompt Frameworks for Generative AI.",
+      "description": "AI agent engineer designing tool-using workflows, orchestration, guardrails, and human handoffs for practical automation systems.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -342,89 +231,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "AI Agent Architect",
-        "Agent Engineer",
-        "Prompt Engineer",
-        "AI Prompt Engineer",
-        "AI Specialist"
+        "AI Agents",
+        "Agentic Systems",
+        "Workflow Automation",
+        "Tool Use",
+        "Guardrails",
+        "Human Handoff"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Agentic_Systems_Architect_Autonomous_AI_Labs.pdf"
-    },
-    {
-      "id": "agentic-systems-architect-fintech-automation",
-      "role": "Agentic Systems Architect",
-      "industry": "FinTech Automation",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Autonomous Agents & Prompt Frameworks for Generative AI.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "AI Agent Architect",
-        "Agent Engineer",
-        "Prompt Engineer",
-        "AI Prompt Engineer",
-        "AI Specialist"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Agentic_Systems_Architect_FinTech_Automation.pdf"
-    },
-    {
-      "id": "agentic-systems-architect-rpa-enterprise-tech",
-      "role": "Agentic Systems Architect",
-      "industry": "RPA Enterprise Tech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Autonomous Agents & Prompt Frameworks for Generative AI.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "AI Agent Architect",
-        "Agent Engineer",
-        "Prompt Engineer",
-        "AI Prompt Engineer",
-        "AI Specialist"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Agentic_Systems_Architect_RPA_Enterprise_Tech.pdf"
-    },
-    {
-      "id": "core-ai-pipeline-engineer-quant-trading",
-      "role": "Core AI Pipeline Engineer",
-      "industry": "Quant Trading",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Low-Latency ML Infrastructure for Data-Intensive Systems.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "AI Pipeline Engineer",
-        "Machine Learning roles",
-        "Data Engineer",
-        "IT networking specialist"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Core_AI_Pipeline_Engineer_Quant_Trading.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_AI_Agent_Engineer_Agentic_AI_Automation.pdf"
     },
     {
       "id": "core-ai-pipeline-engineer-biotech",
-      "role": "Core AI Pipeline Engineer",
-      "industry": "BioTech",
+      "role": "Machine Learning Engineer",
+      "industry": "Applied AI & Machine Learning Systems",
       "targeted": true,
       "weight": 10,
-      "description": "I build Low-Latency ML Infrastructure for Data-Intensive Systems.",
+      "description": "Machine learning engineer building practical model pipelines, evaluation workflows, and production-oriented AI systems.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -433,42 +255,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "AI Pipeline Engineer",
-        "Machine Learning roles",
-        "Data Engineer",
-        "IT networking specialist"
+        "Machine Learning Engineer",
+        "Applied AI",
+        "Model Pipelines",
+        "Evaluation",
+        "Python",
+        "Production ML"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Core_AI_Pipeline_Engineer_BioTech.pdf"
-    },
-    {
-      "id": "core-ai-pipeline-engineer-high-frequency-trading",
-      "role": "Core AI Pipeline Engineer",
-      "industry": "High-Frequency Trading",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Low-Latency ML Infrastructure for Data-Intensive Systems.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "AI Pipeline Engineer",
-        "Machine Learning roles",
-        "Data Engineer",
-        "IT networking specialist"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Core_AI_Pipeline_Engineer_High_Frequency_Trading.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Machine_Learning_Engineer_Applied_AI.pdf"
     },
     {
       "id": "ai-governance-ethics-officer-medtech",
-      "role": "AI Governance & Ethics Officer",
-      "industry": "MedTech",
+      "role": "Responsible AI Analyst",
+      "industry": "Healthcare & Regulated Technology",
       "targeted": true,
       "weight": 10,
-      "description": "I build Responsible AI Frameworks for Regulated Industries.",
+      "description": "Responsible AI analyst focused on safeguarding, human oversight, risk controls, and accountable deployment in regulated services.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -477,103 +279,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "AI Governance Officer",
-        "Responsible AI Specialist",
-        "AI Operations Manager"
+        "Responsible AI",
+        "AI Governance",
+        "Safeguarding",
+        "Human Oversight",
+        "Risk Assessment",
+        "Regulated Technology"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_AI_Governance_Ethics_Officer_MedTech.pdf"
-    },
-    {
-      "id": "ai-governance-ethics-officer-govtech",
-      "role": "AI Governance & Ethics Officer",
-      "industry": "GovTech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Responsible AI Frameworks for Regulated Industries.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "AI Governance Officer",
-        "Responsible AI Specialist",
-        "AI Operations Manager"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_AI_Governance_Ethics_Officer_GovTech.pdf"
-    },
-    {
-      "id": "ai-governance-ethics-officer-regulated-decentralized-finance",
-      "role": "AI Governance & Ethics Officer",
-      "industry": "Regulated Decentralized Finance",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Responsible AI Frameworks for Regulated Industries.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "AI Governance Officer",
-        "Responsible AI Specialist",
-        "AI Operations Manager"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_AI_Governance_Ethics_Officer_Regulated_Decentralized_Finance.pdf"
-    },
-    {
-      "id": "behavioral-product-manager-consumer-social-apps",
-      "role": "Behavioral Product Manager",
-      "industry": "Consumer Social Apps",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Strategic UX & Behavioral Systems for Consumer Tech.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Product Manager",
-        "Behavioral Economist",
-        "Product Ops Manager"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Behavioral_Product_Manager_Consumer_Social_Apps.pdf"
-    },
-    {
-      "id": "behavioral-product-manager-gamified-edtech",
-      "role": "Behavioral Product Manager",
-      "industry": "Gamified EdTech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Strategic UX & Behavioral Systems for Consumer Tech.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Product Manager",
-        "Behavioral Economist",
-        "Product Ops Manager"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Behavioral_Product_Manager_Gamified_EdTech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Responsible_AI_Analyst_Healthcare_Regulated_Technology.pdf"
     },
     {
       "id": "behavioral-product-manager-digital-wellness",
-      "role": "Behavioral Product Manager",
-      "industry": "Digital Wellness",
+      "role": "Product Manager",
+      "industry": "Digital Health & Consumer Products",
       "targeted": true,
       "weight": 10,
-      "description": "I build Strategic UX & Behavioral Systems for Consumer Tech.",
+      "description": "Product manager applying behavioral insight, safeguarding, and service design to trustworthy digital-health and consumer experiences.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -582,19 +303,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Product Manager",
-        "Behavioral Economist",
-        "Product Ops Manager"
+        "Product Management",
+        "Digital Health",
+        "Behavioral Design",
+        "Safeguarding",
+        "Consumer Products",
+        "Service Design"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Behavioral_Product_Manager_Digital_Wellness.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Manager_Digital_Health_Consumer_Products.pdf"
     },
     {
       "id": "strategic-interaction-designer-spatial-computing",
-      "role": "Strategic Interaction Designer",
-      "industry": "Spatial Computing",
+      "role": "Interaction Designer",
+      "industry": "Immersive & Interactive Products",
       "targeted": true,
       "weight": 10,
-      "description": "I build Spatial UX & Interaction Flows for Immersive Media.",
+      "description": "Interaction designer shaping complex digital and spatial experiences through service flows, prototypes, systems thinking, and behavioral detail.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -603,64 +327,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Strategic design",
-        "Interaction Designer",
-        "UX UI lead",
-        "UX Researcher"
+        "Interaction Design",
+        "Immersive Products",
+        "Prototyping",
+        "Service Flows",
+        "Systems Thinking",
+        "Experience Design"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Strategic_Interaction_Designer_Spatial_Computing.pdf"
-    },
-    {
-      "id": "strategic-interaction-designer-immersive-web",
-      "role": "Strategic Interaction Designer",
-      "industry": "Immersive Web",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Spatial UX & Interaction Flows for Immersive Media.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Strategic design",
-        "Interaction Designer",
-        "UX UI lead",
-        "UX Researcher"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Strategic_Interaction_Designer_Immersive_Web.pdf"
-    },
-    {
-      "id": "strategic-interaction-designer-gametech",
-      "role": "Strategic Interaction Designer",
-      "industry": "GameTech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Spatial UX & Interaction Flows for Immersive Media.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Strategic design",
-        "Interaction Designer",
-        "UX UI lead",
-        "UX Researcher"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Strategic_Interaction_Designer_GameTech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Interaction_Designer_Immersive_Interactive_Products.pdf"
     },
     {
       "id": "design-systems-architect-enterprise-b2b-saas",
-      "role": "Design Systems Architect",
+      "role": "Product Designer",
       "industry": "Enterprise B2B SaaS",
       "targeted": true,
       "weight": 10,
-      "description": "I build Scalable Component Libraries & UX Logic for Enterprise B2B.",
+      "description": "Creates scalable design systems, component libraries, and interaction standards for enterprise products.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -669,20 +351,20 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Systems Designer",
-        "Product Designer",
-        "UX/UI Designer",
-        "Designer"
+        "Design Systems",
+        "Product Design",
+        "UX/UI Design",
+        "Component Libraries"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Design_Systems_Architect_Enterprise_B2B_SaaS.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Designer_Enterprise_B2B_SaaS.pdf"
     },
     {
       "id": "design-systems-architect-complex-data-dashboards",
-      "role": "Design Systems Architect",
+      "role": "Product Designer",
       "industry": "Complex Data Dashboards",
       "targeted": true,
       "weight": 10,
-      "description": "I build Scalable Component Libraries & UX Logic for Enterprise B2B.",
+      "description": "Creates scalable design systems, component libraries, and interaction standards for enterprise products.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -691,20 +373,20 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Systems Designer",
-        "Product Designer",
-        "UX/UI Designer",
-        "Designer"
+        "Design Systems",
+        "Product Design",
+        "UX/UI Design",
+        "Component Libraries"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Design_Systems_Architect_Complex_Data_Dashboards.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Designer_Complex_Data_Dashboards.pdf"
     },
     {
       "id": "design-systems-architect-fintech-platforms",
-      "role": "Design Systems Architect",
+      "role": "Product Designer",
       "industry": "FinTech Platforms",
       "targeted": true,
       "weight": 10,
-      "description": "I build Scalable Component Libraries & UX Logic for Enterprise B2B.",
+      "description": "Creates scalable design systems, component libraries, and interaction standards for enterprise products.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -713,20 +395,20 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Systems Designer",
-        "Product Designer",
-        "UX/UI Designer",
-        "Designer"
+        "Design Systems",
+        "Product Design",
+        "UX/UI Design",
+        "Component Libraries"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Design_Systems_Architect_FinTech_Platforms.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Designer_FinTech_Platforms.pdf"
     },
     {
       "id": "hybrid-creative-technologist-elite-digital-agencies",
-      "role": "Hybrid Creative Technologist",
-      "industry": "Elite Digital Agencies",
+      "role": "Creative Technologist",
+      "industry": "Digital Products & Agencies",
       "targeted": true,
       "weight": 10,
-      "description": "I build Interactive Brand Interfaces for Digital Studios.",
+      "description": "Creative technologist combining product design, native web development, prototyping, and technical storytelling for digital products and campaigns.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -735,64 +417,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Graphic design",
-        "Junior designer",
-        "Web Developer",
-        "Junior developer"
+        "Creative Technologist",
+        "Web Development",
+        "Interactive Prototyping",
+        "Digital Products",
+        "Technical Storytelling",
+        "Creative Technology"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Hybrid_Creative_Technologist_Elite_Digital_Agencies.pdf"
-    },
-    {
-      "id": "hybrid-creative-technologist-luxury-e-commerce",
-      "role": "Hybrid Creative Technologist",
-      "industry": "Luxury E-Commerce",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Interactive Brand Interfaces for Digital Studios.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Graphic design",
-        "Junior designer",
-        "Web Developer",
-        "Junior developer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Hybrid_Creative_Technologist_Luxury_E_Commerce.pdf"
-    },
-    {
-      "id": "hybrid-creative-technologist-web3-brand-studios",
-      "role": "Hybrid Creative Technologist",
-      "industry": "Web3 Brand Studios",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Interactive Brand Interfaces for Digital Studios.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Graphic design",
-        "Junior designer",
-        "Web Developer",
-        "Junior developer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Hybrid_Creative_Technologist_Web3_Brand_Studios.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Creative_Technologist_Digital_Products_Agencies.pdf"
     },
     {
       "id": "generative-search-architect-media-conglomerates",
-      "role": "Generative Search Architect",
-      "industry": "Media Conglomerates",
+      "role": "SEO and Generative Search Specialist",
+      "industry": "Digital Media & Search Platforms",
       "targeted": true,
       "weight": 10,
-      "description": "I build Generative Engine Optimization (GEO) for Digital Media.",
+      "description": "SEO and generative-search specialist improving discoverability through technical SEO, structured content, search analytics, and AI-search readiness.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -801,58 +441,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "GEO/AEO Specialist",
-        "SEO Systems Architect"
+        "SEO",
+        "Generative Search",
+        "Technical SEO",
+        "Content Architecture",
+        "Search Analytics",
+        "AI Search"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Generative_Search_Architect_Media_Conglomerates.pdf"
-    },
-    {
-      "id": "generative-search-architect-programmatic-adtech",
-      "role": "Generative Search Architect",
-      "industry": "Programmatic AdTech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Generative Engine Optimization (GEO) for Digital Media.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "GEO/AEO Specialist",
-        "SEO Systems Architect"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Generative_Search_Architect_Programmatic_AdTech.pdf"
-    },
-    {
-      "id": "generative-search-architect-affiliate-networks",
-      "role": "Generative Search Architect",
-      "industry": "Affiliate Networks",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Generative Engine Optimization (GEO) for Digital Media.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "GEO/AEO Specialist",
-        "SEO Systems Architect"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Generative_Search_Architect_Affiliate_Networks.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_SEO_Generative_Search_Specialist_Digital_Media.pdf"
     },
     {
       "id": "zero-cost-growth-hacker-d2c-marketplaces",
-      "role": "Zero-Cost Growth Hacker",
-      "industry": "D2C Marketplaces",
+      "role": "Growth Marketing Manager",
+      "industry": "D2C & Digital Ventures",
       "targeted": true,
       "weight": 10,
-      "description": "I build Viral Loops & Acquisition Engines for D2C Brands.",
+      "description": "Growth marketing manager building low-cost acquisition, content, conversion, and retention systems for digital ventures.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -861,42 +465,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Growth Hacker",
-        "Growth Marketer",
-        "Growth Specialist",
-        "Marketing and sales associate"
+        "Growth Marketing",
+        "D2C",
+        "Customer Acquisition",
+        "Conversion",
+        "Retention",
+        "Content Strategy"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Zero_Cost_Growth_Hacker_D2C_Marketplaces.pdf"
-    },
-    {
-      "id": "zero-cost-growth-hacker-creator-economy-startups",
-      "role": "Zero-Cost Growth Hacker",
-      "industry": "Creator Economy Startups",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Viral Loops & Acquisition Engines for D2C Brands.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Growth Hacker",
-        "Growth Marketer",
-        "Growth Specialist",
-        "Marketing and sales associate"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Zero_Cost_Growth_Hacker_Creator_Economy_Startups.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Growth_Marketing_Manager_D2C_Digital_Ventures.pdf"
     },
     {
       "id": "data-narrative-consultant-macro-economic-research",
-      "role": "Data Narrative Consultant",
-      "industry": "Macro-Economic Research",
+      "role": "Data Visualization Consultant",
+      "industry": "Macroeconomic Research",
       "targeted": true,
       "weight": 10,
-      "description": "I build Data Pipelines & Strategic Narratives for Global Think Tanks.",
+      "description": "Transforms complex analysis into clear visual narratives, decision tools, and executive recommendations.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -905,19 +489,21 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Data Storyteller",
-        "Storyteller",
-        "Data Analyst"
+        "Data Storytelling",
+        "Data Visualization",
+        "Data Analysis",
+        "Research Communication"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Data_Narrative_Consultant_Macro_Economic_Research.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Macroeconomic_Research.pdf",
+      "family": "Consultant"
     },
     {
       "id": "data-narrative-consultant-policy-think-tanks",
-      "role": "Data Narrative Consultant",
+      "role": "Data Visualization Consultant",
       "industry": "Policy Think Tanks",
       "targeted": true,
       "weight": 10,
-      "description": "I build Data Pipelines & Strategic Narratives for Global Think Tanks.",
+      "description": "Transforms complex analysis into clear visual narratives, decision tools, and executive recommendations.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -926,19 +512,21 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Data Storyteller",
-        "Storyteller",
-        "Data Analyst"
+        "Data Storytelling",
+        "Data Visualization",
+        "Data Analysis",
+        "Research Communication"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Data_Narrative_Consultant_Policy_Think_Tanks.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Policy_Think_Tanks.pdf",
+      "family": "Consultant"
     },
     {
       "id": "data-narrative-consultant-economic-development",
-      "role": "Data Narrative Consultant",
+      "role": "Data Visualization Consultant",
       "industry": "Economic Development",
       "targeted": true,
       "weight": 10,
-      "description": "I build Data Pipelines & Strategic Narratives for Global Think Tanks.",
+      "description": "Transforms complex analysis into clear visual narratives, decision tools, and executive recommendations.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -947,41 +535,21 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Data Storyteller",
-        "Storyteller",
-        "Data Analyst"
+        "Data Storytelling",
+        "Data Visualization",
+        "Data Analysis",
+        "Research Communication"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Data_Narrative_Consultant_Economic_Development.pdf"
-    },
-    {
-      "id": "analytics-intelligence-lead-supply-chain-tech",
-      "role": "Analytics & Intelligence Lead",
-      "industry": "Supply Chain Tech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Quantitative Dashboards for High-Volume Logistics.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Analytics Engineer",
-        "Business Analyst",
-        "Data Analyst",
-        "Data Engineer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Analytics_Intelligence_Lead_Supply_Chain_Tech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Economic_Development.pdf",
+      "family": "Consultant"
     },
     {
       "id": "analytics-intelligence-lead-e-commerce-logistics",
-      "role": "Analytics & Intelligence Lead",
-      "industry": "E-Commerce Logistics",
+      "role": "Business Intelligence Analyst",
+      "industry": "Commerce & Operations Analytics",
       "targeted": true,
       "weight": 10,
-      "description": "I build Quantitative Dashboards for High-Volume Logistics.",
+      "description": "Business intelligence analyst turning operational and commercial data into decision-ready models, dashboards, and performance insights.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -990,42 +558,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Analytics Engineer",
-        "Business Analyst",
-        "Data Analyst",
-        "Data Engineer"
+        "Business Intelligence",
+        "Operations Analytics",
+        "Commercial Analytics",
+        "Data Modelling",
+        "Dashboards",
+        "Decision Support"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Analytics_Intelligence_Lead_E_Commerce_Logistics.pdf"
-    },
-    {
-      "id": "analytics-intelligence-lead-hedge-funds",
-      "role": "Analytics & Intelligence Lead",
-      "industry": "Hedge Funds",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Quantitative Dashboards for High-Volume Logistics.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Analytics Engineer",
-        "Business Analyst",
-        "Data Analyst",
-        "Data Engineer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Analytics_Intelligence_Lead_Hedge_Funds.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Business_Intelligence_Analyst_Commerce_Operations.pdf"
     },
     {
       "id": "customer-facing-founding-engineer-pre-seed-saas",
-      "role": "Customer-Facing Founding Engineer",
-      "industry": "Pre-Seed SaaS",
+      "role": "Founding Engineer",
+      "industry": "Early-Stage Technology Products",
       "targeted": true,
       "weight": 10,
-      "description": "I build MVPs & Client-Facing Architecture for Seed-Stage SaaS.",
+      "description": "Founding engineer translating customer problems into initial architecture, production MVPs, and pragmatic technical decisions for early-stage products.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1035,102 +583,21 @@
       },
       "requiredKeywords": [
         "Founding Engineer",
-        "Full stack developer",
-        "Junior developer"
+        "MVP Development",
+        "Product Engineering",
+        "Customer Discovery",
+        "System Architecture",
+        "Early-Stage Products"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Customer_Facing_Founding_Engineer_Pre_Seed_SaaS.pdf"
-    },
-    {
-      "id": "customer-facing-founding-engineer-open-source-protocols",
-      "role": "Customer-Facing Founding Engineer",
-      "industry": "Open Source Protocols",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build MVPs & Client-Facing Architecture for Seed-Stage SaaS.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Founding Engineer",
-        "Full stack developer",
-        "Junior developer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Customer_Facing_Founding_Engineer_Open_Source_Protocols.pdf"
-    },
-    {
-      "id": "customer-facing-founding-engineer-developer-tooling",
-      "role": "Customer-Facing Founding Engineer",
-      "industry": "Developer Tooling",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build MVPs & Client-Facing Architecture for Seed-Stage SaaS.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Founding Engineer",
-        "Full stack developer",
-        "Junior developer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Customer_Facing_Founding_Engineer_Developer_Tooling.pdf"
-    },
-    {
-      "id": "developer-experience-dx-evangelist-web3-infrastructure",
-      "role": "Developer Experience (DX) Evangelist",
-      "industry": "Web3 Infrastructure",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Developer Tools & API Infrastructure for Open Source.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Developer Experience Engineer",
-        "Developer Relations",
-        "Freelancer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Developer_Experience_DX_Evangelist_Web3_Infrastructure.pdf"
-    },
-    {
-      "id": "developer-experience-dx-evangelist-api-first-saas",
-      "role": "Developer Experience (DX) Evangelist",
-      "industry": "API-First SaaS",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Developer Tools & API Infrastructure for Open Source.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Developer Experience Engineer",
-        "Developer Relations",
-        "Freelancer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Developer_Experience_DX_Evangelist_API_First_SaaS.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Founding_Engineer_Early_Stage_Products.pdf"
     },
     {
       "id": "developer-experience-dx-evangelist-devtools",
-      "role": "Developer Experience (DX) Evangelist",
-      "industry": "DevTools",
+      "role": "Developer Relations Engineer",
+      "industry": "Developer Tools & API Platforms",
       "targeted": true,
       "weight": 10,
-      "description": "I build Developer Tools & API Infrastructure for Open Source.",
+      "description": "Developer relations engineer combining technical content, product feedback, demos, integrations, and community support for developer-facing products.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1139,61 +606,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Developer Experience Engineer",
         "Developer Relations",
-        "Freelancer"
+        "Developer Tools",
+        "API Platforms",
+        "Technical Content",
+        "Product Feedback",
+        "Developer Experience"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Developer_Experience_DX_Evangelist_DevTools.pdf"
-    },
-    {
-      "id": "enterprise-resilience-engineer-insurtech",
-      "role": "Enterprise Resilience Engineer",
-      "industry": "InsurTech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Resilient Networks & Security Protocols for Regulated IT.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Cybersecurity Specialist",
-        "IT networking specialist",
-        "SME infrastructure implementation"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Enterprise_Resilience_Engineer_InsurTech.pdf"
-    },
-    {
-      "id": "enterprise-resilience-engineer-healthtech",
-      "role": "Enterprise Resilience Engineer",
-      "industry": "HealthTech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Resilient Networks & Security Protocols for Regulated IT.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Cybersecurity Specialist",
-        "IT networking specialist",
-        "SME infrastructure implementation"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Enterprise_Resilience_Engineer_HealthTech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Developer_Relations_Engineer_Developer_Tools_APIs.pdf"
     },
     {
       "id": "enterprise-resilience-engineer-managed-service-providers",
-      "role": "Enterprise Resilience Engineer",
-      "industry": "Managed Service Providers",
+      "role": "IT Infrastructure and Security Engineer",
+      "industry": "Managed Services & Regulated Systems",
       "targeted": true,
       "weight": 10,
-      "description": "I build Resilient Networks & Security Protocols for Regulated IT.",
+      "description": "Infrastructure and security engineer supporting resilient Linux systems, networking, access controls, incident response, and regulated service environments.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1202,61 +630,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Cybersecurity Specialist",
-        "IT networking specialist",
-        "SME infrastructure implementation"
+        "Infrastructure Engineering",
+        "Cybersecurity",
+        "Linux",
+        "Networking",
+        "Incident Response",
+        "Managed Services"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Enterprise_Resilience_Engineer_Managed_Service_Providers.pdf"
-    },
-    {
-      "id": "systems-qa-auditor-crypto-exchanges",
-      "role": "Systems QA & Auditor",
-      "industry": "Crypto Exchanges",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build QA & Architecture Audits for Tech M&A.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "QA testing",
-        "Consultant",
-        "Exploration as autodidact"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Systems_QA_Auditor_Crypto_Exchanges.pdf"
-    },
-    {
-      "id": "systems-qa-auditor-tech-private-equity",
-      "role": "Systems QA & Auditor",
-      "industry": "Tech Private Equity",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build QA & Architecture Audits for Tech M&A.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "QA testing",
-        "Consultant",
-        "Exploration as autodidact"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Systems_QA_Auditor_Tech_Private_Equity.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Infrastructure_Security_Engineer_Managed_Regulated_Systems.pdf"
     },
     {
       "id": "systems-qa-auditor-fintech-infrastructure",
-      "role": "Systems QA & Auditor",
-      "industry": "FinTech Infrastructure",
+      "role": "Software Quality Assurance Analyst",
+      "industry": "Financial & Technology Platforms",
       "targeted": true,
       "weight": 10,
-      "description": "I build QA & Architecture Audits for Tech M&A.",
+      "description": "Software QA analyst testing workflows, data integrity, failure handling, and operational controls across financial and technology platforms.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1265,40 +654,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "QA testing",
-        "Consultant",
-        "Exploration as autodidact"
+        "Software QA",
+        "Test Design",
+        "Data Integrity",
+        "Failure Analysis",
+        "Quality Assurance",
+        "Technology Platforms"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Systems_QA_Auditor_FinTech_Infrastructure.pdf"
-    },
-    {
-      "id": "proptech-underwriter-designer-proptech",
-      "role": "PropTech Underwriter & Designer",
-      "industry": "PropTech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Spatial Models & Underwriting Engines for Commercial Real Estate.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Real estate development associate",
-        "Interior design",
-        "Deal sourcing and underwriting"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_PropTech_Underwriter_Designer_PropTech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Software_QA_Analyst_Financial_Technology_Platforms.pdf"
     },
     {
       "id": "proptech-underwriter-designer-high-end-real-estate-pe",
-      "role": "PropTech Underwriter & Designer",
-      "industry": "High-End Real Estate PE",
+      "role": "PropTech Investment Analyst",
+      "industry": "Real Estate Investment & PropTech",
       "targeted": true,
       "weight": 10,
-      "description": "I build Spatial Models & Underwriting Engines for Commercial Real Estate.",
+      "description": "Real estate investment analyst combining property operations, market analysis, underwriting logic, and PropTech product thinking.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1307,82 +678,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Real estate development associate",
-        "Interior design",
-        "Deal sourcing and underwriting"
+        "Real Estate Investment",
+        "PropTech",
+        "Property Analysis",
+        "Underwriting",
+        "Market Research",
+        "Investment Analysis"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_PropTech_Underwriter_Designer_High_End_Real_Estate_PE.pdf"
-    },
-    {
-      "id": "proptech-underwriter-designer-co-working-conglomerates",
-      "role": "PropTech Underwriter & Designer",
-      "industry": "Co-working Conglomerates",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Spatial Models & Underwriting Engines for Commercial Real Estate.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Real estate development associate",
-        "Interior design",
-        "Deal sourcing and underwriting"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_PropTech_Underwriter_Designer_Co_working_Conglomerates.pdf"
-    },
-    {
-      "id": "experiential-event-producer-esports-events",
-      "role": "Experiential Event Producer",
-      "industry": "Esports Events",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Spatial Brand Activations for Experiential Ecosystems.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Event management",
-        "Interior design",
-        "Associate to the Managing director"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Experiential_Event_Producer_Esports_Events.pdf"
-    },
-    {
-      "id": "experiential-event-producer-brand-activations",
-      "role": "Experiential Event Producer",
-      "industry": "Brand Activations",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Spatial Brand Activations for Experiential Ecosystems.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Event management",
-        "Interior design",
-        "Associate to the Managing director"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Experiential_Event_Producer_Brand_Activations.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Real_Estate_Investment_Analyst_PropTech.pdf"
     },
     {
       "id": "experiential-event-producer-tech-conferences",
       "role": "Experiential Event Producer",
-      "industry": "Tech Conferences",
+      "industry": "Technology & Community Events",
       "targeted": true,
       "weight": 10,
-      "description": "I build Spatial Brand Activations for Experiential Ecosystems.",
+      "description": "Event producer delivering technology and community programmes across concept development, speaker coordination, promotion, logistics, and live delivery.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1391,79 +702,52 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Event management",
-        "Interior design",
-        "Associate to the Managing director"
+        "Event Production",
+        "Technology Events",
+        "Community Programmes",
+        "Speaker Coordination",
+        "Event Operations",
+        "Live Delivery"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Experiential_Event_Producer_Tech_Conferences.pdf"
-    },
-    {
-      "id": "gastronomic-systems-operator-elite-hospitality-groups",
-      "role": "Gastronomic Systems Operator",
-      "industry": "Elite Hospitality Groups",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build High-Pressure Logistics for Michelin-Star Hospitality.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Culinary stagiaries",
-        "Menu design"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Gastronomic_Systems_Operator_Elite_Hospitality_Groups.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Event_Producer_Technology_Community_Events.pdf"
     },
     {
       "id": "gastronomic-systems-operator-culinary-consulting",
-      "role": "Gastronomic Systems Operator",
-      "industry": "Culinary Consulting",
+      "role": "Culinary Strategy & Operations Consultant",
+      "industry": "Restaurant Groups & Culinary Ventures",
       "targeted": true,
       "weight": 10,
-      "description": "I build High-Pressure Logistics for Michelin-Star Hospitality.",
+      "description": "Combines menu engineering, restaurant analytics, operational design, and food technology to improve culinary concepts, margins, and service systems.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Focus": "Menu & Operations",
+        "Systems": "Data-Led",
+        "Specialization": "Culinary Consulting"
       },
       "requiredKeywords": [
-        "Culinary stagiaries",
-        "Menu design"
+        "Menu Engineering",
+        "Culinary Operations",
+        "Restaurant Analytics",
+        "Concept Development",
+        "Food Technology",
+        "Service Design"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Gastronomic_Systems_Operator_Culinary_Consulting.pdf"
-    },
-    {
-      "id": "gastronomic-systems-operator-luxury-travel",
-      "role": "Gastronomic Systems Operator",
-      "industry": "Luxury Travel",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build High-Pressure Logistics for Michelin-Star Hospitality.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+      "limits": {
+        "coursework": 4,
+        "certifications": 0,
+        "languages": 0
       },
-      "requiredKeywords": [
-        "Culinary stagiaries",
-        "Menu design"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Gastronomic_Systems_Operator_Luxury_Travel.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Culinary_Strategy_Operations_Consultant.pdf",
+      "family": "Culinary Strategy & Consulting"
     },
     {
       "id": "operations-flow-manager-foodtech",
-      "role": "Operations Flow Manager",
-      "industry": "FoodTech",
+      "role": "Operations Manager",
+      "industry": "Food & Delivery Technology",
       "targeted": true,
       "weight": 10,
-      "description": "I build Physical Operations & Logistics for Cloud Kitchens.",
+      "description": "Operations manager improving service flow, handovers, controls, and data visibility across food and delivery businesses.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1472,61 +756,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Operations Manager",
-        "Operational lead",
-        "Freelancer"
+        "Operations Management",
+        "Food Technology",
+        "Delivery Operations",
+        "Process Improvement",
+        "Service Flow",
+        "Operational Controls"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Operations_Flow_Manager_FoodTech.pdf"
-    },
-    {
-      "id": "operations-flow-manager-delivery-platforms",
-      "role": "Operations Flow Manager",
-      "industry": "Delivery Platforms",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Physical Operations & Logistics for Cloud Kitchens.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Operations Manager",
-        "Operational lead",
-        "Freelancer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Operations_Flow_Manager_Delivery_Platforms.pdf"
-    },
-    {
-      "id": "operations-flow-manager-ghost-kitchen-ecosystems",
-      "role": "Operations Flow Manager",
-      "industry": "Ghost Kitchen Ecosystems",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Physical Operations & Logistics for Cloud Kitchens.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Operations Manager",
-        "Operational lead",
-        "Freelancer"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Operations_Flow_Manager_Ghost_Kitchen_Ecosystems.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Operations_Manager_Food_Delivery_Technology.pdf"
     },
     {
       "id": "heavy-industry-value-engineer-climatetech",
-      "role": "Heavy Industry Value Engineer",
+      "role": "Solutions Engineer",
       "industry": "ClimateTech",
       "targeted": true,
       "weight": 10,
-      "description": "I build Technical Value Propositions for Legacy Industry Modernization.",
+      "description": "Translates industrial customer needs into technical solutions, business cases, and implementation plans.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1535,19 +780,20 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Value Engineer",
-        "Solutions Architect",
-        "Consultant"
+        "Solutions Engineering",
+        "Value Engineering",
+        "Industrial Technology",
+        "Technical Sales"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Heavy_Industry_Value_Engineer_ClimateTech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Solutions_Engineer_ClimateTech.pdf"
     },
     {
       "id": "heavy-industry-value-engineer-heavy-manufacturing-tech",
-      "role": "Heavy Industry Value Engineer",
-      "industry": "Heavy Manufacturing Tech",
+      "role": "Solutions Engineer",
+      "industry": "Industrial Technology",
       "targeted": true,
       "weight": 10,
-      "description": "I build Technical Value Propositions for Legacy Industry Modernization.",
+      "description": "Translates industrial customer needs into technical solutions, business cases, and implementation plans.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1556,19 +802,20 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Value Engineer",
-        "Solutions Architect",
-        "Consultant"
+        "Solutions Engineering",
+        "Value Engineering",
+        "Industrial Technology",
+        "Technical Sales"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Heavy_Industry_Value_Engineer_Heavy_Manufacturing_Tech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Solutions_Engineer_Industrial_Technology.pdf"
     },
     {
       "id": "heavy-industry-value-engineer-agritech",
-      "role": "Heavy Industry Value Engineer",
-      "industry": "Agritech",
+      "role": "Solutions Engineer",
+      "industry": "Agricultural Technology",
       "targeted": true,
       "weight": 10,
-      "description": "I build Technical Value Propositions for Legacy Industry Modernization.",
+      "description": "Translates industrial customer needs into technical solutions, business cases, and implementation plans.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1577,61 +824,20 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Value Engineer",
-        "Solutions Architect",
-        "Consultant"
+        "Solutions Engineering",
+        "Value Engineering",
+        "Industrial Technology",
+        "Technical Sales"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Heavy_Industry_Value_Engineer_Agritech.pdf"
-    },
-    {
-      "id": "ux-research-translation-lead-govtech",
-      "role": "UX Research & Translation Lead",
-      "industry": "GovTech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build User Insight Pipelines for Public Sector Tech.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "UX Researcher",
-        "Product Ops Manager",
-        "Storyteller"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_UX_Research_Translation_Lead_GovTech.pdf"
-    },
-    {
-      "id": "ux-research-translation-lead-edtech",
-      "role": "UX Research & Translation Lead",
-      "industry": "EdTech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build User Insight Pipelines for Public Sector Tech.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "UX Researcher",
-        "Product Ops Manager",
-        "Storyteller"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_UX_Research_Translation_Lead_EdTech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Solutions_Engineer_Agricultural_Technology.pdf"
     },
     {
       "id": "ux-research-translation-lead-civic-tech-platforms",
-      "role": "UX Research & Translation Lead",
-      "industry": "Civic Tech Platforms",
+      "role": "UX Researcher",
+      "industry": "Civic & Social-Impact Products",
       "targeted": true,
       "weight": 10,
-      "description": "I build User Insight Pipelines for Public Sector Tech.",
+      "description": "UX researcher translating complex stakeholder needs into inclusive service journeys, product requirements, and evidence-led design decisions.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1640,19 +846,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "UX Researcher",
-        "Product Ops Manager",
-        "Storyteller"
+        "UX Research",
+        "Social Impact",
+        "Inclusive Design",
+        "Stakeholder Research",
+        "Service Design",
+        "Research Synthesis"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_UX_Research_Translation_Lead_Civic_Tech_Platforms.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_UX_Researcher_Civic_Social_Impact_Products.pdf"
     },
     {
       "id": "management-consultant-mbb-standard-big-3-consulting",
-      "role": "Management Consultant (MBB Standard)",
-      "industry": "Big 3 Consulting",
+      "role": "Strategy Consultant",
+      "industry": "MBB Strategy Consulting",
       "targeted": true,
       "weight": 10,
-      "description": "I build Strategic Restructuring & GTM Frameworks for F500 Enterprises.",
+      "description": "Solves growth, operating-model, and transformation problems through case analysis, commercial insight, and executive-ready recommendations.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1661,20 +870,23 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Consultant",
-        "Associate to the Managing director",
-        "Business Analyst",
-        "Storyteller"
+        "Management Consulting",
+        "Case Analysis",
+        "Market Entry",
+        "Operating Models",
+        "Due Diligence",
+        "Executive Communication"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Management_Consultant_MBB_Standard_Big_3_Consulting.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Consultant_MBB_Strategy_Consulting.pdf",
+      "family": "Strategy & Investment"
     },
     {
       "id": "management-consultant-mbb-standard-tier-2-strategy",
-      "role": "Management Consultant (MBB Standard)",
-      "industry": "Tier 2 Strategy",
+      "role": "Strategy Consultant",
+      "industry": "Tier-2 Strategy Consulting",
       "targeted": true,
       "weight": 10,
-      "description": "I build Strategic Restructuring & GTM Frameworks for F500 Enterprises.",
+      "description": "Solves growth, operating-model, and transformation problems through case analysis, commercial insight, and executive-ready recommendations.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1683,20 +895,23 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Consultant",
-        "Associate to the Managing director",
-        "Business Analyst",
-        "Storyteller"
+        "Management Consulting",
+        "Case Analysis",
+        "Market Entry",
+        "Operating Models",
+        "Due Diligence",
+        "Executive Communication"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Management_Consultant_MBB_Standard_Tier_2_Strategy.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Consultant_Tier_2_Strategy_Consulting.pdf",
+      "family": "Strategy & Investment"
     },
     {
       "id": "management-consultant-mbb-standard-corporate-turnarounds",
-      "role": "Management Consultant (MBB Standard)",
+      "role": "Strategy Consultant",
       "industry": "Corporate Turnarounds",
       "targeted": true,
       "weight": 10,
-      "description": "I build Strategic Restructuring & GTM Frameworks for F500 Enterprises.",
+      "description": "Solves growth, operating-model, and transformation problems through case analysis, commercial insight, and executive-ready recommendations.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1705,20 +920,23 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Consultant",
-        "Associate to the Managing director",
-        "Business Analyst",
-        "Storyteller"
+        "Management Consulting",
+        "Case Analysis",
+        "Market Entry",
+        "Operating Models",
+        "Due Diligence",
+        "Executive Communication"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Management_Consultant_MBB_Standard_Corporate_Turnarounds.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Consultant_Corporate_Turnarounds.pdf",
+      "family": "Strategy & Investment"
     },
     {
       "id": "investment-banking-analyst-bulge-bracket-investment-banks",
       "role": "Investment Banking Analyst",
-      "industry": "Bulge Bracket Investment Banks",
+      "industry": "Bulge-Bracket Investment Banking",
       "targeted": true,
       "weight": 10,
-      "description": "I build Financial Models & Deal Flow Architecture for Capital Markets.",
+      "description": "Supports transactions through financial modelling, valuation, market research, due diligence, and investor materials.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1727,12 +945,15 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Deal sourcing and underwriting",
-        "Fractional CFO",
-        "VC due diligence",
-        "Data Analyst"
+        "Investment Banking",
+        "Financial Modelling",
+        "Valuation",
+        "M&A",
+        "Due Diligence",
+        "Transaction Execution"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Bulge_Bracket_Investment_Banks.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Bulge_Bracket_Investment_Banking.pdf",
+      "family": "Strategy & Investment"
     },
     {
       "id": "investment-banking-analyst-boutique-ma-advisory",
@@ -1740,7 +961,7 @@
       "industry": "Boutique M&A Advisory",
       "targeted": true,
       "weight": 10,
-      "description": "I build Financial Models & Deal Flow Architecture for Capital Markets.",
+      "description": "Supports transactions through financial modelling, valuation, market research, due diligence, and investor materials.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1749,12 +970,15 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Deal sourcing and underwriting",
-        "Fractional CFO",
-        "VC due diligence",
-        "Data Analyst"
+        "Investment Banking",
+        "Financial Modelling",
+        "Valuation",
+        "M&A",
+        "Due Diligence",
+        "Transaction Execution"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Boutique_MA_Advisory.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Boutique_M_A_Advisory.pdf",
+      "family": "Strategy & Investment"
     },
     {
       "id": "investment-banking-analyst-growth-equity",
@@ -1762,7 +986,7 @@
       "industry": "Growth Equity",
       "targeted": true,
       "weight": 10,
-      "description": "I build Financial Models & Deal Flow Architecture for Capital Markets.",
+      "description": "Supports transactions through financial modelling, valuation, market research, due diligence, and investor materials.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1771,64 +995,23 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Deal sourcing and underwriting",
-        "Fractional CFO",
-        "VC due diligence",
-        "Data Analyst"
+        "Investment Banking",
+        "Financial Modelling",
+        "Valuation",
+        "M&A",
+        "Due Diligence",
+        "Transaction Execution"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Growth_Equity.pdf"
-    },
-    {
-      "id": "tactical-it-systems-administrator-enterprise-data-centers",
-      "role": "Tactical IT & Systems Administrator",
-      "industry": "Enterprise Data Centers",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Ground-Up Network Infrastructure & End-Point Security for SMBs.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "IT networking specialist",
-        "Cybersecurity Specialist",
-        "SME infrastructure implementation",
-        "QA testing"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Tactical_IT_Systems_Administrator_Enterprise_Data_Centers.pdf"
-    },
-    {
-      "id": "tactical-it-systems-administrator-local-government-it",
-      "role": "Tactical IT & Systems Administrator",
-      "industry": "Local Government IT",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Ground-Up Network Infrastructure & End-Point Security for SMBs.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "IT networking specialist",
-        "Cybersecurity Specialist",
-        "SME infrastructure implementation",
-        "QA testing"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Tactical_IT_Systems_Administrator_Local_Government_IT.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Growth_Equity.pdf",
+      "family": "Strategy & Investment"
     },
     {
       "id": "tactical-it-systems-administrator-managed-service-providers",
-      "role": "Tactical IT & Systems Administrator",
-      "industry": "Managed Service Providers",
+      "role": "Systems Administrator",
+      "industry": "Managed Services & Institutional IT",
       "targeted": true,
       "weight": 10,
-      "description": "I build Ground-Up Network Infrastructure & End-Point Security for SMBs.",
+      "description": "Systems administrator supporting Linux estates, networking, access, deployment, troubleshooting, and reliable institutional services.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1837,20 +1020,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "IT networking specialist",
-        "Cybersecurity Specialist",
-        "SME infrastructure implementation",
-        "QA testing"
+        "Systems Administration",
+        "Linux",
+        "Networking",
+        "Access Management",
+        "Deployment",
+        "Institutional IT"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Tactical_IT_Systems_Administrator_Managed_Service_Providers.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Systems_Administrator_Managed_Institutional_IT.pdf"
     },
     {
       "id": "open-source-community-lead-open-source-foundations",
-      "role": "Open-Source Community Lead",
-      "industry": "Open Source Foundations",
+      "role": "Developer Community Manager",
+      "industry": "Open Source & Developer Communities",
       "targeted": true,
       "weight": 10,
-      "description": "I build Developer Ecosystems & Advocacy Pipelines for Open-Source Protocols.",
+      "description": "Developer community manager growing technical communities through contributor support, events, educational content, and feedback loops.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1859,89 +1044,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Developer Relations",
-        "Developer Experience Engineer",
-        "Storyteller",
-        "Event management",
-        "Club president"
+        "Developer Community",
+        "Open Source",
+        "Community Programs",
+        "Contributor Support",
+        "Technical Events",
+        "Developer Education"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Open_Source_Community_Lead_Open_Source_Foundations.pdf"
-    },
-    {
-      "id": "open-source-community-lead-web3-layer-1s",
-      "role": "Open-Source Community Lead",
-      "industry": "Web3 Layer 1s",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Developer Ecosystems & Advocacy Pipelines for Open-Source Protocols.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Developer Relations",
-        "Developer Experience Engineer",
-        "Storyteller",
-        "Event management",
-        "Club president"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Open_Source_Community_Lead_Web3_Layer_1s.pdf"
-    },
-    {
-      "id": "open-source-community-lead-developer-api-startups",
-      "role": "Open-Source Community Lead",
-      "industry": "Developer API Startups",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Developer Ecosystems & Advocacy Pipelines for Open-Source Protocols.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Developer Relations",
-        "Developer Experience Engineer",
-        "Storyteller",
-        "Event management",
-        "Club president"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Open_Source_Community_Lead_Developer_API_Startups.pdf"
-    },
-    {
-      "id": "phygital-spatial-designer-luxury-retail-tech",
-      "role": "Phygital Spatial Designer",
-      "industry": "Luxury Retail Tech",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Blended Physical/Digital Experiences for Retail & Exhibitions.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Interior design",
-        "Interaction Designer",
-        "Strategic design",
-        "Event management"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Phygital_Spatial_Designer_Luxury_Retail_Tech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Developer_Community_Manager_Open_Source.pdf"
     },
     {
       "id": "phygital-spatial-designer-museumexpo-design",
-      "role": "Phygital Spatial Designer",
-      "industry": "Museum/Expo Design",
+      "role": "Spatial Experience Designer",
+      "industry": "Cultural, Retail & Experiential Spaces",
       "targeted": true,
       "weight": 10,
-      "description": "I build Blended Physical/Digital Experiences for Retail & Exhibitions.",
+      "description": "Spatial experience designer connecting digital journeys, physical environments, community touchpoints, and service operations.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1950,42 +1068,22 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Interior design",
-        "Interaction Designer",
-        "Strategic design",
-        "Event management"
+        "Spatial Experience Design",
+        "Phygital Experiences",
+        "Service Design",
+        "Exhibition Design",
+        "Retail Experience",
+        "Community Spaces"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Phygital_Spatial_Designer_MuseumExpo_Design.pdf"
-    },
-    {
-      "id": "phygital-spatial-designer-spatial-computing-labs",
-      "role": "Phygital Spatial Designer",
-      "industry": "Spatial Computing Labs",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Blended Physical/Digital Experiences for Retail & Exhibitions.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
-      },
-      "requiredKeywords": [
-        "Interior design",
-        "Interaction Designer",
-        "Strategic design",
-        "Event management"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Phygital_Spatial_Designer_Spatial_Computing_Labs.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Spatial_Experience_Designer_Cultural_Retail_Spaces.pdf"
     },
     {
       "id": "systematic-organizational-designer-enterprise-transformation",
-      "role": "Systematic Organizational Designer",
+      "role": "Organizational Design Consultant",
       "industry": "Enterprise Transformation",
       "targeted": true,
       "weight": 10,
-      "description": "I build Systems-Level Operational Architecture for Scaling Orgs.",
+      "description": "Designs operating models, decision rights, workflows, and change programs for scaling organizations.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1994,20 +1092,21 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Systems Designer",
-        "Strategic design",
-        "Operations Manager",
-        "AI Governance Officer"
+        "Organizational Design",
+        "Operating Models",
+        "Change Management",
+        "Process Design"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Systematic_Organizational_Designer_Enterprise_Transformation.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_Enterprise_Transformation.pdf",
+      "family": "Consultant"
     },
     {
       "id": "systematic-organizational-designer-civictech",
-      "role": "Systematic Organizational Designer",
+      "role": "Organizational Design Consultant",
       "industry": "CivicTech",
       "targeted": true,
       "weight": 10,
-      "description": "I build Systems-Level Operational Architecture for Scaling Orgs.",
+      "description": "Designs operating models, decision rights, workflows, and change programs for scaling organizations.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -2016,20 +1115,21 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Systems Designer",
-        "Strategic design",
-        "Operations Manager",
-        "AI Governance Officer"
+        "Organizational Design",
+        "Operating Models",
+        "Change Management",
+        "Process Design"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Systematic_Organizational_Designer_CivicTech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_CivicTech.pdf",
+      "family": "Consultant"
     },
     {
       "id": "systematic-organizational-designer-deeptech-skunkworks",
-      "role": "Systematic Organizational Designer",
-      "industry": "DeepTech Skunkworks",
+      "role": "Organizational Design Consultant",
+      "industry": "Deep-Tech Innovation Labs",
       "targeted": true,
       "weight": 10,
-      "description": "I build Systems-Level Operational Architecture for Scaling Orgs.",
+      "description": "Designs operating models, decision rights, workflows, and change programs for scaling organizations.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -2038,108 +1138,112 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Systems Designer",
-        "Strategic design",
-        "Operations Manager",
-        "AI Governance Officer"
+        "Organizational Design",
+        "Operating Models",
+        "Change Management",
+        "Process Design"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Systematic_Organizational_Designer_DeepTech_Skunkworks.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_Deep_Tech_Innovation_Labs.pdf",
+      "family": "Consultant"
     },
     {
       "id": "culinary-ops-hybrid-architect-b2b-foodtech",
-      "role": "Culinary-Ops Hybrid Architect",
-      "industry": "B2B FoodTech",
+      "role": "Culinary Stagiaire",
+      "industry": "Michelin & Fine-Dining Kitchens",
       "targeted": true,
       "weight": 10,
-      "description": "I build Algorithmic Kitchen Logistics & Throughput Systems for High-Volume Dining.",
+      "description": "Entry-level kitchen candidate prepared for line-cook, commis, and stagiaire work through disciplined mise en place, knife work, sauce preparation, food safety, and service timing.",
       "location": "Global",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Experience": "Entry Level",
+        "Placements": "Multiple",
+        "Training": "Hands-On",
+        "Focus": "Kitchen Craft"
       },
       "requiredKeywords": [
-        "Culinary stagiaries",
-        "Systems Designer",
-        "Operations Manager",
-        "Menu design"
+        "Culinary Stagiaire",
+        "Line Cook",
+        "Commis Chef",
+        "Michelin Kitchens",
+        "Mise en Place",
+        "Knife Skills",
+        "Food Safety"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Culinary_Ops_Hybrid_Architect_B2B_FoodTech.pdf"
+      "limits": {
+        "coursework": 0,
+        "certifications": 0,
+        "languages": 0
+      },
+      "pdfFilename": "Kartavya_Jharwal_Resume_Culinary_Stagiaire_Michelin_Fine_Dining_Kitchens.pdf",
+      "family": "Culinary Stagiaire"
     },
     {
       "id": "culinary-ops-hybrid-architect-airline-catering-logistics",
-      "role": "Culinary-Ops Hybrid Architect",
-      "industry": "Airline Catering Logistics",
+      "role": "Back-of-House Logistics Coordinator",
+      "industry": "High-Volume Catering",
       "targeted": true,
       "weight": 10,
-      "description": "I build Algorithmic Kitchen Logistics & Throughput Systems for High-Volume Dining.",
+      "description": "Back-of-house operator focused on production planning, stock flow, kitchen data, handovers, reconciliation, and reliable service under volume.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Systems": "Multi-Site",
+        "Focus": "BOH Logistics",
+        "Delivery": "High Volume"
       },
       "requiredKeywords": [
-        "Culinary stagiaries",
-        "Systems Designer",
-        "Operations Manager",
-        "Menu design"
+        "Back-of-House Operations",
+        "Kitchen Logistics",
+        "Inventory Control",
+        "Production Planning",
+        "Shift Handover",
+        "Food Safety"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Culinary_Ops_Hybrid_Architect_Airline_Catering_Logistics.pdf"
+      "limits": {
+        "coursework": 2,
+        "certifications": 0,
+        "languages": 0
+      },
+      "pdfFilename": "Kartavya_Jharwal_Resume_Back_Of_House_Logistics_Coordinator_High_Volume_Catering.pdf",
+      "family": "Back-of-House Operations"
     },
     {
       "id": "culinary-ops-hybrid-architect-stadium-hospitality",
-      "role": "Culinary-Ops Hybrid Architect",
-      "industry": "Stadium Hospitality",
+      "role": "Front-of-House and Reception Associate",
+      "industry": "Hotels and Restaurants",
       "targeted": true,
       "weight": 10,
-      "description": "I build Algorithmic Kitchen Logistics & Throughput Systems for High-Volume Dining.",
+      "description": "Guest-facing hospitality candidate experienced in reception workflows, booking operations, order accuracy, service recovery, and relationship-led guest retention.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Guest Impact": "30% Repeat",
+        "Focus": "FOH & Reception",
+        "Service": "Guest Led"
       },
       "requiredKeywords": [
-        "Culinary stagiaries",
-        "Systems Designer",
-        "Operations Manager",
-        "Menu design"
+        "Front of House",
+        "Hotel Reception",
+        "Guest Services",
+        "Reservations",
+        "Cash Handling",
+        "Service Recovery"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Culinary_Ops_Hybrid_Architect_Stadium_Hospitality.pdf"
-    },
-    {
-      "id": "autodidact-skunkworks-researcher-x-the-moonshot-factory",
-      "role": "Autodidact Skunkworks Researcher",
-      "industry": "X (The Moonshot Factory)",
-      "targeted": true,
-      "weight": 10,
-      "description": "I build Cross-Disciplinary Prototypes & R&D for Stealth Innovation Labs.",
-      "location": "Global",
-      "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+      "limits": {
+        "coursework": 0,
+        "certifications": 0,
+        "languages": 0
       },
-      "requiredKeywords": [
-        "Exploration as autodidact",
-        "Freelancer",
-        "Co-founder",
-        "Storyteller"
-      ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Autodidact_Skunkworks_Researcher_X_The_Moonshot_Factory.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Front_Of_House_Reception_Associate_Hotels_Restaurants.pdf",
+      "family": "Front-of-House & Reception"
     },
     {
       "id": "autodidact-skunkworks-researcher-corporate-rd-labs",
-      "role": "Autodidact Skunkworks Researcher",
-      "industry": "Corporate R&D Labs",
+      "role": "Research and Development Engineer",
+      "industry": "Applied R&D Labs & Startups",
       "targeted": true,
       "weight": 10,
-      "description": "I build Cross-Disciplinary Prototypes & R&D for Stealth Innovation Labs.",
+      "description": "Research and development engineer exploring ambiguous technical problems through rapid prototypes, applied experiments, and evidence-led iteration.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -2148,56 +1252,225 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Exploration as autodidact",
-        "Freelancer",
-        "Co-founder",
-        "Storyteller"
+        "Research and Development",
+        "Applied Research",
+        "Rapid Prototyping",
+        "Technical Experiments",
+        "R&D Engineering",
+        "Innovation"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Autodidact_Skunkworks_Researcher_Corporate_RD_Labs.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Research_Development_Engineer_Applied_RD.pdf"
     },
     {
-      "id": "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
-      "role": "Autodidact Skunkworks Researcher",
-      "industry": "Bleeding-Edge Stealth Startups",
+      "id": "product-manager-startup-accelerators",
+      "role": "Product Manager",
+      "industry": "Startup Accelerators",
       "targeted": true,
       "weight": 10,
-      "description": "I build Cross-Disciplinary Prototypes & R&D for Stealth Innovation Labs.",
+      "description": "Customer-led product manager who turns ambiguous needs into prioritised roadmaps, MVPs, experiments, and measurable delivery.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Products": "4+",
+        "Impact": "High",
+        "Specialization": "Zero-to-One"
+      },
+      "requiredKeywords": [
+        "Product Manager",
+        "Product Strategy",
+        "Roadmapping",
+        "Customer Discovery",
+        "MVP Development",
+        "Product Operations"
+      ],
+      "limits": {
+        "leadership": 1
+      },
+      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Manager_Startup_Accelerators.pdf"
+    },
+    {
+      "id": "project-manager-startup-accelerators",
+      "role": "Project Manager",
+      "industry": "Startup Accelerators",
+      "targeted": true,
+      "weight": 10,
+      "description": "Project manager who turns ambiguous initiatives into milestones, owners, risk controls, and reliable cross-functional delivery.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
         "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Delivery": "End-to-End",
+        "Specialization": "Execution"
       },
       "requiredKeywords": [
-        "Exploration as autodidact",
-        "Freelancer",
-        "Co-founder",
-        "Storyteller"
+        "Project Manager",
+        "Project Coordination",
+        "Program Delivery",
+        "Risk Management",
+        "Stakeholder Management",
+        "Operations"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Autodidact_Skunkworks_Researcher_Bleeding_Edge_Stealth_Startups.pdf"
+      "limits": {
+        "leadership": 1
+      },
+      "pdfFilename": "Kartavya_Jharwal_Resume_Project_Manager_Startup_Accelerators.pdf"
     },
     {
-      "id": "all",
-      "role": "Universal Resume",
-      "industry": "All Experience",
-      "targeted": false,
-      "weight": 0,
-      "description": "Systems builder across AI, software, operations, analytics, and venture strategy.",
+      "id": "devops-associate-startup-accelerators",
+      "role": "DevOps Associate",
+      "industry": "Startup Accelerators",
+      "targeted": true,
+      "weight": 10,
+      "description": "Early-career DevOps engineer supporting Linux systems, deployment automation, networking, observability, and incident response.",
       "location": "Global",
       "metrics": {
-        "Experience": "10+ Yrs",
-        "Projects": "50+",
-        "Impact": "Multi-Domain",
-        "Specialization": "Cross-domain"
+        "Experience": "Hands-On",
+        "Systems": "Linux",
+        "Deployment": "Full-Stack",
+        "Specialization": "Reliability"
       },
       "requiredKeywords": [
-        "Multi-disciplinary",
-        "Strategy",
-        "Cross-domain"
+        "DevOps Associate",
+        "Linux",
+        "Docker",
+        "CI/CD",
+        "Networking",
+        "Infrastructure as Code"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Universal.pdf",
-      "fallback": true
+      "limits": {
+        "leadership": 1
+      },
+      "pdfFilename": "Kartavya_Jharwal_Resume_DevOps_Associate_Startup_Accelerators.pdf"
+    },
+    {
+      "id": "founders-associate-startup-accelerators",
+      "role": "Founder's Associate",
+      "industry": "Healthcare & Startup Ecosystems",
+      "targeted": true,
+      "weight": 10,
+      "description": "Startup analyst and developer with experience across healthcare, university incubation, and London's venture ecosystem, translating founder stories into GTM playbooks, MVPs, and focused execution.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Functions": "Cross-Functional",
+        "Launches": "2",
+        "Specialization": "Venture Building"
+      },
+      "requiredKeywords": [
+        "Founder's Associate",
+        "Healthcare",
+        "Founder Storytelling",
+        "GTM Playbooks",
+        "MVP Development",
+        "Startup Analysis",
+        "Venture Building",
+        "Design Thinking",
+        "Social Impact"
+      ],
+      "limits": {
+        "leadership": 1,
+        "projectHighlights": 3,
+        "educationHighlights": 3,
+        "certifications": 0,
+        "languages": 0
+      },
+      "pdfFilename": "Kartavya_Jharwal_Resume_Founders_Associate_Healthcare.pdf"
+    },
+    {
+      "id": "gtm-analyst-startup-accelerators",
+      "role": "GTM Analyst",
+      "industry": "Startup Accelerators",
+      "targeted": true,
+      "weight": 10,
+      "description": "GTM analyst combining customer research, funnel analytics, market mapping, and experimentation to identify growth opportunities.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Funnels": "AARRR",
+        "Impact": "Measurable",
+        "Specialization": "Growth"
+      },
+      "requiredKeywords": [
+        "GTM Analyst",
+        "Go-to-Market Strategy",
+        "Market Research",
+        "Funnel Analysis",
+        "Growth Experiments",
+        "Customer Segmentation"
+      ],
+      "limits": {
+        "leadership": 1
+      },
+      "pdfFilename": "Kartavya_Jharwal_Resume_GTM_Analyst_Startup_Accelerators.pdf"
+    },
+    {
+      "id": "ui-ux-designer-startup-accelerators",
+      "role": "UI/UX Designer",
+      "industry": "Startup Accelerators",
+      "targeted": true,
+      "weight": 10,
+      "description": "UI/UX designer translating research and systems thinking into clear interfaces, service flows, prototypes, and testable product decisions.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Projects": "20+",
+        "Impact": "User-Led",
+        "Specialization": "End-to-End"
+      },
+      "requiredKeywords": [
+        "UI/UX Designer",
+        "User Research",
+        "Interaction Design",
+        "Wireframing",
+        "Prototyping",
+        "Design Systems"
+      ],
+      "limits": {
+        "leadership": 1
+      },
+      "pdfFilename": "Kartavya_Jharwal_Resume_UI_UX_Designer_Startup_Accelerators.pdf"
+    },
+    {
+      "id": "systems-designer-startup-accelerators",
+      "role": "Systems Designer",
+      "industry": "Startup Accelerators",
+      "targeted": true,
+      "weight": 10,
+      "description": "Systems designer mapping complex operations into coherent architectures, workflows, feedback loops, and governance mechanisms.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Systems": "End-to-End",
+        "Impact": "High",
+        "Specialization": "Architecture"
+      },
+      "requiredKeywords": [
+        "Systems Designer",
+        "Systems Thinking",
+        "Service Design",
+        "Operating Models",
+        "Process Design",
+        "Systems Architecture"
+      ],
+      "limits": {
+        "leadership": 1
+      },
+      "pdfFilename": "Kartavya_Jharwal_Resume_Systems_Designer_Startup_Accelerators.pdf"
     }
-  ]
+  ],
+  "internalTags": {
+    "all": {
+      "purpose": "Canonical master-content inclusion tag used only inside resume.json.",
+      "frontendVisible": false,
+      "selectableVariant": false
+    }
+  },
+  "canonicalMaster": {
+    "source": "data/resume.json",
+    "purpose": "Complete polished content inventory used for master PDF preview and later role-specific selection.",
+    "previewOnly": true,
+    "frontendVisible": false,
+    "selectableVariant": false,
+    "roleSpecificTailoringStatus": "Deferred until the canonical content pass is approved."
+  }
 }

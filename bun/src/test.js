@@ -8,13 +8,29 @@ import { PDFDocument } from 'pdf-lib';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const DIST = resolve(ROOT, 'dist');
+const resume = JSON.parse(readFileSync(resolve(ROOT, 'data/resume.json'), 'utf8'));
 const variants = JSON.parse(readFileSync(resolve(ROOT, 'data/variants.json'), 'utf8')).variants;
+const variantsById = new Map(variants.map(variant => [variant.id, variant]));
 const payload = readFileSync(resolve(DIST, 'public/data.js'), 'utf8');
 const html = readFileSync(resolve(DIST, 'index.html'), 'utf8');
 const match = payload.match(/window\.PROFILES=([\s\S]+);\s*$/);
+const SKIP_PDFS = process.argv.includes('--skip-pdfs');
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
+}
+
+function formatDate(value) {
+  if (!value) return 'Present';
+  const [year, month] = value.split('-');
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return month ? `${months[Number(month) - 1]} ${year}` : year;
+}
+
+function expectedEducationDate(education) {
+  return education.expected
+    ? `Expected ${formatDate(education.endDate)}`
+    : `${formatDate(education.startDate)} to ${formatDate(education.endDate)}`;
 }
 
 assert(match, 'dist/public/data.js does not match the production payload format');
@@ -22,7 +38,12 @@ const profiles = JSON.parse(match[1]);
 assert(profiles.length === variants.length, 'production profile count must match variant count');
 assert(new Set(profiles.map(profile => profile.id)).size === profiles.length, 'profile ids must be unique');
 assert(profiles.some(profile => profile.fallback), 'a canonical fallback profile is required');
-assert(profiles.find(profile => profile.fallback).omissions.length === 0, 'the universal resume must fit without build-time omissions');
+if (!SKIP_PDFS) {
+  assert(
+    profiles.find(profile => profile.fallback).omissions.every(omission => ['experienceHighlight', 'projectHighlight', 'skill', 'summary'].includes(omission.type)),
+    'the universal resume may trim only optional bullets, excess skills, or its summary'
+  );
+}
 
 const localReferences = [...html.matchAll(/(?:href|src)=["']([^"']+)["']/g)]
   .map(result => result[1])
@@ -33,29 +54,103 @@ for (const reference of localReferences) {
 }
 
 for (const profile of profiles) {
-  assert(profile.name && profile.role && profile.industry, `${profile.id}: identity fields are required`);
+  const effectiveLimits = { ...resume.custom.limits, ...(variantsById.get(profile.id)?.limits || {}) };
+  assert(profile.name && profile.role && profile.family && profile.industry, `${profile.id}: identity fields are required`);
+  assert(profile.family === (variantsById.get(profile.id)?.family || profile.role), `${profile.id}: role family drifted from variant source`);
   assert(profile.contact?.email, `${profile.id}: email is required`);
-  assert(Array.isArray(profile.experience) && profile.experience.length > 0, `${profile.id}: experience is required`);
+  assert(Array.isArray(profile.experience), `${profile.id}: experience must be an array`);
   assert(profile.experience.every(entry => entry.highlights?.length), `${profile.id}: experience entries need highlights`);
+  assert(Array.isArray(profile.projects), `${profile.id}: projects must be an array`);
+  assert(profile.projects.every(entry => entry.highlights?.length), `${profile.id}: project entries need highlights`);
+  const evidenceComposition = `${profile.experience.length}:${profile.projects.length}`;
+  if (profile.isMasterCV) {
+    assert(profile.id === 'all', `${profile.id}: only the all profile may be the master CV`);
+    assert(profile.experience.length === resume.work.length, `${profile.id}: master CV must include every work entry`);
+    assert(profile.projects.length === resume.projects.length, `${profile.id}: master CV must include every project`);
+  } else {
+    assert(
+      ['2:0', '1:1', '0:2'].includes(evidenceComposition),
+      `${profile.id}: evidence must be 2 experiences, 1 experience + 1 project, or 2 projects`
+    );
+    const expectedComposition = {
+      '2:0': 'two-experience',
+      '1:1': 'experience-project',
+      '0:2': 'two-projects'
+    }[evidenceComposition];
+    assert(profile.composition === expectedComposition, `${profile.id}: composition metadata does not match its sections`);
+  }
   assert(Array.isArray(profile.education) && profile.education.length > 0, `${profile.id}: education is required`);
+  assert(profile.education.length === resume.education.length, `${profile.id}: every source education entry must be compiled`);
+  profile.education.forEach((entry, index) => {
+    const source = resume.education[index];
+    const sourceCourseNames = new Set((source.courses || []).map(course => typeof course === 'string' ? course : course.name));
+    assert(entry.institution === source.institution, `${profile.id}: education institution drifted from source`);
+    assert(entry.url === (source.url || '') && entry.location === (source.location || ''), `${profile.id}: education link metadata drifted from source`);
+    assert(entry.studyType === source.studyType && entry.area === source.area, `${profile.id}: education degree content drifted from source`);
+    assert(entry.date === expectedEducationDate(source), `${profile.id}: education date drifted from source`);
+    assert(entry.score === (source.score || ''), `${profile.id}: education score drifted from source`);
+    assert(entry.honors.every(honor => (source.highlights || []).some(value => value.replace(/\.$/, '') === honor)), `${profile.id}: education honors drifted from source`);
+    assert(entry.honors.length <= effectiveLimits.educationHighlights, `${profile.id}: too many education highlights`);
+    assert(entry.courses.every(course => sourceCourseNames.has(course)), `${profile.id}: compiled coursework is not present in source`);
+    assert(entry.courses.length <= effectiveLimits.coursework, `${profile.id}: too many coursework entries`);
+  });
   assert(profile.additional && Array.isArray(profile.additional.skills), `${profile.id}: skills must be an array`);
-  assert(profile.pdfAvailable, `${profile.id}: generated PDF must be marked available`);
-  assert(Array.isArray(profile.omissions), `${profile.id}: build-time omissions must be auditable`);
-  assert(!JSON.stringify(profile).includes('"score"'), `${profile.id}: compiler-only ranking fields leaked into output`);
+  assert(Array.isArray(profile.additional.skillMap), `${profile.id}: categorized skill map must be an array`);
+  const expectedTechnicalQualifications = (resume.skills || []).some(skill => (
+    Array.isArray(skill.variants) && skill.variants.includes(profile.id)
+  ));
+  assert(profile.additional.enabled === expectedTechnicalQualifications, `${profile.id}: technical-qualification visibility drifted from source tags`);
+  assert(
+    profile.additional.skills.join('\0') === profile.additional.skillMap.flatMap(group => group.keywords).join('\0'),
+    `${profile.id}: flat skills and categorized skill map must stay synchronized`
+  );
+  assert(profile.additional.skills.length <= effectiveLimits.skills, `${profile.id}: too many skills`);
+  assert(profile.additional.skillMap.length <= effectiveLimits.skillGroups, `${profile.id}: too many skill groups`);
+  assert(profile.additional.skillMap.every(group => group.keywords.length <= effectiveLimits.skillsPerGroup), `${profile.id}: too many skills in a group`);
+  assert(profile.additional.leadership.length <= effectiveLimits.leadership, `${profile.id}: too many leadership entries`);
+  if (expectedTechnicalQualifications) {
+    assert(profile.additional.skillMap.length > 0, `${profile.id}: enabled technical qualifications require categorized skills`);
+    assert(profile.additional.languages.length <= effectiveLimits.languages, `${profile.id}: too many languages`);
+    assert(profile.additional.certifications.length <= effectiveLimits.certifications, `${profile.id}: too many certifications`);
+  } else {
+    assert(profile.additional.skillMap.length === 0, `${profile.id}: nontechnical profiles must not include a skill map`);
+    assert(profile.additional.languages.length === 0, `${profile.id}: nontechnical profiles must not include languages`);
+    assert(profile.additional.certifications.length === 0, `${profile.id}: nontechnical profiles must not include certifications`);
+  }
+  if (profile.isMasterCV) {
+    assert(profile.experience.every((entry, index) => entry.highlights.length === resume.work[index].highlights.length), `${profile.id}: master CV must retain every work highlight`);
+    assert(profile.projects.every((entry, index) => entry.highlights.length === resume.projects[index].highlights.length), `${profile.id}: master CV must retain every project highlight`);
+  } else {
+    assert(profile.experience.length <= 2, `${profile.id}: targeted resumes may not contain more than two roles`);
+    assert(profile.experience.every(entry => entry.highlights.length <= effectiveLimits.experienceHighlights), `${profile.id}: experience entries exceed the configured bullet limit`);
+    assert(profile.projects.every(entry => entry.highlights.length <= effectiveLimits.projectHighlights), `${profile.id}: project entries exceed the configured bullet limit`);
+  }
+  if (!SKIP_PDFS) assert(profile.pdfAvailable, `${profile.id}: generated PDF must be marked available`);
+  assert(variantsById.get(profile.id)?.pdfFilename === profile.pdfFilename, `${profile.id}: PDF filename drifted from variant source`);
+  if (!SKIP_PDFS) assert(Array.isArray(profile.omissions), `${profile.id}: build-time omissions must be auditable`);
+  assert(
+    !JSON.stringify({ experience: profile.experience, projects: profile.projects }).includes('"score"'),
+    `${profile.id}: compiler-only ranking fields leaked into evidence entries`
+  );
 
-  const path = resolve(DIST, 'resumes', profile.pdfFilename);
-  assert(existsSync(path), `${profile.id}: PDF is missing`);
-  const pdf = await PDFDocument.load(readFileSync(path));
-  assert(pdf.getPageCount() === 1, `${profile.id}: PDF must be one page`);
-  const size = pdf.getPage(0).getSize();
-  assert(Math.abs(size.width - 595.276) < 0.5 && Math.abs(size.height - 841.89) < 0.5, `${profile.id}: PDF must be A4`);
+  if (!SKIP_PDFS) {
+    const path = resolve(DIST, 'resumes', profile.pdfFilename);
+    assert(existsSync(path), `${profile.id}: PDF is missing`);
+    const pdf = await PDFDocument.load(readFileSync(path));
+    if (profile.isMasterCV) {
+      assert(pdf.getPageCount() >= 2, `${profile.id}: master CV must remain multi-page`);
+    } else {
+      assert(pdf.getPageCount() === 1, `${profile.id}: targeted PDF must be one page`);
+    }
+    const size = pdf.getPage(0).getSize();
+    assert(Math.abs(size.width - 595.276) < 0.5 && Math.abs(size.height - 841.89) < 0.5, `${profile.id}: PDF must be A4`);
+  }
 }
 
 assert(readFileSync(resolve(DIST, 'CNAME'), 'utf8').trim() === 'resume.kartavya.tech', 'dist/CNAME is incorrect');
-const expectedRoles = new Set(profiles.map(profile => profile.role));
-const roleDirectories = readdirSync(resolve(DIST, 'roles'), { withFileTypes: true }).filter(entry => entry.isDirectory());
-assert(roleDirectories.length === expectedRoles.size, 'one SEO landing directory is required per role');
+assert(!existsSync(resolve(DIST, 'roles')), 'role index and individual role pages must not be emitted');
 const sitemap = readFileSync(resolve(DIST, 'sitemap.xml'), 'utf8');
-assert((sitemap.match(/<url>/g) || []).length === expectedRoles.size + 2, 'sitemap must contain root, role index, and every role page');
+assert((sitemap.match(/<url>/g) || []).length === 1, 'sitemap must expose only the frontend microsite gateway');
+assert(sitemap.includes('<loc>https://resume.kartavya.tech/</loc>'), 'sitemap must contain the frontend microsite');
 assert(readFileSync(resolve(DIST, 'robots.txt'), 'utf8').includes('https://resume.kartavya.tech/sitemap.xml'), 'robots.txt must advertise the sitemap');
-console.log(`✓ ${profiles.length} profiles/PDFs and ${expectedRoles.size} SEO role pages passed production tests`);
+console.log(`✓ ${profiles.length} profiles${SKIP_PDFS ? '' : '/PDFs'} and the single microsite gateway passed production tests`);

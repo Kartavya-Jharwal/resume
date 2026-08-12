@@ -13,10 +13,15 @@
   },
   "scripts": {
     "build": "bun run bun/src/build.js",
+    "build:pdf": "bun run bun/src/build.js --pdf",
+    "build:pdf:confirmed": "bun run bun/src/build.js --pdf --yes",
     "compile": "bun run bun/src/compile.js",
+    "build:master-cv": "bun run bun/src/build-master-cv.js",
     "metrics": "bun run bun/src/font-metrics.js",
     "validate": "bun run bun/src/validate.js",
-    "test": "bun run build && bun run bun/src/test.js",
+    "test": "bun run build && bun run bun/src/test.js --skip-pdfs",
+    "test:pdf": "bun run build:pdf && bun run bun/src/test.js",
+    "test:pdf:confirmed": "bun run build:pdf:confirmed && bun run bun/src/test.js",
     "serve": "bun run build && bunx serve dist -l 3000",
     "preview": "bunx serve dist -l 3000",
     "clean": "bun -e \"for(const p of ['dist','.build-cache']){if(p==='dist'||p==='.build-cache')require('node:fs').rmSync(p,{recursive:true,force:true})}\""
@@ -28,5 +33,9 @@
     "lightningcss": "1.33.0",
     "pdf-lib": "1.17.1",
     "playwright": "1.61.1"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "motion": "^12.43.0"
   }
 }

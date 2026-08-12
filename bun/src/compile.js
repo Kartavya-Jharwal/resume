@@ -1,9 +1,9 @@
 #!/usr/bin/env bun
 /**
- * compile.js — adaptive resume profile compiler
+ * compile.js - adaptive resume profile compiler
  *
  * Reads data/resume.json + data/variants.json and generates
- * public/data.js — the compiled runtime profile payload that
+ * public/data.js - the compiled runtime profile payload that
  * drives the frontend renderer.
  *
  * Usage: bun run bun/src/compile.js [--out path] [--pdf-ready]
@@ -22,17 +22,23 @@ const resume  = JSON.parse(readFileSync(resolve(ROOT, 'data/resume.json'), 'utf-
 const variantsDoc = JSON.parse(readFileSync(resolve(ROOT, 'data/variants.json'), 'utf-8'));
 const variants = variantsDoc.variants;
 
-const limits = resume.custom?.limits || {};
+const globalLimits = resume.custom?.limits || {};
 const universal = resume.custom?.universal || {};
 
 /* ── Derive profile for each variant ── */
 const profiles = variants.map(v => {
   const vid = v.id;
-  const keywordBank = normaliseKeywordBank(v.requiredKeywords || []);
+  const isMasterCV = vid === 'all';
+  const limits = { ...globalLimits, ...(v.limits || {}) };
+  const keywordBank = normaliseKeywordBank([
+    v.role,
+    v.industry,
+    v.description,
+    ...(v.requiredKeywords || [])
+  ]);
 
   /* Filter work entries: prefer exact-role highlights, then backfill with global "all" */
-  const work = pickPreferredEntries(
-    (resume.work || []).map(w => {
+  const workCandidates = (resume.work || []).map(w => {
       const split = splitVariantItems(w.highlights || [], vid);
       const highlights = (split.direct.length ? split.direct : split.global)
         .slice(0, limitOrInfinity(limits.experienceHighlights))
@@ -51,14 +57,11 @@ const profiles = variants.map(v => {
         recency: toComparableDate(w.endDate || '9999-12-31')
       };
     })
-      .filter(Boolean)
-      .sort((a, b) => (a.featured - b.featured) || Number(b.direct) - Number(a.direct) || (b.score - a.score) || (b.recency - a.recency)),
-    limits.experience
-  ).map(({ score, recency, direct, global, featured, ...entry }) => entry);
+    .filter(Boolean)
+    .sort((a, b) => (a.featured - b.featured) || Number(b.direct) - Number(a.direct) || (b.score - a.score) || (b.recency - a.recency));
 
   /* Filter projects tagged for this variant or globally tagged with "all" */
-  const projects = pickPreferredEntries(
-    (resume.projects || []).map(p => {
+  const projectCandidates = (resume.projects || []).map(p => {
       const projectScope = variantScope(p.variants, vid);
       if (!projectScope.direct && !projectScope.global) return null;
 
@@ -68,7 +71,7 @@ const profiles = variants.map(v => {
         .map(h => h.text);
 
       return {
-        name: p.name,
+        name: p.displayName || p.name,
         description: limits.projectDescriptions === false ? '' : p.description,
         highlights,
         direct: projectScope.direct || split.direct.length > 0,
@@ -77,18 +80,53 @@ const profiles = variants.map(v => {
         score: scoreEntry(keywordBank, [p.name, p.description, ...(p.keywords || []), ...highlights])
       };
     })
-      .filter(Boolean)
-      .sort((a, b) => (a.featured - b.featured) || Number(b.direct) - Number(a.direct) || (b.score - a.score)),
-    limits.projects
-  ).map(({ score, direct, global, featured, ...entry }) => entry);
+    .filter(entry => entry && entry.highlights.length)
+    .sort((a, b) => (a.featured - b.featured) || Number(b.direct) - Number(a.direct) || (b.score - a.score));
 
-  /* Education (non-optional) — all education entries */
+  /*
+   * Every profile uses exactly one of three evidence compositions:
+   *   2 relevant roles, 1 role + 1 project, or 2 projects for niche roles.
+   */
+  const directWorkCount = workCandidates.filter(entry => entry.direct).length;
+  const composition = directWorkCount >= 2
+    ? 'two-experience'
+    : directWorkCount === 1
+      ? 'experience-project'
+      : 'two-projects';
+  const experienceLimit = composition === 'two-experience' ? 2 : composition === 'experience-project' ? 1 : 0;
+  const projectLimit = composition === 'two-projects' ? 2 : composition === 'experience-project' ? 1 : 0;
+  const work = isMasterCV
+    ? (resume.work || []).map(w => ({
+        company: w.name,
+        role: w.position,
+        date: formatDateRange(w.startDate, w.endDate),
+        highlights: (w.highlights || []).map(h => h.text)
+      }))
+    : pickPreferredEntries(workCandidates, Math.min(experienceLimit, limitOrInfinity(limits.experience)))
+        .map(({ score, recency, direct, global, featured, ...entry }) => entry);
+  const projects = isMasterCV
+    ? (resume.projects || []).map(p => ({
+        name: p.displayName || p.name,
+        description: p.description || '',
+        highlights: (p.highlights || []).map(h => h.text)
+      }))
+    : pickPreferredEntries(projectCandidates, Math.min(projectLimit, limitOrInfinity(limits.projects)))
+        .map(({ score, direct, global, featured, ...entry }) => entry);
+
+/* Education (non-optional) - all education entries */
   const education = (resume.education || []).map(e => ({
     institution: e.institution,
-    area: e.area,
+    school: e.school || '',
+    url: e.url || '',
+    location: e.location || '',
+    area: (e.majors || []).join(' and ') || e.area,
     studyType: e.studyType,
-    date: formatDateRange(e.startDate, e.endDate),
-    summary: e.summary || ''
+    date: e.expected ? `Expected ${formatDate(e.endDate)}` : formatDateRange(e.startDate, e.endDate),
+    score: [e.score, e.academicStanding].filter(Boolean).join(' | '),
+    summary: e.summary || '',
+    honors: (e.highlights || []).slice(0, limitOrInfinity(limits.educationHighlights))
+      .map(item => String(item).replace(/\.$/, '')),
+    courses: rankRelevantCoursework(e.courses || [], keywordBank, limits.coursework)
   }));
 
   /* Skills filtered by variant */
@@ -96,15 +134,21 @@ const profiles = variants.map(v => {
     (resume.skills || []).map(s => ({
       direct: hasExactVariant(s.variants, vid),
       global: isGlobalVariant(s.variants),
+      name: s.name,
+      label: s.label || s.name,
+      level: s.level || '',
       keywords: s.keywords || []
     }))
   );
-  const availableSkills = unique((skillBuckets.direct.length ? skillBuckets.direct : skillBuckets.global).flatMap(s => s.keywords || []));
-  const skills = (vid === 'all' && Array.isArray(universal.skills) ? universal.skills : availableSkills)
-    .slice(0, limitOrInfinity(limits.skills));
+  const hasTechnicalQualifications = skillBuckets.direct.length > 0;
+  const availableSkillGroups = hasTechnicalQualifications ? skillBuckets.direct : [];
+  const availableSkills = unique(availableSkillGroups.flatMap(s => s.keywords || []));
+  const preferredSkills = vid === 'all' && Array.isArray(universal.skills) ? universal.skills : availableSkills;
+  const skillMap = buildSkillMap(availableSkillGroups, preferredSkills, limits);
+  const skills = skillMap.flatMap(group => group.keywords);
 
   /* Languages */
-  const languages = (resume.languages || [])
+  const languages = (hasTechnicalQualifications ? (resume.languages || []) : [])
     .map(l => `${l.language} (${l.fluency})`)
     .slice(0, limitOrInfinity(limits.languages));
 
@@ -116,7 +160,9 @@ const profiles = variants.map(v => {
       name: c.name
     }))
   );
-  const certifications = (certificateBuckets.direct.length ? certificateBuckets.direct : certificateBuckets.global)
+  const certifications = (hasTechnicalQualifications
+    ? (certificateBuckets.direct.length ? certificateBuckets.direct : certificateBuckets.global)
+    : [])
     .map(c => c.name)
     .slice(0, limitOrInfinity(limits.certifications));
 
@@ -138,13 +184,16 @@ const profiles = variants.map(v => {
   return {
     id: v.id,
     role: v.role,
+    family: v.family || v.role,
     industry: v.industry,
     fallback: v.fallback || false,
+    isMasterCV,
+    composition: composition,
 
     /* Identity */
     name: resume.basics.name,
 
-    /* Contact — uses variant location, but canonical contact info from resume */
+/* Contact - uses variant location, but canonical contact info from resume */
     contact: {
       location: v.location || resume.basics.location.city,
       email: resume.basics.email,
@@ -154,7 +203,7 @@ const profiles = variants.map(v => {
     },
 
     /* Summary from variant description */
-    summary: v.description || resume.basics.summary || '',
+    summary: isMasterCV ? (resume.basics.summary || '') : (v.description || resume.basics.summary || ''),
 
     /* Sections */
     experience: work,
@@ -163,7 +212,9 @@ const profiles = variants.map(v => {
 
     /* Additional info */
     additional: {
+      enabled: hasTechnicalQualifications,
       skills: skills,
+      skillMap: skillMap,
       languages: languages,
       certifications: certifications,
       workAuthorization: limits.includeWorkAuthorization === false ? '' : (resume.basics.workAuthorization || ''),
@@ -180,7 +231,7 @@ const profiles = variants.map(v => {
 
 /* ── Generate JavaScript file ── */
 const sourceRevision = `${resume.meta?.version || 'unversioned'} / ${resume.meta?.lastModified || 'unknown'}`;
-const js = `/* ── Auto-generated by bun/src/compile.js — DO NOT EDIT ── */\n` +
+const js = `/* Auto-generated by bun/src/compile.js - DO NOT EDIT */\n` +
   `/* Source: ${sourceRevision} */\n` +
   `window.PROFILES = ${JSON.stringify(profiles, null, 1)};\n`;
 
@@ -196,14 +247,15 @@ console.log(`✓ Compiled ${profiles.length} profiles → ${requestedOutput}`);
 
 /* ── Helpers ── */
 function formatDateRange(start, end) {
-  const fmt = (d) => {
-    if (!d) return 'Present';
-    const [y, m] = d.split('-');
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    if (!m) return y;
-    return `${months[parseInt(m)-1]} ${y}`;
-  };
-  return `${fmt(start)} – ${fmt(end)}`;
+  return `${formatDate(start)} to ${formatDate(end)}`;
+}
+
+function formatDate(value) {
+  if (!value) return 'Present';
+  const [year, month] = value.split('-');
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  if (!month) return year;
+  return `${months[parseInt(month)-1]} ${year}`;
 }
 
 function hasExactVariant(tags, variantId) {
@@ -267,6 +319,49 @@ function getFeaturedRank(names, name, variantId) {
 
 function unique(items) {
   return [...new Set(items.filter(Boolean))];
+}
+
+function rankRelevantCoursework(courses, keywordBank, limit) {
+  return (courses || [])
+    .map((course, index) => {
+      const name = typeof course === 'string' ? course : course.name;
+      const keywords = typeof course === 'string' ? [] : course.keywords || [];
+      return {
+        name,
+        index,
+        score: scoreEntry(keywordBank, [name, ...keywords])
+      };
+    })
+    .filter(course => course.name)
+    .sort((a, b) => (b.score - a.score) || (a.index - b.index))
+    .slice(0, limitOrInfinity(limit))
+    .map(course => course.name);
+}
+
+function buildSkillMap(groups, preferredSkills, contentLimits) {
+  const preferred = new Set((preferredSkills || []).filter(Boolean));
+  const maxGroups = limitOrInfinity(contentLimits.skillGroups);
+  const maxPerGroup = limitOrInfinity(contentLimits.skillsPerGroup);
+  const maxSkills = limitOrInfinity(contentLimits.skills);
+  const map = [];
+  let remaining = maxSkills;
+
+  for (const group of groups || []) {
+    if (map.length >= maxGroups || remaining <= 0) break;
+    const keywords = unique((group.keywords || []).filter(keyword => preferred.has(keyword)))
+      .slice(0, Math.min(maxPerGroup, remaining));
+    if (!keywords.length) continue;
+
+    map.push({
+      name: group.name,
+      label: group.label,
+      level: group.level,
+      keywords
+    });
+    remaining -= keywords.length;
+  }
+
+  return map;
 }
 
 function normaliseKeywordBank(keywords) {

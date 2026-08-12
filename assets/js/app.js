@@ -1,7 +1,13 @@
 import { createStore } from './lib/zustand-vanilla.js';
+import { animate as motionAnimate, stagger as motionStagger } from 'motion';
+import { gsap } from 'gsap';
+import { Flip } from 'gsap/Flip';
+
+gsap.registerPlugin(Flip);
+gsap.config({ nullTargetWarn: false });
 
 /* =================================================================
-   DATA LAYER — loaded from public/data.js via window.PROFILES
+   DATA LAYER - loaded from public/data.js via window.PROFILES
    ================================================================= */
 var P = window.PROFILES || [];
 
@@ -36,12 +42,12 @@ useStore.subscribe((state, prevState) => {
 
       // Update URL without polluting history (replaceState)
       var url = new URL(location.href);
-      url.searchParams.set('role', p.role);
+      url.searchParams.set('role', p.family || p.role);
       url.searchParams.set('industry', p.industry);
       history.replaceState({ profileId: p.id }, '', url);
 
-      // Update DOM components
-      renderProfile(p);
+      // Update DOM components with a layout-aware morph transition.
+      renderProfileWithTransition(p);
     }
   }
 });
@@ -71,8 +77,17 @@ var finalizeToken = 0;
 var stageResizeTimer = null;
 var stageObserver = null;
 var lastMobileMode = null;
+var hasRenderedProfile = false;
+var activePopoverTrigger = null;
+var mobileMenuReturnFocus = null;
 var A4_RUNTIME_KEY = '__RESUME_A4_RUNTIME__';
 var BUILD_FIT_MODE = new URLSearchParams(location.search).get('_fit') === '1';
+var reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+var activeProfileTransition = null;
+
+function canAnimate() {
+  return !BUILD_FIT_MODE && !reducedMotionQuery.matches;
+}
 
 function isMobileLayout() {
   return window.matchMedia('(max-width: 1023px)').matches;
@@ -83,12 +98,17 @@ function byId(id) {
   return null;
 }
 
+function roleFamily(profile) {
+  return profile.family || profile.role;
+}
+
 function roles() {
   var seen = {}, out = [];
   for (var i = 0; i < P.length; i++) {
-    if (!seen[P[i].role]) {
-      seen[P[i].role] = 1;
-      out.push(P[i].role);
+    var family = roleFamily(P[i]);
+    if (!seen[family]) {
+      seen[family] = 1;
+      out.push(family);
     }
   }
   return out;
@@ -96,7 +116,7 @@ function roles() {
 
 function industries(role) {
   var out = [];
-  for (var i = 0; i < P.length; i++) if (P[i].role === role) out.push(P[i].industry);
+  for (var i = 0; i < P.length; i++) if (roleFamily(P[i]) === role) out.push(P[i].industry);
   return out;
 }
 
@@ -112,7 +132,7 @@ function pickInit() {
   var industry = sp.get('industry');
   if (role && industry) {
     for (var i = 0; i < P.length; i++) {
-      if (P[i].role.toLowerCase() === role.toLowerCase() && P[i].industry.toLowerCase() === industry.toLowerCase()) {
+      if ((roleFamily(P[i]).toLowerCase() === role.toLowerCase() || P[i].role.toLowerCase() === role.toLowerCase()) && P[i].industry.toLowerCase() === industry.toLowerCase()) {
         return P[i];
       }
     }
@@ -163,14 +183,19 @@ function applyDesktopSheetScale() {
   els.sheet.style.transform = 'none';
   var naturalWidth = els.sheet.offsetWidth;
   var naturalHeight = els.sheet.offsetHeight;
+  var isMasterCV = els.sheet.classList.contains('is-master-cv');
   els.sheet.style.transform = prevTransform;
 
   // Stage now purely flexes, no absolute floating controls overlapping it
   var availableWidth = Math.max(els.stage.clientWidth - padX, naturalWidth * 0.3);
   var availableHeight = Math.max(els.stage.clientHeight - padY, naturalHeight * 0.3);
 
-  fitScale = Math.min(availableWidth / naturalWidth, availableHeight / naturalHeight, 1);
-  var zoomLevel = useStore.getState().zoomLevel;
+  fitScale = isMasterCV
+    ? Math.min(availableWidth / naturalWidth, 1)
+    : Math.min(availableWidth / naturalWidth, availableHeight / naturalHeight, 1);
+  /* Touch layouts always fit the complete page; native pinch zoom remains available. */
+  var storedZoomLevel = useStore.getState().zoomLevel;
+  var zoomLevel = isMobileLayout() ? 1 : storedZoomLevel;
   var appliedScale = Math.max(fitScale * zoomLevel, 0.25);
 
   /* Size the wrap to the visual (post-scale) footprint so flexbox centres it correctly */
@@ -185,11 +210,11 @@ function applyDesktopSheetScale() {
   els.stage.classList.toggle('is-zoomed', zoomLevel > 1.001);
 
   var zoomValue = document.getElementById('zoomValue');
-  if (zoomValue) zoomValue.textContent = Math.round(zoomLevel * 100) + '%';
+  if (zoomValue) zoomValue.textContent = Math.round(storedZoomLevel * 100) + '%';
   var zoomInButton = document.getElementById('btnZoomIn');
   var zoomOutButton = document.getElementById('btnZoomOut');
-  if (zoomInButton) zoomInButton.disabled = zoomLevel >= 2.5;
-  if (zoomOutButton) zoomOutButton.disabled = zoomLevel <= 0.85;
+  if (zoomInButton) zoomInButton.disabled = storedZoomLevel >= 2.5;
+  if (zoomOutButton) zoomOutButton.disabled = storedZoomLevel <= 0.85;
 
   requestAnimationFrame(function() {
     if (zoomLevel > 1.001) {
@@ -211,11 +236,12 @@ function zoomReset() {
 
 function applyRedactionState(isRedacted) {
   document.body.classList.toggle('redact-mode', isRedacted);
-  var redactButton = document.getElementById('btnRedact');
-  if (redactButton) {
+  document.querySelectorAll('[data-redact-control]').forEach(function(redactButton) {
     redactButton.setAttribute('aria-pressed', String(isRedacted));
     redactButton.setAttribute('aria-label', isRedacted ? 'Show contact details' : 'Hide contact details');
-  }
+  });
+  var mobileState = document.querySelector('#btnRedactMobile .mobile-action-state');
+  if (mobileState) mobileState.textContent = isRedacted ? 'On' : 'Off';
   document.querySelectorAll('.sensitive').forEach(function(item) {
     if (isRedacted) item.setAttribute('aria-label', 'Contact detail hidden');
     else item.removeAttribute('aria-label');
@@ -234,215 +260,749 @@ function applyRedactionState(isRedacted) {
 /* =================================================================
    TARGETED SECTION RENDERERS
    ================================================================= */
-function updateTarget(elId, newHTML, delay) {
-  var el = document.getElementById(elId);
+function markMicroUpdate(el) {
+  if (!el || BUILD_FIT_MODE || !hasRenderedProfile) return;
+  el.classList.add('micro-updated');
+  if (!canAnimate()) return;
+  motionAnimate(el, {
+    opacity: [0.45, 1],
+    y: [3, 0],
+    filter: ['blur(2.5px)', 'blur(0px)']
+  }, {
+    duration: 0.42,
+    ease: [0.16, 1, 0.3, 1]
+  });
+}
+
+function setText(el, text) {
+  var next = text == null ? '' : String(text);
+  if (!el || el.textContent === next) return false;
+  el.textContent = next;
+  markMicroUpdate(el);
+  return true;
+}
+
+function syncAttr(el, name, value) {
   if (!el) return;
-  el.classList.remove('up-in');
-  el.innerHTML = newHTML;
-  if (BUILD_FIT_MODE) {
-    el.classList.add('up-in');
+  if (value == null || value === false || value === '') {
+    el.removeAttribute(name);
     return;
   }
-  setTimeout(function() {
-    el.classList.add('up-in');
-  }, delay || 10);
+  if (el.getAttribute(name) !== String(value)) {
+    el.setAttribute(name, String(value));
+  }
+}
+
+function ensureElement(parent, selector, tagName, className) {
+  var el = parent.querySelector(selector);
+  if (el) return el;
+  el = document.createElement(tagName);
+  if (className) el.className = className;
+  parent.appendChild(el);
+  return el;
+}
+
+function syncChildren(parent, items, keyFn, createFn, updateFn) {
+  if (!parent) return;
+  var existing = {};
+  Array.from(parent.children).forEach(function(child) {
+    if (child.dataset && child.dataset.key) existing[child.dataset.key] = child;
+  });
+
+  var nextChildren = [];
+  items.forEach(function(item, index) {
+    var key = keyFn(item, index);
+    var child = existing[key];
+    if (!child) {
+      child = createFn(item, index);
+      child.dataset.key = key;
+    }
+    updateFn(child, item, index);
+    nextChildren.push(child);
+    delete existing[key];
+  });
+
+  Object.keys(existing).forEach(function(key) {
+    existing[key].remove();
+  });
+
+  nextChildren.forEach(function(child, index) {
+    if (parent.children[index] !== child) {
+      parent.insertBefore(child, parent.children[index] || null);
+    }
+  });
+}
+
+function syncSectionLabel(sectionId, labelId, text) {
+  var section = document.getElementById(sectionId);
+  if (!section) return null;
+  if (!text) {
+    section.replaceChildren();
+    return section;
+  }
+  var label = ensureElement(section, ':scope > .r-lbl', 'h2', 'r-lbl');
+  label.id = labelId;
+  setText(label, text);
+  return section;
+}
+
+function syncSectionBody(section) {
+  if (!section) return null;
+  return ensureElement(section, ':scope > .r-sec-body', 'div', 'r-sec-body');
+}
+
+function clearSection(sectionId) {
+  var section = document.getElementById(sectionId);
+  if (section) section.replaceChildren();
+}
+
+function itemKey(parts) {
+  return parts.filter(Boolean).join('|');
+}
+
+function renderMxField(container, config) {
+  var field = ensureElement(container, ':scope > .field[data-field="' + config.key + '"]', 'div', 'field');
+  field.dataset.field = config.key;
+
+  var label = ensureElement(field, ':scope > .field-label', 'span', 'field-label');
+  label.id = config.labelId;
+  setText(label, config.label);
+
+  var control = ensureElement(field, ':scope > .field-control', 'button', 'field-control');
+  control.type = 'button';
+  control.dataset.k = config.key;
+  control.setAttribute('aria-labelledby', config.labelId);
+  control.setAttribute('aria-haspopup', 'listbox');
+  control.setAttribute('aria-controls', 'popover');
+  control.setAttribute('aria-expanded', 'false');
+
+  var value = ensureElement(control, ':scope > .field-val', 'span', 'field-val');
+  setText(value, config.value);
+
+  var icon = ensureElement(control, ':scope > .ti', 'i', 'ti ti-chevron-down');
+  icon.setAttribute('aria-hidden', 'true');
+
+  control.onclick = config.onClick;
+  return field;
 }
 
 function renderName(p) {
-  updateTarget('r-name', '<span class="r-name-inner">' + esc(p.name) + '</span>', 0);
+  var el = document.getElementById('r-name');
+  if (!el) return;
+  var inner = ensureElement(el, ':scope > .r-name-inner', 'span', 'r-name-inner');
+  setText(inner, p.name);
 }
-
 
 function renderContact(p) {
   var el = document.getElementById('r-ctc');
   if (!el) return;
 
-  el.classList.remove('up-in');
-
   var c = p.contact || {};
   var parts = [];
-  if (c.location) parts.push('<span class="ctc-part" data-part="location">' + esc(c.location) + '</span>');
-  if (c.email) parts.push('<span class="ctc-part sensitive" data-part="email"><a href="mailto:' + encodeURIComponent(c.email) + '">' + esc(c.email) + '</a></span>');
-  if (c.phone) parts.push('<span class="ctc-part sensitive" data-part="phone"><a href="tel:' + esc(c.phone.replace(/[^+\d]/g, '')) + '">' + esc(c.phone) + '</a></span>');
-  if (c.url) parts.push('<span class="ctc-part" data-part="url"><a href="' + esc(c.url) + '">' + esc(c.url.replace(/^https?:\/\//, '')) + '</a></span>');
+  if (c.location) parts.push({ key: 'location', type: 'text', text: c.location });
+  if (c.phone) parts.push({ key: 'phone', type: 'link', screenText: c.phone, printText: c.phone, href: 'tel:' + c.phone.replace(/[^+\d]/g, ''), sensitive: true });
+  if (c.email) parts.push({ key: 'email', type: 'link', screenText: c.email, printText: c.email, href: 'mailto:' + c.email, sensitive: true });
+  if (c.url) parts.push({ key: 'url', type: 'link', screenText: 'Portfolio', printText: c.url, href: c.url, outbound: true });
   if (c.profiles && c.profiles.length) {
     for (var i = 0; i < c.profiles.length; i++) {
       var prof = c.profiles[i];
-      parts.push('<span class="ctc-part" data-part="profile"><a href="' + esc(prof.url) + '">' + esc(prof.network) + ': ' + esc(prof.username) + '</a></span>');
+      parts.push({
+        key: itemKey(['profile', prof.network, prof.username, i]),
+        type: 'link',
+        screenText: prof.network || prof.username || 'Profile',
+        printText: prof.url || prof.username || prof.network || '',
+        href: prof.url,
+        outbound: true
+      });
     }
   }
 
-  el.innerHTML = parts.join('<span class="sep">\u202f|\u202f</span>');
+  syncChildren(
+    el,
+    parts,
+    function(part) { return part.key; },
+    function() {
+      var span = document.createElement('span');
+      span.className = 'ctc-part';
+      return span;
+    },
+    function(span, part) {
+      span.className = part.sensitive ? 'ctc-part sensitive' : 'ctc-part';
+      span.dataset.part = part.key;
+      if (part.type === 'link') {
+        var copy = span.querySelector(':scope > .ctc-copy');
+        if (copy) copy.remove();
+        var link = ensureElement(span, ':scope > a', 'a');
+        link.className = 'ctc-link';
+        syncAttr(link, 'href', part.href);
+        syncAttr(link, 'target', part.outbound ? '_blank' : null);
+        syncAttr(link, 'rel', part.outbound ? 'noopener noreferrer' : null);
+        syncAttr(link, 'aria-label', part.outbound ? 'Open ' + part.screenText + ' in a new tab' : null);
+        var screenLabel = ensureElement(link, ':scope > .screen-link-label', 'span', 'screen-link-label');
+        var printLabel = ensureElement(link, ':scope > .print-link-label', 'span', 'print-link-label');
+        setText(screenLabel, part.screenText);
+        setText(printLabel, part.printText);
+      } else {
+        var existingLink = span.querySelector(':scope > a');
+        if (existingLink) existingLink.remove();
+        var copy = ensureElement(span, ':scope > .ctc-copy', 'span', 'ctc-copy');
+        setText(copy, part.text);
+      }
+    }
+  );
+
+  Array.from(el.querySelectorAll(':scope > .sep')).forEach(function(sep) {
+    sep.remove();
+  });
+  var contactParts = Array.from(el.querySelectorAll(':scope > .ctc-part'));
+  contactParts.forEach(function(part, index) {
+    if (index === contactParts.length - 1) return;
+    var sep = document.createElement('span');
+    sep.className = 'sep';
+    sep.textContent = '\u202f|\u202f';
+    el.insertBefore(sep, contactParts[index + 1]);
+  });
+
   applyRedactionState(useStore.getState().isRedacted);
-  if (BUILD_FIT_MODE) el.classList.add('up-in');
-  else setTimeout(function() { el.classList.add('up-in'); }, 10);
 }
 
 function renderSummary(p) {
   if (!p.summary) {
-    updateTarget('r-summary', '', 30);
+    clearSection('r-summary');
     return;
   }
-  var html = '<h2 class="r-lbl" id="r-summary-label">Areas of Focus</h2>'
-    + '<p class="r-prose summary-text">' + nb(esc(p.summary || '')) + '</p>';
-  updateTarget('r-summary', html, 30);
+  var section = syncSectionLabel('r-summary', 'r-summary-label', 'Areas of Focus');
+  var body = syncSectionBody(section);
+  if (!body) return;
+  var text = ensureElement(body, ':scope > .summary-text', 'p', 'r-prose summary-text');
+  setText(text, nb(p.summary || ''));
 }
 
 function renderExperience(p) {
   if (!p.experience || !p.experience.length) {
-    updateTarget('r-experience', '', 60);
+    clearSection('r-experience');
     return;
   }
 
-  var pieces = ['<h2 class="r-lbl" id="r-experience-label">Relevant Experience</h2>'];
-  p.experience.forEach(function(e, idx) {
-    var highlights = (e.highlights || []).map(function(b) {
-      return '<li class="bl-item">' + nb(esc(b)) + '</li>';
-    }).join('');
+  var section = syncSectionLabel('r-experience', 'r-experience-label', p.isMasterCV ? 'Professional Experience' : 'Relevant Experience');
+  var body = syncSectionBody(section);
+  if (!body) return;
+  syncChildren(
+    body,
+    p.experience,
+    function(e, idx) { return itemKey([e.company, e.role, e.date, idx]); },
+    function() {
+      var article = document.createElement('article');
+      article.className = 'exp-block';
+      article.innerHTML = '<div class="r-item-hdr"><span class="r-co"></span><span class="r-date"></span></div><div class="r-role"></div><ul class="r-ul r-prose"></ul>';
+      return article;
+    },
+    function(article, e, idx) {
+      article.dataset.idx = idx;
+      setText(article.querySelector('.r-co'), e.company);
+      setText(article.querySelector('.r-date'), e.date);
+      setText(article.querySelector('.r-role'), e.role);
 
-    pieces.push(
-      '<article class="exp-block" data-idx="' + idx + '">'
-      + '<div class="r-item-hdr"><span class="r-co">' + esc(e.company) + '</span><span class="r-date">' + esc(e.date) + '</span></div>'
-      + '<div class="r-role">' + esc(e.role) + '</div>'
-      + (highlights ? '<ul class="r-ul r-prose">' + highlights + '</ul>' : '')
-      + '</article>'
-    );
-  });
-
-  updateTarget('r-experience', pieces.join(''), 60);
+      var list = article.querySelector('.r-ul');
+      var highlights = e.highlights || [];
+      list.hidden = !highlights.length;
+      syncChildren(
+        list,
+        highlights,
+        function(line, lineIdx) { return itemKey([e.company, e.role, line, lineIdx]); },
+        function() {
+          var li = document.createElement('li');
+          li.className = 'bl-item';
+          return li;
+        },
+        function(li, line) {
+          setText(li, nb(line));
+        }
+      );
+    }
+  );
 }
 
 function renderProjects(p) {
   if (!p.projects || !p.projects.length) {
-    updateTarget('r-projects', '', 80);
+    clearSection('r-projects');
     return;
   }
 
-  var pieces = ['<h2 class="r-lbl" id="r-projects-label">Related Projects</h2>'];
-  p.projects.forEach(function(pr, idx) {
-    var highlights = (pr.highlights || []).map(function(b) {
-      return '<li class="bl-item">' + nb(esc(b)) + '</li>';
-    }).join('');
+  var section = syncSectionLabel('r-projects', 'r-projects-label', p.isMasterCV ? 'Projects' : 'Related Projects');
+  var body = syncSectionBody(section);
+  if (!body) return;
+  syncChildren(
+    body,
+    p.projects,
+    function(pr, idx) { return itemKey([pr.name, idx]); },
+    function() {
+      var article = document.createElement('article');
+      article.className = 'proj-block';
+      article.innerHTML = '<div class="r-item-hdr"><span class="r-co"></span></div><div class="r-prose proj-desc"></div><ul class="r-ul r-prose"></ul>';
+      return article;
+    },
+    function(article, pr, idx) {
+      article.dataset.idx = idx;
+      setText(article.querySelector('.r-co'), pr.name);
 
-    pieces.push(
-      '<article class="proj-block" data-idx="' + idx + '">'
-      + '<div class="r-item-hdr"><span class="r-co">' + esc(pr.name) + '</span></div>'
-      + (pr.description ? '<div class="r-prose proj-desc">' + esc(pr.description) + '</div>' : '')
-      + (highlights ? '<ul class="r-ul r-prose">' + highlights + '</ul>' : '')
-      + '</article>'
-    );
-  });
+      var desc = article.querySelector('.proj-desc');
+      desc.hidden = !pr.description;
+      setText(desc, pr.description || '');
 
-  updateTarget('r-projects', pieces.join(''), 80);
+      var list = article.querySelector('.r-ul');
+      var highlights = pr.highlights || [];
+      list.hidden = !highlights.length;
+      syncChildren(
+        list,
+        highlights,
+        function(line, lineIdx) { return itemKey([pr.name, line, lineIdx]); },
+        function() {
+          var li = document.createElement('li');
+          li.className = 'bl-item';
+          return li;
+        },
+        function(li, line) {
+          setText(li, nb(line));
+        }
+      );
+    }
+  );
 }
 
 function renderEducation(p) {
   if (!p.education || !p.education.length) {
-    updateTarget('r-education', '', 100);
+    clearSection('r-education');
     return;
   }
 
-  var pieces = ['<h2 class="r-lbl" id="r-education-label">Education</h2>'];
-  p.education.forEach(function(e, idx) {
-    var degree = [e.studyType, e.area].filter(Boolean).join(', ');
-    pieces.push(
-      '<article class="edu-block" data-idx="' + idx + '">'
-      + '<div class="r-item-hdr"><span class="r-co">' + esc(e.institution) + '</span><span class="r-date">' + esc(e.date) + '</span></div>'
-      + '<div class="edu-meta r-prose">'
-      + '<span class="edu-degree">' + esc(degree) + '</span>'
-      + (e.summary ? '<span class="edu-summary">' + esc(e.summary) + '</span>' : '')
-      + '</div>'
-      + '</article>'
-    );
-  });
+  var section = syncSectionLabel('r-education', 'r-education-label', 'Education');
+  var body = syncSectionBody(section);
+  if (!body) return;
+  syncChildren(
+    body,
+    p.education,
+    function(e, idx) { return itemKey([e.institution, e.date, idx]); },
+    function() {
+      var article = document.createElement('article');
+      article.className = 'edu-block';
+      article.innerHTML = [
+        '<div class="edu-school-row">',
+          '<div class="edu-school-main">',
+            '<a class="edu-institution"></a>',
+            '<span class="edu-location-separator" aria-hidden="true"> - </span>',
+            '<span class="edu-location"></span>',
+          '</div>',
+          '<span class="r-date edu-date"></span>',
+        '</div>',
+        '<div class="edu-details r-prose">',
+          '<p class="edu-degree-line"><span class="edu-school"></span><span class="edu-school-separator" aria-hidden="true"> | </span><span class="edu-degree"></span></p>',
+          '<p class="edu-fact edu-major-line"><span class="edu-fact-label">Double Major:</span><span class="edu-major"></span></p>',
+          '<p class="edu-fact edu-score-line"><span class="edu-fact-label">GPA:</span><span class="edu-score"></span></p>',
+          '<p class="edu-fact edu-summary-line"><span class="edu-fact-label">Focus:</span><span class="edu-summary"></span></p>',
+          '<p class="edu-fact edu-honors-line"><span class="edu-fact-label">Honors:</span><span class="edu-honors"></span></p>',
+          '<p class="edu-fact edu-coursework-line"><span class="edu-fact-label">Relevant Coursework:</span><span class="edu-coursework"></span></p>',
+        '</div>'
+      ].join('');
+      return article;
+    },
+    function(article, e, idx) {
+      article.dataset.idx = idx;
+      var institution = article.querySelector('.edu-institution');
+      setText(institution, e.institution);
+      syncAttr(institution, 'href', e.url || null);
+      syncAttr(institution, 'target', e.url ? '_blank' : null);
+      syncAttr(institution, 'rel', e.url ? 'noopener noreferrer' : null);
+      syncAttr(institution, 'aria-label', e.url ? 'Open ' + e.institution + ' website in a new tab' : null);
 
-  updateTarget('r-education', pieces.join(''), 100);
+      var location = article.querySelector('.edu-location');
+      var locationSeparator = article.querySelector('.edu-location-separator');
+      location.hidden = !e.location;
+      locationSeparator.hidden = !e.location;
+      setText(location, e.location || '');
+
+      setText(article.querySelector('.edu-date'), e.date);
+      var school = article.querySelector('.edu-school');
+      var schoolSeparator = article.querySelector('.edu-school-separator');
+      school.hidden = !e.school;
+      schoolSeparator.hidden = !e.school;
+      setText(school, e.school || '');
+      setText(article.querySelector('.edu-degree'), e.studyType || '');
+
+      var details = [
+        { line: '.edu-major-line', value: e.area || '', copy: '.edu-major' },
+        { line: '.edu-score-line', value: e.score || '', copy: '.edu-score' },
+        { line: '.edu-summary-line', value: e.summary || '', copy: '.edu-summary' },
+        { line: '.edu-honors-line', value: (e.honors || []).join('; '), copy: '.edu-honors' },
+        { line: '.edu-coursework-line', value: (e.courses || []).join('; '), copy: '.edu-coursework' }
+      ];
+      details.forEach(function(detail) {
+        var line = article.querySelector(detail.line);
+        line.hidden = !detail.value;
+        setText(article.querySelector(detail.copy), detail.value);
+      });
+    }
+  );
 }
 
 function renderAdditional(p) {
   var a = p.additional || {};
   var parts = [];
 
-  if (a.skills && a.skills.length) {
-    parts.push('<p class="r-prose skills-text"><b>Skills: </b>' + esc(a.skills.join(', ')) + '</p>');
+  if (p.isMasterCV && a.skillMap && a.skillMap.length) {
+    a.skillMap.forEach(function(group, index) {
+      parts.push({ key: 'skills-' + index, label: group.label || group.name || 'Skills', value: (group.keywords || []).join(', '), className: 'r-prose skills-text' });
+    });
+  } else if (a.skills && a.skills.length) {
+    parts.push({ key: 'skills', label: 'Skills', value: a.skills.join(', '), className: 'r-prose skills-text' });
   }
-  if (a.certifications && a.certifications.length) {
-    parts.push('<p class="r-prose"><b>Certifications: </b>' + esc(a.certifications.join(', ')) + '</p>');
-  }
-  if (a.languages && a.languages.length) {
-    parts.push('<p class="r-prose"><b>Languages: </b>' + esc(a.languages.join(', ')) + '</p>');
-  }
-  if (a.workAuthorization) {
-    parts.push('<p class="r-prose"><b>Work authorization: </b>' + esc(a.workAuthorization) + '</p>');
-  }
-  if (a.leadership && a.leadership.length) {
-    parts.push('<p class="r-prose"><b>Leadership: </b>' + esc(a.leadership.join(' \u202f|\u202f ')) + '</p>');
-  }
+  if (a.certifications && a.certifications.length) parts.push({ key: 'certifications', label: 'Certifications', value: a.certifications.join(', '), className: 'r-prose' });
+  if (a.languages && a.languages.length) parts.push({ key: 'languages', label: 'Languages', value: a.languages.join(', '), className: 'r-prose' });
+  if (a.workAuthorization) parts.push({ key: 'workAuthorization', label: 'Work authorization', value: a.workAuthorization, className: 'r-prose' });
+  if (a.leadership && a.leadership.length) parts.push({ key: 'leadership', label: 'Leadership', value: a.leadership.join(' \u202f|\u202f '), className: 'r-prose' });
 
   if (!parts.length) {
-    updateTarget('r-additional', '', 120);
+    clearSection('r-additional');
     return;
   }
 
-  updateTarget('r-additional', '<h2 class="r-lbl" id="r-additional-label">Additional Information</h2>' + parts.join(''), 120);
+  var section = syncSectionLabel('r-additional', 'r-additional-label', 'Additional Information');
+  var body = syncSectionBody(section);
+  if (!body) return;
+  syncChildren(
+    body,
+    parts,
+    function(part) { return part.key; },
+    function(part) {
+      var line = document.createElement('p');
+      line.className = part.className;
+      line.innerHTML = '<b></b><span class="info-copy"></span>';
+      return line;
+    },
+    function(line, part) {
+      line.className = part.className;
+      setText(line.querySelector('b'), part.label + ':');
+      setText(line.querySelector('.info-copy'), part.value);
+    }
+  );
 }
 
 
 
 /* =================================================================
-   RENDER — MATRIX (left sidebar dropdowns)
+   RENDER - MATRIX (left sidebar dropdowns)
    ================================================================= */
 function renderMx() {
-  var el = document.getElementById('mxD');
-  if (!el || !cur) return;
+  if (!cur) return;
+  [
+    { id: 'mxD', suffix: 'desktop' },
+    { id: 'mxM', suffix: 'mobile' }
+  ].forEach(function(target) {
+    var el = document.getElementById(target.id);
+    if (!el) return;
+    renderMxField(el, {
+      key: 'role',
+      labelId: 'role-label-' + target.suffix,
+      label: 'Role',
+      value: roleFamily(cur),
+      onClick: function(e) { showPop(e, roles(), 'role'); }
+    });
+    renderMxField(el, {
+      key: 'ind',
+      labelId: 'industry-label-' + target.suffix,
+      label: 'Context',
+      value: cur.industry,
+      onClick: function(e) { showPop(e, industries(roleFamily(cur)), 'ind'); }
+    });
+  });
+}
 
-  el.innerHTML = '<div class="field"><span class="field-label" id="role-label">I am a</span>'
-    + '<button class="field-control" type="button" data-k="role" aria-labelledby="role-label"><span class="field-val">' + esc(cur.role) + '</span><i class="ti ti-chevron-down" aria-hidden="true"></i></button></div>'
-    + '<div class="field"><span class="field-label" id="industry-label">for</span>'
-    + '<button class="field-control" type="button" data-k="ind" aria-labelledby="industry-label"><span class="field-val">' + esc(cur.industry) + '</span><i class="ti ti-chevron-down" aria-hidden="true"></i></button></div>';
+function selectMatrixOption(key, value) {
+  if (key === 'role') {
+    var nextIndustry = industries(value)[0];
+    for (var j = 0; j < P.length; j++) {
+      if (roleFamily(P[j]) === value && P[j].industry === nextIndustry) {
+        sel(P[j].id);
+        return;
+      }
+    }
+    return;
+  }
 
-  el.querySelector('[data-k="role"]').onclick = function(e) { showPop(e, roles(), 'role'); };
-  el.querySelector('[data-k="ind"]').onclick = function(e) { showPop(e, industries(cur.role), 'ind'); };
+  for (var k = 0; k < P.length; k++) {
+    if (roleFamily(P[k]) === roleFamily(cur) && P[k].industry === value) {
+      sel(P[k].id);
+      return;
+    }
+  }
+}
+
+function closePop(returnFocus) {
+  var pop = document.getElementById('popover');
+  if (!pop) return;
+  var backdrop = document.getElementById('popoverBackdrop');
+  var trigger = activePopoverTrigger;
+
+  pop.classList.remove('on');
+  if (backdrop) backdrop.classList.remove('on');
+  document.body.classList.remove('popover-open');
+  if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  if (pop._outsideHandler) document.removeEventListener('pointerdown', pop._outsideHandler, true);
+  if (pop._keyHandler) document.removeEventListener('keydown', pop._keyHandler);
+  pop._outsideHandler = null;
+  pop._keyHandler = null;
+  activePopoverTrigger = null;
+
+  setTimeout(function() {
+    if (!pop.classList.contains('on')) pop.replaceChildren();
+  }, 220);
+  if (returnFocus && trigger && document.contains(trigger)) trigger.focus();
 }
 
 function showPop(e, opts, key) {
   var pop = document.getElementById('popover');
+  var backdrop = document.getElementById('popoverBackdrop');
   if (!pop) return;
 
-  var rect = e.currentTarget.getBoundingClientRect();
-  pop.style.top = rect.bottom + 8 + 'px';
-  pop.style.left = rect.left + 'px';
-  pop.innerHTML = opts.map(function(o) {
-    var selected = (key === 'role' ? cur.role : cur.industry) === o;
-    return '<button class="mtx-opt ' + (selected ? 'sel' : '') + '" type="button" role="option" aria-selected="' + selected + '">' + esc(o) + '</button>';
-  }).join('');
-  pop.classList.add('on');
+  var trigger = e.currentTarget;
+  if (activePopoverTrigger === trigger && pop.classList.contains('on')) {
+    closePop(true);
+    return;
+  }
+  closePop(false);
+  activePopoverTrigger = trigger;
+  trigger.setAttribute('aria-expanded', 'true');
 
-  var off = function(ev) {
-    if (ev.target.classList.contains('mtx-opt')) {
-      var val = ev.target.textContent;
-      if (key === 'role') {
-        var nextIndustry = industries(val)[0];
-        for (var j = 0; j < P.length; j++) {
-          if (P[j].role === val && P[j].industry === nextIndustry) {
-            sel(P[j].id);
-            break;
-          }
-        }
-      } else {
-        for (var k = 0; k < P.length; k++) {
-          if (P[k].role === cur.role && P[k].industry === val) {
-            sel(P[k].id);
-            break;
-          }
-        }
+  var currentValue = key === 'role' ? roleFamily(cur) : cur.industry;
+  var titleText = key === 'role' ? 'Choose a role' : 'Choose a context';
+  var searchLabel = key === 'role' ? 'Search roles' : 'Search contexts';
+  pop.replaceChildren();
+  pop.dataset.kind = key;
+  pop.removeAttribute('role');
+  pop.setAttribute('aria-labelledby', 'popoverTitle');
+  pop.removeAttribute('aria-label');
+
+  var head = document.createElement('div');
+  head.className = 'mtx-pop-head';
+  var titleBlock = document.createElement('div');
+  titleBlock.className = 'mtx-pop-title-block';
+  var kicker = document.createElement('div');
+  kicker.className = 'mtx-pop-kicker';
+  kicker.textContent = 'Resume configuration';
+  var title = document.createElement('h2');
+  title.id = 'popoverTitle';
+  title.textContent = titleText;
+  var meta = document.createElement('div');
+  meta.className = 'mtx-pop-meta';
+  var current = document.createElement('span');
+  current.className = 'mtx-pop-current';
+  current.textContent = 'Current · ' + currentValue;
+  var optionCount = document.createElement('span');
+  optionCount.className = 'mtx-pop-count';
+  meta.append(current, optionCount);
+  titleBlock.append(kicker, title, meta);
+  var closeButton = document.createElement('button');
+  closeButton.className = 'mtx-pop-close';
+  closeButton.type = 'button';
+  closeButton.setAttribute('aria-label', 'Close ' + titleText.toLowerCase());
+  closeButton.textContent = '×';
+  closeButton.onclick = function() { closePop(true); };
+  head.append(titleBlock, closeButton);
+
+  var searchWrap = document.createElement('label');
+  searchWrap.className = 'mtx-search';
+  var searchIcon = document.createElement('span');
+  searchIcon.setAttribute('aria-hidden', 'true');
+  searchIcon.textContent = '⌕';
+  var search = document.createElement('input');
+  search.type = 'search';
+  search.autocomplete = 'off';
+  search.spellcheck = false;
+  search.placeholder = searchLabel;
+  search.setAttribute('aria-label', searchLabel);
+  searchWrap.append(searchIcon, search);
+
+  var list = document.createElement('div');
+  list.className = 'mtx-options';
+  list.id = 'popoverOptions';
+  list.setAttribute('role', 'listbox');
+
+  function renderOptions(query) {
+    var normalized = String(query || '').trim().toLowerCase();
+    var filtered = opts.filter(function(option) {
+      return !normalized || option.toLowerCase().includes(normalized);
+    });
+    optionCount.textContent = filtered.length + (filtered.length === 1 ? ' option' : ' options');
+    list.replaceChildren();
+    if (!filtered.length) {
+      var empty = document.createElement('div');
+      empty.className = 'mtx-empty';
+      empty.textContent = 'No matching options';
+      list.appendChild(empty);
+      return;
+    }
+
+    filtered.forEach(function(option) {
+      var selected = currentValue === option;
+      var button = document.createElement('button');
+      button.className = 'mtx-opt' + (selected ? ' sel' : '');
+      button.type = 'button';
+      button.setAttribute('role', 'option');
+      button.setAttribute('aria-selected', String(selected));
+      button.dataset.value = option;
+      var copy = document.createElement('span');
+      copy.className = 'mtx-opt-copy';
+      copy.textContent = option;
+      button.appendChild(copy);
+      button.onclick = function() {
+        selectMatrixOption(key, option);
+        closePop(false);
+      };
+      list.appendChild(button);
+    });
+  }
+
+  renderOptions('');
+  search.oninput = function() { renderOptions(search.value); };
+  search.onkeydown = function(event) {
+    if (event.key === 'ArrowDown') {
+      var firstOption = list.querySelector('.mtx-opt');
+      if (firstOption) {
+        event.preventDefault();
+        firstOption.focus();
       }
     }
-    pop.classList.remove('on');
-    window.removeEventListener('click', off);
+  };
+  list.onkeydown = function(event) {
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+    var options = Array.from(list.querySelectorAll('.mtx-opt'));
+    var currentIndex = options.indexOf(document.activeElement);
+    if (currentIndex === -1) return;
+    event.preventDefault();
+    var nextIndex = event.key === 'ArrowDown'
+      ? Math.min(options.length - 1, currentIndex + 1)
+      : Math.max(0, currentIndex - 1);
+    options[nextIndex].focus();
   };
 
-  setTimeout(function() { window.addEventListener('click', off); }, 10);
+  pop.append(head, searchWrap, list);
+  var rect = trigger.getBoundingClientRect();
+  var popWidth = Math.min(380, Math.max(300, rect.width));
+  var desiredHeight = Math.min(560, 132 + opts.length * 44, window.innerHeight - 24);
+  var popTop = rect.bottom + 8;
+  if (popTop + desiredHeight > window.innerHeight - 12) {
+    popTop = Math.max(12, rect.top - desiredHeight - 8);
+  }
+  pop.style.top = popTop + 'px';
+  pop.style.left = Math.max(12, Math.min(rect.left, window.innerWidth - popWidth - 12)) + 'px';
+  pop.style.width = popWidth + 'px';
+  pop.style.maxHeight = Math.max(220, Math.min(560, window.innerHeight - popTop - 12)) + 'px';
+
+  document.body.classList.add('popover-open');
+  if (backdrop) backdrop.classList.add('on');
+  void pop.offsetWidth;
+  pop.classList.add('on');
+  if (canAnimate()) {
+    motionAnimate(Array.from(pop.querySelectorAll('.mtx-pop-head, .mtx-search, .mtx-opt')), {
+      opacity: [0, 1],
+      y: [8, 0]
+    }, {
+      duration: 0.34,
+      delay: motionStagger(0.018),
+      ease: [0.16, 1, 0.3, 1]
+    });
+  }
+
+  pop._outsideHandler = function(event) {
+    if (!pop.contains(event.target) && event.target !== trigger) closePop(false);
+  };
+  pop._keyHandler = function(event) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closePop(true);
+    }
+  };
+  setTimeout(function() {
+    document.addEventListener('pointerdown', pop._outsideHandler, true);
+    document.addEventListener('keydown', pop._keyHandler);
+    search.focus();
+  }, 20);
+}
+
+function setMobileMenu(open, restoreFocus) {
+  var menu = document.getElementById('mobileMenu');
+  var trigger = document.getElementById('mobileMenuBtn');
+  var scrim = document.getElementById('mobileMenuScrim');
+  if (!menu || !trigger || !scrim) return;
+
+  if (open) {
+    mobileMenuReturnFocus = document.activeElement;
+    menu.setAttribute('aria-hidden', 'false');
+    trigger.setAttribute('aria-expanded', 'true');
+    trigger.setAttribute('aria-label', 'Close résumé controls');
+    document.body.classList.add('mobile-menu-open');
+    void menu.offsetWidth;
+    menu.classList.add('on');
+    scrim.classList.add('on');
+    if (canAnimate()) {
+      motionAnimate(Array.from(menu.querySelectorAll('.mobile-menu-kicker, .mobile-menu-head h2, .mobile-matrix .field, .mobile-menu-copy, .mobile-action')), {
+        opacity: [0, 1],
+        x: [12, 0]
+      }, {
+        duration: 0.38,
+        delay: motionStagger(0.035),
+        ease: [0.16, 1, 0.3, 1]
+      });
+    }
+
+    menu._keyHandler = function(event) {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setMobileMenu(false);
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      var focusable = Array.from(menu.querySelectorAll('button:not([disabled]), a[href], input:not([disabled])'))
+        .filter(function(element) { return !element.hidden && element.offsetParent !== null; });
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', menu._keyHandler);
+    setTimeout(function() {
+      var firstControl = menu.querySelector('.field-control');
+      if (firstControl) firstControl.focus();
+    }, 220);
+    return;
+  }
+
+  closePop(false);
+  menu.classList.remove('on');
+  scrim.classList.remove('on');
+  trigger.setAttribute('aria-expanded', 'false');
+  trigger.setAttribute('aria-label', 'Open résumé controls');
+  document.body.classList.remove('mobile-menu-open');
+  if (menu._keyHandler) document.removeEventListener('keydown', menu._keyHandler);
+  menu._keyHandler = null;
+  setTimeout(function() { menu.setAttribute('aria-hidden', 'true'); }, 240);
+  if (restoreFocus !== false) {
+    if (mobileMenuReturnFocus && document.contains(mobileMenuReturnFocus)) mobileMenuReturnFocus.focus();
+    else trigger.focus();
+  }
+  mobileMenuReturnFocus = null;
+}
+
+function selectRandomProfile() {
+  if (!P.length) return;
+  var randomProfile = P[Math.floor(Math.random() * P.length)];
+  useStore.getState().setProfile(randomProfile.id);
 }
 
 function scheduleFinalizeLayout() {
@@ -458,25 +1018,32 @@ function scheduleFinalizeLayout() {
 
 function measureA4Layout() {
   var sheet = document.getElementById('sheet');
-  if (!sheet) return { overflowPx: 0, resolved: false, titleOverflows: [] };
+  if (!sheet) return { overflowPx: 0, resolved: false, titleOverflows: [], typographyIssues: [] };
 
   var previousTransform = sheet.style.transform;
   sheet.style.transform = 'none';
   var sheetStyle = getComputedStyle(sheet);
-  var sheetRect = sheet.getBoundingClientRect();
   var paddingBottom = parseFloat(sheetStyle.paddingBottom) || 0;
-  var contentBoundary = sheetRect.bottom - paddingBottom;
+  var contentBoundary = sheet.clientHeight - paddingBottom;
   var renderedSections = Array.from(sheet.children).filter(function(child) {
-    var rect = child.getBoundingClientRect();
-    return rect.width > 0 && rect.height > 0;
+    return child.offsetWidth > 0 && child.offsetHeight > 0;
   });
   var actualContentBottom = renderedSections.reduce(function(bottom, child) {
-    return Math.max(bottom, child.getBoundingClientRect().bottom);
-  }, sheetRect.top);
+    /*
+     * offsetTop is layout geometry and deliberately excludes the 6px entrance
+     * transform. getBoundingClientRect().bottom includes that animation, which
+     * made a fitted document report a false overflow while transitions ran
+     * (or indefinitely in a throttled background tab).
+     */
+    return Math.max(bottom, child.offsetTop + child.getBoundingClientRect().height);
+  }, 0);
   var sheetOverflow = sheet.scrollHeight - sheet.clientHeight;
   var marginOverflow = actualContentBottom - contentBoundary;
   var overflowPx = Math.max(0, sheetOverflow, marginOverflow);
   var titleOverflows = [];
+  var typographyIssues = [];
+  var expectedRoleFontPx = 9.8 * 96 / 72;
+  var expectedLeadingPx = 11.7 * 96 / 72;
 
   sheet.querySelectorAll('.r-co').forEach(function(title) {
     var lineHeight = parseFloat(getComputedStyle(title).lineHeight) || 1;
@@ -484,18 +1051,59 @@ function measureA4Layout() {
     if (lines > 2) titleOverflows.push({ text: title.textContent.trim(), lines: lines });
   });
 
+  sheet.querySelectorAll('.r-role').forEach(function(role) {
+    var style = getComputedStyle(role);
+    var fontSize = parseFloat(style.fontSize) || 0;
+    var lineHeight = parseFloat(style.lineHeight) || 0;
+    var lines = Math.ceil(role.getBoundingClientRect().height / Math.max(1, lineHeight));
+    if (Math.abs(fontSize - expectedRoleFontPx) > 0.2 ||
+        Math.abs(lineHeight - expectedLeadingPx) > 0.2 ||
+        lines > 2) {
+      typographyIssues.push({
+        element: 'role',
+        text: role.textContent.trim(),
+        fontSizePx: Number(fontSize.toFixed(3)),
+        lineHeightPx: Number(lineHeight.toFixed(3)),
+        lines: lines
+      });
+    }
+  });
+
+  sheet.querySelectorAll('.r-ul li').forEach(function(item) {
+    var lineHeight = parseFloat(getComputedStyle(item).lineHeight) || 0;
+    if (Math.abs(lineHeight - expectedLeadingPx) > 0.2) {
+      typographyIssues.push({
+        element: 'bullet',
+        text: item.textContent.trim().slice(0, 80),
+        lineHeightPx: Number(lineHeight.toFixed(3))
+      });
+    }
+  });
+
   sheet.style.transform = previousTransform;
   return {
     overflowPx: Number(overflowPx.toFixed(3)),
-    resolved: overflowPx <= 1 && titleOverflows.length === 0,
+    resolved: overflowPx <= 1 && titleOverflows.length === 0 && typographyIssues.length === 0,
     titleOverflows: titleOverflows,
+    typographyIssues: typographyIssues,
     bottomMarginPx: Number(paddingBottom.toFixed(3)),
-    remainingBottomSpacePx: Number(Math.max(0, sheetRect.bottom - actualContentBottom).toFixed(3))
+    remainingBottomSpacePx: Number(Math.max(0, sheet.clientHeight - actualContentBottom).toFixed(3))
   };
 }
 
 function validateDesktopA4Fit() {
   if (!cur) return;
+  if (cur.isMasterCV) {
+    setA4RuntimeState({
+      profileId: cur.id,
+      removed: [],
+      truncated: false,
+      resolved: true,
+      overflowPx: 0,
+      titleOverflows: []
+    });
+    return;
+  }
   var measurement = measureA4Layout();
   setA4RuntimeState({
     profileId: cur.id,
@@ -524,6 +1132,23 @@ function omitLast(array, label, omissions) {
   return true;
 }
 
+function omitLastSkill(additional, omissions) {
+  if (!additional.skills || additional.skills.length <= 8) return false;
+  var value = additional.skills.pop();
+  var groups = additional.skillMap || [];
+
+  for (var groupIndex = groups.length - 1; groupIndex >= 0; groupIndex -= 1) {
+    var keywordIndex = groups[groupIndex].keywords.lastIndexOf(value);
+    if (keywordIndex === -1) continue;
+    groups[groupIndex].keywords.splice(keywordIndex, 1);
+    if (!groups[groupIndex].keywords.length) groups.splice(groupIndex, 1);
+    break;
+  }
+
+  omissions.push({ type: 'skill', value: value });
+  return true;
+}
+
 function removeNextOptional(profile, omissions) {
   var additional = profile.additional || {};
   if (omitLast(additional.leadership, 'leadership', omissions)) return true;
@@ -534,9 +1159,7 @@ function removeNextOptional(profile, omissions) {
     additional.workAuthorization = '';
     return true;
   }
-  if (additional.skills && additional.skills.length > 8) {
-    return omitLast(additional.skills, 'skill', omissions);
-  }
+  if (omitLastSkill(additional, omissions)) return true;
 
   for (var projectIndex = profile.projects.length - 1; projectIndex >= 0; projectIndex -= 1) {
     var project = profile.projects[projectIndex];
@@ -599,11 +1222,14 @@ async function fitProfileForBuild(profileId) {
     renderProfile(candidate);
     await settleDocumentLayout();
     var measurement = measureA4Layout();
+    if (measurement.typographyIssues.length) {
+      throw new Error(profileId + ' violates fixed PDF typography invariants: ' + JSON.stringify(measurement.typographyIssues));
+    }
     if (measurement.resolved) {
       return { profile: candidate, measurement: measurement, passes: pass + 1, omissions: omissions };
     }
     if (!removeNextOptional(candidate, omissions)) {
-      throw new Error(profileId + ' cannot fit A4 after exhausting optional content; overflow=' + measurement.overflowPx + 'px');
+      throw new Error(profileId + ' cannot fit A4 after exhausting optional content; overflow=' + measurement.overflowPx + 'px; overlong titles=' + JSON.stringify(measurement.titleOverflows));
     }
   }
   throw new Error(profileId + ' exceeded the 300-pass fit guard');
@@ -613,21 +1239,31 @@ async function fitProfileForBuild(profileId) {
    SELECT / SWAP
    ================================================================= */
 function updateDownloadLink(p) {
-  var dl = document.getElementById('dlBtn');
+  var links = document.querySelectorAll('[data-download-link]');
   var status = document.getElementById('pdfStatus');
-  if (!dl) return;
-  dl.hidden = !p.pdfAvailable;
   if (status) status.hidden = p.pdfAvailable;
-  if (!p.pdfAvailable) {
-    dl.removeAttribute('href');
-    dl.removeAttribute('download');
-    return;
-  }
-  dl.setAttribute('href', pdfHref(p));
-  dl.setAttribute('download', pdfName(p));
+  links.forEach(function(dl) {
+    dl.hidden = !p.pdfAvailable;
+    if (!p.pdfAvailable) {
+      dl.removeAttribute('href');
+      dl.removeAttribute('download');
+      return;
+    }
+    dl.setAttribute('href', pdfHref(p));
+    dl.setAttribute('download', pdfName(p));
+  });
+}
+
+function renderProfileMeta(p) {
+  setText(document.getElementById('activeProfileRole'), roleFamily(p));
+  setText(document.getElementById('activeProfileContext'), p.industry);
+  setText(document.getElementById('stageProfileLabel'), roleFamily(p) + ' | ' + p.industry);
 }
 
 function renderProfile(p) {
+  var sheet = document.getElementById('sheet');
+  if (sheet) sheet.classList.toggle('is-master-cv', Boolean(p.isMasterCV));
+  document.body.classList.toggle('master-cv-active', Boolean(p.isMasterCV));
   renderName(p);
   renderContact(p);
   renderSummary(p);
@@ -636,9 +1272,45 @@ function renderProfile(p) {
   renderEducation(p);
   renderAdditional(p);
   renderMx();
+  renderProfileMeta(p);
   updateDownloadLink(p);
-  document.title = p.name + ' — ' + p.role + ' Résumé';
+  document.title = p.name + ' | ' + p.role + ' | Resume';
+  hasRenderedProfile = true;
   if (!BUILD_FIT_MODE) scheduleFinalizeLayout();
+}
+
+function renderProfileWithTransition(p) {
+  if (!canAnimate() || !hasRenderedProfile) {
+    renderProfile(p);
+    return;
+  }
+
+  var sheet = document.getElementById('sheet');
+  var stableSections = sheet ? Array.from(sheet.children) : [];
+  var layoutState = stableSections.length
+    ? Flip.getState(stableSections, { props: 'opacity' })
+    : null;
+
+  if (activeProfileTransition) activeProfileTransition.kill();
+  renderProfile(p);
+
+  if (layoutState) {
+    activeProfileTransition = Flip.from(layoutState, {
+      duration: 0.68,
+      ease: 'power3.inOut',
+      nested: true,
+      prune: true,
+      scale: false,
+      simple: true,
+      clearProps: 'transform',
+      onComplete: function() { activeProfileTransition = null; }
+    });
+  }
+
+  gsap.fromTo('.ambient-blob',
+    { scale: 0.92, opacity: 0.55 },
+    { scale: 1, opacity: 1, duration: 1.1, ease: 'power3.out', overwrite: 'auto' }
+  );
 }
 
 function sel(id, skipHist) {
@@ -648,11 +1320,92 @@ function sel(id, skipHist) {
   if (skipHist) {
     // If skipping history (e.g. from popstate), just render directly to avoid loop
     cur = p;
-    renderProfile(p);
+    renderProfileWithTransition(p);
     useStore.setState({ profileId: p.id });
   } else {
     // Trigger via store
     useStore.getState().setProfile(p.id);
+  }
+}
+
+function initMotionSystem() {
+  document.documentElement.dataset.motion = canAnimate() ? 'enhanced' : 'reduced';
+  if (!canAnimate()) return;
+
+  var leftRailItems = Array.from(document.querySelectorAll(
+    '.aside.l .brand-lockup, .aside.l .rail-heading, .aside.l .sec-title, .aside.l .card, .aside.l .microcopy, .aside.l .action-stack, .aside.l .rail-footer'
+  ));
+  var rightRailItems = Array.from(document.querySelectorAll(
+    '.aside.r > .rail-kicker, .aside.r > .profile-signal, .aside.r > .sec-title, .aside.r > .zoom-ctrl, .aside.r > .actions-title, .aside.r > .dl-btn, .aside.r > .download-status, .aside.r > .listening-panel'
+  ));
+
+  motionAnimate(leftRailItems, {
+    opacity: [0, 1],
+    x: [-18, 0],
+    filter: ['blur(7px)', 'blur(0px)']
+  }, {
+    duration: 0.62,
+    delay: motionStagger(0.055),
+    ease: [0.16, 1, 0.3, 1]
+  });
+
+  motionAnimate(rightRailItems, {
+    opacity: [0, 1],
+    x: [18, 0],
+    filter: ['blur(7px)', 'blur(0px)']
+  }, {
+    duration: 0.62,
+    delay: motionStagger(0.045),
+    ease: [0.16, 1, 0.3, 1]
+  });
+
+  motionAnimate('#wrap', {
+    opacity: [0, 1],
+    y: [20, 0],
+    scale: [0.985, 1]
+  }, {
+    duration: 0.85,
+    delay: 0.12,
+    ease: [0.16, 1, 0.3, 1]
+  });
+
+  motionAnimate('.stage-meta', {
+    opacity: [0, 1],
+    y: [-8, 0]
+  }, {
+    duration: 0.55,
+    delay: 0.28,
+    ease: [0.16, 1, 0.3, 1]
+  });
+
+  var blob = document.querySelector('.ambient-blob');
+  if (blob && blob.dataset.morph) {
+    gsap.to(blob, {
+      attr: { d: blob.dataset.morph },
+      duration: 11,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+    gsap.to('.stage-ambient svg', {
+      rotation: 8,
+      duration: 15,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      transformOrigin: '50% 50%'
+    });
+  }
+
+  var listeningDetails = document.querySelector('.listening-details');
+  if (listeningDetails) {
+    listeningDetails.addEventListener('toggle', function() {
+      if (!listeningDetails.open) return;
+      gsap.fromTo(listeningDetails.querySelector('p'),
+        { opacity: 0, y: -5, filter: 'blur(3px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.4, ease: 'power3.out' }
+      );
+    });
   }
 }
 
@@ -662,22 +1415,39 @@ function sel(id, skipHist) {
 
 function initStageObserver() {
   if (BUILD_FIT_MODE) return;
-  var stage = document.querySelector('.stage');
-  if (!stage || typeof ResizeObserver === 'undefined' || stageObserver) return;
+  var app = document.querySelector('.app');
+  if (!app || typeof ResizeObserver === 'undefined' || stageObserver) return;
   stageObserver = new ResizeObserver(function() {
     handleStageResize();
   });
-  stageObserver.observe(stage);
+  /*
+   * Observe the viewport-sized shell, not the scrollable stage. Scaling the
+   * sheet can toggle stage scrollbars; observing that content box feeds the
+   * scrollbar change back into scaling and can lock the interactive page in
+   * a ResizeObserver loop. The app shell changes for every real layout resize
+   * without reacting to its descendants' scroll geometry.
+   */
+  stageObserver.observe(app);
 }
 
 function handleStageResize() {
-  clearTimeout(stageResizeTimer);
+  /*
+   * Coalesce resize bursts without postponing the work indefinitely. A
+   * ResizeObserver may emit several notifications while scrollbars settle;
+   * repeatedly clearing the timer can starve the breakpoint update.
+   */
+  if (stageResizeTimer !== null) return;
   stageResizeTimer = setTimeout(function() {
+    stageResizeTimer = null;
     var mobileMode = isMobileLayout();
+    if (document.getElementById('popover')?.classList.contains('on')) closePop(false);
+    if (!mobileMode && document.body.classList.contains('mobile-menu-open')) {
+      setMobileMenu(false, false);
+    }
     applyDesktopSheetScale();
 
     if (lastMobileMode !== mobileMode && cur) {
-      /* Layout mode flipped — full re-render at the new display scale. */
+      /* Layout mode flipped - full re-render at the new display scale. */
       lastMobileMode = mobileMode;
       renderProfile(cur);
       return;
@@ -703,9 +1473,10 @@ window.addEventListener('popstate', function(e) {
 });
 
 if (!P.length) {
-  console.error('[engine] No profiles loaded — public/data.js may be missing');
+  console.error('[engine] No profiles loaded - public/data.js may be missing');
   document.getElementById('sheet').innerHTML = '<div style="padding:40pt;text-align:center;color:#999">Loading profiles...</div>';
 } else {
+  if (BUILD_FIT_MODE) document.documentElement.dataset.fitMode = 'true';
   window.__RESUME_BUILD__ = {
     profileIds: P.map(function(profile) { return profile.id; }),
     fitProfile: fitProfileForBuild,
@@ -724,7 +1495,14 @@ if (!P.length) {
   initStageObserver();
   zoomReset();
   renderProfile(cur);
+  /*
+   * Establish the proofing surface synchronously. requestAnimationFrame can be
+   * paused in background/prerendered tabs, so it cannot be the only path that
+   * sets the initial A4 mode and scale.
+   */
+  applyDesktopSheetScale();
   document.documentElement.dataset.resumeReady = 'true';
+  initMotionSystem();
 
   if (BUILD_FIT_MODE && new URLSearchParams(location.search).get('_fitAll') === '1') {
     Promise.resolve().then(async function() {
@@ -754,22 +1532,29 @@ if (!P.length) {
   });
 
   var btnSurprise = document.getElementById('btnSurprise');
-  if (btnSurprise) {
-    btnSurprise.onclick = function() {
-      if (!P.length) return;
-      var randomProfile = P[Math.floor(Math.random() * P.length)];
-      useStore.getState().setProfile(randomProfile.id);
-    };
-  }
+  var btnSurpriseMobile = document.getElementById('btnSurpriseMobile');
+  if (btnSurprise) btnSurprise.onclick = selectRandomProfile;
+  if (btnSurpriseMobile) btnSurpriseMobile.onclick = selectRandomProfile;
 
   // Attach control listeners since module hides global scope
   var btnZoomIn = document.getElementById('btnZoomIn');
   var btnZoomOut = document.getElementById('btnZoomOut');
   var btnZoomReset = document.getElementById('btnZoomReset');
-  var btnRedact = document.getElementById('btnRedact');
+  var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  var mobileMenuClose = document.getElementById('mobileMenuClose');
+  var mobileMenuScrim = document.getElementById('mobileMenuScrim');
+  var popoverBackdrop = document.getElementById('popoverBackdrop');
 
   if (btnZoomIn) btnZoomIn.onclick = function() { zoom(0.05); };
   if (btnZoomOut) btnZoomOut.onclick = function() { zoom(-0.05); };
   if (btnZoomReset) btnZoomReset.onclick = function() { zoomReset(); };
-  if (btnRedact) btnRedact.onclick = function() { useStore.getState().toggleRedacted(); };
+  document.querySelectorAll('[data-redact-control]').forEach(function(button) {
+    button.onclick = function() { useStore.getState().toggleRedacted(); };
+  });
+  if (mobileMenuBtn) mobileMenuBtn.onclick = function() {
+    setMobileMenu(!document.body.classList.contains('mobile-menu-open'));
+  };
+  if (mobileMenuClose) mobileMenuClose.onclick = function() { setMobileMenu(false); };
+  if (mobileMenuScrim) mobileMenuScrim.onclick = function() { setMobileMenu(false); };
+  if (popoverBackdrop) popoverBackdrop.onclick = function() { closePop(true); };
 }

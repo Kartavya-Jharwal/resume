@@ -2,7 +2,7 @@
 
 The résumé is the product. The surrounding controls make it an explorable microsite, but every view remains a precisely typeset, downloadable A4 document.
 
-The source data describes one person across many role and industry contexts. Bun validates that source, compiles 102 curated variants, fits optional content at build time, renders one searchable PDF per variant with a pinned Chromium release, minifies the website, and writes the deployable artifact to `dist/`.
+The source data describes one person across many role and industry contexts. Bun validates that source, compiles 109 curated variants, fits optional content at build time, renders one searchable PDF per variant with a pinned Chromium release, minifies the website, and writes the deployable artifact to `dist/`.
 
 The canonical URL is `https://resume.kartavya.tech`. The repository’s GitHub Pages custom-domain setting must also be changed to that hostname; committing `CNAME` alone does not change the setting.
 
@@ -13,10 +13,10 @@ The canonical URL is `https://resume.kartavya.tech`. The repository’s GitHub P
 - Searchable skills live in the source data and compiled payload. Recruiters can inspect the site, follow a focused deep link, or download the matching PDF.
 - The résumé never reflows to a different document geometry. Screen rendering scales the fixed A4 page; print and PDF use the same internal layout.
 
-Deep links use the curated role and industry labels:
+Deep links use the selector’s role-family and industry labels. A variant may declare a shared `family` such as `Consultant` while retaining a precise résumé title such as `Strategy Consultant`:
 
 ```text
-https://resume.kartavya.tech/?role=Agentic+Systems+Architect&industry=FinTech+Automation
+https://resume.kartavya.tech/?role=Consultant&industry=Global+Strategy+Consulting
 ```
 
 ## Commands
@@ -27,7 +27,7 @@ bun run validate       # validate source data and variant references
 bun run metrics        # extract font metrics used by the CSS
 bun run compile        # create an unfitted source payload for compiler debugging
 bun run serve          # rebuild dist/PDFs, then serve the verified site
-bun run build          # create dist/ and all 102 PDFs
+bun run build          # create dist/ and all 109 PDFs
 bun run test           # full build followed by production-artifact tests
 bun run preview        # reopen the last verified dist without rebuilding
 ```
@@ -53,7 +53,7 @@ The output PDF text remains searchable and the Source Serif subsets are embedded
 
 ```text
 data/resume.json          canonical résumé content
-data/variants.json        curated role × industry variants and PDF names
+data/variants.json        curated role-family × industry variants, precise titles, and PDF names
 assets/css/style.css      screen shell plus normative A4 typesetting
 assets/js/app.js          rendering, controls, measurement, build fitting
 assets/fonts/             self-hosted Source Serif 4 web fonts and metric TTF
@@ -70,9 +70,11 @@ GitHub Actions builds and deploys only `dist/` from `main`. The workflow install
 
 ## Editing content
 
-Edit only the JSON source, then run `bun run test`. Variant tags must reference an ID declared in `data/variants.json`. A content change may alter build-time omissions in multiple PDFs, so inspect `.build-cache/fit-report.json` and visually check representative output before committing.
+Edit only the JSON source, then run `bun run test`. Variant tags must reference an ID declared in `data/variants.json`. The optional `family` field groups related titles under one first-level selector choice without changing the precise role used by the résumé and SEO page. Each family/industry pair must remain unique. A content change may alter build-time omissions in multiple PDFs, so inspect `.build-cache/fit-report.json` and visually check representative output before committing.
 
-`data/resume.json#custom.limits` is the editorial page-capacity policy: three relevant roles, one evidence bullet per role, one project, one project bullet, and six skills. The universal résumé has explicit experience, project, and skill priorities under `custom.universal`; targeted variants continue to rank their directly tagged evidence first.
+Education is structured source data. An entry may declare an absolute institution `url`, `location`, expected-graduation flag, score, honors, and coursework with relevance keywords. The compiler ranks coursework against each role/industry profile while preserving the institution link and the same hierarchy in browser and PDF outputs.
+
+`data/resume.json#custom.limits` is the editorial page-capacity policy. Every compiled profile contains exactly two evidence blocks: two directly relevant roles, one role plus one project, or two projects when no directly tagged role evidence exists. Roles and projects may carry up to two bullets. Technical profiles may show up to twelve skills across five labeled groups, plus bounded certifications and languages; profiles without directly tagged technical skill groups omit that section. The universal résumé keeps explicit evidence and skill priorities under `custom.universal`.
 
 Redaction is a presentation control for screen sharing. It visually blocks contact details and removes their links from keyboard and accessibility navigation, but it is not a secrecy boundary: the static source and downloadable PDF still contain the canonical contact information.
 
