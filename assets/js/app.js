@@ -1307,10 +1307,6 @@ function renderProfileWithTransition(p) {
     });
   }
 
-  gsap.fromTo('.ambient-blob',
-    { scale: 0.92, opacity: 0.55 },
-    { scale: 1, opacity: 1, duration: 1.1, ease: 'power3.out', overwrite: 'auto' }
-  );
 }
 
 function sel(id, skipHist) {
@@ -1377,25 +1373,6 @@ function initMotionSystem() {
     delay: 0.28,
     ease: [0.16, 1, 0.3, 1]
   });
-
-  var blob = document.querySelector('.ambient-blob');
-  if (blob && blob.dataset.morph) {
-    gsap.to(blob, {
-      attr: { d: blob.dataset.morph },
-      duration: 11,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut'
-    });
-    gsap.to('.stage-ambient svg', {
-      rotation: 8,
-      duration: 15,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
-      transformOrigin: '50% 50%'
-    });
-  }
 
   var listeningDetails = document.querySelector('.listening-details');
   if (listeningDetails) {

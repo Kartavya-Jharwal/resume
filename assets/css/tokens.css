@@ -23,6 +23,8 @@
   --mint-500: #54d8c6;
   --mint-400: #72e5d6;
   --mint-300: #9aeee4;
+  --brass-500: #bfa26b;
+  --brass-300: #e0c98a;
   --paper: #ffffff;
   --paper-ink: #111313;
 
@@ -32,16 +34,21 @@
   --bg-surface: var(--ink-900);
   --bg-surface-raised: var(--ink-850);
   --bg-surface-hover: var(--ink-800);
+  --bg-surface-glass: rgb(16 20 20 / 0.78);
   --text-primary: var(--ink-050);
   --text-secondary: var(--ink-200);
   --text-tertiary: var(--ink-400);
   --text-disabled: var(--ink-500);
   --border-subtle: color-mix(in srgb, var(--ink-200) 9%, transparent);
   --border-strong: color-mix(in srgb, var(--ink-200) 17%, transparent);
+  --border-calibration: color-mix(in srgb, var(--ink-200) 13%, transparent);
   --accent: var(--mint-500);
   --accent-bright: var(--mint-300);
   --accent-soft: color-mix(in srgb, var(--mint-500) 12%, transparent);
   --accent-line: color-mix(in srgb, var(--mint-500) 44%, transparent);
+  --accent-warm: var(--brass-500);
+  --accent-warm-soft: color-mix(in srgb, var(--brass-500) 16%, transparent);
+  --focus-ring: var(--mint-300);
 
   --bg-obsidian: var(--bg-canvas);
   --stage-obsidian: var(--bg-stage);
@@ -63,7 +70,7 @@
   --text-md: 0.9375rem;
   --text-lg: 1.125rem;
   --tracking-label: 0.16em;
-  --tracking-display-ui: -0.025em;
+  --tracking-display-ui: 0;
 
   /* Interface spacing */
   --space-1: 4px;
@@ -80,16 +87,16 @@
 
   /* Shape and elevation */
   --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  --radius-sm: 8px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-pill: 999px;
   --radius-control: var(--radius-sm);
   --shadow-border: inset 0 0 0 1px var(--border-subtle);
   --shadow-border-hover: inset 0 0 0 1px var(--border-strong);
-  --shadow-control: 0 1px 2px rgb(0 0 0 / 0.24), 0 12px 30px rgb(0 0 0 / 0.16);
-  --shadow-floating: 0 24px 80px rgb(0 0 0 / 0.58);
+  --shadow-control: 0 1px 2px rgb(0 0 0 / 0.24), 0 10px 24px rgb(0 0 0 / 0.16);
+  --shadow-floating: 0 20px 70px rgb(0 0 0 / 0.58);
   --shadow-sheet: 0 3px 10px rgb(0 0 0 / 0.34), 0 36px 96px rgb(0 0 0 / 0.72);
   --image-outline: rgb(255 255 255 / 0.1);
 
