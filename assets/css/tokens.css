@@ -36,9 +36,9 @@
   --bg-surface-hover: var(--ink-800);
   --bg-surface-glass: rgb(16 20 20 / 0.78);
   --text-primary: var(--ink-050);
-  --text-secondary: var(--ink-200);
-  --text-tertiary: var(--ink-400);
-  --text-disabled: var(--ink-500);
+  --text-secondary: var(--ink-100);
+  --text-tertiary: #c5cecd;
+  --text-disabled: var(--ink-400);
   --border-subtle: color-mix(in srgb, var(--ink-200) 9%, transparent);
   --border-strong: color-mix(in srgb, var(--ink-200) 17%, transparent);
   --border-calibration: color-mix(in srgb, var(--ink-200) 13%, transparent);
@@ -46,8 +46,6 @@
   --accent-bright: var(--mint-300);
   --accent-soft: color-mix(in srgb, var(--mint-500) 12%, transparent);
   --accent-line: color-mix(in srgb, var(--mint-500) 44%, transparent);
-  --accent-warm: var(--brass-500);
-  --accent-warm-soft: color-mix(in srgb, var(--brass-500) 16%, transparent);
   --focus-ring: var(--mint-300);
 
   --bg-obsidian: var(--bg-canvas);
@@ -64,15 +62,15 @@
   --font-resume-text: "Source Serif 4 Resume Text", Georgia, serif;
   --font-resume-title: "Source Serif 4 Resume Title", Georgia, serif;
   --font-resume-display: "Source Serif 4 Resume Display", Georgia, serif;
-  --text-2xs: 0.5625rem;
-  --text-xs: 0.6875rem;
-  --text-sm: 0.8125rem;
-  --text-md: 0.9375rem;
+  --text-2xs: 0.75rem;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
   --text-lg: 1.125rem;
   --tracking-label: 0.16em;
   --tracking-display-ui: 0;
 
-  /* Interface spacing */
+  /* Interface spacing (4pt sub-grid, 8pt layout rhythm) */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -84,6 +82,45 @@
   --space-12: 48px;
   --space-14: 56px;
   --space-16: 64px;
+
+  /* Shell spacing semantics */
+  --rail-pad: var(--space-8);
+  --rail-pad-compact: var(--space-6);
+  --shell-gap: var(--space-4);
+  --shell-gap-sm: var(--space-3);
+  --card-inset: var(--space-2);
+  --control-inset-y: var(--space-3);
+  --control-inset-x: var(--space-4);
+  --control-min-height: 52px;
+  --btn-pad-y: var(--space-4);
+  --btn-pad-x: var(--space-4);
+  --btn-pad-y-dense: var(--space-3);
+  --btn-pad-x-dense: var(--space-3);
+  --stack-gap: var(--space-3);
+  --zoom-pad: var(--space-2);
+  --spotify-embed-height: 80px;
+  --link-highlight: #2f6fed;
+
+  /* Circular icon controls */
+  --icon-btn-size: 44px;
+  --icon-btn-size-sm: 28px;
+  --icon-glyph-size: 1.125rem;
+  --icon-glyph-size-sm: 0.6875rem;
+  --icon-btn-surface: transparent;
+  --icon-btn-surface-rest: rgb(255 255 255 / 0.045);
+  --icon-btn-hover-surface: color-mix(in srgb, var(--accent) 10%, rgb(255 255 255 / 6%));
+  --icon-btn-active-surface: color-mix(in srgb, var(--accent) 16%, transparent);
+  --icon-btn-radial: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--accent) 20%, transparent) 0%,
+    transparent 68%
+  );
+  --icon-btn-hover-glow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent),
+    0 0 18px color-mix(in srgb, var(--accent) 22%, transparent);
+  --icon-btn-pressed-glow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent),
+    0 0 10px color-mix(in srgb, var(--accent) 16%, transparent);
 
   /* Shape and elevation */
   --radius-xs: 6px;
@@ -114,8 +151,8 @@
   /* Microsite layout */
   --rail-width: clamp(280px, 22vw, 368px);
   --rail-width-compact: 232px;
-  --stage-pad: 40px;
-  --stage-pad-right: 88px;
+  --stage-pad: var(--space-10);
+  --stage-pad-right: calc(var(--space-16) + var(--space-6));
 
   /* Resume typesetting: fixed semantic scale */
   --u: 11.7pt;
@@ -144,4 +181,36 @@
 
 @media (prefers-color-scheme: light) {
   :root { --image-outline: rgb(0 0 0 / 0.1); }
+}
+
+/* Shell control spacing — viewport-aware overrides */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  :root {
+    --control-inset-y: var(--space-2);
+    --control-inset-x: var(--space-3);
+    --control-min-height: 48px;
+    --btn-pad-y: var(--space-3);
+    --btn-pad-x: var(--space-3);
+    --btn-pad-y-dense: var(--space-2);
+    --btn-pad-x-dense: var(--space-2);
+    --stack-gap: var(--space-2);
+    --zoom-pad: var(--space-1);
+    --spotify-embed-height: 80px;
+    --text-2xs: 0.75rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --control-inset-y: var(--space-3);
+    --control-inset-x: var(--space-4);
+    --control-min-height: 52px;
+    --btn-pad-y: var(--space-4);
+    --btn-pad-x: var(--space-4);
+    --btn-pad-y-dense: var(--space-3);
+    --btn-pad-x-dense: var(--space-3);
+    --stack-gap: var(--space-3);
+    --zoom-pad: var(--space-2);
+    --spotify-embed-height: 80px;
+  }
 }

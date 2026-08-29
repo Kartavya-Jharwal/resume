@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="Kartavya Jharwal's adaptive resume, with focused role and industry profiles plus downloadable PDFs.">
 <meta name="theme-color" content="#0b0e0e">
 <meta property="og:type" content="profile">
@@ -15,37 +15,31 @@
 </head>
 <body>
 
+<div class="sr-only" id="profileLive" aria-live="polite" aria-atomic="true"></div>
+
 <!-- APP -->
 <div class="app">
 
   <!-- LEFT: Configuration -->
   <aside class="aside l">
     <div>
-      <a class="brand-lockup" href="./" aria-label="Kartavya Jharwal home">
-        <picture class="brand-mark">
-          <source
-            media="(prefers-color-scheme: light)"
-            srcset="./assets/img/logos/logo_kj_dark.png 1x, ./assets/img/logos/logo_kj_dark_256.png 2x">
-          <source
-            media="(prefers-color-scheme: dark)"
-            srcset="./assets/img/logos/logo_kj_light.png 1x, ./assets/img/logos/logo_kj_light_256.png 2x">
-          <img src="./assets/img/logos/logo_kj_light.png" alt="Kartavya Jharwal monogram logo">
-        </picture>
+      <div class="brand-lockup">
+        <a class="brand-mark-link" href="https://kartavya.tech/" data-leave-site aria-label="Open kartavya.tech">
+          <img
+            class="brand-mark"
+            src="./assets/img/logos/logo_kj_light.png"
+            srcset="./assets/img/logos/logo_kj_light.png 1x, ./assets/img/logos/logo_kj_light_256.png 2x"
+            alt="">
+        </a>
         <div class="brand-copy">
           <div class="brand-title">Kartavya Jharwal</div>
-          <div class="brand-lbl">Adaptive Résumé</div>
         </div>
-      </a>
-
-      <div class="rail-heading">
-        <div class="rail-kicker"><span>Profile studio</span><span>01</span></div>
-        <h1 class="rail-title">One career.<br><em>Many perspectives.</em></h1>
-        <p class="rail-intro">Shape a focused one-page resume from a verified career record.</p>
       </div>
 
-      <div class="sec-title">
-        <div class="sec-dot"></div>
-        <span>Configuration</span>
+      <div class="rail-heading">
+        <h1 class="rail-title">One man,<br><em>many hats.</em></h1>
+        <p class="rail-kicker-label">Resume dossier</p>
+        <p class="rail-intro">Shape a focused one-page resume from a verified career record.</p>
       </div>
 
       <div class="card" id="mxD"></div>
@@ -60,7 +54,6 @@
     </div>
 
     <div class="rail-footer">
-      <div class="rail-status"><span class="status-pulse" aria-hidden="true"></span><span>Adaptive profile system</span></div>
       <div class="status-txt">&copy; 2026 Kartavya Jharwal</div>
     </div>
   </aside>
@@ -68,32 +61,26 @@
   <!-- CENTER: Stage -->
   <main class="stage">
     <header class="mobile-nav">
-      <a class="brand-lockup" href="./" aria-label="Kartavya Jharwal home">
-        <picture class="brand-mark">
-          <source
-            media="(prefers-color-scheme: light)"
-            srcset="./assets/img/logos/logo_kj_dark.png 1x, ./assets/img/logos/logo_kj_dark_256.png 2x">
-          <source
-            media="(prefers-color-scheme: dark)"
-            srcset="./assets/img/logos/logo_kj_light.png 1x, ./assets/img/logos/logo_kj_light_256.png 2x">
-          <img src="./assets/img/logos/logo_kj_light.png" alt="Kartavya Jharwal monogram logo">
-        </picture>
-        <div class="brand-copy">
-          <div class="brand-title">Kartavya Jharwal</div>
-          <div class="brand-lbl">Adaptive Résumé</div>
+      <div class="mobile-nav-main">
+        <div class="brand-lockup">
+          <a class="brand-mark-link" href="https://kartavya.tech/" data-leave-site aria-label="Open kartavya.tech">
+            <img
+              class="brand-mark"
+              src="./assets/img/logos/logo_kj_light.png"
+              srcset="./assets/img/logos/logo_kj_light.png 1x, ./assets/img/logos/logo_kj_light_256.png 2x"
+              alt="">
+          </a>
+          <div class="brand-copy">
+            <div class="brand-title">Kartavya Jharwal</div>
+          </div>
         </div>
-      </a>
+        <p class="mobile-profile-label" id="mobileProfileLabel">Preparing profile</p>
+      </div>
       <button class="mobile-menu-trigger" id="mobileMenuBtn" type="button"
         aria-label="Open résumé controls" aria-controls="mobileMenu" aria-expanded="false">
         <span class="hamburger-lines" aria-hidden="true"><span></span><span></span></span>
       </button>
     </header>
-
-    <div class="stage-meta" aria-live="polite">
-      <span class="stage-meta-state"><span class="status-pulse" aria-hidden="true"></span>Live composition</span>
-      <span class="stage-meta-divider" aria-hidden="true"></span>
-      <span id="stageProfileLabel">Preparing profile</span>
-    </div>
 
     <div class="wrap" id="wrap" data-sheet-shell="a4">
       <div class="sheet" id="sheet" data-sheet-format="a4" data-a4-mode="desktop" data-a4-truncated="false">
@@ -111,65 +98,60 @@
 
   <!-- RIGHT: View and download controls -->
   <aside class="aside r">
-    <div class="rail-kicker"><span>Document tools</span><span>02</span></div>
-
-    <div class="profile-signal">
-      <div class="profile-signal-head">
-        <span>Current profile</span>
-        <span class="profile-live"><span class="status-pulse" aria-hidden="true"></span>Live</span>
+    <div class="view-tools">
+      <div class="zoom-ctrl">
+        <button class="zoom-btn" id="btnZoomIn" type="button" aria-label="Zoom in"><i class="ti ti-zoom-in" aria-hidden="true"></i></button>
+        <div class="zoom-sep"></div>
+        <button class="zoom-btn" id="btnZoomOut" type="button" aria-label="Zoom out"><i class="ti ti-zoom-out" aria-hidden="true"></i></button>
+        <div class="zoom-sep"></div>
+        <button class="zoom-btn" id="btnZoomFit" type="button" aria-label="Fit page to stage"><i class="ti ti-maximize" aria-hidden="true"></i></button>
+        <label class="zoom-field">
+          <span class="sr-only">Zoom percent</span>
+          <input class="zoom-input" id="zoomInput" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" value="100" aria-label="Zoom percent">
+          <span class="zoom-suffix" aria-hidden="true">%</span>
+        </label>
       </div>
-      <strong id="activeProfileRole">Preparing résumé</strong>
-      <span id="activeProfileContext">Selecting context</span>
+
+      <div class="tool-toggles">
+        <button class="tool-toggle" id="btnHighlightLinks" type="button" data-highlight-links aria-pressed="false">
+          <span>Highlight links</span>
+          <span class="tool-toggle-state" aria-hidden="true">Off</span>
+        </button>
+        <button class="tool-toggle" id="btnReduceMotion" type="button" data-reduce-motion aria-pressed="false">
+          <span>Reduce motion</span>
+          <span class="tool-toggle-state" aria-hidden="true">Off</span>
+        </button>
+        <button class="tool-toggle" id="btnRedact" type="button" data-redact-control aria-pressed="false"
+          aria-label="Censor contact details, companies, and schools">
+          <span>Censor private details</span>
+          <span class="tool-toggle-state" aria-hidden="true">Off</span>
+        </button>
+      </div>
     </div>
 
-    <div class="sec-title">
-      <div class="sec-dot"></div>
-      <span>View controls</span>
-    </div>
-
-    <div class="zoom-ctrl">
-      <button class="zoom-btn" id="btnZoomIn" type="button" aria-label="Zoom in"><i class="ti ti-zoom-in" aria-hidden="true"></i></button>
-      <div class="zoom-sep"></div>
-      <button class="zoom-btn" id="btnZoomOut" type="button" aria-label="Zoom out"><i class="ti ti-zoom-out" aria-hidden="true"></i></button>
-      <div class="zoom-sep"></div>
-      <button class="zoom-btn" id="btnZoomReset" type="button" aria-label="Reset zoom"><i class="ti ti-maximize" aria-hidden="true"></i></button>
-      <output class="zoom-value" id="zoomValue" aria-live="polite">100%</output>
-      <div class="zoom-sep"></div>
-      <button class="zoom-btn icon-swap" id="btnRedact" type="button" data-redact-control
-        aria-label="Hide contact details" aria-pressed="false">
-        <i class="ti ti-eye-off icon-swap-off" aria-hidden="true"></i>
-        <i class="ti ti-eye icon-swap-on" aria-hidden="true"></i>
-      </button>
-    </div>
-
-    <div class="sec-title actions-title">
-      <div class="sec-dot"></div>
-      <span>Export</span>
-    </div>
-
-    <a class="dl-btn" id="dlBtn" data-download-link download hidden>
+    <a class="dl-btn" id="dlBtn" data-download-link download>
       <span>Download PDF</span>
       <i class="ti ti-download text-lg" aria-hidden="true"></i>
     </a>
-    <p class="download-status" id="pdfStatus">PDF is generated by the production build.</p>
+    <p class="download-status" id="pdfStatus" hidden>PDF is generated by the production build.</p>
 
     <section class="listening-panel" aria-labelledby="listeningTitle">
-      <div class="sec-title listening-title">
-        <div class="sec-dot"></div>
+      <div class="listening-title">
         <span id="listeningTitle">Listening Context</span>
       </div>
       <div class="listening-card">
-        <iframe
-          class="spotify-embed"
-          data-testid="embed-iframe"
-          title="Spotify player for the microsite listening context"
-          src="https://open.spotify.com/embed/track/6KqYsGeLABmTF8STsYk7OZ?utm_source=generator&amp;theme=0&amp;si=d261e4c403804d71"
-          width="100%"
-          height="152"
-          frameborder="0"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"></iframe>
+        <div class="spotify-embed-shell" data-embed-mode="compact">
+          <iframe
+            class="spotify-embed"
+            data-testid="embed-iframe"
+            title="Spotify player for the microsite listening context"
+            src="https://open.spotify.com/embed/track/6KqYsGeLABmTF8STsYk7OZ?utm_source=generator&amp;theme=0&amp;si=d261e4c403804d71"
+            width="100%"
+            height="80"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>
         <p class="listening-copy">A spare, atmospheric piano track for reviewing the document without adding visual noise.</p>
         <details class="listening-details">
           <summary>Why it resonates</summary>
@@ -186,7 +168,6 @@
   aria-labelledby="mobileMenuTitle" aria-hidden="true">
   <div class="mobile-menu-head">
     <div>
-      <div class="mobile-menu-kicker">Adaptive résumé</div>
       <h2 id="mobileMenuTitle">Customize this view</h2>
     </div>
     <button class="mobile-menu-close" id="mobileMenuClose" type="button" aria-label="Close résumé controls">
@@ -196,30 +177,71 @@
 
   <div class="mobile-menu-body">
     <div class="card mobile-matrix" id="mxM"></div>
-    <p class="mobile-menu-copy">Choose a role and context. The résumé updates in place.</p>
+    <p class="mobile-menu-copy">Choose a role and context, then review the updated résumé.</p>
+
+    <section class="listening-panel listening-panel--mobile" aria-labelledby="listeningTitleMobile">
+      <div class="listening-title">
+        <span id="listeningTitleMobile">Listening Context</span>
+      </div>
+      <div class="listening-card">
+        <div class="spotify-embed-shell spotify-embed-shell--compact" data-embed-mode="compact">
+          <iframe
+            class="spotify-embed spotify-embed--compact"
+            data-testid="embed-iframe-mobile"
+            title="Spotify player for the microsite listening context"
+            src="https://open.spotify.com/embed/track/6KqYsGeLABmTF8STsYk7OZ?utm_source=generator&amp;theme=0&amp;si=d261e4c403804d71"
+            width="100%"
+            height="80"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>
+        <p class="listening-copy">A spare, atmospheric piano track for reviewing the document without adding visual noise.</p>
+        <a class="listening-link-out" href="https://open.spotify.com/track/6KqYsGeLABmTF8STsYk7OZ" target="_blank" rel="noopener noreferrer">
+          <span>Open in Spotify</span><span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
 
     <div class="mobile-actions">
       <button class="mobile-action" type="button" id="btnSurpriseMobile">
         <span>Try another perspective</span><span aria-hidden="true">↗</span>
       </button>
+      <button class="mobile-action" type="button" data-highlight-links aria-pressed="false">
+        <span>Highlight links</span>
+        <span class="tool-toggle-state" aria-hidden="true">Off</span>
+      </button>
+      <button class="mobile-action" type="button" data-reduce-motion aria-pressed="false">
+        <span>Reduce motion</span>
+        <span class="tool-toggle-state" aria-hidden="true">Off</span>
+      </button>
       <button class="mobile-action" type="button" id="btnRedactMobile" data-redact-control
-        aria-label="Hide contact details" aria-pressed="false">
-        <span>Privacy mode</span>
+        aria-label="Censor contact details, companies, and schools" aria-pressed="false">
+        <span>Censor private details</span>
         <span class="mobile-action-state" aria-hidden="true">Off</span>
       </button>
-      <a class="mobile-action" href="https://open.spotify.com/track/6KqYsGeLABmTF8STsYk7OZ" target="_blank" rel="noopener noreferrer">
-        <span>Open the listening context</span><span aria-hidden="true">↗</span>
-      </a>
-      <a class="mobile-action mobile-download" id="dlBtnMobile" data-download-link download hidden>
+      <a class="mobile-action mobile-download" id="dlBtnMobile" data-download-link download>
         <span>Download this résumé</span><span aria-hidden="true">↓</span>
       </a>
     </div>
   </div>
 </aside>
 
+<div class="toast-host" id="toastHost" aria-live="polite" aria-atomic="true"></div>
+
+<div class="leave-dialog-scrim" id="leaveDialogScrim" hidden></div>
+<div class="leave-dialog" id="leaveDialog" role="dialog" aria-modal="true" aria-labelledby="leaveDialogTitle" aria-hidden="true" hidden>
+  <h2 id="leaveDialogTitle">Leave this résumé?</h2>
+  <p id="leaveDialogCopy">You will open kartavya.tech in a new tab.</p>
+  <div class="leave-dialog-actions">
+    <button class="btn-secondary" id="leaveDialogCancel" type="button">Stay</button>
+    <button class="dl-btn leave-dialog-confirm" id="leaveDialogConfirm" type="button">Continue</button>
+  </div>
+</div>
+
 <!-- Dropdown Popover -->
 <div class="mtx-backdrop" id="popoverBackdrop"></div>
-<div class="mtx-pop" id="popover" aria-label="Resume configuration options"></div>
+<div class="mtx-pop" id="popover" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Resume configuration options"></div>
 
 <script src="public/data.js"></script>
 <script type="module" src="assets/js/app.js"></script>

@@ -4,6 +4,7 @@
       "id": "early-stage-operator-yc-alumni-startups",
       "role": "Startup Operations Manager",
       "industry": "Early-Stage Technology Startups",
+      "fallback": true,
       "targeted": true,
       "weight": 10,
       "description": "Zero-to-one startup operator building go-to-market systems, operating cadence, and scalable processes for early-stage technology companies.",
@@ -22,7 +23,52 @@
         "Founder Support",
         "Early-Stage Startups"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Startup_Operations_Manager_Early_Stage_Technology.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Startup_Operations_Manager_Early_Stage_Technology.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h0"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h0",
+              "work-hult-ai-collective-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-astropatshala-aarrr-growth-strategy",
+            "highlights": [
+              "proj-astropatshala-aarrr-growth-strategy-h0",
+              "proj-astropatshala-aarrr-growth-strategy-h1"
+            ]
+          },
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-backend-and-apis"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "venture-diligence-analyst-pre-seed-funds",
@@ -46,7 +92,51 @@
         "Business Models",
         "Investment Memos"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Venture_Capital_Analyst_Early_Stage_Funds.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Venture_Capital_Analyst_Early_Stage_Funds.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h2",
+              "work-srbs-group-jaipur-india-h0"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-duve-venture-diligence-and-industry-tearsheet",
+            "highlights": [
+              "proj-duve-venture-diligence-and-industry-tearsheet-h0",
+              "proj-duve-venture-diligence-and-industry-tearsheet-h1"
+            ]
+          },
+          {
+            "id": "proj-us-defence-drone-spinout-commercialisation-assessment",
+            "highlights": [
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h0",
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "executive-translation-lead-fortune-500-strategy",
@@ -54,7 +144,7 @@
       "industry": "Corporate Strategy",
       "targeted": true,
       "weight": 10,
-      "description": "Supports strategy and operating-model work through structured analysis, market research, financial thinking, and executive-ready communication.",
+      "description": "Turns operating evidence into corporate-strategy recommendations: market analysis, financial controls, stakeholder communication, and executive-ready decision packs.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -63,15 +153,58 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Strategy Consulting",
+        "Corporate Strategy",
         "Operating Models",
-        "Market Analysis",
-        "Financial Analysis",
         "Executive Communication",
+        "Market Analysis",
+        "Financial Controls",
         "Stakeholder Management"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Corporate_Strategy.pdf",
-      "family": "Strategy & Investment"
+      "family": "Strategy & Investment",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h4",
+              "work-savi-hotels-resorts-jaipur-india-h5"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h3",
+              "work-srbs-group-jaipur-india-h4"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-family-governance-and-office-access-model",
+            "highlights": [
+              "proj-family-governance-and-office-access-model-h3",
+              "proj-family-governance-and-office-access-model-h0"
+            ]
+          },
+          {
+            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
+            "highlights": [
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h0",
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "executive-translation-lead-private-equity-operations",
@@ -79,7 +212,7 @@
       "industry": "Private Equity Operations",
       "targeted": true,
       "weight": 10,
-      "description": "Supports strategy and operating-model work through structured analysis, market research, financial thinking, and executive-ready communication.",
+      "description": "Supports PE-style operating diligence and post-deal execution: acquisition theses, takeover runbooks, valuation logic, and asset-level kill gates.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -88,15 +221,58 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Strategy Consulting",
-        "Operating Models",
-        "Market Analysis",
-        "Financial Analysis",
-        "Executive Communication",
-        "Stakeholder Management"
+        "Private Equity",
+        "Operating Diligence",
+        "Acquisition Thesis",
+        "Valuation",
+        "Takeover Execution",
+        "Kill Gates"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Private_Equity_Operations.pdf",
-      "family": "Strategy & Investment"
+      "family": "Strategy & Investment",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h2"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h2",
+              "work-savi-hotels-resorts-jaipur-india-h3"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
+            ]
+          },
+          {
+            "id": "proj-duve-venture-diligence-and-industry-tearsheet",
+            "highlights": [
+              "proj-duve-venture-diligence-and-industry-tearsheet-h2",
+              "proj-duve-venture-diligence-and-industry-tearsheet-h0"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "executive-translation-lead-tech-conglomerates",
@@ -104,7 +280,7 @@
       "industry": "Technology Strategy",
       "targeted": true,
       "weight": 10,
-      "description": "Supports strategy and operating-model work through structured analysis, market research, financial thinking, and executive-ready communication.",
+      "description": "Connects operating models to production systems: digital workflows, venture tech stacks, and implementation architecture for technology-strategy work.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -113,15 +289,57 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Strategy Consulting",
+        "Technology Strategy",
+        "Digital Operations",
+        "Systems Architecture",
         "Operating Models",
-        "Market Analysis",
-        "Financial Analysis",
-        "Executive Communication",
-        "Stakeholder Management"
+        "Implementation",
+        "Product Architecture"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Technology_Strategy.pdf",
-      "family": "Strategy & Investment"
+      "family": "Strategy & Investment",
+      "content": {
+        "experience": [
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h0"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h1",
+              "work-savi-hotels-resorts-jaipur-india-h6"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
+            "highlights": [
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1",
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h0"
+            ]
+          },
+          {
+            "id": "proj-family-governance-and-office-access-model",
+            "highlights": [
+              "proj-family-governance-and-office-access-model-h0",
+              "proj-family-governance-and-office-access-model-h2"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "innovation-ecosystem-architect-startup-accelerators",
@@ -129,7 +347,7 @@
       "industry": "Startup Accelerators",
       "targeted": true,
       "weight": 10,
-      "description": "Designs and delivers founder programs, mentorship networks, partnerships, and innovation communities.",
+      "description": "Designs founder programs, mentorship, and community operating systems for accelerators, from launch cadence to partnership pipelines.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -140,13 +358,62 @@
       "requiredKeywords": [
         "Innovation Programs",
         "Startup Mentoring",
+        "Accelerator Operations",
         "Community Building",
-        "Partnerships"
+        "Partnerships",
+        "Founder Support"
       ],
       "limits": {
         "leadership": 1
       },
-      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_Startup_Accelerators.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_Startup_Accelerators.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h0",
+              "work-hult-ai-collective-h5"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h0",
+              "proj-project-oulm-one-ymca-youth-community-platform-h1"
+            ]
+          },
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      }
     },
     {
       "id": "innovation-ecosystem-architect-university-innovation-hubs",
@@ -154,7 +421,7 @@
       "industry": "University Innovation Hubs",
       "targeted": true,
       "weight": 10,
-      "description": "Designs and delivers founder programs, mentorship networks, partnerships, and innovation communities.",
+      "description": "Builds student-run innovation communities inside universities: programming, events, peer teaching, and public learning infrastructure.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -163,12 +430,59 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Innovation Programs",
-        "Startup Mentoring",
-        "Community Building",
-        "Partnerships"
+        "University Innovation",
+        "Student Communities",
+        "Peer Teaching",
+        "Event Programming",
+        "Partnerships",
+        "Innovation Education"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_University_Innovation_Hubs.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_University_Innovation_Hubs.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h3",
+              "work-hult-ai-collective-h2"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
+            "highlights": [
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h1"
+            ]
+          },
+          {
+            "id": "proj-nirmana-design-capstone",
+            "highlights": [
+              "proj-nirmana-design-capstone-h0",
+              "proj-nirmana-design-capstone-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "innovation-ecosystem-architect-corporate-venture-labs",
@@ -176,7 +490,7 @@
       "industry": "Corporate Venture Labs",
       "targeted": true,
       "weight": 10,
-      "description": "Designs and delivers founder programs, mentorship networks, partnerships, and innovation communities.",
+      "description": "Connects corporate innovation briefs to founder-style delivery: partnership sourcing, venture diagnostics, and program operating hubs.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -185,12 +499,59 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Innovation Programs",
-        "Startup Mentoring",
-        "Community Building",
-        "Partnerships"
+        "Corporate Innovation",
+        "Venture Labs",
+        "Partnerships",
+        "Innovation Diagnostics",
+        "Program Design",
+        "Stakeholder Alignment"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_Corporate_Venture_Labs.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_Corporate_Venture_Labs.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h5",
+              "work-hult-ai-collective-h4"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
+            "highlights": [
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1",
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h2"
+            ]
+          },
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "forward-deployed-innovator-enterprise-ai",
@@ -214,7 +575,52 @@
         "Deployment",
         "Customer Delivery"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Forward_Deployed_Engineer_Enterprise_Applied_AI.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Forward_Deployed_Engineer_Enterprise_Applied_AI.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h3",
+              "work-margadarshaka-h0"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h1"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-us-defence-drone-spinout-commercialisation-assessment",
+            "highlights": [
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h0",
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h2"
+            ]
+          },
+          {
+            "id": "proj-restaurant-operations-platform-for-independent-client",
+            "highlights": [
+              "proj-restaurant-operations-platform-for-independent-client-h2",
+              "proj-restaurant-operations-platform-for-independent-client-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-ai-and-ml"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "agentic-systems-architect-autonomous-ai-labs",
@@ -238,7 +644,52 @@
         "Guardrails",
         "Human Handoff"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_AI_Agent_Engineer_Agentic_AI_Automation.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_AI_Agent_Engineer_Agentic_AI_Automation.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h0"
+            ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h3",
+              "work-hult-ai-collective-h2"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-agentic-workflow-and-evaluation-platform",
+            "highlights": [
+              "proj-agentic-workflow-and-evaluation-platform-h0",
+              "proj-agentic-workflow-and-evaluation-platform-h1"
+            ]
+          },
+          {
+            "id": "proj-presentation-format-conversion-platform",
+            "highlights": [
+              "proj-presentation-format-conversion-platform-h1",
+              "proj-presentation-format-conversion-platform-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-ai-and-ml"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "core-ai-pipeline-engineer-biotech",
@@ -262,7 +713,53 @@
         "Python",
         "Production ML"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Machine_Learning_Engineer_Applied_AI.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Machine_Learning_Engineer_Applied_AI.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h3",
+              "work-hult-ai-collective-h0"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h3",
+              "work-siya-the-restaurant-srbs-group-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-amanuensis-hindi-speech-recognition",
+            "highlights": [
+              "proj-amanuensis-hindi-speech-recognition-h1",
+              "proj-amanuensis-hindi-speech-recognition-h0"
+            ]
+          },
+          {
+            "id": "proj-software-engineering-and-systems-projects",
+            "highlights": [
+              "proj-software-engineering-and-systems-projects-h1",
+              "proj-software-engineering-and-systems-projects-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-ai-and-ml",
+          "skill-systems-and-devops"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "ai-governance-ethics-officer-medtech",
@@ -286,7 +783,52 @@
         "Risk Assessment",
         "Regulated Technology"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Responsible_AI_Analyst_Healthcare_Regulated_Technology.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Responsible_AI_Analyst_Healthcare_Regulated_Technology.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h1"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-amanuensis-hindi-speech-recognition",
+            "highlights": [
+              "proj-amanuensis-hindi-speech-recognition-h0",
+              "proj-amanuensis-hindi-speech-recognition-h1"
+            ]
+          },
+          {
+            "id": "proj-us-defence-drone-spinout-commercialisation-assessment",
+            "highlights": [
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h1",
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-ai-and-ml"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "behavioral-product-manager-digital-wellness",
@@ -310,7 +852,52 @@
         "Consumer Products",
         "Service Design"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Manager_Digital_Health_Consumer_Products.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Manager_Digital_Health_Consumer_Products.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h2",
+              "work-astropatshala-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h2",
+              "proj-project-oulm-one-ymca-youth-community-platform-h3"
+            ]
+          },
+          {
+            "id": "proj-danone-yopro-apex-diagnostic",
+            "highlights": [
+              "proj-danone-yopro-apex-diagnostic-h0",
+              "proj-danone-yopro-apex-diagnostic-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "strategic-interaction-designer-spatial-computing",
@@ -334,7 +921,45 @@
         "Systems Thinking",
         "Experience Design"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Interaction_Designer_Immersive_Interactive_Products.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Interaction_Designer_Immersive_Interactive_Products.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h0",
+              "proj-project-oulm-one-ymca-youth-community-platform-h2"
+            ]
+          },
+          {
+            "id": "proj-design-digital-garden",
+            "highlights": [
+              "proj-design-digital-garden-h0",
+              "proj-design-digital-garden-h2"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "design-systems-architect-enterprise-b2b-saas",
@@ -342,7 +967,7 @@
       "industry": "Enterprise B2B SaaS",
       "targeted": true,
       "weight": 10,
-      "description": "Creates scalable design systems, component libraries, and interaction standards for enterprise products.",
+      "description": "Designs scalable product systems for enterprise tools: component logic, service flows, and interfaces that survive implementation.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -352,11 +977,51 @@
       },
       "requiredKeywords": [
         "Design Systems",
+        "Enterprise SaaS",
         "Product Design",
-        "UX/UI Design",
-        "Component Libraries"
+        "Component Libraries",
+        "Service Design",
+        "UX/UI Design"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Designer_Enterprise_B2B_SaaS.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Designer_Enterprise_B2B_SaaS.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h2",
+              "work-astropatshala-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-nirmana-design-capstone",
+            "highlights": [
+              "proj-nirmana-design-capstone-h0",
+              "proj-nirmana-design-capstone-h1"
+            ]
+          },
+          {
+            "id": "proj-restaurant-operations-platform-for-independent-client",
+            "highlights": [
+              "proj-restaurant-operations-platform-for-independent-client-h0",
+              "proj-restaurant-operations-platform-for-independent-client-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "design-systems-architect-complex-data-dashboards",
@@ -364,7 +1029,7 @@
       "industry": "Complex Data Dashboards",
       "targeted": true,
       "weight": 10,
-      "description": "Creates scalable design systems, component libraries, and interaction standards for enterprise products.",
+      "description": "Turns dense operational and financial data into usable dashboard systems, visual hierarchies, and decision-facing interfaces.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -373,12 +1038,52 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Design Systems",
+        "Data Dashboards",
+        "Information Design",
         "Product Design",
-        "UX/UI Design",
-        "Component Libraries"
+        "Visualization",
+        "Interaction Design",
+        "Decision Tools"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Designer_Complex_Data_Dashboards.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Designer_Complex_Data_Dashboards.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h1",
+              "work-savi-hotels-resorts-jaipur-india-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-pacakatva-culinary-data-platform",
+            "highlights": [
+              "proj-pacakatva-culinary-data-platform-h0",
+              "proj-pacakatva-culinary-data-platform-h2"
+            ]
+          },
+          {
+            "id": "proj-bloom-creative-terminal-visualization",
+            "highlights": [
+              "proj-bloom-creative-terminal-visualization-h4",
+              "proj-bloom-creative-terminal-visualization-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "design-systems-architect-fintech-platforms",
@@ -386,7 +1091,7 @@
       "industry": "FinTech Platforms",
       "targeted": true,
       "weight": 10,
-      "description": "Creates scalable design systems, component libraries, and interaction standards for enterprise products.",
+      "description": "Shapes product systems for financial learning and decision tools, connecting research artefacts, models, and interface architecture.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -395,12 +1100,52 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Design Systems",
+        "FinTech",
         "Product Design",
-        "UX/UI Design",
-        "Component Libraries"
+        "Design Systems",
+        "Financial Tools",
+        "Information Architecture",
+        "UX/UI Design"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Designer_FinTech_Platforms.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Designer_FinTech_Platforms.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h2",
+              "work-astropatshala-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
+            "highlights": [
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h1",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0"
+            ]
+          },
+          {
+            "id": "proj-bwc-quantitative-portfolio-audit-engine",
+            "highlights": [
+              "proj-bwc-quantitative-portfolio-audit-engine-h0",
+              "proj-bwc-quantitative-portfolio-audit-engine-h3"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "hybrid-creative-technologist-elite-digital-agencies",
@@ -424,7 +1169,45 @@
         "Technical Storytelling",
         "Creative Technology"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Creative_Technologist_Digital_Products_Agencies.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Creative_Technologist_Digital_Products_Agencies.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h1",
+              "work-independent-healthcare-venture-client-anonymised-h0"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-design-digital-garden",
+            "highlights": [
+              "proj-design-digital-garden-h0",
+              "proj-design-digital-garden-h2"
+            ]
+          },
+          {
+            "id": "proj-jeki-cross-channel-campaign-for-afrikids",
+            "highlights": [
+              "proj-jeki-cross-channel-campaign-for-afrikids-h0",
+              "proj-jeki-cross-channel-campaign-for-afrikids-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "generative-search-architect-media-conglomerates",
@@ -448,7 +1231,43 @@
         "Search Analytics",
         "AI Search"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_SEO_Generative_Search_Specialist_Digital_Media.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_SEO_Generative_Search_Specialist_Digital_Media.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h0"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h2",
+              "work-astropatshala-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-generative-search-intelligence-system",
+            "highlights": [
+              "proj-generative-search-intelligence-system-h0",
+              "proj-generative-search-intelligence-system-h1"
+            ]
+          },
+          {
+            "id": "proj-personal-brand-and-digital-presence",
+            "highlights": [
+              "proj-personal-brand-and-digital-presence-h0",
+              "proj-personal-brand-and-digital-presence-h1"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "zero-cost-growth-hacker-d2c-marketplaces",
@@ -472,7 +1291,50 @@
         "Retention",
         "Content Strategy"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Growth_Marketing_Manager_D2C_Digital_Ventures.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Growth_Marketing_Manager_D2C_Digital_Ventures.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h2"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h3",
+              "work-hult-ai-collective-h5"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-astropatshala-aarrr-growth-strategy",
+            "highlights": [
+              "proj-astropatshala-aarrr-growth-strategy-h0",
+              "proj-astropatshala-aarrr-growth-strategy-h1"
+            ]
+          },
+          {
+            "id": "proj-jeki-cross-channel-campaign-for-afrikids",
+            "highlights": [
+              "proj-jeki-cross-channel-campaign-for-afrikids-h0",
+              "proj-jeki-cross-channel-campaign-for-afrikids-h1"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "data-narrative-consultant-macro-economic-research",
@@ -480,7 +1342,7 @@
       "industry": "Macroeconomic Research",
       "targeted": true,
       "weight": 10,
-      "description": "Transforms complex analysis into clear visual narratives, decision tools, and executive recommendations.",
+      "description": "Turns markets, models, and time-series analysis into visual narratives that make macroeconomic evidence decision-ready.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -489,13 +1351,53 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Data Storytelling",
+        "Macroeconomic Research",
         "Data Visualization",
-        "Data Analysis",
+        "Time Series",
+        "Data Storytelling",
+        "Financial Models",
         "Research Communication"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Macroeconomic_Research.pdf",
-      "family": "Consultant"
+      "family": "Consultant",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
+            "highlights": [
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h1"
+            ]
+          },
+          {
+            "id": "proj-london-airbnb-pricing-and-regression-models",
+            "highlights": [
+              "proj-london-airbnb-pricing-and-regression-models-h0",
+              "proj-london-airbnb-pricing-and-regression-models-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "data-narrative-consultant-policy-think-tanks",
@@ -503,7 +1405,7 @@
       "industry": "Policy Think Tanks",
       "targeted": true,
       "weight": 10,
-      "description": "Transforms complex analysis into clear visual narratives, decision tools, and executive recommendations.",
+      "description": "Builds visual decision tools from policy-adjacent analysis: scenario evidence, risk maps, and executive-ready narrative packs.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -512,13 +1414,53 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
+        "Policy Analysis",
         "Data Storytelling",
         "Data Visualization",
-        "Data Analysis",
-        "Research Communication"
+        "Scenario Planning",
+        "Research Communication",
+        "Decision Tools"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Policy_Think_Tanks.pdf",
-      "family": "Consultant"
+      "family": "Consultant",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h1"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
+            ]
+          },
+          {
+            "id": "proj-samsung-and-huawei-strategic-resilience-analysis",
+            "highlights": [
+              "proj-samsung-and-huawei-strategic-resilience-analysis-h0",
+              "proj-samsung-and-huawei-strategic-resilience-analysis-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "data-narrative-consultant-economic-development",
@@ -526,7 +1468,7 @@
       "industry": "Economic Development",
       "targeted": true,
       "weight": 10,
-      "description": "Transforms complex analysis into clear visual narratives, decision tools, and executive recommendations.",
+      "description": "Visualises development and climate-economy evidence: country-year datasets, hypothesis tests, and policy-facing charts.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -535,13 +1477,53 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Data Storytelling",
+        "Economic Development",
         "Data Visualization",
+        "Hypothesis Testing",
+        "Climate Economics",
         "Data Analysis",
         "Research Communication"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Economic_Development.pdf",
-      "family": "Consultant"
+      "family": "Consultant",
+      "content": {
+        "experience": [
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-global-development-and-climate-hypothesis-testing",
+            "highlights": [
+              "proj-global-development-and-climate-hypothesis-testing-h0",
+              "proj-global-development-and-climate-hypothesis-testing-h1"
+            ]
+          },
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "analytics-intelligence-lead-e-commerce-logistics",
@@ -565,7 +1547,50 @@
         "Dashboards",
         "Decision Support"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Business_Intelligence_Analyst_Commerce_Operations.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Business_Intelligence_Analyst_Commerce_Operations.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h3"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h2"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h6"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-london-airbnb-pricing-and-regression-models",
+            "highlights": [
+              "proj-london-airbnb-pricing-and-regression-models-h0",
+              "proj-london-airbnb-pricing-and-regression-models-h1"
+            ]
+          },
+          {
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
+            "highlights": [
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h1",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "customer-facing-founding-engineer-pre-seed-saas",
@@ -589,7 +1614,52 @@
         "System Architecture",
         "Early-Stage Products"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Founding_Engineer_Early_Stage_Products.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Founding_Engineer_Early_Stage_Products.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h2",
+              "work-astropatshala-h1"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-software-engineering-and-systems-projects",
+            "highlights": [
+              "proj-software-engineering-and-systems-projects-h1",
+              "proj-software-engineering-and-systems-projects-h3"
+            ]
+          },
+          {
+            "id": "proj-bloom-creative-terminal-visualization",
+            "highlights": [
+              "proj-bloom-creative-terminal-visualization-h2",
+              "proj-bloom-creative-terminal-visualization-h3"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-backend-and-apis"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "developer-experience-dx-evangelist-devtools",
@@ -613,7 +1683,52 @@
         "Product Feedback",
         "Developer Experience"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Developer_Relations_Engineer_Developer_Tools_APIs.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Developer_Relations_Engineer_Developer_Tools_APIs.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h0",
+              "work-hult-ai-collective-h3"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-software-engineering-and-systems-projects",
+            "highlights": [
+              "proj-software-engineering-and-systems-projects-h1",
+              "proj-software-engineering-and-systems-projects-h3"
+            ]
+          },
+          {
+            "id": "proj-personal-knowledge-management-system",
+            "highlights": [
+              "proj-personal-knowledge-management-system-h0",
+              "proj-personal-knowledge-management-system-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-backend-and-apis"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "enterprise-resilience-engineer-managed-service-providers",
@@ -637,7 +1752,44 @@
         "Incident Response",
         "Managed Services"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Infrastructure_Security_Engineer_Managed_Regulated_Systems.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Infrastructure_Security_Engineer_Managed_Regulated_Systems.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-software-engineering-and-systems-projects",
+            "highlights": [
+              "proj-software-engineering-and-systems-projects-h2",
+              "proj-software-engineering-and-systems-projects-h0"
+            ]
+          },
+          {
+            "id": "proj-personal-knowledge-management-system",
+            "highlights": [
+              "proj-personal-knowledge-management-system-h2"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-systems-and-devops"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "systems-qa-auditor-fintech-infrastructure",
@@ -661,7 +1813,44 @@
         "Quality Assurance",
         "Technology Platforms"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Software_QA_Analyst_Financial_Technology_Platforms.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Software_QA_Analyst_Financial_Technology_Platforms.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h1",
+              "work-savi-hotels-resorts-jaipur-india-h0"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h3",
+              "work-srbs-group-jaipur-india-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-restaurant-operations-platform-for-independent-client",
+            "highlights": [
+              "proj-restaurant-operations-platform-for-independent-client-h1",
+              "proj-restaurant-operations-platform-for-independent-client-h0"
+            ]
+          },
+          {
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
+            "highlights": [
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h3"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-systems-and-devops"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "proptech-underwriter-designer-high-end-real-estate-pe",
@@ -685,7 +1874,52 @@
         "Market Research",
         "Investment Analysis"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Real_Estate_Investment_Analyst_PropTech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Real_Estate_Investment_Analyst_PropTech.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-family-real-estate-business-jaipur-india",
+            "highlights": [
+              "work-family-real-estate-business-jaipur-india-h0",
+              "work-family-real-estate-business-jaipur-india-h1"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h2",
+              "work-srbs-group-jaipur-india-h0"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h2",
+              "work-savi-hotels-resorts-jaipur-india-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
+            ]
+          },
+          {
+            "id": "proj-bwc-adaptive-efficiency-investment-desk",
+            "highlights": [
+              "proj-bwc-adaptive-efficiency-investment-desk-h0",
+              "proj-bwc-adaptive-efficiency-investment-desk-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "experiential-event-producer-tech-conferences",
@@ -709,7 +1943,50 @@
         "Event Operations",
         "Live Delivery"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Event_Producer_Technology_Community_Events.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Event_Producer_Technology_Community_Events.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h1",
+              "work-hult-ai-collective-h0"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h0"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-carbon-forward-conference-lead-magnet-design",
+            "highlights": [
+              "proj-carbon-forward-conference-lead-magnet-design-h0",
+              "proj-carbon-forward-conference-lead-magnet-design-h1"
+            ]
+          },
+          {
+            "id": "proj-culinary-operations-rotation",
+            "highlights": [
+              "proj-culinary-operations-rotation-h0",
+              "proj-culinary-operations-rotation-h1"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "gastronomic-systems-operator-culinary-consulting",
@@ -739,7 +2016,52 @@
         "languages": 0
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Culinary_Strategy_Operations_Consultant.pdf",
-      "family": "Culinary Strategy & Consulting"
+      "family": "Culinary Strategy & Consulting",
+      "content": {
+        "experience": [
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h3",
+              "work-siya-the-restaurant-srbs-group-h0"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h0",
+              "work-savi-hotels-resorts-jaipur-india-h4"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-culinary-operations-rotation",
+            "highlights": [
+              "proj-culinary-operations-rotation-h0",
+              "proj-culinary-operations-rotation-h2"
+            ]
+          },
+          {
+            "id": "proj-independent-culinary-development-and-kitchen-systems-practice",
+            "highlights": [
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h1",
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-culinary-strategy-and-food-technology"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "operations-flow-manager-foodtech",
@@ -763,7 +2085,49 @@
         "Service Flow",
         "Operational Controls"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Operations_Manager_Food_Delivery_Technology.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Operations_Manager_Food_Delivery_Technology.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h1",
+              "work-savi-hotels-resorts-jaipur-india-h0"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h1"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-culinary-operations-rotation",
+            "highlights": [
+              "proj-culinary-operations-rotation-h0",
+              "proj-culinary-operations-rotation-h2"
+            ]
+          },
+          {
+            "id": "proj-independent-culinary-development-and-kitchen-systems-practice",
+            "highlights": [
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h0",
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h1"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "heavy-industry-value-engineer-climatetech",
@@ -771,7 +2135,7 @@
       "industry": "ClimateTech",
       "targeted": true,
       "weight": 10,
-      "description": "Translates industrial customer needs into technical solutions, business cases, and implementation plans.",
+      "description": "Builds commercial cases for climate and energy solutions: battery-integration economics, carbon-market positioning, and implementation options.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -780,12 +2144,50 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
+        "ClimateTech",
         "Solutions Engineering",
+        "Energy Transition",
+        "Business Case",
         "Value Engineering",
-        "Industrial Technology",
-        "Technical Sales"
+        "Carbon Markets"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Solutions_Engineer_ClimateTech.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Solutions_Engineer_ClimateTech.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0"
+            ]
+          },
+          {
+            "id": "proj-global-development-and-climate-hypothesis-testing",
+            "highlights": [
+              "proj-global-development-and-climate-hypothesis-testing-h2",
+              "proj-global-development-and-climate-hypothesis-testing-h1"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "heavy-industry-value-engineer-heavy-manufacturing-tech",
@@ -793,7 +2195,7 @@
       "industry": "Industrial Technology",
       "targeted": true,
       "weight": 10,
-      "description": "Translates industrial customer needs into technical solutions, business cases, and implementation plans.",
+      "description": "Assesses industrial and hardware ventures for technical feasibility, manufacturing economics, governance risk, and go-to-market readiness.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -802,12 +2204,50 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Solutions Engineering",
-        "Value Engineering",
         "Industrial Technology",
-        "Technical Sales"
+        "Solutions Engineering",
+        "Commercialisation",
+        "Manufacturing Economics",
+        "Technical Diligence",
+        "Implementation"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Solutions_Engineer_Industrial_Technology.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Solutions_Engineer_Industrial_Technology.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h2",
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h2",
+              "work-srbs-group-jaipur-india-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-us-defence-drone-spinout-commercialisation-assessment",
+            "highlights": [
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h0",
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h1"
+            ]
+          },
+          {
+            "id": "proj-samsung-and-huawei-strategic-resilience-analysis",
+            "highlights": [
+              "proj-samsung-and-huawei-strategic-resilience-analysis-h1",
+              "proj-samsung-and-huawei-strategic-resilience-analysis-h0"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "heavy-industry-value-engineer-agritech",
@@ -815,7 +2255,7 @@
       "industry": "Agricultural Technology",
       "targeted": true,
       "weight": 10,
-      "description": "Translates industrial customer needs into technical solutions, business cases, and implementation plans.",
+      "description": "Translates food-system and ingredient-science evidence into commercial product cases, test matrices, and implementation paths for agri-food technology.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -824,12 +2264,50 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
+        "Agri-Food Technology",
+        "Food Science",
         "Solutions Engineering",
-        "Value Engineering",
-        "Industrial Technology",
-        "Technical Sales"
+        "Product Validation",
+        "Commercialisation",
+        "Implementation"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Solutions_Engineer_Agricultural_Technology.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Solutions_Engineer_Agricultural_Technology.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h3",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-paca-applied-food-science",
+            "highlights": [
+              "proj-paca-applied-food-science-h1",
+              "proj-paca-applied-food-science-h0"
+            ]
+          },
+          {
+            "id": "proj-pacakatva-culinary-data-platform",
+            "highlights": [
+              "proj-pacakatva-culinary-data-platform-h0",
+              "proj-pacakatva-culinary-data-platform-h2"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "ux-research-translation-lead-civic-tech-platforms",
@@ -853,7 +2331,52 @@
         "Service Design",
         "Research Synthesis"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_UX_Researcher_Civic_Social_Impact_Products.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_UX_Researcher_Civic_Social_Impact_Products.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h2",
+              "proj-project-oulm-one-ymca-youth-community-platform-h1"
+            ]
+          },
+          {
+            "id": "proj-independent-culinary-development-and-kitchen-systems-practice",
+            "highlights": [
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h1",
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "management-consultant-mbb-standard-big-3-consulting",
@@ -861,7 +2384,7 @@
       "industry": "MBB Strategy Consulting",
       "targeted": true,
       "weight": 10,
-      "description": "Solves growth, operating-model, and transformation problems through case analysis, commercial insight, and executive-ready recommendations.",
+      "description": "Structures classic strategy cases: competitive resilience, industry economics, and board-ready recommendations from public and proprietary evidence.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -870,15 +2393,51 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Management Consulting",
+        "Strategy Consulting",
+        "Competitive Analysis",
+        "Industry Economics",
         "Case Analysis",
-        "Market Entry",
-        "Operating Models",
-        "Due Diligence",
-        "Executive Communication"
+        "Executive Communication",
+        "Market Structure"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Consultant_MBB_Strategy_Consulting.pdf",
-      "family": "Strategy & Investment"
+      "family": "Strategy & Investment",
+      "content": {
+        "experience": [
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h2"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-samsung-and-huawei-strategic-resilience-analysis",
+            "highlights": [
+              "proj-samsung-and-huawei-strategic-resilience-analysis-h0",
+              "proj-samsung-and-huawei-strategic-resilience-analysis-h1"
+            ]
+          },
+          {
+            "id": "proj-walmart-pfand-circular-retail-strategy",
+            "highlights": [
+              "proj-walmart-pfand-circular-retail-strategy-h0",
+              "proj-walmart-pfand-circular-retail-strategy-h1"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "management-consultant-mbb-standard-tier-2-strategy",
@@ -886,7 +2445,7 @@
       "industry": "Tier-2 Strategy Consulting",
       "targeted": true,
       "weight": 10,
-      "description": "Solves growth, operating-model, and transformation problems through case analysis, commercial insight, and executive-ready recommendations.",
+      "description": "Delivers growth and commercial strategy through brand, portfolio, and go-to-market analysis for specialist consulting mandates.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -895,15 +2454,51 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Management Consulting",
-        "Case Analysis",
+        "Strategy Consulting",
+        "Growth Strategy",
+        "Brand Strategy",
+        "Portfolio Architecture",
         "Market Entry",
-        "Operating Models",
-        "Due Diligence",
         "Executive Communication"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Consultant_Tier_2_Strategy_Consulting.pdf",
-      "family": "Strategy & Investment"
+      "family": "Strategy & Investment",
+      "content": {
+        "experience": [
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h2"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
+            ]
+          },
+          {
+            "id": "proj-danone-yopro-apex-diagnostic",
+            "highlights": [
+              "proj-danone-yopro-apex-diagnostic-h1",
+              "proj-danone-yopro-apex-diagnostic-h0"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "management-consultant-mbb-standard-corporate-turnarounds",
@@ -911,7 +2506,7 @@
       "industry": "Corporate Turnarounds",
       "targeted": true,
       "weight": 10,
-      "description": "Solves growth, operating-model, and transformation problems through case analysis, commercial insight, and executive-ready recommendations.",
+      "description": "Runs operating turnarounds from diagnosis to kill-gate: occupancy, staffing, service friction, and mixed-revenue models under time pressure.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -920,15 +2515,58 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Management Consulting",
-        "Case Analysis",
-        "Market Entry",
+        "Corporate Turnaround",
         "Operating Models",
-        "Due Diligence",
-        "Executive Communication"
+        "Diagnostic",
+        "Kill Gates",
+        "Occupancy",
+        "Implementation"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Consultant_Corporate_Turnarounds.pdf",
-      "family": "Strategy & Investment"
+      "family": "Strategy & Investment",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h0",
+              "work-savi-hotels-resorts-jaipur-india-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h2"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h0",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
+            ]
+          },
+          {
+            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
+            "highlights": [
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1",
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h0"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "investment-banking-analyst-bulge-bracket-investment-banks",
@@ -936,7 +2574,7 @@
       "industry": "Bulge-Bracket Investment Banking",
       "targeted": true,
       "weight": 10,
-      "description": "Supports transactions through financial modelling, valuation, market research, due diligence, and investor materials.",
+      "description": "Supports public-markets analysis: portfolio construction, factor models, downside protection, and investor-ready performance narrative.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -947,13 +2585,51 @@
       "requiredKeywords": [
         "Investment Banking",
         "Financial Modelling",
+        "Portfolio Analysis",
         "Valuation",
-        "M&A",
-        "Due Diligence",
-        "Transaction Execution"
+        "Capital Markets",
+        "Risk Management"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Bulge_Bracket_Investment_Banking.pdf",
-      "family": "Strategy & Investment"
+      "family": "Strategy & Investment",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h2"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h2",
+              "work-savi-hotels-resorts-jaipur-india-h7"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-bwc-adaptive-efficiency-investment-desk",
+            "highlights": [
+              "proj-bwc-adaptive-efficiency-investment-desk-h0",
+              "proj-bwc-adaptive-efficiency-investment-desk-h1"
+            ]
+          },
+          {
+            "id": "proj-walmart-capital-budgeting-and-future-proofing-model",
+            "highlights": [
+              "proj-walmart-capital-budgeting-and-future-proofing-model-h2",
+              "proj-walmart-capital-budgeting-and-future-proofing-model-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "investment-banking-analyst-boutique-ma-advisory",
@@ -961,7 +2637,7 @@
       "industry": "Boutique M&A Advisory",
       "targeted": true,
       "weight": 10,
-      "description": "Supports transactions through financial modelling, valuation, market research, due diligence, and investor materials.",
+      "description": "Builds deal materials for concentrated transactions: industry tearsheets, commercial diligence, workflow friction, and buyer-ready investment cases.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -970,15 +2646,53 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Investment Banking",
-        "Financial Modelling",
-        "Valuation",
-        "M&A",
+        "M&A Advisory",
         "Due Diligence",
-        "Transaction Execution"
+        "Valuation",
+        "Industry Tearsheets",
+        "Transaction Execution",
+        "Commercial Diligence"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Boutique_M_A_Advisory.pdf",
-      "family": "Strategy & Investment"
+      "family": "Strategy & Investment",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h2",
+              "work-srbs-group-jaipur-india-h0"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-us-defence-drone-spinout-commercialisation-assessment",
+            "highlights": [
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h0",
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h1"
+            ]
+          },
+          {
+            "id": "proj-duve-venture-diligence-and-industry-tearsheet",
+            "highlights": [
+              "proj-duve-venture-diligence-and-industry-tearsheet-h0",
+              "proj-duve-venture-diligence-and-industry-tearsheet-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "investment-banking-analyst-growth-equity",
@@ -986,7 +2700,7 @@
       "industry": "Growth Equity",
       "targeted": true,
       "weight": 10,
-      "description": "Supports transactions through financial modelling, valuation, market research, due diligence, and investor materials.",
+      "description": "Evaluates growth-stage operating assets through acquisition theses, diligence frameworks, and post-transaction execution risk.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -995,15 +2709,60 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
-        "Investment Banking",
-        "Financial Modelling",
+        "Growth Equity",
+        "Diligence Framework",
         "Valuation",
-        "M&A",
-        "Due Diligence",
+        "Acquisition Thesis",
+        "Operating Assets",
         "Transaction Execution"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Growth_Equity.pdf",
-      "family": "Strategy & Investment"
+      "family": "Strategy & Investment",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h2",
+              "work-srbs-group-jaipur-india-h0"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h7",
+              "work-savi-hotels-resorts-jaipur-india-h2"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-bwc-adaptive-efficiency-investment-desk",
+            "highlights": [
+              "proj-bwc-adaptive-efficiency-investment-desk-h2",
+              "proj-bwc-adaptive-efficiency-investment-desk-h5"
+            ]
+          },
+          {
+            "id": "proj-toast-hotel-f-b-expansion-strategy",
+            "highlights": [
+              "proj-toast-hotel-f-b-expansion-strategy-h0",
+              "proj-toast-hotel-f-b-expansion-strategy-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "tactical-it-systems-administrator-managed-service-providers",
@@ -1027,7 +2786,51 @@
         "Deployment",
         "Institutional IT"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Systems_Administrator_Managed_Institutional_IT.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Systems_Administrator_Managed_Institutional_IT.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h1",
+              "work-savi-hotels-resorts-jaipur-india-h6"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h3"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-software-engineering-and-systems-projects",
+            "highlights": [
+              "proj-software-engineering-and-systems-projects-h1",
+              "proj-software-engineering-and-systems-projects-h2"
+            ]
+          },
+          {
+            "id": "proj-personal-knowledge-management-system",
+            "highlights": [
+              "proj-personal-knowledge-management-system-h2",
+              "proj-personal-knowledge-management-system-h3"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-systems-and-devops"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "open-source-community-lead-open-source-foundations",
@@ -1051,7 +2854,50 @@
         "Technical Events",
         "Developer Education"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Developer_Community_Manager_Open_Source.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Developer_Community_Manager_Open_Source.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h4",
+              "work-hult-ai-collective-h0"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-personal-brand-and-digital-presence",
+            "highlights": [
+              "proj-personal-brand-and-digital-presence-h0",
+              "proj-personal-brand-and-digital-presence-h1"
+            ]
+          },
+          {
+            "id": "proj-software-engineering-and-systems-projects",
+            "highlights": [
+              "proj-software-engineering-and-systems-projects-h1",
+              "proj-software-engineering-and-systems-projects-h2"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "phygital-spatial-designer-museumexpo-design",
@@ -1075,7 +2921,45 @@
         "Retail Experience",
         "Community Spaces"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Spatial_Experience_Designer_Cultural_Retail_Spaces.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Spatial_Experience_Designer_Cultural_Retail_Spaces.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h2",
+              "work-hult-ai-collective-h0"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h1",
+              "work-savi-hotels-resorts-jaipur-india-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h0",
+              "proj-project-oulm-one-ymca-youth-community-platform-h3"
+            ]
+          },
+          {
+            "id": "proj-nirmana-design-capstone",
+            "highlights": [
+              "proj-nirmana-design-capstone-h2",
+              "proj-nirmana-design-capstone-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "systematic-organizational-designer-enterprise-transformation",
@@ -1083,7 +2967,7 @@
       "industry": "Enterprise Transformation",
       "targeted": true,
       "weight": 10,
-      "description": "Designs operating models, decision rights, workflows, and change programs for scaling organizations.",
+      "description": "Designs operating models, decision rights, and workflows that let family and multi-entity businesses professionalise without losing control.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1094,11 +2978,56 @@
       "requiredKeywords": [
         "Organizational Design",
         "Operating Models",
+        "Decision Rights",
         "Change Management",
+        "Governance",
         "Process Design"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_Enterprise_Transformation.pdf",
-      "family": "Consultant"
+      "family": "Consultant",
+      "content": {
+        "experience": [
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h1"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h1"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h2",
+              "work-siya-the-restaurant-srbs-group-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-family-governance-and-office-access-model",
+            "highlights": [
+              "proj-family-governance-and-office-access-model-h0",
+              "proj-family-governance-and-office-access-model-h2"
+            ]
+          },
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "systematic-organizational-designer-civictech",
@@ -1106,7 +3035,7 @@
       "industry": "CivicTech",
       "targeted": true,
       "weight": 10,
-      "description": "Designs operating models, decision rights, workflows, and change programs for scaling organizations.",
+      "description": "Designs service operating systems for civic and community organisations: booking, safeguarding, and digital-to-physical handoffs.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1115,13 +3044,58 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
+        "CivicTech",
+        "Service Design",
         "Organizational Design",
-        "Operating Models",
-        "Change Management",
+        "Community Operations",
+        "Safeguarding",
         "Process Design"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_CivicTech.pdf",
-      "family": "Consultant"
+      "family": "Consultant",
+      "content": {
+        "experience": [
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h1",
+              "work-independent-healthcare-venture-client-anonymised-h0"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h0",
+              "proj-project-oulm-one-ymca-youth-community-platform-h2"
+            ]
+          },
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "systematic-organizational-designer-deeptech-skunkworks",
@@ -1129,7 +3103,7 @@
       "industry": "Deep-Tech Innovation Labs",
       "targeted": true,
       "weight": 10,
-      "description": "Designs operating models, decision rights, workflows, and change programs for scaling organizations.",
+      "description": "Designs operating and governance models for deep-tech ventures: privacy architecture, staged validation, and lab-to-market decision rights.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
@@ -1138,13 +3112,58 @@
         "Specialization": "Expert"
       },
       "requiredKeywords": [
+        "Deep-Tech",
         "Organizational Design",
+        "Innovation Governance",
+        "Privacy Architecture",
         "Operating Models",
-        "Change Management",
-        "Process Design"
+        "Staged Validation"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_Deep_Tech_Innovation_Labs.pdf",
-      "family": "Consultant"
+      "family": "Consultant",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h3",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h3",
+              "work-siya-the-restaurant-srbs-group-h0"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h2",
+              "work-astropatshala-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform",
+            "highlights": [
+              "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform-h2",
+              "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform-h0"
+            ]
+          },
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "culinary-ops-hybrid-architect-b2b-foodtech",
@@ -1175,7 +3194,45 @@
         "languages": 0
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Culinary_Stagiaire_Michelin_Fine_Dining_Kitchens.pdf",
-      "family": "Culinary Stagiaire"
+      "family": "Culinary Stagiaire",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h2",
+              "work-astropatshala-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-independent-culinary-development-and-kitchen-systems-practice",
+            "highlights": [
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h0",
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h1"
+            ]
+          },
+          {
+            "id": "proj-culinary-operations-rotation",
+            "highlights": [
+              "proj-culinary-operations-rotation-h0",
+              "proj-culinary-operations-rotation-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-professional-kitchen-practice"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "culinary-ops-hybrid-architect-airline-catering-logistics",
@@ -1205,7 +3262,50 @@
         "languages": 0
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Back_Of_House_Logistics_Coordinator_High_Volume_Catering.pdf",
-      "family": "Back-of-House Operations"
+      "family": "Back-of-House Operations",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h6"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h1",
+              "work-siya-the-restaurant-srbs-group-h0"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-independent-culinary-development-and-kitchen-systems-practice",
+            "highlights": [
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h0",
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h1"
+            ]
+          },
+          {
+            "id": "proj-culinary-operations-rotation",
+            "highlights": [
+              "proj-culinary-operations-rotation-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-back-of-house-operations"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "culinary-ops-hybrid-architect-stadium-hospitality",
@@ -1235,7 +3335,51 @@
         "languages": 0
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Front_Of_House_Reception_Associate_Hotels_Restaurants.pdf",
-      "family": "Front-of-House & Reception"
+      "family": "Front-of-House & Reception",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h5",
+              "work-savi-hotels-resorts-jaipur-india-h4"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h1"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-culinary-operations-rotation",
+            "highlights": [
+              "proj-culinary-operations-rotation-h2"
+            ]
+          },
+          {
+            "id": "proj-independent-culinary-development-and-kitchen-systems-practice",
+            "highlights": [
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h0",
+              "proj-independent-culinary-development-and-kitchen-systems-practice-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-front-of-house-and-reception"
+        ],
+        "leadership": []
+      }
     },
     {
       "id": "autodidact-skunkworks-researcher-corporate-rd-labs",
@@ -1259,7 +3403,50 @@
         "R&D Engineering",
         "Innovation"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Research_Development_Engineer_Applied_RD.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Research_Development_Engineer_Applied_RD.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h2",
+              "work-siya-the-restaurant-srbs-group-h0"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-software-engineering-and-systems-projects",
+            "highlights": [
+              "proj-software-engineering-and-systems-projects-h1",
+              "proj-software-engineering-and-systems-projects-h2"
+            ]
+          },
+          {
+            "id": "proj-paca-applied-food-science",
+            "highlights": [
+              "proj-paca-applied-food-science-h0",
+              "proj-paca-applied-food-science-h1"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      }
     },
     {
       "id": "product-manager-startup-accelerators",
@@ -1286,7 +3473,55 @@
       "limits": {
         "leadership": 1
       },
-      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Manager_Startup_Accelerators.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Product_Manager_Startup_Accelerators.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h2"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h0",
+              "proj-project-oulm-one-ymca-youth-community-platform-h3"
+            ]
+          },
+          {
+            "id": "proj-jeki-cross-channel-campaign-for-afrikids",
+            "highlights": [
+              "proj-jeki-cross-channel-campaign-for-afrikids-h0",
+              "proj-jeki-cross-channel-campaign-for-afrikids-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools",
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      }
     },
     {
       "id": "project-manager-startup-accelerators",
@@ -1313,7 +3548,54 @@
       "limits": {
         "leadership": 1
       },
-      "pdfFilename": "Kartavya_Jharwal_Resume_Project_Manager_Startup_Accelerators.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Project_Manager_Startup_Accelerators.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h1",
+              "work-srbs-group-jaipur-india-h0"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h1",
+              "work-savi-hotels-resorts-jaipur-india-h7"
+            ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h1",
+              "work-hult-ai-collective-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h0",
+              "proj-project-oulm-one-ymca-youth-community-platform-h1"
+            ]
+          },
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      }
     },
     {
       "id": "devops-associate-startup-accelerators",
@@ -1340,7 +3622,54 @@
       "limits": {
         "leadership": 1
       },
-      "pdfFilename": "Kartavya_Jharwal_Resume_DevOps_Associate_Startup_Accelerators.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_DevOps_Associate_Startup_Accelerators.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h2"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-software-engineering-and-systems-projects",
+            "highlights": [
+              "proj-software-engineering-and-systems-projects-h2",
+              "proj-software-engineering-and-systems-projects-h0"
+            ]
+          },
+          {
+            "id": "proj-personal-knowledge-management-system",
+            "highlights": [
+              "proj-personal-knowledge-management-system-h2"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-systems-and-devops",
+          "skill-backend-and-apis"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      }
     },
     {
       "id": "founders-associate-startup-accelerators",
@@ -1374,7 +3703,54 @@
         "certifications": 0,
         "languages": 0
       },
-      "pdfFilename": "Kartavya_Jharwal_Resume_Founders_Associate_Healthcare.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Founders_Associate_Healthcare.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h1",
+              "work-independent-healthcare-venture-client-anonymised-h0"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h0",
+              "proj-project-oulm-one-ymca-youth-community-platform-h2"
+            ]
+          },
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      }
     },
     {
       "id": "gtm-analyst-startup-accelerators",
@@ -1401,7 +3777,55 @@
       "limits": {
         "leadership": 1
       },
-      "pdfFilename": "Kartavya_Jharwal_Resume_GTM_Analyst_Startup_Accelerators.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_GTM_Analyst_Startup_Accelerators.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h2"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-astropatshala-aarrr-growth-strategy",
+            "highlights": [
+              "proj-astropatshala-aarrr-growth-strategy-h0",
+              "proj-astropatshala-aarrr-growth-strategy-h1"
+            ]
+          },
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-founder-and-venture-building",
+          "skill-data-and-databases"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      }
     },
     {
       "id": "ui-ux-designer-startup-accelerators",
@@ -1428,7 +3852,48 @@
       "limits": {
         "leadership": 1
       },
-      "pdfFilename": "Kartavya_Jharwal_Resume_UI_UX_Designer_Startup_Accelerators.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_UI_UX_Designer_Startup_Accelerators.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h2",
+              "work-margadarshaka-h0"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h2",
+              "proj-project-oulm-one-ymca-youth-community-platform-h1"
+            ]
+          },
+          {
+            "id": "proj-nirmana-design-capstone",
+            "highlights": [
+              "proj-nirmana-design-capstone-h1",
+              "proj-nirmana-design-capstone-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools",
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      }
     },
     {
       "id": "systems-designer-startup-accelerators",
@@ -1455,7 +3920,54 @@
       "limits": {
         "leadership": 1
       },
-      "pdfFilename": "Kartavya_Jharwal_Resume_Systems_Designer_Startup_Accelerators.pdf"
+      "pdfFilename": "Kartavya_Jharwal_Resume_Systems_Designer_Startup_Accelerators.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h2"
+            ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h0",
+              "work-hult-ai-collective-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h0",
+              "proj-project-oulm-one-ymca-youth-community-platform-h1"
+            ]
+          },
+          {
+            "id": "proj-personal-knowledge-management-system",
+            "highlights": [
+              "proj-personal-knowledge-management-system-h2"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools",
+          "skill-systems-and-devops"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      }
     }
   ],
   "internalTags": {
@@ -1471,6 +3983,6 @@
     "previewOnly": true,
     "frontendVisible": false,
     "selectableVariant": false,
-    "roleSpecificTailoringStatus": "Deferred until the canonical content pass is approved."
+    "roleSpecificTailoringStatus": "Role × industry pairs have unique summaries, keywords, and tagged evidence as of 2026-08-29."
   }
 }

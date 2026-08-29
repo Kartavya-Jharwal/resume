@@ -101,6 +101,10 @@ const ids = variants.map((variant, index) => {
 checkUnique(ids, 'variant ids');
 checkUnique(variants.map(variant => variant.pdfFilename), 'variant PDF filenames');
 checkUnique(variants.map(variant => `${variant.family || variant.role}\0${variant.industry}`), 'selector role/context pairs');
+checkUnique(variants.map(variant => variant.description.trim()), 'variant descriptions');
+const fallbackVariants = variants.filter(variant => variant.fallback === true);
+if (fallbackVariants.length === 0) errors.push('exactly one variant must set fallback: true');
+if (fallbackVariants.length > 1) errors.push('only one variant may set fallback: true');
 const knownIds = new Set(ids);
 
 function checkTags(tags, path) {
@@ -112,19 +116,23 @@ function checkTags(tags, path) {
 for (const [index, work] of requireArray(resume.work, 'resume.work').entries()) {
   requireText(work.name, `resume.work[${index}].name`);
   requireText(work.position, `resume.work[${index}].position`);
+  requireText(work.id, `resume.work[${index}].id`);
   if (!validDate(work.startDate || '') || !validDate(work.endDate || '')) errors.push(`resume.work[${index}] contains an invalid date`);
   for (const [highlightIndex, highlight] of requireArray(work.highlights, `resume.work[${index}].highlights`).entries()) {
     requireText(highlight.text, `resume.work[${index}].highlights[${highlightIndex}].text`);
+    requireText(highlight.id, `resume.work[${index}].highlights[${highlightIndex}].id`);
     checkTags(highlight.variants, `resume.work[${index}].highlights[${highlightIndex}].variants`);
   }
 }
 
 for (const [index, project] of requireArray(resume.projects, 'resume.projects').entries()) {
   requireText(project.name, `resume.projects[${index}].name`);
+  requireText(project.id, `resume.projects[${index}].id`);
   if (project.displayName !== undefined) requireText(project.displayName, `resume.projects[${index}].displayName`);
   checkTags(project.variants, `resume.projects[${index}].variants`);
   for (const [highlightIndex, highlight] of requireArray(project.highlights || [], `resume.projects[${index}].highlights`).entries()) {
     requireText(highlight.text, `resume.projects[${index}].highlights[${highlightIndex}].text`);
+    requireText(highlight.id, `resume.projects[${index}].highlights[${highlightIndex}].id`);
     checkTags(highlight.variants, `resume.projects[${index}].highlights[${highlightIndex}].variants`);
   }
 }
@@ -166,6 +174,7 @@ for (const [index, education] of requireArray(resume.education, 'resume.educatio
 
 for (const [index, skill] of requireArray(resume.skills || [], 'resume.skills').entries()) {
   requireText(skill.name, `resume.skills[${index}].name`);
+  requireText(skill.id, `resume.skills[${index}].id`);
   if (skill.label !== undefined) requireText(skill.label, `resume.skills[${index}].label`);
   const keywords = requireArray(skill.keywords, `resume.skills[${index}].keywords`);
   if (!keywords.length) {
@@ -179,7 +188,79 @@ for (const [index, skill] of requireArray(resume.skills || [], 'resume.skills').
 
 for (const field of ['skills', 'certificates', 'volunteer']) {
   for (const [index, entry] of requireArray(resume[field] || [], `resume.${field}`).entries()) {
+    if (entry.id !== undefined) requireText(entry.id, `resume.${field}[${index}].id`);
     checkTags(entry.variants, `resume.${field}[${index}].variants`);
+  }
+}
+
+const workIds = new Set((resume.work || []).map(entry => entry.id));
+const projectIds = new Set((resume.projects || []).map(entry => entry.id));
+const skillIds = new Set((resume.skills || []).map(entry => entry.id));
+const leadershipIds = new Set((resume.volunteer || []).map(entry => entry.id));
+const workHighlightIds = new Map();
+for (const work of resume.work || []) {
+  for (const highlight of work.highlights || []) workHighlightIds.set(highlight.id, work.id);
+}
+const projectHighlightIds = new Map();
+for (const project of resume.projects || []) {
+  for (const highlight of project.highlights || []) projectHighlightIds.set(highlight.id, project.id);
+}
+
+const evidenceSignatures = new Map();
+for (const [index, variant] of variants.entries()) {
+  const path = `variants[${index}]`;
+  if (!variant.content) {
+    errors.push(`${path}.content is required for explicit variant selection`);
+    continue;
+  }
+  const content = variant.content;
+  const experience = requireArray(content.experience, `${path}.content.experience`);
+  const projects = requireArray(content.projects, `${path}.content.projects`);
+  if (!experience.length && !projects.length) {
+    errors.push(`${path}.content must include at least one experience or project selection`);
+  }
+  const bulletCount = experience.reduce((sum, entry) => sum + requireArray(entry.highlights, `${path}.content.experience highlights`).length, 0)
+    + projects.reduce((sum, entry) => sum + requireArray(entry.highlights, `${path}.content.projects highlights`).length, 0);
+  if (bulletCount < 4) errors.push(`${path}.content resolves to fewer than four evidence bullets`);
+  if (experience.length > limits.experience) errors.push(`${path}.content.experience exceeds resume.custom.limits.experience`);
+  if (projects.length > limits.projects) errors.push(`${path}.content.projects exceeds resume.custom.limits.projects`);
+
+  const signature = [];
+  for (const [entryIndex, entry] of experience.entries()) {
+    requireText(entry.id, `${path}.content.experience[${entryIndex}].id`);
+    if (!workIds.has(entry.id)) errors.push(`${path}.content.experience[${entryIndex}].id references unknown work "${entry.id}"`);
+    signature.push(entry.id);
+    for (const [highlightIndex, highlightId] of requireArray(entry.highlights, `${path}.content.experience[${entryIndex}].highlights`).entries()) {
+      requireText(highlightId, `${path}.content.experience[${entryIndex}].highlights[${highlightIndex}]`);
+      if (workHighlightIds.get(highlightId) !== entry.id) {
+        errors.push(`${path}.content.experience[${entryIndex}].highlights[${highlightIndex}] does not belong to work "${entry.id}"`);
+      }
+    }
+  }
+  for (const [entryIndex, entry] of projects.entries()) {
+    requireText(entry.id, `${path}.content.projects[${entryIndex}].id`);
+    signature.push(entry.id);
+    for (const [highlightIndex, highlightId] of requireArray(entry.highlights, `${path}.content.projects[${entryIndex}].highlights`).entries()) {
+      requireText(highlightId, `${path}.content.projects[${entryIndex}].highlights[${highlightIndex}]`);
+      if (projectHighlightIds.get(highlightId) !== entry.id) {
+        errors.push(`${path}.content.projects[${entryIndex}].highlights[${highlightIndex}] does not belong to project "${entry.id}"`);
+      }
+    }
+  }
+  const signatureKey = signature.join('|');
+  if (evidenceSignatures.has(signatureKey)) {
+    warnings.push(`${path}.content duplicates evidence signature used by "${evidenceSignatures.get(signatureKey)}"`);
+  } else {
+    evidenceSignatures.set(signatureKey, variant.id);
+  }
+
+  for (const [skillIndex, skillId] of requireArray(content.skills || [], `${path}.content.skills`).entries()) {
+    requireText(skillId, `${path}.content.skills[${skillIndex}]`);
+    if (!skillIds.has(skillId)) errors.push(`${path}.content.skills[${skillIndex}] references unknown skill group "${skillId}"`);
+  }
+  for (const [leadershipIndex, leadershipId] of requireArray(content.leadership || [], `${path}.content.leadership`).entries()) {
+    requireText(leadershipId, `${path}.content.leadership[${leadershipIndex}]`);
+    if (!leadershipIds.has(leadershipId)) errors.push(`${path}.content.leadership[${leadershipIndex}] references unknown leadership entry "${leadershipId}"`);
   }
 }
 

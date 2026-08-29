@@ -68,16 +68,20 @@ for (const profile of profiles) {
     assert(profile.experience.length === resume.work.length, `${profile.id}: master CV must include every work entry`);
     assert(profile.projects.length === resume.projects.length, `${profile.id}: master CV must include every project`);
   } else {
-    assert(
-      ['2:0', '1:1', '0:2'].includes(evidenceComposition),
-      `${profile.id}: evidence must be 2 experiences, 1 experience + 1 project, or 2 projects`
-    );
-    const expectedComposition = {
-      '2:0': 'two-experience',
-      '1:1': 'experience-project',
-      '0:2': 'two-projects'
-    }[evidenceComposition];
-    assert(profile.composition === expectedComposition, `${profile.id}: composition metadata does not match its sections`);
+    assert(profile.experience.length + profile.projects.length >= 2, `${profile.id}: curated evidence must include at least two sections`);
+    assert(profile.experience.length <= effectiveLimits.experience, `${profile.id}: too many experience entries`);
+    assert(profile.projects.length <= effectiveLimits.projects, `${profile.id}: too many project entries`);
+    const bulletCount = profile.experience.reduce((sum, entry) => sum + entry.highlights.length, 0)
+      + profile.projects.reduce((sum, entry) => sum + entry.highlights.length, 0);
+    assert(bulletCount >= 4, `${profile.id}: curated evidence must include at least four bullets`);
+    const allowedCompositions = new Set([
+      'two-experience',
+      'experience-project',
+      'experience-project-rich',
+      'two-projects',
+      'curated'
+    ]);
+    assert(allowedCompositions.has(profile.composition), `${profile.id}: composition metadata is invalid`);
   }
   assert(Array.isArray(profile.education) && profile.education.length > 0, `${profile.id}: education is required`);
   assert(profile.education.length === resume.education.length, `${profile.id}: every source education entry must be compiled`);
@@ -88,7 +92,8 @@ for (const profile of profiles) {
     assert(entry.url === (source.url || '') && entry.location === (source.location || ''), `${profile.id}: education link metadata drifted from source`);
     assert(entry.studyType === source.studyType && entry.area === source.area, `${profile.id}: education degree content drifted from source`);
     assert(entry.date === expectedEducationDate(source), `${profile.id}: education date drifted from source`);
-    assert(entry.score === (source.score || ''), `${profile.id}: education score drifted from source`);
+    const expectedScore = [source.score, source.academicStanding].filter(Boolean).join(' | ') || '';
+    assert(entry.score === expectedScore, `${profile.id}: education score drifted from source`);
     assert(entry.honors.every(honor => (source.highlights || []).some(value => value.replace(/\.$/, '') === honor)), `${profile.id}: education honors drifted from source`);
     assert(entry.honors.length <= effectiveLimits.educationHighlights, `${profile.id}: too many education highlights`);
     assert(entry.courses.every(course => sourceCourseNames.has(course)), `${profile.id}: compiled coursework is not present in source`);
@@ -96,9 +101,11 @@ for (const profile of profiles) {
   });
   assert(profile.additional && Array.isArray(profile.additional.skills), `${profile.id}: skills must be an array`);
   assert(Array.isArray(profile.additional.skillMap), `${profile.id}: categorized skill map must be an array`);
-  const expectedTechnicalQualifications = (resume.skills || []).some(skill => (
-    Array.isArray(skill.variants) && skill.variants.includes(profile.id)
-  ));
+  const expectedTechnicalQualifications = variantsById.get(profile.id)?.content?.skills?.length
+    ? true
+    : (resume.skills || []).some(skill => (
+      Array.isArray(skill.variants) && skill.variants.includes(profile.id)
+    ));
   assert(profile.additional.enabled === expectedTechnicalQualifications, `${profile.id}: technical-qualification visibility drifted from source tags`);
   assert(
     profile.additional.skills.join('\0') === profile.additional.skillMap.flatMap(group => group.keywords).join('\0'),
@@ -121,7 +128,7 @@ for (const profile of profiles) {
     assert(profile.experience.every((entry, index) => entry.highlights.length === resume.work[index].highlights.length), `${profile.id}: master CV must retain every work highlight`);
     assert(profile.projects.every((entry, index) => entry.highlights.length === resume.projects[index].highlights.length), `${profile.id}: master CV must retain every project highlight`);
   } else {
-    assert(profile.experience.length <= 2, `${profile.id}: targeted resumes may not contain more than two roles`);
+    assert(profile.experience.length <= effectiveLimits.experience, `${profile.id}: targeted resumes exceed the configured experience limit`);
     assert(profile.experience.every(entry => entry.highlights.length <= effectiveLimits.experienceHighlights), `${profile.id}: experience entries exceed the configured bullet limit`);
     assert(profile.projects.every(entry => entry.highlights.length <= effectiveLimits.projectHighlights), `${profile.id}: project entries exceed the configured bullet limit`);
   }

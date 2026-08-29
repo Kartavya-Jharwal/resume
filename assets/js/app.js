@@ -14,19 +14,33 @@ var P = window.PROFILES || [];
 /* =================================================================
    ZUSTAND STATE MANAGEMENT
    ================================================================= */
+const ZOOM_MIN = 0.85;
+const ZOOM_MAX = 2.5;
 const useStore = createStore((set) => ({
   profileId: null,
   isRedacted: false,
+  highlightLinks: false,
+  reduceMotion: false,
   zoomLevel: 1,
   setProfile: (id) => set({ profileId: id }),
-  setZoom: (z) => set({ zoomLevel: Math.min(Math.max(z, 0.85), 2.5) }),
-  toggleRedacted: () => set((state) => ({ isRedacted: !state.isRedacted }))
+  setZoom: (z) => set({ zoomLevel: Math.min(Math.max(z, ZOOM_MIN), ZOOM_MAX) }),
+  toggleRedacted: () => set((state) => ({ isRedacted: !state.isRedacted })),
+  toggleHighlightLinks: () => set((state) => ({ highlightLinks: !state.highlightLinks })),
+  toggleReduceMotion: () => set((state) => ({ reduceMotion: !state.reduceMotion }))
 }));
 
 useStore.subscribe((state, prevState) => {
   // Handle Redact
   if (state.isRedacted !== prevState.isRedacted) {
     applyRedactionState(state.isRedacted);
+  }
+
+  if (state.highlightLinks !== prevState.highlightLinks) {
+    applyHighlightLinks(state.highlightLinks);
+  }
+
+  if (state.reduceMotion !== prevState.reduceMotion) {
+    applyReduceMotionPreference(state.reduceMotion);
   }
 
   // Handle Zoom
@@ -84,13 +98,123 @@ var A4_RUNTIME_KEY = '__RESUME_A4_RUNTIME__';
 var BUILD_FIT_MODE = new URLSearchParams(location.search).get('_fit') === '1';
 var reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 var activeProfileTransition = null;
+var toastTimer = null;
+
+function showToast(message) {
+  var host = document.getElementById('toastHost');
+  if (!host) return;
+  var toast = host.querySelector('.site-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'site-toast';
+    toast.setAttribute('role', 'status');
+    host.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() {
+    toast.classList.remove('on');
+  }, 4000);
+}
+
+function pdfExists(href) {
+  return fetch(href, { method: 'HEAD', cache: 'no-store' })
+    .then(function(response) {
+      if (response.ok) return true;
+      if (response.status === 405) {
+        return fetch(href, { method: 'GET', headers: { Range: 'bytes=0-0' }, cache: 'no-store' })
+          .then(function(fallback) { return fallback.ok; });
+      }
+      return false;
+    })
+    .catch(function() { return false; });
+}
+
+function triggerDownload(link) {
+  var href = link.getAttribute('href');
+  var filename = link.getAttribute('download');
+  if (!href) return;
+  var temp = document.createElement('a');
+  temp.href = href;
+  if (filename) temp.setAttribute('download', filename);
+  temp.rel = 'noopener';
+  document.body.appendChild(temp);
+  temp.click();
+  temp.remove();
+}
+
+function handleDownloadClick(event) {
+  var link = event.currentTarget;
+  var href = link.getAttribute('href');
+  if (!href) return;
+  event.preventDefault();
+  pdfExists(href).then(function(ok) {
+    if (!ok) {
+      showToast('PDF not available');
+      return;
+    }
+    triggerDownload(link);
+  });
+}
+
+function bindDownloadControls() {
+  document.querySelectorAll('[data-download-link]').forEach(function(link) {
+    link.onclick = handleDownloadClick;
+  });
+}
 
 function canAnimate() {
-  return !BUILD_FIT_MODE && !reducedMotionQuery.matches;
+  return !BUILD_FIT_MODE && !reducedMotionQuery.matches && !useStore.getState().reduceMotion;
+}
+
+function syncMotionPreference() {
+  document.documentElement.dataset.motion = canAnimate() ? 'enhanced' : 'reduced';
 }
 
 function isMobileLayout() {
   return window.matchMedia('(max-width: 1023px)').matches;
+}
+
+var SPOTIFY_COMPACT_HEIGHT = 80;
+var lastSpotifyWidths = typeof WeakMap === 'function' ? new WeakMap() : null;
+var spotifyShellObserver = null;
+
+function compactSpotifyHeight() {
+  return SPOTIFY_COMPACT_HEIGHT;
+}
+
+function syncSpotifyEmbeds(forceReload) {
+  var height = String(compactSpotifyHeight());
+  document.documentElement.style.setProperty('--spotify-embed-height', height + 'px');
+
+  document.querySelectorAll('.spotify-embed-shell').forEach(function(shell) {
+    var width = Math.max(1, Math.round(shell.clientWidth || 0));
+    shell.setAttribute('data-embed-mode', 'compact');
+    shell.style.setProperty('--spotify-embed-height', height + 'px');
+    var iframe = shell.querySelector('.spotify-embed');
+    if (!iframe) return;
+
+    var prevWidth = lastSpotifyWidths ? (lastSpotifyWidths.get(iframe) || 0) : 0;
+    var widthChanged = width > 1 && Math.abs(width - prevWidth) >= 12;
+    if (lastSpotifyWidths) lastSpotifyWidths.set(iframe, width);
+
+    iframe.setAttribute('width', String(width));
+    syncSpotifyIframe(iframe, height, forceReload || widthChanged);
+  });
+}
+
+function syncSpotifyIframe(iframe, height, shouldReload) {
+  var needsHeightUpdate = iframe.getAttribute('height') !== height;
+  if (!needsHeightUpdate && !shouldReload) return;
+
+  iframe.setAttribute('height', height);
+  if (!shouldReload) return;
+
+  var src = iframe.getAttribute('src');
+  if (!src) return;
+  iframe.setAttribute('src', '');
+  iframe.setAttribute('src', src);
 }
 
 function byId(id) {
@@ -198,23 +322,23 @@ function applyDesktopSheetScale() {
   var zoomLevel = isMobileLayout() ? 1 : storedZoomLevel;
   var appliedScale = Math.max(fitScale * zoomLevel, 0.25);
 
-  /* Size the wrap to the visual (post-scale) footprint so flexbox centres it correctly */
-  els.wrap.style.width = Math.round(naturalWidth * appliedScale) + 'px';
-  els.wrap.style.height = Math.round(naturalHeight * appliedScale) + 'px';
+  /* Floor so rounding cannot make the fitted page 1px taller/wider than the stage. */
+  els.wrap.style.width = Math.max(1, Math.floor(naturalWidth * appliedScale)) + 'px';
+  els.wrap.style.height = Math.max(1, Math.floor(naturalHeight * appliedScale)) + 'px';
   els.wrap.style.maxWidth = '';
   els.wrap.style.maxHeight = '';
 
-  /* Scale from top-left so wrap clip stays perfectly aligned */
+  /* Scale only the A4 sheet — shell chrome stays at 1:1 */
+  els.wrap.style.transform = 'none';
   els.sheet.style.transformOrigin = 'top left';
   els.sheet.style.transform = 'scale(' + appliedScale + ')';
   els.stage.classList.toggle('is-zoomed', zoomLevel > 1.001);
 
-  var zoomValue = document.getElementById('zoomValue');
-  if (zoomValue) zoomValue.textContent = Math.round(storedZoomLevel * 100) + '%';
   var zoomInButton = document.getElementById('btnZoomIn');
   var zoomOutButton = document.getElementById('btnZoomOut');
-  if (zoomInButton) zoomInButton.disabled = storedZoomLevel >= 2.5;
-  if (zoomOutButton) zoomOutButton.disabled = storedZoomLevel <= 0.85;
+  if (zoomInButton) zoomInButton.disabled = storedZoomLevel >= ZOOM_MAX;
+  if (zoomOutButton) zoomOutButton.disabled = storedZoomLevel <= ZOOM_MIN;
+  syncZoomInput();
 
   requestAnimationFrame(function() {
     if (zoomLevel > 1.001) {
@@ -234,16 +358,62 @@ function zoomReset() {
   useStore.getState().setZoom(1);
 }
 
+function zoomFit() {
+  zoomReset();
+  var stage = getStageEls().stage;
+  if (!stage) return;
+  stage.scrollLeft = 0;
+  stage.scrollTop = 0;
+}
+
+function syncZoomInput() {
+  var input = document.getElementById('zoomInput');
+  if (!input || document.activeElement === input) return;
+  input.value = String(Math.round(useStore.getState().zoomLevel * 100));
+}
+
+function commitZoomInput() {
+  var input = document.getElementById('zoomInput');
+  if (!input) return;
+  var parsed = parseInt(String(input.value).replace(/[^\d]/g, ''), 10);
+  if (!parsed) {
+    syncZoomInput();
+    return;
+  }
+  useStore.getState().setZoom(parsed / 100);
+  syncZoomInput();
+}
+
+function syncPressedButtons(selector, pressed) {
+  document.querySelectorAll(selector).forEach(function(button) {
+    button.setAttribute('aria-pressed', String(pressed));
+    var state = button.querySelector('.tool-toggle-state, .mobile-action-state');
+    if (state) state.textContent = pressed ? 'On' : 'Off';
+  });
+}
+
+function applyHighlightLinks(on) {
+  document.body.classList.toggle('highlight-links', on);
+  syncPressedButtons('[data-highlight-links]', on);
+}
+
+function applyReduceMotionPreference(on) {
+  document.body.classList.toggle('reduce-motion', on);
+  syncPressedButtons('[data-reduce-motion]', on);
+  syncMotionPreference();
+}
+
 function applyRedactionState(isRedacted) {
   document.body.classList.toggle('redact-mode', isRedacted);
   document.querySelectorAll('[data-redact-control]').forEach(function(redactButton) {
     redactButton.setAttribute('aria-pressed', String(isRedacted));
-    redactButton.setAttribute('aria-label', isRedacted ? 'Show contact details' : 'Hide contact details');
+    redactButton.setAttribute('aria-label', isRedacted
+      ? 'Show contact details, companies, and schools'
+      : 'Censor contact details, companies, and schools');
   });
-  var mobileState = document.querySelector('#btnRedactMobile .mobile-action-state');
-  if (mobileState) mobileState.textContent = isRedacted ? 'On' : 'Off';
+  syncPressedButtons('[data-redact-control]', isRedacted);
   document.querySelectorAll('.sensitive').forEach(function(item) {
-    if (isRedacted) item.setAttribute('aria-label', 'Contact detail hidden');
+    if (isRedacted) item.setAttribute('aria-label', 'Redacted');
     else item.removeAttribute('aria-label');
     item.querySelectorAll('a').forEach(function(link) {
       if (isRedacted) {
@@ -300,6 +470,80 @@ function ensureElement(parent, selector, tagName, className) {
   if (className) el.className = className;
   parent.appendChild(el);
   return el;
+}
+
+function syncTag(parent, selector, tagName, className) {
+  var el = parent.querySelector(selector);
+  if (el && el.tagName.toLowerCase() === tagName) return el;
+  var next = document.createElement(tagName);
+  if (className) next.className = className;
+  if (el) {
+    while (el.firstChild) next.appendChild(el.firstChild);
+    el.replaceWith(next);
+  } else {
+    parent.insertBefore(next, parent.firstChild);
+  }
+  return next;
+}
+
+function focusableIn(root) {
+  if (!root) return [];
+  return Array.from(root.querySelectorAll(
+    'button:not([disabled]), a[href], input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  )).filter(function(element) {
+    if (element.hidden || element.getAttribute('aria-hidden') === 'true') return false;
+    if (element.closest('[hidden]')) return false;
+    return element.getClientRects().length > 0;
+  });
+}
+
+function trapFocus(event, roots) {
+  if (event.key !== 'Tab') return;
+  var focusable = [];
+  roots.forEach(function(root) {
+    focusable = focusable.concat(focusableIn(root));
+  });
+  if (!focusable.length) return;
+  var first = focusable[0];
+  var last = focusable[focusable.length - 1];
+  var active = document.activeElement;
+  if (event.shiftKey && (active === first || focusable.indexOf(active) === -1)) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && (active === last || focusable.indexOf(active) === -1)) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+function isPopoverOpen() {
+  var pop = document.getElementById('popover');
+  return Boolean(pop && pop.classList.contains('on'));
+}
+
+function setResumeReady(ready) {
+  document.documentElement.dataset.resumeReady = ready ? 'true' : 'false';
+  var loading = document.querySelector('.resume-loading');
+  if (!loading) return;
+  loading.hidden = ready;
+  loading.setAttribute('aria-hidden', String(ready));
+}
+
+function setStageInert(inert) {
+  var wrap = document.getElementById('wrap');
+  if (wrap) wrap.inert = inert;
+  document.querySelectorAll('.resume-loading').forEach(function(el) {
+    el.inert = inert;
+  });
+}
+
+function revealMobileDocument() {
+  if (!isMobileLayout() || BUILD_FIT_MODE) return;
+  setMobileMenu(false, false);
+  var wrap = document.getElementById('wrap');
+  if (!wrap) return;
+  wrap.setAttribute('tabindex', '-1');
+  wrap.focus({ preventScroll: true });
 }
 
 function syncChildren(parent, items, keyFn, createFn, updateFn) {
@@ -372,7 +616,7 @@ function renderMxField(container, config) {
   control.type = 'button';
   control.dataset.k = config.key;
   control.setAttribute('aria-labelledby', config.labelId);
-  control.setAttribute('aria-haspopup', 'listbox');
+  control.setAttribute('aria-haspopup', 'dialog');
   control.setAttribute('aria-controls', 'popover');
   control.setAttribute('aria-expanded', 'false');
 
@@ -399,7 +643,7 @@ function renderContact(p) {
 
   var c = p.contact || {};
   var parts = [];
-  if (c.location) parts.push({ key: 'location', type: 'text', text: c.location });
+  if (c.location) parts.push({ key: 'location', type: 'text', text: c.location, sensitive: true });
   if (c.phone) parts.push({ key: 'phone', type: 'link', screenText: c.phone, printText: c.phone, href: 'tel:' + c.phone.replace(/[^+\d]/g, ''), sensitive: true });
   if (c.email) parts.push({ key: 'email', type: 'link', screenText: c.email, printText: c.email, href: 'mailto:' + c.email, sensitive: true });
   if (c.url) parts.push({ key: 'url', type: 'link', screenText: 'Portfolio', printText: c.url, href: c.url, outbound: true });
@@ -499,7 +743,9 @@ function renderExperience(p) {
     },
     function(article, e, idx) {
       article.dataset.idx = idx;
-      setText(article.querySelector('.r-co'), e.company);
+      var company = article.querySelector('.r-co');
+      company.classList.add('sensitive');
+      setText(company, e.company);
       setText(article.querySelector('.r-date'), e.date);
       setText(article.querySelector('.r-role'), e.role);
 
@@ -589,7 +835,7 @@ function renderEducation(p) {
       article.innerHTML = [
         '<div class="edu-school-row">',
           '<div class="edu-school-main">',
-            '<a class="edu-institution"></a>',
+            '<span class="edu-institution"></span>',
             '<span class="edu-location-separator" aria-hidden="true"> - </span>',
             '<span class="edu-location"></span>',
           '</div>',
@@ -608,12 +854,16 @@ function renderEducation(p) {
     },
     function(article, e, idx) {
       article.dataset.idx = idx;
-      var institution = article.querySelector('.edu-institution');
+      var main = article.querySelector('.edu-school-main');
+      var institution = syncTag(main, ':scope > .edu-institution', e.url ? 'a' : 'span', 'edu-institution');
+      institution.classList.add('sensitive');
       setText(institution, e.institution);
-      syncAttr(institution, 'href', e.url || null);
-      syncAttr(institution, 'target', e.url ? '_blank' : null);
-      syncAttr(institution, 'rel', e.url ? 'noopener noreferrer' : null);
-      syncAttr(institution, 'aria-label', e.url ? 'Open ' + e.institution + ' website in a new tab' : null);
+      if (e.url) {
+        syncAttr(institution, 'href', e.url);
+        syncAttr(institution, 'target', '_blank');
+        syncAttr(institution, 'rel', 'noopener noreferrer');
+        syncAttr(institution, 'aria-label', 'Open ' + e.institution + ' website in a new tab');
+      }
 
       var location = article.querySelector('.edu-location');
       var locationSeparator = article.querySelector('.edu-location-separator');
@@ -723,6 +973,7 @@ function selectMatrixOption(key, value) {
     for (var j = 0; j < P.length; j++) {
       if (roleFamily(P[j]) === value && P[j].industry === nextIndustry) {
         sel(P[j].id);
+        revealMobileDocument();
         return;
       }
     }
@@ -732,6 +983,7 @@ function selectMatrixOption(key, value) {
   for (var k = 0; k < P.length; k++) {
     if (roleFamily(P[k]) === roleFamily(cur) && P[k].industry === value) {
       sel(P[k].id);
+      revealMobileDocument();
       return;
     }
   }
@@ -744,6 +996,7 @@ function closePop(returnFocus) {
   var trigger = activePopoverTrigger;
 
   pop.classList.remove('on');
+  pop.setAttribute('aria-hidden', 'true');
   if (backdrop) backdrop.classList.remove('on');
   document.body.classList.remove('popover-open');
   if (trigger) trigger.setAttribute('aria-expanded', 'false');
@@ -778,8 +1031,10 @@ function showPop(e, opts, key) {
   var searchLabel = key === 'role' ? 'Search roles' : 'Search contexts';
   pop.replaceChildren();
   pop.dataset.kind = key;
-  pop.removeAttribute('role');
+  pop.setAttribute('role', 'dialog');
+  pop.setAttribute('aria-modal', 'true');
   pop.setAttribute('aria-labelledby', 'popoverTitle');
+  pop.setAttribute('aria-hidden', 'false');
   pop.removeAttribute('aria-label');
 
   var head = document.createElement('div');
@@ -920,7 +1175,9 @@ function showPop(e, opts, key) {
     if (event.key === 'Escape') {
       event.preventDefault();
       closePop(true);
+      return;
     }
+    trapFocus(event, [pop]);
   };
   setTimeout(function() {
     document.addEventListener('pointerdown', pop._outsideHandler, true);
@@ -941,11 +1198,12 @@ function setMobileMenu(open, restoreFocus) {
     trigger.setAttribute('aria-expanded', 'true');
     trigger.setAttribute('aria-label', 'Close résumé controls');
     document.body.classList.add('mobile-menu-open');
+    setStageInert(true);
     void menu.offsetWidth;
     menu.classList.add('on');
     scrim.classList.add('on');
     if (canAnimate()) {
-      motionAnimate(Array.from(menu.querySelectorAll('.mobile-menu-kicker, .mobile-menu-head h2, .mobile-matrix .field, .mobile-menu-copy, .mobile-action')), {
+      motionAnimate(Array.from(menu.querySelectorAll('.mobile-menu-head h2, .mobile-matrix .field, .mobile-menu-copy, .listening-panel--mobile .listening-title, .listening-panel--mobile .listening-card, .mobile-action')), {
         opacity: [0, 1],
         x: [12, 0]
       }, {
@@ -956,24 +1214,13 @@ function setMobileMenu(open, restoreFocus) {
     }
 
     menu._keyHandler = function(event) {
+      if (isPopoverOpen()) return;
       if (event.key === 'Escape') {
         event.preventDefault();
         setMobileMenu(false);
         return;
       }
-      if (event.key !== 'Tab') return;
-      var focusable = Array.from(menu.querySelectorAll('button:not([disabled]), a[href], input:not([disabled])'))
-        .filter(function(element) { return !element.hidden && element.offsetParent !== null; });
-      if (!focusable.length) return;
-      var first = focusable[0];
-      var last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
+      trapFocus(event, [menu, trigger]);
     };
     document.addEventListener('keydown', menu._keyHandler);
     setTimeout(function() {
@@ -989,6 +1236,7 @@ function setMobileMenu(open, restoreFocus) {
   trigger.setAttribute('aria-expanded', 'false');
   trigger.setAttribute('aria-label', 'Open résumé controls');
   document.body.classList.remove('mobile-menu-open');
+  setStageInert(false);
   if (menu._keyHandler) document.removeEventListener('keydown', menu._keyHandler);
   menu._keyHandler = null;
   setTimeout(function() { menu.setAttribute('aria-hidden', 'true'); }, 240);
@@ -1001,8 +1249,11 @@ function setMobileMenu(open, restoreFocus) {
 
 function selectRandomProfile() {
   if (!P.length) return;
-  var randomProfile = P[Math.floor(Math.random() * P.length)];
+  var currentId = cur && cur.id;
+  var pool = P.length > 1 ? P.filter(function(profile) { return profile.id !== currentId; }) : P;
+  var randomProfile = pool[Math.floor(Math.random() * pool.length)];
   useStore.getState().setProfile(randomProfile.id);
+  revealMobileDocument();
 }
 
 function scheduleFinalizeLayout() {
@@ -1030,12 +1281,11 @@ function measureA4Layout() {
   });
   var actualContentBottom = renderedSections.reduce(function(bottom, child) {
     /*
-     * offsetTop is layout geometry and deliberately excludes the 6px entrance
-     * transform. getBoundingClientRect().bottom includes that animation, which
-     * made a fitted document report a false overflow while transitions ran
-     * (or indefinitely in a throttled background tab).
+     * Use layout geometry only. getBoundingClientRect() includes parent scale
+     * and leftover Flip/entrance transforms, which under-reports height while
+     * the sheet is scaled and over-reports it while children are mid-transition.
      */
-    return Math.max(bottom, child.offsetTop + child.getBoundingClientRect().height);
+    return Math.max(bottom, child.offsetTop + child.offsetHeight);
   }, 0);
   var sheetOverflow = sheet.scrollHeight - sheet.clientHeight;
   var marginOverflow = actualContentBottom - contentBoundary;
@@ -1047,7 +1297,7 @@ function measureA4Layout() {
 
   sheet.querySelectorAll('.r-co').forEach(function(title) {
     var lineHeight = parseFloat(getComputedStyle(title).lineHeight) || 1;
-    var lines = Math.ceil(title.getBoundingClientRect().height / lineHeight);
+    var lines = Math.ceil(title.offsetHeight / lineHeight);
     if (lines > 2) titleOverflows.push({ text: title.textContent.trim(), lines: lines });
   });
 
@@ -1055,7 +1305,7 @@ function measureA4Layout() {
     var style = getComputedStyle(role);
     var fontSize = parseFloat(style.fontSize) || 0;
     var lineHeight = parseFloat(style.lineHeight) || 0;
-    var lines = Math.ceil(role.getBoundingClientRect().height / Math.max(1, lineHeight));
+    var lines = Math.ceil(role.offsetHeight / Math.max(1, lineHeight));
     if (Math.abs(fontSize - expectedRoleFontPx) > 0.2 ||
         Math.abs(lineHeight - expectedLeadingPx) > 0.2 ||
         lines > 2) {
@@ -1241,23 +1491,19 @@ async function fitProfileForBuild(profileId) {
 function updateDownloadLink(p) {
   var links = document.querySelectorAll('[data-download-link]');
   var status = document.getElementById('pdfStatus');
-  if (status) status.hidden = p.pdfAvailable;
+  if (status) status.hidden = true;
   links.forEach(function(dl) {
-    dl.hidden = !p.pdfAvailable;
-    if (!p.pdfAvailable) {
-      dl.removeAttribute('href');
-      dl.removeAttribute('download');
-      return;
-    }
+    dl.hidden = false;
     dl.setAttribute('href', pdfHref(p));
     dl.setAttribute('download', pdfName(p));
   });
 }
 
 function renderProfileMeta(p) {
-  setText(document.getElementById('activeProfileRole'), roleFamily(p));
-  setText(document.getElementById('activeProfileContext'), p.industry);
-  setText(document.getElementById('stageProfileLabel'), roleFamily(p) + ' | ' + p.industry);
+  var label = roleFamily(p) + ' | ' + p.industry;
+  setText(document.getElementById('mobileProfileLabel'), label);
+  var live = document.getElementById('profileLive');
+  if (live) live.textContent = label;
 }
 
 function renderProfile(p) {
@@ -1303,7 +1549,10 @@ function renderProfileWithTransition(p) {
       scale: false,
       simple: true,
       clearProps: 'transform',
-      onComplete: function() { activeProfileTransition = null; }
+      onComplete: function() {
+        activeProfileTransition = null;
+        scheduleFinalizeLayout();
+      }
     });
   }
 
@@ -1325,19 +1574,18 @@ function sel(id, skipHist) {
 }
 
 function initMotionSystem() {
-  document.documentElement.dataset.motion = canAnimate() ? 'enhanced' : 'reduced';
+  syncMotionPreference();
   if (!canAnimate()) return;
 
   var leftRailItems = Array.from(document.querySelectorAll(
-    '.aside.l .brand-lockup, .aside.l .rail-heading, .aside.l .sec-title, .aside.l .card, .aside.l .microcopy, .aside.l .action-stack, .aside.l .rail-footer'
+    '.aside.l .brand-lockup, .aside.l .rail-heading, .aside.l .card, .aside.l .microcopy, .aside.l .action-stack, .aside.l .rail-footer'
   ));
   var rightRailItems = Array.from(document.querySelectorAll(
-    '.aside.r > .rail-kicker, .aside.r > .profile-signal, .aside.r > .sec-title, .aside.r > .zoom-ctrl, .aside.r > .actions-title, .aside.r > .dl-btn, .aside.r > .download-status, .aside.r > .listening-panel'
+    '.aside.r > .view-tools, .aside.r > .dl-btn, .aside.r > .download-status, .aside.r > .listening-panel'
   ));
 
   motionAnimate(leftRailItems, {
     opacity: [0, 1],
-    x: [-18, 0],
     filter: ['blur(7px)', 'blur(0px)']
   }, {
     duration: 0.62,
@@ -1347,7 +1595,6 @@ function initMotionSystem() {
 
   motionAnimate(rightRailItems, {
     opacity: [0, 1],
-    x: [18, 0],
     filter: ['blur(7px)', 'blur(0px)']
   }, {
     duration: 0.62,
@@ -1357,20 +1604,10 @@ function initMotionSystem() {
 
   motionAnimate('#wrap', {
     opacity: [0, 1],
-    y: [20, 0],
-    scale: [0.985, 1]
+    y: [20, 0]
   }, {
     duration: 0.85,
     delay: 0.12,
-    ease: [0.16, 1, 0.3, 1]
-  });
-
-  motionAnimate('.stage-meta', {
-    opacity: [0, 1],
-    y: [-8, 0]
-  }, {
-    duration: 0.55,
-    delay: 0.28,
     ease: [0.16, 1, 0.3, 1]
   });
 
@@ -1384,6 +1621,80 @@ function initMotionSystem() {
       );
     });
   }
+}
+
+function initSpotifyObserver() {
+  if (BUILD_FIT_MODE || typeof ResizeObserver === 'undefined' || spotifyShellObserver) return;
+  spotifyShellObserver = new ResizeObserver(function() {
+    syncSpotifyEmbeds();
+  });
+  document.querySelectorAll('.spotify-embed-shell').forEach(function(shell) {
+    spotifyShellObserver.observe(shell);
+  });
+}
+
+var pendingLeaveHref = null;
+var leaveReturnFocus = null;
+
+function closeLeaveDialog() {
+  var dialog = document.getElementById('leaveDialog');
+  var scrim = document.getElementById('leaveDialogScrim');
+  if (dialog) {
+    dialog.hidden = true;
+    dialog.setAttribute('aria-hidden', 'true');
+    if (dialog._keyHandler) {
+      document.removeEventListener('keydown', dialog._keyHandler);
+      dialog._keyHandler = null;
+    }
+  }
+  if (scrim) scrim.hidden = true;
+  pendingLeaveHref = null;
+  if (leaveReturnFocus && typeof leaveReturnFocus.focus === 'function') {
+    leaveReturnFocus.focus();
+  }
+  leaveReturnFocus = null;
+}
+
+function openLeaveDialog(href, trigger) {
+  var dialog = document.getElementById('leaveDialog');
+  var scrim = document.getElementById('leaveDialogScrim');
+  var confirmBtn = document.getElementById('leaveDialogConfirm');
+  if (!dialog || !scrim) {
+    window.open(href, '_blank', 'noopener,noreferrer');
+    return;
+  }
+  pendingLeaveHref = href;
+  leaveReturnFocus = trigger || document.activeElement;
+  dialog.hidden = false;
+  scrim.hidden = false;
+  dialog.setAttribute('aria-hidden', 'false');
+  dialog._keyHandler = function(event) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeLeaveDialog();
+      return;
+    }
+    trapFocus(event, [dialog]);
+  };
+  document.addEventListener('keydown', dialog._keyHandler);
+  if (confirmBtn) confirmBtn.focus();
+}
+
+function confirmLeaveSite() {
+  var href = pendingLeaveHref;
+  closeLeaveDialog();
+  if (href) window.open(href, '_blank', 'noopener,noreferrer');
+}
+
+function bindLeaveSiteLinks() {
+  document.querySelectorAll('[data-leave-site]').forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      var href = link.getAttribute('href');
+      if (!href) return;
+      event.preventDefault();
+      openLeaveDialog(href, link);
+    });
+  });
 }
 
 /* =================================================================
@@ -1427,6 +1738,7 @@ function handleStageResize() {
       /* Layout mode flipped - full re-render at the new display scale. */
       lastMobileMode = mobileMode;
       renderProfile(cur);
+      syncSpotifyEmbeds(true);
       return;
     }
 
@@ -1436,10 +1748,12 @@ function handleStageResize() {
     }
 
     lastMobileMode = mobileMode;
+    syncSpotifyEmbeds();
   }, 40);
 }
 
 window.addEventListener('resize', handleStageResize);
+window.addEventListener('orientationchange', handleStageResize);
 window.addEventListener('popstate', function(e) {
   if (e.state && e.state.profileId) {
     useStore.getState().setProfile(e.state.profileId);
@@ -1478,8 +1792,18 @@ if (!P.length) {
    * sets the initial A4 mode and scale.
    */
   applyDesktopSheetScale();
-  document.documentElement.dataset.resumeReady = 'true';
+  setResumeReady(true);
   initMotionSystem();
+  syncSpotifyEmbeds(true);
+  initSpotifyObserver();
+  applyHighlightLinks(useStore.getState().highlightLinks);
+  applyReduceMotionPreference(useStore.getState().reduceMotion);
+  applyRedactionState(useStore.getState().isRedacted);
+  if (typeof reducedMotionQuery.addEventListener === 'function') {
+    reducedMotionQuery.addEventListener('change', syncMotionPreference);
+  } else if (typeof reducedMotionQuery.addListener === 'function') {
+    reducedMotionQuery.addListener(syncMotionPreference);
+  }
 
   if (BUILD_FIT_MODE && new URLSearchParams(location.search).get('_fitAll') === '1') {
     Promise.resolve().then(async function() {
@@ -1516,17 +1840,42 @@ if (!P.length) {
   // Attach control listeners since module hides global scope
   var btnZoomIn = document.getElementById('btnZoomIn');
   var btnZoomOut = document.getElementById('btnZoomOut');
-  var btnZoomReset = document.getElementById('btnZoomReset');
+  var btnZoomFit = document.getElementById('btnZoomFit');
+  var zoomInput = document.getElementById('zoomInput');
   var mobileMenuBtn = document.getElementById('mobileMenuBtn');
   var mobileMenuClose = document.getElementById('mobileMenuClose');
   var mobileMenuScrim = document.getElementById('mobileMenuScrim');
   var popoverBackdrop = document.getElementById('popoverBackdrop');
+  var leaveDialogCancel = document.getElementById('leaveDialogCancel');
+  var leaveDialogConfirm = document.getElementById('leaveDialogConfirm');
+  var leaveDialogScrim = document.getElementById('leaveDialogScrim');
 
   if (btnZoomIn) btnZoomIn.onclick = function() { zoom(0.05); };
   if (btnZoomOut) btnZoomOut.onclick = function() { zoom(-0.05); };
-  if (btnZoomReset) btnZoomReset.onclick = function() { zoomReset(); };
+  if (btnZoomFit) btnZoomFit.onclick = zoomFit;
+  if (zoomInput) {
+    zoomInput.addEventListener('change', commitZoomInput);
+    zoomInput.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        commitZoomInput();
+        zoomInput.blur();
+      }
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        syncZoomInput();
+        zoomInput.blur();
+      }
+    });
+  }
   document.querySelectorAll('[data-redact-control]').forEach(function(button) {
     button.onclick = function() { useStore.getState().toggleRedacted(); };
+  });
+  document.querySelectorAll('[data-highlight-links]').forEach(function(button) {
+    button.onclick = function() { useStore.getState().toggleHighlightLinks(); };
+  });
+  document.querySelectorAll('[data-reduce-motion]').forEach(function(button) {
+    button.onclick = function() { useStore.getState().toggleReduceMotion(); };
   });
   if (mobileMenuBtn) mobileMenuBtn.onclick = function() {
     setMobileMenu(!document.body.classList.contains('mobile-menu-open'));
@@ -1534,4 +1883,9 @@ if (!P.length) {
   if (mobileMenuClose) mobileMenuClose.onclick = function() { setMobileMenu(false); };
   if (mobileMenuScrim) mobileMenuScrim.onclick = function() { setMobileMenu(false); };
   if (popoverBackdrop) popoverBackdrop.onclick = function() { closePop(true); };
+  if (leaveDialogCancel) leaveDialogCancel.onclick = closeLeaveDialog;
+  if (leaveDialogConfirm) leaveDialogConfirm.onclick = confirmLeaveSite;
+  if (leaveDialogScrim) leaveDialogScrim.onclick = closeLeaveDialog;
+  bindLeaveSiteLinks();
+  bindDownloadControls();
 }

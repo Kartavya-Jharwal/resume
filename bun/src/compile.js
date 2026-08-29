@@ -10,7 +10,7 @@
  * Output: public/data.js by default
  */
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -83,18 +83,29 @@ const profiles = variants.map(v => {
     .filter(entry => entry && entry.highlights.length)
     .sort((a, b) => (a.featured - b.featured) || Number(b.direct) - Number(a.direct) || (b.score - a.score));
 
-  /*
-   * Every profile uses exactly one of three evidence compositions:
-   *   2 relevant roles, 1 role + 1 project, or 2 projects for niche roles.
-   */
+  const explicitContent = !isMasterCV && v.content ? resolveExplicitContent(v.content, resume, limits) : null;
   const directWorkCount = workCandidates.filter(entry => entry.direct).length;
-  const composition = directWorkCount >= 2
-    ? 'two-experience'
-    : directWorkCount === 1
-      ? 'experience-project'
-      : 'two-projects';
-  const experienceLimit = composition === 'two-experience' ? 2 : composition === 'experience-project' ? 1 : 0;
-  const projectLimit = composition === 'two-projects' ? 2 : composition === 'experience-project' ? 1 : 0;
+  const composition = explicitContent
+    ? describeComposition(explicitContent.experience.length, explicitContent.projects.length)
+    : directWorkCount >= 2
+      ? 'two-experience'
+      : directWorkCount === 1
+        ? 'experience-project'
+        : 'two-projects';
+  const experienceLimit = explicitContent
+    ? explicitContent.experience.length
+    : composition === 'two-experience'
+      ? 2
+      : composition === 'experience-project'
+        ? 1
+        : 0;
+  const projectLimit = explicitContent
+    ? explicitContent.projects.length
+    : composition === 'two-projects'
+      ? 2
+      : composition === 'experience-project'
+        ? 1
+        : 0;
   const work = isMasterCV
     ? (resume.work || []).map(w => ({
         company: w.name,
@@ -102,16 +113,20 @@ const profiles = variants.map(v => {
         date: formatDateRange(w.startDate, w.endDate),
         highlights: (w.highlights || []).map(h => h.text)
       }))
-    : pickPreferredEntries(workCandidates, Math.min(experienceLimit, limitOrInfinity(limits.experience)))
-        .map(({ score, recency, direct, global, featured, ...entry }) => entry);
+    : explicitContent
+      ? explicitContent.experience
+      : pickPreferredEntries(workCandidates, Math.min(experienceLimit, limitOrInfinity(limits.experience)))
+          .map(({ score, recency, direct, global, featured, ...entry }) => entry);
   const projects = isMasterCV
     ? (resume.projects || []).map(p => ({
         name: p.displayName || p.name,
         description: p.description || '',
         highlights: (p.highlights || []).map(h => h.text)
       }))
-    : pickPreferredEntries(projectCandidates, Math.min(projectLimit, limitOrInfinity(limits.projects)))
-        .map(({ score, direct, global, featured, ...entry }) => entry);
+    : explicitContent
+      ? explicitContent.projects
+      : pickPreferredEntries(projectCandidates, Math.min(projectLimit, limitOrInfinity(limits.projects)))
+          .map(({ score, direct, global, featured, ...entry }) => entry);
 
 /* Education (non-optional) - all education entries */
   const education = (resume.education || []).map(e => ({
@@ -119,7 +134,7 @@ const profiles = variants.map(v => {
     school: e.school || '',
     url: e.url || '',
     location: e.location || '',
-    area: (e.majors || []).join(' and ') || e.area,
+    area: e.area || (e.majors || []).join(' and '),
     studyType: e.studyType,
     date: e.expected ? `Expected ${formatDate(e.endDate)}` : formatDateRange(e.startDate, e.endDate),
     score: [e.score, e.academicStanding].filter(Boolean).join(' | '),
@@ -130,17 +145,22 @@ const profiles = variants.map(v => {
   }));
 
   /* Skills filtered by variant */
+  const explicitSkillIds = explicitContent?.skillIds || null;
   const skillBuckets = partitionEntriesByVariant(
     (resume.skills || []).map(s => ({
-      direct: hasExactVariant(s.variants, vid),
-      global: isGlobalVariant(s.variants),
+      direct: explicitSkillIds
+        ? explicitSkillIds.includes(s.id)
+        : hasExactVariant(s.variants, vid),
+      global: !explicitSkillIds && isGlobalVariant(s.variants),
       name: s.name,
       label: s.label || s.name,
       level: s.level || '',
       keywords: s.keywords || []
     }))
   );
-  const hasTechnicalQualifications = skillBuckets.direct.length > 0;
+  const hasTechnicalQualifications = explicitSkillIds
+    ? explicitSkillIds.length > 0
+    : skillBuckets.direct.length > 0;
   const availableSkillGroups = hasTechnicalQualifications ? skillBuckets.direct : [];
   const availableSkills = unique(availableSkillGroups.flatMap(s => s.keywords || []));
   const preferredSkills = vid === 'all' && Array.isArray(universal.skills) ? universal.skills : availableSkills;
@@ -167,16 +187,23 @@ const profiles = variants.map(v => {
     .slice(0, limitOrInfinity(limits.certifications));
 
   /* Leadership / activities */
+  const explicitLeadershipIds = explicitContent?.leadershipIds || null;
   const leadershipBuckets = partitionEntriesByVariant(
     (resume.volunteer || []).map(item => ({
-      direct: hasExactVariant(item.variants, vid),
-      global: isGlobalVariant(item.variants),
+      direct: explicitLeadershipIds
+        ? explicitLeadershipIds.includes(item.id)
+        : hasExactVariant(item.variants, vid),
+      global: !explicitLeadershipIds && isGlobalVariant(item.variants),
       organization: item.organization,
       position: item.position,
       summary: item.summary || ''
     }))
   );
-  const leadership = (leadershipBuckets.direct.length ? leadershipBuckets.direct : leadershipBuckets.global)
+  const leadership = (explicitLeadershipIds
+    ? leadershipBuckets.direct
+    : leadershipBuckets.direct.length
+      ? leadershipBuckets.direct
+      : leadershipBuckets.global)
     .map(item => `${item.organization}${item.position ? `, ${item.position}` : ''}: ${item.summary || ''}`.trim())
     .filter(Boolean)
     .slice(0, limitOrInfinity(limits.leadership));
@@ -223,9 +250,7 @@ const profiles = variants.map(v => {
 
     /* PDF */
     pdfFilename: v.pdfFilename || '',
-    pdfAvailable: process.argv.includes('--pdf-ready')
-      ? Boolean(v.pdfFilename)
-      : Boolean(v.pdfFilename && existsSync(resolve(ROOT, 'public/resumes', v.pdfFilename)))
+    pdfAvailable: process.argv.includes('--pdf-ready') ? Boolean(v.pdfFilename) : false
   };
 });
 
@@ -389,4 +414,57 @@ function toComparableDate(value) {
   if (!value) return Number.MAX_SAFE_INTEGER;
   const ts = Date.parse(value);
   return Number.isNaN(ts) ? 0 : ts;
+}
+
+function describeComposition(experienceCount, projectCount) {
+  if (experienceCount >= 2 && projectCount === 0) return 'two-experience';
+  if (experienceCount >= 2 && projectCount >= 1) return 'experience-project-rich';
+  if (experienceCount === 1 && projectCount >= 1) return 'experience-project';
+  if (experienceCount === 0 && projectCount >= 2) return 'two-projects';
+  return 'curated';
+}
+
+function resolveExplicitContent(content, resumeData, contentLimits) {
+  const workById = new Map((resumeData.work || []).map(entry => [entry.id, entry]));
+  const projectById = new Map((resumeData.projects || []).map(entry => [entry.id, entry]));
+
+  const experience = (content.experience || []).map(selection => {
+    const work = workById.get(selection.id);
+    if (!work) throw new Error(`Unknown work id "${selection.id}" in variant content plan`);
+    const highlightById = new Map((work.highlights || []).map(highlight => [highlight.id, highlight.text]));
+    const highlights = (selection.highlights || [])
+      .map(highlightId => highlightById.get(highlightId))
+      .filter(Boolean)
+      .slice(0, limitOrInfinity(contentLimits.experienceHighlights));
+    if (!highlights.length) throw new Error(`Work "${selection.id}" has no resolved highlights`);
+    return {
+      company: work.name,
+      role: work.position,
+      date: formatDateRange(work.startDate, work.endDate),
+      highlights
+    };
+  });
+
+  const projects = (content.projects || []).map(selection => {
+    const project = projectById.get(selection.id);
+    if (!project) throw new Error(`Unknown project id "${selection.id}" in variant content plan`);
+    const highlightById = new Map((project.highlights || []).map(highlight => [highlight.id, highlight.text]));
+    const highlights = (selection.highlights || [])
+      .map(highlightId => highlightById.get(highlightId))
+      .filter(Boolean)
+      .slice(0, limitOrInfinity(contentLimits.projectHighlights));
+    if (!highlights.length) throw new Error(`Project "${selection.id}" has no resolved highlights`);
+    return {
+      name: project.displayName || project.name,
+      description: contentLimits.projectDescriptions === false ? '' : (project.description || ''),
+      highlights
+    };
+  });
+
+  return {
+    experience,
+    projects,
+    skillIds: content.skills || [],
+    leadershipIds: content.leadership || []
+  };
 }

@@ -19,11 +19,16 @@
     "build:master-cv": "bun run bun/src/build-master-cv.js",
     "metrics": "bun run bun/src/font-metrics.js",
     "validate": "bun run bun/src/validate.js",
+    "content:ids": "bun run bun/src/assign-content-ids.js",
+    "content:plan": "bun run bun/src/plan-variant-content.js",
+    "content:audit": "bun run bun/src/export-pillar4-audit.js",
     "test": "bun run build && bun run bun/src/test.js --skip-pdfs",
     "test:pdf": "bun run build:pdf && bun run bun/src/test.js",
     "test:pdf:confirmed": "bun run build:pdf:confirmed && bun run bun/src/test.js",
     "serve": "bun run build && bunx serve dist -l 3000",
     "preview": "bunx serve dist -l 3000",
+    "deploy": "bun run bun/src/deploy.js",
+    "deploy:pdf": "bun run bun/src/deploy.js --pdf",
     "clean": "bun -e \"for(const p of ['dist','.build-cache']){if(p==='dist'||p==='.build-cache')require('node:fs').rmSync(p,{recursive:true,force:true})}\""
   },
   "devDependencies": {
