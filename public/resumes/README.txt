@@ -1,16 +1,10 @@
-Static, pre-compiled ATS-compliant PDF assets live here.
+Variant PDFs are not stored in this folder.
 
-Naming convention (state-driven downloads):
-  Alex_Polymath_Resume_[Role]_[Industry].pdf
+After an explicit PDF build they are written to:
 
-Expected files:
-  Alex_Polymath_Resume_Product_Manager_FinTech.pdf
-  Alex_Polymath_Resume_Systems_Engineer_Web3.pdf
-  Alex_Polymath_Resume_Strategy_Consultant_Healthcare.pdf
-  Alex_Polymath_Resume_Product_Manager_Web3.pdf
-  Alex_Polymath_Resume_Strategy_Consultant_FinTech.pdf
-  Alex_Polymath_Resume_Polymath_Universal.pdf
+  dist/resumes/{pdfFilename}
 
-These are generated during the Bun build pipeline from the JSON schema
-into HTML templates rendered to physically perfect PDFs. Drop the built
-PDFs into this folder before deploying to GitHub Pages.
+Filenames come from data/variants.json. The site build sets pdfAvailable
+from whether each file exists on disk under dist/resumes/.
+
+See public/README.md and PILLARS.md (pillar 3).

@@ -1,0 +1,71 @@
+{
+  "spec": "TYPESETTING.md",
+  "specVersion": "1.5",
+  "units": {
+    "cssPxPerIn": 96,
+    "ptPerIn": 72,
+    "mmPerIn": 25.4
+  },
+  "scale": {
+    "uPt": 14,
+    "lambda": 1.2727272727272727,
+    "r": 1.2,
+    "s0PtInUse": 11,
+    "s1PtInUse": 13,
+    "s2PtInUse": 16
+  },
+  "page": {
+    "format": "A4",
+    "widthMm": 210,
+    "heightMm": 297,
+    "n": 12,
+    "footingTop": 1,
+    "footingBottom": 2
+  },
+  "tracking": {
+    "displayEm": -0.015,
+    "bodyEm": 0,
+    "labelEm": 0.06
+  },
+  "weight": {
+    "regular": 400,
+    "emphasis": 600
+  },
+  "unicode": {
+    "enDash": "\u2013",
+    "apostrophe": "\u2019",
+    "nbsp": "\u00A0",
+    "nnbsp": "\u202F",
+    "bullet": "\u2022",
+    "pipe": "|"
+  },
+  "education": {
+    "detailInsetPt": 0,
+    "afterColonEm": 0.25,
+    "colonHangEm": 0,
+    "separator": "nnbsp-pipe"
+  },
+  "optical": {
+    "hangBulletEm": 0,
+    "eduAfterColonEm": 0,
+    "eduColonHangEm": 0,
+    "ruleColor": "#8c8c8c",
+    "notes": "Additive Chromium corrections. Do not replace u/S0/S1/S2."
+  },
+  "faces": {
+    "text": {
+      "cssFamily": "Source Serif 4 Resume Text",
+      "opsz": 11,
+      "roles": ["s0", "s1"]
+    },
+    "title": {
+      "cssFamily": "Source Serif 4 Resume Title",
+      "opsz": 16,
+      "roles": ["s2"]
+    }
+  },
+  "print": {
+    "grad": 0,
+    "gradEnabled": false
+  }
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /** Validate source data before compiling the public profile payload. */
 
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -54,6 +54,21 @@ function isWebUrl(value) {
 const resume = readJson('data/resume.json');
 const variantsDoc = readJson('data/variants.json');
 const variants = requireArray(variantsDoc.variants, 'data/variants.json#variants');
+const ALLOWED_CATEGORIES = new Set([
+  'Executive Operations & Chief of Staff',
+  'Strategy, Investment & Private Wealth',
+  'Innovation Programs & Events',
+  'AI Engineering',
+  'Product Management',
+  'Product, UX & Experience Design',
+  'Growth, Content & Developer Community',
+  'Data & Decision Intelligence',
+  'Technical Delivery, Infrastructure & Solutions',
+  'Organizational & Systems Design',
+  'Hospitality & Culinary Operations',
+  'Risk, Compliance & Responsible AI',
+  'Legal Operations & Transaction Support'
+]);
 
 requireText(resume.meta?.version, 'resume.meta.version');
 requireText(resume.meta?.lastModified, 'resume.meta.lastModified');
@@ -87,6 +102,10 @@ const ids = variants.map((variant, index) => {
   const path = `variants[${index}]`;
   requireText(variant.id, `${path}.id`);
   requireText(variant.role, `${path}.role`);
+  requireText(variant.category, `${path}.category`);
+  if (!ALLOWED_CATEGORIES.has(variant.category)) {
+    errors.push(`${path}.category "${variant.category}" is not a recognised backend category`);
+  }
   if (variant.family !== undefined) requireText(variant.family, `${path}.family`);
   requireText(variant.industry, `${path}.industry`);
   requireText(variant.description, `${path}.description`);
@@ -100,12 +119,18 @@ const ids = variants.map((variant, index) => {
 
 checkUnique(ids, 'variant ids');
 checkUnique(variants.map(variant => variant.pdfFilename), 'variant PDF filenames');
-checkUnique(variants.map(variant => `${variant.family || variant.role}\0${variant.industry}`), 'selector role/context pairs');
+checkUnique(variants.map(variant => `${variant.role}\0${variant.industry}`), 'selector role/context pairs');
 checkUnique(variants.map(variant => variant.description.trim()), 'variant descriptions');
 const fallbackVariants = variants.filter(variant => variant.fallback === true);
 if (fallbackVariants.length === 0) errors.push('exactly one variant must set fallback: true');
 if (fallbackVariants.length > 1) errors.push('only one variant may set fallback: true');
 const knownIds = new Set(ids);
+
+const variantAliases = variantsDoc.variantAliases || {};
+for (const [alias, target] of Object.entries(variantAliases)) {
+  if (!knownIds.has(target)) errors.push(`variantAliases["${alias}"] points to unknown variant "${target}"`);
+  if (knownIds.has(alias)) errors.push(`variantAliases["${alias}"] collides with an active variant id`);
+}
 
 function checkTags(tags, path) {
   for (const tag of requireArray(tags, path)) {
@@ -262,6 +287,53 @@ for (const [index, variant] of variants.entries()) {
     requireText(leadershipId, `${path}.content.leadership[${leadershipIndex}]`);
     if (!leadershipIds.has(leadershipId)) errors.push(`${path}.content.leadership[${leadershipIndex}] references unknown leadership entry "${leadershipId}"`);
   }
+
+  const menuCogsProject = (content.projects || []).find(entry => entry.id === 'proj-siya-menu-cogs-redesign-and-restaurant-data-platform');
+  const siyaWork = (content.experience || []).find(entry => entry.id === 'work-siya-the-restaurant-srbs-group');
+  if (menuCogsProject && siyaWork?.highlights?.includes('work-siya-the-restaurant-srbs-group-h2')) {
+    errors.push(`${path}.content must not combine Menu COGS project with work-siya h2 summary bullet`);
+  }
+
+  const margadarshakaEntry = (content.experience || []).find(entry => entry.id === 'work-margadarshaka');
+  const margHighlights = margadarshakaEntry?.highlights || [];
+  const margAllowH0H1 = new Set([
+    'forward-deployed-innovator-enterprise-ai',
+    'agentic-systems-architect-autonomous-ai-labs',
+    'core-ai-pipeline-engineer-biotech',
+    'customer-facing-founding-engineer-pre-seed-saas',
+    'ai-governance-ethics-officer-medtech',
+    'autodidact-skunkworks-researcher-corporate-rd-labs',
+    'systematic-organizational-designer-deeptech-skunkworks',
+    'devops-associate-startup-accelerators'
+  ]);
+  if (margHighlights.includes('work-margadarshaka-h0') && margHighlights.includes('work-margadarshaka-h1') && !margAllowH0H1.has(variant.id)) {
+    warnings.push(`${path}.content uses default Margadarshaka h0+h1 pair outside AI-engineering clusters`);
+  }
+
+  const culinaryBucketIds = new Set([
+    'culinary-stagiaire-michelin-fine-dining-kitchens',
+    'back-of-house-logistics-coordinator-high-volume-catering',
+    'gastronomic-systems-operator-culinary-consulting',
+    'front-of-house-reception-associate-hotels-restaurants',
+    'event-hospitality-experience-host-corporate-events-luxury-hospitality'
+  ]);
+  if (culinaryBucketIds.has(variant.id)) {
+    for (const entry of content.experience || []) {
+      if (entry.id === 'work-margadarshaka' || entry.id === 'work-astropatshala') {
+        warnings.push(`${path}.content includes non-hospitality work "${entry.id}" in culinary bucket`);
+      }
+    }
+  }
+}
+
+const LEGAL_CLAIM_RE = /\b(?:legal advice|represented client|attorney|solicitor|advocate)\b/i;
+for (const project of resume.projects || []) {
+  if (!project.id?.includes('legal-documentation')) continue;
+  for (const highlight of project.highlights || []) {
+    if (LEGAL_CLAIM_RE.test(highlight.text || '')) {
+      errors.push(`${project.id} highlight "${highlight.id}" contains regulated legal-practice language`);
+    }
+  }
 }
 
 const universal = resume.custom?.universal || {};
@@ -293,6 +365,45 @@ for (const project of resume.projects || []) {
 for (const field of ['skills', 'certificates', 'volunteer']) for (const entry of resume[field] || []) collect(entry.variants);
 for (const id of ids) {
   if (id !== 'all' && !referencedIds.has(id)) warnings.push(`variant "${id}" has no directly tagged content and will rely on global fallbacks`);
+}
+
+const expectedRevision = `${resume.meta?.version || 'unversioned'} / ${resume.meta?.lastModified || 'unknown'}`;
+const distDataPath = resolve(ROOT, 'dist/public/data.js');
+if (existsSync(distDataPath)) {
+  const payload = readFileSync(distDataPath, 'utf8');
+  if (!payload.includes(`Source: ${expectedRevision}`)) {
+    warnings.push(`dist/public/data.js is stale (expected source revision ${expectedRevision})`);
+  }
+  if (!payload.includes('window.VARIANT_ALIASES')) {
+    warnings.push('dist/public/data.js is missing window.VARIANT_ALIASES');
+  }
+  const profileMatch = payload.match(/window\.PROFILES\s*=\s*(\[[\s\S]+\]);/);
+  const revisionStale = !payload.includes(`Source: ${expectedRevision}`);
+  if (profileMatch) {
+    const compiledProfiles = JSON.parse(profileMatch[1]);
+    if (compiledProfiles.length !== variants.length) {
+      const message = `dist/public/data.js profile count (${compiledProfiles.length}) does not match source variants (${variants.length})`;
+      if (revisionStale) warnings.push(`${message} — run bun run build`);
+      else errors.push(message);
+    }
+    const compiledById = new Map(compiledProfiles.map(profile => [profile.id, profile]));
+    for (const variant of variants) {
+      const profile = compiledById.get(variant.id);
+      if (!profile) {
+        const message = `dist/public/data.js is missing compiled profile "${variant.id}"`;
+        if (revisionStale) warnings.push(message);
+        else errors.push(message);
+        continue;
+      }
+      if (profile.role !== variant.role || profile.industry !== variant.industry || profile.category !== variant.category) {
+        const message = `dist/public/data.js profile "${variant.id}" drifted from source role/category/industry metadata`;
+        if (revisionStale) warnings.push(message);
+        else errors.push(message);
+      }
+    }
+  } else {
+    warnings.push('dist/public/data.js does not expose window.PROFILES for freshness comparison');
+  }
 }
 
 if (warnings.length) warnings.forEach(message => console.warn(`warning: ${message}`));

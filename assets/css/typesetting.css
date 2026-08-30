@@ -1,0 +1,26 @@
+/* Generated from config/typesetting.json + font metrics. Do not hand-edit. */
+:root {
+  --u: 14pt;
+  --micro-gap: 7pt;
+  --s0: 11pt;
+  --s1: 13pt;
+  --s2: 16pt;
+  --margin-x: 17.5mm;
+  --margin-top: 16.5mm;
+  --margin-bottom: 33mm;
+  --date-reserved-width: 105pt;
+  --col-gutter: 7pt;
+  --cap-offset-s2: 5.86pt;
+  --hang-bullet: 0.042em;
+  --font-x-height: 0.475em;
+  --track-display: -0.015em;
+  --track-body: 0em;
+  --track-label: 0.06em;
+  --weight-regular: 400;
+  --weight-emphasis: 600;
+  --rule-color: #8c8c8c;
+  --edu-detail-inset: 0pt;
+  --edu-after-colon: 0.2em;
+  --edu-colon-optical-hang: 0em;
+  --grad-print: 0;
+}

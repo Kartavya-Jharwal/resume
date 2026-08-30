@@ -1,0 +1,113 @@
+{
+  "family": "Source Serif 4",
+  "version": "4.005R",
+  "license": "OFL-1.1",
+  "licenseFile": "OFL-Source-Serif-4.md",
+  "source": {
+    "desktop": "https://github.com/adobe-fonts/source-serif/releases/download/4.005R/source-serif-4.005_Desktop.zip",
+    "woff2": "https://github.com/adobe-fonts/source-serif/releases/download/4.005R/source-serif-4.005_WOFF2.zip",
+    "license": "https://raw.githubusercontent.com/adobe-fonts/source-serif/4.005R/LICENSE.md"
+  },
+  "notes": "Official Adobe release. TTF is canonical for metrics and a future glyph PDF; WOFF2 is the Chromium face. Display optical size is intentionally unused at résumé sizes.",
+  "files": [
+    {
+      "role": "variable-roman-ttf",
+      "filename": "source-serif-4-variable-roman.ttf",
+      "flavor": "truetype",
+      "cssFamily": null,
+      "opsz": "variable",
+      "wght": "variable",
+      "sha256": "14d360ee1b76655da9276628b229e11671bc1f5d1083636144db6677d452cf55",
+      "bytes": 1204208,
+      "sourcePath": "source-serif-4.005_Desktop/VAR/SourceSerif4Variable-Roman.ttf"
+    },
+    {
+      "role": "text-regular-ttf",
+      "filename": "source-serif-4-text-regular.ttf",
+      "flavor": "truetype",
+      "cssFamily": "Source Serif 4 Resume Text",
+      "opsz": 11,
+      "wght": 400,
+      "sha256": "e5a4ee6a3d87bb9024796be390c6771e2a0eb1883dae25effaf57ca01668e24b",
+      "bytes": 261868,
+      "sourcePath": "source-serif-4.005_Desktop/TTF/SourceSerif4-Regular.ttf"
+    },
+    {
+      "role": "text-semibold-ttf",
+      "filename": "source-serif-4-text-semibold.ttf",
+      "flavor": "truetype",
+      "cssFamily": "Source Serif 4 Resume Text",
+      "opsz": 11,
+      "wght": 600,
+      "sha256": "36db62940cb5728b12b1802476dc7fcf4c6c519a7bdd476ba23a4e555fc4655f",
+      "bytes": 272088,
+      "sourcePath": "source-serif-4.005_Desktop/TTF/SourceSerif4-Semibold.ttf"
+    },
+    {
+      "role": "text-italic-ttf",
+      "filename": "source-serif-4-text-italic.ttf",
+      "flavor": "truetype",
+      "cssFamily": "Source Serif 4 Resume Text",
+      "opsz": 11,
+      "wght": 400,
+      "sha256": "9d2950a8f1da66e21502c35d646a1d2148e79f9ea43fd2158cf02f5232e7f430",
+      "bytes": 187808,
+      "sourcePath": "source-serif-4.005_Desktop/TTF/SourceSerif4-It.ttf"
+    },
+    {
+      "role": "title-regular-ttf",
+      "filename": "source-serif-4-title-regular.ttf",
+      "flavor": "truetype",
+      "cssFamily": "Source Serif 4 Resume Title",
+      "opsz": 16,
+      "wght": 400,
+      "sha256": "d97c728cb9280ae7050b483b238e119a879bd0be088241b5ee110a5cb676d46b",
+      "bytes": 292560,
+      "sourcePath": "source-serif-4.005_Desktop/TTF/SourceSerif4Subhead-Regular.ttf"
+    },
+    {
+      "role": "text-regular-woff2",
+      "filename": "source-serif-4-text-regular.woff2",
+      "flavor": "woff2",
+      "cssFamily": "Source Serif 4 Resume Text",
+      "opsz": 11,
+      "wght": 400,
+      "sha256": "6b053e98f0838afe81f3e784727be4583a7c13bb42f198dc5202ecffee0aaee0",
+      "bytes": 76260,
+      "sourcePath": "source-serif-4.005_WOFF2/TTF/SourceSerif4-Regular.ttf.woff2"
+    },
+    {
+      "role": "text-semibold-woff2",
+      "filename": "source-serif-4-text-semibold.woff2",
+      "flavor": "woff2",
+      "cssFamily": "Source Serif 4 Resume Text",
+      "opsz": 11,
+      "wght": 600,
+      "sha256": "457a13ac92e977d82e376038a2daac7fdb5433610910bf5787bdf6c1c3781865",
+      "bytes": 80732,
+      "sourcePath": "source-serif-4.005_WOFF2/TTF/SourceSerif4-Semibold.ttf.woff2"
+    },
+    {
+      "role": "text-italic-woff2",
+      "filename": "source-serif-4-text-italic.woff2",
+      "flavor": "woff2",
+      "cssFamily": "Source Serif 4 Resume Text",
+      "opsz": 11,
+      "wght": 400,
+      "sha256": "ca3b17ed1e3e668ffd9e03385cfd46e1b095df783de53710d25d41241496026b",
+      "bytes": 59716,
+      "sourcePath": "source-serif-4.005_WOFF2/TTF/SourceSerif4-It.ttf.woff2"
+    },
+    {
+      "role": "title-regular-woff2",
+      "filename": "source-serif-4-title-regular.woff2",
+      "flavor": "woff2",
+      "cssFamily": "Source Serif 4 Resume Title",
+      "opsz": 16,
+      "wght": 400,
+      "sha256": "5a70b3ca75f18a0655a16f70c78918cc851ee4bf1bd599a32cd9db7a7052981f",
+      "bytes": 84660,
+      "sourcePath": "source-serif-4.005_WOFF2/TTF/SourceSerif4Subhead-Regular.ttf.woff2"
+    }
+  ]
+}

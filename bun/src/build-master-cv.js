@@ -120,6 +120,7 @@ const html = `<!DOCTYPE html>
   <meta name="robots" content="noindex,nofollow">
   <title>${resume.basics.name} | Canonical Master CV</title>
   <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/typesetting.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="master-preview">

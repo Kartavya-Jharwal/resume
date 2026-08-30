@@ -5,6 +5,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PDFDocument } from 'pdf-lib';
+import { formatDateRange, formatExpectedDate, NNBSP_PIPE, typograph } from './microtype.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const DIST = resolve(ROOT, 'dist');
@@ -13,27 +14,23 @@ const variants = JSON.parse(readFileSync(resolve(ROOT, 'data/variants.json'), 'u
 const variantsById = new Map(variants.map(variant => [variant.id, variant]));
 const payload = readFileSync(resolve(DIST, 'public/data.js'), 'utf8');
 const html = readFileSync(resolve(DIST, 'index.html'), 'utf8');
-const match = payload.match(/window\.PROFILES=([\s\S]+);\s*$/);
+const match = payload.match(/window\.PROFILES\s*=\s*(\[[\s\S]+\]);\s*$/);
 const SKIP_PDFS = process.argv.includes('--skip-pdfs');
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-function formatDate(value) {
-  if (!value) return 'Present';
-  const [year, month] = value.split('-');
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return month ? `${months[Number(month) - 1]} ${year}` : year;
-}
-
 function expectedEducationDate(education) {
   return education.expected
-    ? `Expected ${formatDate(education.endDate)}`
-    : `${formatDate(education.startDate)} to ${formatDate(education.endDate)}`;
+    ? formatExpectedDate(education.endDate)
+    : formatDateRange(education.startDate, education.endDate);
 }
 
 assert(match, 'dist/public/data.js does not match the production payload format');
+const expectedRevision = `${resume.meta?.version || 'unversioned'} / ${resume.meta?.lastModified || 'unknown'}`;
+assert(payload.includes(`Source: ${expectedRevision}`), `dist/public/data.js is stale (expected source revision ${expectedRevision})`);
+assert(payload.includes('window.VARIANT_ALIASES'), 'production payload must include variant alias map');
 const profiles = JSON.parse(match[1]);
 assert(profiles.length === variants.length, 'production profile count must match variant count');
 assert(new Set(profiles.map(profile => profile.id)).size === profiles.length, 'profile ids must be unique');
@@ -56,7 +53,8 @@ for (const reference of localReferences) {
 for (const profile of profiles) {
   const effectiveLimits = { ...resume.custom.limits, ...(variantsById.get(profile.id)?.limits || {}) };
   assert(profile.name && profile.role && profile.family && profile.industry, `${profile.id}: identity fields are required`);
-  assert(profile.family === (variantsById.get(profile.id)?.family || profile.role), `${profile.id}: role family drifted from variant source`);
+  assert(profile.family === profile.role, `${profile.id}: selector family must match role title`);
+  assert(profile.category, `${profile.id}: backend category is required`);
   assert(profile.contact?.email, `${profile.id}: email is required`);
   assert(Array.isArray(profile.experience), `${profile.id}: experience must be an array`);
   assert(profile.experience.every(entry => entry.highlights?.length), `${profile.id}: experience entries need highlights`);
@@ -87,14 +85,14 @@ for (const profile of profiles) {
   assert(profile.education.length === resume.education.length, `${profile.id}: every source education entry must be compiled`);
   profile.education.forEach((entry, index) => {
     const source = resume.education[index];
-    const sourceCourseNames = new Set((source.courses || []).map(course => typeof course === 'string' ? course : course.name));
-    assert(entry.institution === source.institution, `${profile.id}: education institution drifted from source`);
-    assert(entry.url === (source.url || '') && entry.location === (source.location || ''), `${profile.id}: education link metadata drifted from source`);
-    assert(entry.studyType === source.studyType && entry.area === source.area, `${profile.id}: education degree content drifted from source`);
+    const sourceCourseNames = new Set((source.courses || []).map(course => typograph(typeof course === 'string' ? course : course.name)));
+    assert(entry.institution === typograph(source.institution), `${profile.id}: education institution drifted from source`);
+    assert(entry.url === (source.url || '') && entry.location === typograph(source.location || ''), `${profile.id}: education link metadata drifted from source`);
+    assert(entry.studyType === typograph(source.studyType) && entry.area === typograph(source.area || (source.majors || []).join(' and ')), `${profile.id}: education degree content drifted from source`);
     assert(entry.date === expectedEducationDate(source), `${profile.id}: education date drifted from source`);
-    const expectedScore = [source.score, source.academicStanding].filter(Boolean).join(' | ') || '';
+    const expectedScore = [source.score, source.academicStanding].filter(Boolean).map(typograph).join(NNBSP_PIPE) || '';
     assert(entry.score === expectedScore, `${profile.id}: education score drifted from source`);
-    assert(entry.honors.every(honor => (source.highlights || []).some(value => value.replace(/\.$/, '') === honor)), `${profile.id}: education honors drifted from source`);
+    assert(entry.honors.every(honor => (source.highlights || []).some(value => typograph(value.replace(/\.$/, '')) === honor)), `${profile.id}: education honors drifted from source`);
     assert(entry.honors.length <= effectiveLimits.educationHighlights, `${profile.id}: too many education highlights`);
     assert(entry.courses.every(course => sourceCourseNames.has(course)), `${profile.id}: compiled coursework is not present in source`);
     assert(entry.courses.length <= effectiveLimits.coursework, `${profile.id}: too many coursework entries`);

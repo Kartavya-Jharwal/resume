@@ -77,7 +77,12 @@ function esc(s) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
-function nb(s) { return String(s).replace(/(\d)\s+(?=[A-Za-z%$€£])/g, '$1\u00a0'); }
+function nb(s) {
+  return String(s)
+    .replace(/'/g, '\u2019')
+    .replace(/(\d)\s+(?=[A-Za-z%$€£])/g, '$1\u00a0')
+    .replace(/(\d)\s+years/gi, '$1\u00a0years');
+}
 function slug(s) { return String(s).replace(/\s+/g, '_').replace(/[^\w]/g, ''); }
 function pdfName(p) { return p.pdfFilename || ('Kartavya_Jharwal_Resume_' + slug(p.role) + '_' + slug(p.industry) + '.pdf'); }
 function pdfHref(p) { return 'resumes/' + pdfName(p); }
@@ -176,49 +181,10 @@ function isMobileLayout() {
   return window.matchMedia('(max-width: 1023px)').matches;
 }
 
-var SPOTIFY_COMPACT_HEIGHT = 80;
-var lastSpotifyWidths = typeof WeakMap === 'function' ? new WeakMap() : null;
-var spotifyShellObserver = null;
-
-function compactSpotifyHeight() {
-  return SPOTIFY_COMPACT_HEIGHT;
-}
-
-function syncSpotifyEmbeds(forceReload) {
-  var height = String(compactSpotifyHeight());
-  document.documentElement.style.setProperty('--spotify-embed-height', height + 'px');
-
-  document.querySelectorAll('.spotify-embed-shell').forEach(function(shell) {
-    var width = Math.max(1, Math.round(shell.clientWidth || 0));
-    shell.setAttribute('data-embed-mode', 'compact');
-    shell.style.setProperty('--spotify-embed-height', height + 'px');
-    var iframe = shell.querySelector('.spotify-embed');
-    if (!iframe) return;
-
-    var prevWidth = lastSpotifyWidths ? (lastSpotifyWidths.get(iframe) || 0) : 0;
-    var widthChanged = width > 1 && Math.abs(width - prevWidth) >= 12;
-    if (lastSpotifyWidths) lastSpotifyWidths.set(iframe, width);
-
-    iframe.setAttribute('width', String(width));
-    syncSpotifyIframe(iframe, height, forceReload || widthChanged);
-  });
-}
-
-function syncSpotifyIframe(iframe, height, shouldReload) {
-  var needsHeightUpdate = iframe.getAttribute('height') !== height;
-  if (!needsHeightUpdate && !shouldReload) return;
-
-  iframe.setAttribute('height', height);
-  if (!shouldReload) return;
-
-  var src = iframe.getAttribute('src');
-  if (!src) return;
-  iframe.setAttribute('src', '');
-  iframe.setAttribute('src', src);
-}
-
 function byId(id) {
-  for (var i = 0; i < P.length; i++) if (P[i].id === id) return P[i];
+  var aliases = window.VARIANT_ALIASES || {};
+  var resolved = aliases[id] || id;
+  for (var i = 0; i < P.length; i++) if (P[i].id === resolved) return P[i];
   return null;
 }
 
@@ -235,13 +201,30 @@ function roles() {
       out.push(family);
     }
   }
-  return out;
+  return out.sort(function(a, b) { return a.localeCompare(b); });
 }
 
 function industries(role) {
-  var out = [];
-  for (var i = 0; i < P.length; i++) if (roleFamily(P[i]) === role) out.push(P[i].industry);
-  return out;
+  var seen = {}, out = [];
+  for (var i = 0; i < P.length; i++) {
+    if (roleFamily(P[i]) !== role) continue;
+    var industry = P[i].industry;
+    if (seen[industry]) continue;
+    seen[industry] = 1;
+    out.push(industry);
+  }
+  return out.sort(function(a, b) { return a.localeCompare(b); });
+}
+
+function contextCountForRole(role) {
+  return industries(role).length;
+}
+
+function findProfile(role, industry) {
+  for (var i = 0; i < P.length; i++) {
+    if (roleFamily(P[i]) === role && P[i].industry === industry) return P[i];
+  }
+  return null;
 }
 
 function pickInit() {
@@ -298,6 +281,17 @@ function applyDesktopSheetScale() {
   var els = getStageEls();
   if (!els.stage || !els.wrap || !els.sheet) return;
 
+  var storedZoomLevel = useStore.getState().zoomLevel;
+  var zoomLevel = isMobileLayout() ? 1 : storedZoomLevel;
+  var allowScroll = zoomLevel > 1.001;
+
+  /* Fitted view must not scroll; zoomed view may pan. */
+  els.stage.classList.toggle('is-zoomed', allowScroll);
+  if (!allowScroll) {
+    els.stage.scrollLeft = 0;
+    els.stage.scrollTop = 0;
+  }
+
   var stageStyle = getComputedStyle(els.stage);
   var padX = parseFloat(stageStyle.paddingLeft) + parseFloat(stageStyle.paddingRight);
   var padY = parseFloat(stageStyle.paddingTop) + parseFloat(stageStyle.paddingBottom);
@@ -310,19 +304,18 @@ function applyDesktopSheetScale() {
   var isMasterCV = els.sheet.classList.contains('is-master-cv');
   els.sheet.style.transform = prevTransform;
 
-  // Stage now purely flexes, no absolute floating controls overlapping it
-  var availableWidth = Math.max(els.stage.clientWidth - padX, naturalWidth * 0.3);
-  var availableHeight = Math.max(els.stage.clientHeight - padY, naturalHeight * 0.3);
+  /* 2px safety so subpixel rounding never creates a stage scrollbar at fit. */
+  var fitPad = 2;
+  var availableWidth = Math.max(els.stage.clientWidth - padX - fitPad, naturalWidth * 0.25);
+  var availableHeight = Math.max(els.stage.clientHeight - padY - fitPad, naturalHeight * 0.25);
 
   fitScale = isMasterCV
     ? Math.min(availableWidth / naturalWidth, 1)
     : Math.min(availableWidth / naturalWidth, availableHeight / naturalHeight, 1);
   /* Touch layouts always fit the complete page; native pinch zoom remains available. */
-  var storedZoomLevel = useStore.getState().zoomLevel;
-  var zoomLevel = isMobileLayout() ? 1 : storedZoomLevel;
   var appliedScale = Math.max(fitScale * zoomLevel, 0.25);
 
-  /* Floor so rounding cannot make the fitted page 1px taller/wider than the stage. */
+  /* Floor so rounding cannot make the fitted page taller/wider than the stage. */
   els.wrap.style.width = Math.max(1, Math.floor(naturalWidth * appliedScale)) + 'px';
   els.wrap.style.height = Math.max(1, Math.floor(naturalHeight * appliedScale)) + 'px';
   els.wrap.style.maxWidth = '';
@@ -332,7 +325,6 @@ function applyDesktopSheetScale() {
   els.wrap.style.transform = 'none';
   els.sheet.style.transformOrigin = 'top left';
   els.sheet.style.transform = 'scale(' + appliedScale + ')';
-  els.stage.classList.toggle('is-zoomed', zoomLevel > 1.001);
 
   var zoomInButton = document.getElementById('btnZoomIn');
   var zoomOutButton = document.getElementById('btnZoomOut');
@@ -341,7 +333,7 @@ function applyDesktopSheetScale() {
   syncZoomInput();
 
   requestAnimationFrame(function() {
-    if (zoomLevel > 1.001) {
+    if (allowScroll) {
       els.stage.scrollLeft = Math.max(0, (els.stage.scrollWidth - els.stage.clientWidth) / 2);
       els.stage.scrollTop = Math.max(0, (els.stage.scrollHeight - els.stage.clientHeight) / 2);
     }
@@ -384,34 +376,33 @@ function commitZoomInput() {
   syncZoomInput();
 }
 
-function syncPressedButtons(selector, pressed) {
-  document.querySelectorAll(selector).forEach(function(button) {
-    button.setAttribute('aria-pressed', String(pressed));
-    var state = button.querySelector('.tool-toggle-state, .mobile-action-state');
-    if (state) state.textContent = pressed ? 'On' : 'Off';
+function syncCheckboxControls(selector, checked) {
+  document.querySelectorAll(selector).forEach(function(input) {
+    if (input.type === 'checkbox') input.checked = Boolean(checked);
   });
 }
 
 function applyHighlightLinks(on) {
   document.body.classList.toggle('highlight-links', on);
-  syncPressedButtons('[data-highlight-links]', on);
+  syncCheckboxControls('[data-highlight-links]', on);
 }
 
 function applyReduceMotionPreference(on) {
   document.body.classList.toggle('reduce-motion', on);
-  syncPressedButtons('[data-reduce-motion]', on);
+  syncCheckboxControls('[data-reduce-motion]', on);
   syncMotionPreference();
 }
 
 function applyRedactionState(isRedacted) {
   document.body.classList.toggle('redact-mode', isRedacted);
-  document.querySelectorAll('[data-redact-control]').forEach(function(redactButton) {
-    redactButton.setAttribute('aria-pressed', String(isRedacted));
-    redactButton.setAttribute('aria-label', isRedacted
-      ? 'Show contact details, companies, and schools'
-      : 'Censor contact details, companies, and schools');
+  syncCheckboxControls('[data-redact-control]', isRedacted);
+  document.querySelectorAll('[data-redact-control]').forEach(function(input) {
+    if (input.type === 'checkbox') {
+      input.setAttribute('aria-label', isRedacted
+        ? 'Show contact details, companies, and schools'
+        : 'Censor contact details, companies, and schools');
+    }
   });
-  syncPressedButtons('[data-redact-control]', isRedacted);
   document.querySelectorAll('.sensitive').forEach(function(item) {
     if (isRedacted) item.setAttribute('aria-label', 'Redacted');
     else item.removeAttribute('aria-label');
@@ -616,12 +607,14 @@ function renderMxField(container, config) {
   control.type = 'button';
   control.dataset.k = config.key;
   control.setAttribute('aria-labelledby', config.labelId);
-  control.setAttribute('aria-haspopup', 'dialog');
+  control.setAttribute('aria-haspopup', 'listbox');
   control.setAttribute('aria-controls', 'popover');
   control.setAttribute('aria-expanded', 'false');
 
   var value = ensureElement(control, ':scope > .field-val', 'span', 'field-val');
   setText(value, config.value);
+  if (config.title) syncAttr(control, 'title', config.title);
+  else control.removeAttribute('title');
 
   var icon = ensureElement(control, ':scope > .ti', 'i', 'ti ti-chevron-down');
   icon.setAttribute('aria-hidden', 'true');
@@ -836,13 +829,13 @@ function renderEducation(p) {
         '<div class="edu-school-row">',
           '<div class="edu-school-main">',
             '<span class="edu-institution"></span>',
-            '<span class="edu-location-separator" aria-hidden="true"> - </span>',
+            '<span class="edu-location-separator" aria-hidden="true">\u202f|\u202f</span>',
             '<span class="edu-location"></span>',
           '</div>',
           '<span class="r-date edu-date"></span>',
         '</div>',
         '<div class="edu-details r-prose">',
-          '<p class="edu-degree-line"><span class="edu-school"></span><span class="edu-school-separator" aria-hidden="true"> | </span><span class="edu-degree"></span></p>',
+          '<p class="edu-degree-line"><span class="edu-school"></span><span class="edu-school-separator" aria-hidden="true">\u202f|\u202f</span><span class="edu-degree"></span></p>',
           '<p class="edu-fact edu-major-line"><span class="edu-fact-label">Double Major:</span><span class="edu-major"></span></p>',
           '<p class="edu-fact edu-score-line"><span class="edu-fact-label">GPA:</span><span class="edu-score"></span></p>',
           '<p class="edu-fact edu-summary-line"><span class="edu-fact-label">Focus:</span><span class="edu-summary"></span></p>',
@@ -944,6 +937,8 @@ function renderAdditional(p) {
    ================================================================= */
 function renderMx() {
   if (!cur) return;
+  var role = roleFamily(cur);
+  var contexts = industries(role);
   [
     { id: 'mxD', suffix: 'desktop' },
     { id: 'mxM', suffix: 'mobile' }
@@ -954,7 +949,8 @@ function renderMx() {
       key: 'role',
       labelId: 'role-label-' + target.suffix,
       label: 'Role',
-      value: roleFamily(cur),
+      value: role,
+      title: role + ' · ' + contextCountForRole(role) + ' contexts',
       onClick: function(e) { showPop(e, roles(), 'role'); }
     });
     renderMxField(el, {
@@ -962,30 +958,28 @@ function renderMx() {
       labelId: 'industry-label-' + target.suffix,
       label: 'Context',
       value: cur.industry,
-      onClick: function(e) { showPop(e, industries(roleFamily(cur)), 'ind'); }
+      title: cur.industry + ' · ' + contexts.length + ' for this role',
+      onClick: function(e) { showPop(e, contexts, 'ind'); }
     });
   });
 }
 
 function selectMatrixOption(key, value) {
   if (key === 'role') {
-    var nextIndustry = industries(value)[0];
-    for (var j = 0; j < P.length; j++) {
-      if (roleFamily(P[j]) === value && P[j].industry === nextIndustry) {
-        sel(P[j].id);
-        revealMobileDocument();
-        return;
-      }
+    var preferred = findProfile(value, cur && cur.industry);
+    var fallbackIndustry = industries(value)[0];
+    var next = preferred || findProfile(value, fallbackIndustry);
+    if (next) {
+      sel(next.id);
+      revealMobileDocument();
     }
     return;
   }
 
-  for (var k = 0; k < P.length; k++) {
-    if (roleFamily(P[k]) === roleFamily(cur) && P[k].industry === value) {
-      sel(P[k].id);
-      revealMobileDocument();
-      return;
-    }
+  var match = findProfile(roleFamily(cur), value);
+  if (match) {
+    sel(match.id);
+    revealMobileDocument();
   }
 }
 
@@ -1043,7 +1037,7 @@ function showPop(e, opts, key) {
   titleBlock.className = 'mtx-pop-title-block';
   var kicker = document.createElement('div');
   kicker.className = 'mtx-pop-kicker';
-  kicker.textContent = 'Resume configuration';
+  kicker.textContent = key === 'role' ? 'Role family' : 'Industry context';
   var title = document.createElement('h2');
   title.id = 'popoverTitle';
   title.textContent = titleText;
@@ -1109,6 +1103,13 @@ function showPop(e, opts, key) {
       copy.className = 'mtx-opt-copy';
       copy.textContent = option;
       button.appendChild(copy);
+      if (key === 'role') {
+        var hint = document.createElement('span');
+        hint.className = 'mtx-opt-meta';
+        var count = contextCountForRole(option);
+        hint.textContent = count + (count === 1 ? ' context' : ' contexts');
+        button.appendChild(hint);
+      }
       button.onclick = function() {
         selectMatrixOption(key, option);
         closePop(false);
@@ -1203,7 +1204,7 @@ function setMobileMenu(open, restoreFocus) {
     menu.classList.add('on');
     scrim.classList.add('on');
     if (canAnimate()) {
-      motionAnimate(Array.from(menu.querySelectorAll('.mobile-menu-head h2, .mobile-matrix .field, .mobile-menu-copy, .listening-panel--mobile .listening-title, .listening-panel--mobile .listening-card, .mobile-action')), {
+      motionAnimate(Array.from(menu.querySelectorAll('.mobile-menu-head h2, .mobile-matrix .microcopy, .mobile-matrix .field, .mobile-matrix .btn-random, .listening-panel--mobile .listening-title, .listening-panel--mobile .listening-card, .mobile-actions .tool-check, .mobile-download')), {
         opacity: [0, 1],
         x: [12, 0]
       }, {
@@ -1292,8 +1293,16 @@ function measureA4Layout() {
   var overflowPx = Math.max(0, sheetOverflow, marginOverflow);
   var titleOverflows = [];
   var typographyIssues = [];
-  var expectedRoleFontPx = 9.8 * 96 / 72;
-  var expectedLeadingPx = 11.7 * 96 / 72;
+  function tokenToCssPx(name) {
+    var raw = String(sheetStyle.getPropertyValue(name) || '').trim();
+    var value = parseFloat(raw);
+    if (!Number.isFinite(value)) return 0;
+    if (raw.endsWith('pt')) return value * 96 / 72;
+    if (raw.endsWith('mm')) return value * 96 / 25.4;
+    return value;
+  }
+  var expectedRoleFontPx = tokenToCssPx('--s1');
+  var expectedLeadingPx = tokenToCssPx('--u');
 
   sheet.querySelectorAll('.r-co').forEach(function(title) {
     var lineHeight = parseFloat(getComputedStyle(title).lineHeight) || 1;
@@ -1578,7 +1587,7 @@ function initMotionSystem() {
   if (!canAnimate()) return;
 
   var leftRailItems = Array.from(document.querySelectorAll(
-    '.aside.l .brand-lockup, .aside.l .rail-heading, .aside.l .card, .aside.l .microcopy, .aside.l .action-stack, .aside.l .rail-footer'
+    '.aside.l .brand-lockup, .aside.l .rail-heading, .aside.l .matrix-card, .aside.l .rail-footer'
   ));
   var rightRailItems = Array.from(document.querySelectorAll(
     '.aside.r > .view-tools, .aside.r > .dl-btn, .aside.r > .download-status, .aside.r > .listening-panel'
@@ -1621,16 +1630,6 @@ function initMotionSystem() {
       );
     });
   }
-}
-
-function initSpotifyObserver() {
-  if (BUILD_FIT_MODE || typeof ResizeObserver === 'undefined' || spotifyShellObserver) return;
-  spotifyShellObserver = new ResizeObserver(function() {
-    syncSpotifyEmbeds();
-  });
-  document.querySelectorAll('.spotify-embed-shell').forEach(function(shell) {
-    spotifyShellObserver.observe(shell);
-  });
 }
 
 var pendingLeaveHref = null;
@@ -1738,7 +1737,6 @@ function handleStageResize() {
       /* Layout mode flipped - full re-render at the new display scale. */
       lastMobileMode = mobileMode;
       renderProfile(cur);
-      syncSpotifyEmbeds(true);
       return;
     }
 
@@ -1748,7 +1746,6 @@ function handleStageResize() {
     }
 
     lastMobileMode = mobileMode;
-    syncSpotifyEmbeds();
   }, 40);
 }
 
@@ -1794,8 +1791,6 @@ if (!P.length) {
   applyDesktopSheetScale();
   setResumeReady(true);
   initMotionSystem();
-  syncSpotifyEmbeds(true);
-  initSpotifyObserver();
   applyHighlightLinks(useStore.getState().highlightLinks);
   applyReduceMotionPreference(useStore.getState().reduceMotion);
   applyRedactionState(useStore.getState().isRedacted);
@@ -1868,14 +1863,23 @@ if (!P.length) {
       }
     });
   }
-  document.querySelectorAll('[data-redact-control]').forEach(function(button) {
-    button.onclick = function() { useStore.getState().toggleRedacted(); };
+  document.querySelectorAll('[data-redact-control]').forEach(function(input) {
+    input.onchange = function() {
+      var next = Boolean(input.checked);
+      if (useStore.getState().isRedacted !== next) useStore.getState().toggleRedacted();
+    };
   });
-  document.querySelectorAll('[data-highlight-links]').forEach(function(button) {
-    button.onclick = function() { useStore.getState().toggleHighlightLinks(); };
+  document.querySelectorAll('[data-highlight-links]').forEach(function(input) {
+    input.onchange = function() {
+      var next = Boolean(input.checked);
+      if (useStore.getState().highlightLinks !== next) useStore.getState().toggleHighlightLinks();
+    };
   });
-  document.querySelectorAll('[data-reduce-motion]').forEach(function(button) {
-    button.onclick = function() { useStore.getState().toggleReduceMotion(); };
+  document.querySelectorAll('[data-reduce-motion]').forEach(function(input) {
+    input.onchange = function() {
+      var next = Boolean(input.checked);
+      if (useStore.getState().reduceMotion !== next) useStore.getState().toggleReduceMotion();
+    };
   });
   if (mobileMenuBtn) mobileMenuBtn.onclick = function() {
     setMobileMenu(!document.body.classList.contains('mobile-menu-open'));

@@ -2,55 +2,73 @@
 /** Extract the typeface constants required by TYPESETTING.md v1.5. */
 
 import * as fontkit from 'fontkit';
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { deriveCanon, loadCanon, renderTypesettingCss } from './typesetting.js';
+import { formatDateRange, formatExpectedDate } from './microtype.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const BUILD = resolve(ROOT, '.build-cache');
 const FONT_PATH = resolve(ROOT, 'assets/fonts/source-serif-4-variable-roman.ttf');
+const TEXT_FONT_PATH = resolve(ROOT, 'assets/fonts/source-serif-4-text-regular.ttf');
 const RESUME_PATH = resolve(ROOT, 'data/resume.json');
-
-const UNIT_PT = 14;
-const BODY_PT = 11;
-const NAME_PT = 16;
 const REQUIRED_FEATURES = ['case', 'liga', 'lnum', 'onum', 'pnum', 'smcp', 'tnum'];
 
-const baseFont = fontkit.openSync(FONT_PATH);
-const font = baseFont.getVariation({ wght: 400, opsz: BODY_PT });
+const canon = loadCanon();
+const derived = deriveCanon(canon);
+
+if (!existsSync(FONT_PATH) && !existsSync(TEXT_FONT_PATH)) {
+  throw new Error('Pinned Source Serif files are missing. Run bun run fonts:sync');
+}
+
+const inspectionPath = existsSync(FONT_PATH) ? FONT_PATH : TEXT_FONT_PATH;
+const baseFont = fontkit.openSync(inspectionPath);
+const axes = baseFont.variationAxes || {};
+const hasOpsz = Boolean(axes.opsz);
+const hasWght = Boolean(axes.wght);
+const hasGrad = Boolean(axes.GRAD);
+const font = hasOpsz && hasWght
+  ? baseFont.getVariation({ wght: 400, opsz: derived.s0Pt })
+  : baseFont;
 const features = new Set(baseFont.availableFeatures || []);
 const missingFeatures = REQUIRED_FEATURES.filter(feature => !features.has(feature));
-const axes = baseFont.variationAxes || {};
 
 if (missingFeatures.length) {
   throw new Error(`Typeface is missing required OpenType features: ${missingFeatures.join(', ')}`);
 }
-if (!axes.opsz || !axes.wght) {
-  throw new Error('Typeface must expose both opsz and wght variation axes.');
+if (!hasOpsz && !existsSync(TEXT_FONT_PATH)) {
+  throw new Error('Typeface must expose an opsz axis or provide separate Text/Title masters.');
 }
 
 const resume = JSON.parse(readFileSync(RESUME_PATH, 'utf8'));
-const formatDate = value => {
-  if (!value) return 'Present';
-  const [year, month] = value.split('-');
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  return month ? `${months[Number(month) - 1]} ${year}` : year;
-};
-const dateSamples = [...(resume.work || []), ...(resume.education || [])]
-  .map(entry => `${formatDate(entry.startDate)} to ${formatDate(entry.endDate)}`);
+const dateSamples = [
+  ...(resume.work || []).map(entry => formatDateRange(entry.startDate, entry.endDate)),
+  ...(resume.education || []).map(entry => (
+    entry.expected ? formatExpectedDate(entry.endDate) : formatDateRange(entry.startDate, entry.endDate)
+  ))
+];
 const measuredDates = dateSamples.map(text => {
   const run = font.layout(text, ['tnum', 'lnum']);
   const units = run.positions.reduce((sum, position) => sum + position.xAdvance, 0);
-  return { text, widthPt: (units / font.unitsPerEm) * BODY_PT };
+  return { text, widthPt: (units / font.unitsPerEm) * derived.s0Pt };
 });
 const widestDate = measuredDates.sort((a, b) => b.widthPt - a.widthPt)[0];
 const dateWidthPt = widestDate.widthPt;
-const halfUnitPt = UNIT_PT / 2;
+const halfUnitPt = derived.uPt / 2;
 const dateReservedPt = Math.ceil(dateWidthPt / halfUnitPt) * halfUnitPt;
 
 const bullet = font.glyphForCodePoint(0x2022);
 const bulletLsbEm = bullet.bbox.minX / font.unitsPerEm;
-const capOffsetPt = ((font.ascent - font.capHeight) / font.unitsPerEm) * NAME_PT;
+const colon = font.glyphForCodePoint(0x003A);
+const colonAdvanceEm = colon.advanceWidth / font.unitsPerEm;
+const colonRsbEm = (colon.advanceWidth - colon.bbox.maxX) / font.unitsPerEm;
+const eduAfterColonEm = Math.max(0.18, colonRsbEm + 0.12) + (derived.optical.eduAfterColonEm || 0);
+const eduColonHangEm = Math.max(0, -colon.bbox.minX / font.unitsPerEm) + (derived.optical.eduColonHangEm || 0);
+const titleFont = hasOpsz && hasWght
+  ? baseFont.getVariation({ wght: 400, opsz: derived.s2Pt })
+  : font;
+const capOffsetPt = ((titleFont.ascent - titleFont.capHeight) / titleFont.unitsPerEm) * derived.s2Pt;
 const xHeightEm = font.xHeight / font.unitsPerEm;
 
 const resumeText = JSON.stringify(resume).normalize('NFC');
@@ -65,28 +83,33 @@ if (unsupportedCodePoints.length) {
 
 const metrics = {
   family: baseFont.fullName,
+  inspectionPath: inspectionPath.slice(ROOT.length + 1).replaceAll('\\', '/'),
   unitsPerEm: font.unitsPerEm,
-  variation: { wght: 400, opsz: BODY_PT },
+  variation: hasOpsz && hasWght ? { wght: 400, opsz: derived.s0Pt } : null,
+  hasOpsz,
+  hasWght,
+  hasGrad,
   availableFeatures: [...features].sort(),
   dateSample: widestDate.text,
   dateMeasuredPt: Number(dateWidthPt.toFixed(3)),
   dateReservedPt,
-  bulletLsbEm: Number(bulletLsbEm.toFixed(2)),
+  dateMeasuredFontUnits: Number((dateWidthPt / derived.s0Pt * font.unitsPerEm).toFixed(3)),
+  bulletLsbEm: Number((bulletLsbEm + (derived.optical.hangBulletEm || 0)).toFixed(4)),
+  bulletLsbEmRaw: Number(bulletLsbEm.toFixed(4)),
   capOffsetPt: Number(capOffsetPt.toFixed(2)),
   xHeightEm: Number(xHeightEm.toFixed(3)),
+  colonAdvanceEm: Number(colonAdvanceEm.toFixed(4)),
+  colonRsbEm: Number(colonRsbEm.toFixed(4)),
+  eduAfterColonEm: Number(eduAfterColonEm.toFixed(4)),
+  eduColonHangEm: Number(eduColonHangEm.toFixed(4)),
   unsupportedCodePoints
 };
 
-  const css = `/* Generated by bun/src/font-metrics.js - do not edit. */\n` +
-  `:root {\n` +
-  `  --date-reserved-width: ${metrics.dateReservedPt}pt;\n` +
-  `  --hang-bullet: ${metrics.bulletLsbEm.toFixed(2)}em;\n` +
-  `  --cap-offset-s2: ${metrics.capOffsetPt.toFixed(2)}pt;\n` +
-  `  --font-x-height: ${metrics.xHeightEm.toFixed(3)}em;\n` +
-  `}\n`;
+const css = renderTypesettingCss(derived, metrics);
 
 mkdirSync(BUILD, { recursive: true });
 writeFileSync(resolve(BUILD, 'font-metrics.json'), `${JSON.stringify(metrics, null, 2)}\n`);
-writeFileSync(resolve(BUILD, 'font-metrics.css'), css);
+writeFileSync(resolve(BUILD, 'typesetting.css'), css);
+writeFileSync(resolve(ROOT, 'assets/css/typesetting.css'), css);
 
-console.log(`✓ Extracted font metrics: date ${metrics.dateMeasuredPt}pt → ${metrics.dateReservedPt}pt, bullet LSB ${metrics.bulletLsbEm.toFixed(2)}em`);
+console.log(`✓ Extracted font metrics: date ${metrics.dateMeasuredPt}pt → ${metrics.dateReservedPt}pt, bullet LSB ${metrics.bulletLsbEmRaw}em`);

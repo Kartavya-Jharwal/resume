@@ -11,9 +11,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Scope": "Multi-Venture",
+        "Impact": "Operator",
+        "Specialization": "Cadence & Gates"
       },
       "requiredKeywords": [
         "Startup Operations",
@@ -36,8 +36,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h1",
-              "work-margadarshaka-h3"
+              "work-margadarshaka-h4",
+              "work-margadarshaka-h5"
             ]
           },
           {
@@ -68,7 +68,8 @@
           "skill-backend-and-apis"
         ],
         "leadership": []
-      }
+      },
+      "category": "Executive Operations & Chief of Staff"
     },
     {
       "id": "venture-diligence-analyst-pre-seed-funds",
@@ -80,9 +81,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Cases": "20+",
+        "Impact": "Exhibit-Linked",
+        "Specialization": "Strategy"
       },
       "requiredKeywords": [
         "Venture Capital",
@@ -105,7 +106,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h3"
+              "work-margadarshaka-h5",
+              "work-margadarshaka-h2"
             ]
           },
           {
@@ -136,7 +138,8 @@
           "skill-data-and-databases"
         ],
         "leadership": []
-      }
+      },
+      "category": "Strategy, Investment & Private Wealth"
     },
     {
       "id": "executive-translation-lead-fortune-500-strategy",
@@ -148,9 +151,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Scope": "Multi-Venture",
+        "Impact": "Operator",
+        "Specialization": "Cadence & Gates"
       },
       "requiredKeywords": [
         "Corporate Strategy",
@@ -161,7 +164,6 @@
         "Stakeholder Management"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Corporate_Strategy.pdf",
-      "family": "Strategy & Investment",
       "content": {
         "experience": [
           {
@@ -181,8 +183,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-margadarshaka-h4",
+              "work-margadarshaka-h5"
             ]
           }
         ],
@@ -204,7 +206,8 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Executive Operations & Chief of Staff"
     },
     {
       "id": "executive-translation-lead-private-equity-operations",
@@ -216,9 +219,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Scope": "Multi-Venture",
+        "Impact": "Operator",
+        "Specialization": "Cadence & Gates"
       },
       "requiredKeywords": [
         "Private Equity",
@@ -229,7 +232,6 @@
         "Kill Gates"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Private_Equity_Operations.pdf",
-      "family": "Strategy & Investment",
       "content": {
         "experience": [
           {
@@ -245,34 +247,28 @@
               "work-savi-hotels-resorts-jaipur-india-h2",
               "work-savi-hotels-resorts-jaipur-india-h3"
             ]
-          },
-          {
-            "id": "work-astropatshala",
-            "highlights": [
-              "work-astropatshala-h1",
-              "work-astropatshala-h0"
-            ]
           }
         ],
         "projects": [
+          {
+            "id": "proj-duve-venture-diligence-and-industry-tearsheet",
+            "highlights": [
+              "proj-duve-venture-diligence-and-industry-tearsheet-h0",
+              "proj-duve-venture-diligence-and-industry-tearsheet-h2"
+            ]
+          },
           {
             "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
             "highlights": [
               "proj-leased-hotel-turnaround-and-operating-model-strategy-h2",
               "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
             ]
-          },
-          {
-            "id": "proj-duve-venture-diligence-and-industry-tearsheet",
-            "highlights": [
-              "proj-duve-venture-diligence-and-industry-tearsheet-h2",
-              "proj-duve-venture-diligence-and-industry-tearsheet-h0"
-            ]
           }
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Executive Operations & Chief of Staff"
     },
     {
       "id": "executive-translation-lead-tech-conglomerates",
@@ -284,9 +280,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Scope": "Multi-Venture",
+        "Impact": "Operator",
+        "Specialization": "Cadence & Gates"
       },
       "requiredKeywords": [
         "Technology Strategy",
@@ -297,7 +293,6 @@
         "Product Architecture"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Technology_Strategy.pdf",
-      "family": "Strategy & Investment",
       "content": {
         "experience": [
           {
@@ -339,7 +334,8 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Executive Operations & Chief of Staff"
     },
     {
       "id": "innovation-ecosystem-architect-startup-accelerators",
@@ -351,9 +347,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Programmes": "10+",
+        "Impact": "Live Delivery",
+        "Specialization": "Events"
       },
       "requiredKeywords": [
         "Innovation Programs",
@@ -382,13 +378,6 @@
               "work-margadarshaka-h1",
               "work-margadarshaka-h3"
             ]
-          },
-          {
-            "id": "work-astropatshala",
-            "highlights": [
-              "work-astropatshala-h0",
-              "work-astropatshala-h1"
-            ]
           }
         ],
         "projects": [
@@ -400,10 +389,10 @@
             ]
           },
           {
-            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
             "highlights": [
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1",
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h2"
             ]
           }
         ],
@@ -413,7 +402,8 @@
         "leadership": [
           "lead-hult-founders-lab"
         ]
-      }
+      },
+      "category": "Innovation Programs & Events"
     },
     {
       "id": "innovation-ecosystem-architect-university-innovation-hubs",
@@ -425,9 +415,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Programmes": "10+",
+        "Impact": "Live Delivery",
+        "Specialization": "Events"
       },
       "requiredKeywords": [
         "University Innovation",
@@ -443,22 +433,15 @@
           {
             "id": "work-hult-ai-collective",
             "highlights": [
-              "work-hult-ai-collective-h3",
-              "work-hult-ai-collective-h2"
+              "work-hult-ai-collective-h2",
+              "work-hult-ai-collective-h3"
             ]
           },
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
-            ]
-          },
-          {
-            "id": "work-astropatshala",
-            "highlights": [
-              "work-astropatshala-h1",
-              "work-astropatshala-h2"
+              "work-margadarshaka-h4",
+              "work-margadarshaka-h5"
             ]
           }
         ],
@@ -481,8 +464,11 @@
         "skills": [
           "skill-founder-and-venture-building"
         ],
-        "leadership": []
-      }
+        "leadership": [
+          "lead-peer-instruction"
+        ]
+      },
+      "category": "Innovation Programs & Events"
     },
     {
       "id": "innovation-ecosystem-architect-corporate-venture-labs",
@@ -494,9 +480,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Programmes": "10+",
+        "Impact": "Live Delivery",
+        "Specialization": "Events"
       },
       "requiredKeywords": [
         "Corporate Innovation",
@@ -512,8 +498,8 @@
           {
             "id": "work-hult-ai-collective",
             "highlights": [
-              "work-hult-ai-collective-h5",
-              "work-hult-ai-collective-h4"
+              "work-hult-ai-collective-h4",
+              "work-hult-ai-collective-h5"
             ]
           },
           {
@@ -522,13 +508,6 @@
               "work-independent-healthcare-venture-client-anonymised-h0",
               "work-independent-healthcare-venture-client-anonymised-h1"
             ]
-          },
-          {
-            "id": "work-astropatshala",
-            "highlights": [
-              "work-astropatshala-h0",
-              "work-astropatshala-h1"
-            ]
           }
         ],
         "projects": [
@@ -536,14 +515,14 @@
             "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
             "highlights": [
               "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1",
-              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h2"
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h3"
             ]
           },
           {
-            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "id": "proj-danone-yopro-apex-diagnostic",
             "highlights": [
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
+              "proj-danone-yopro-apex-diagnostic-h0",
+              "proj-danone-yopro-apex-diagnostic-h3"
             ]
           }
         ],
@@ -551,7 +530,8 @@
           "skill-founder-and-venture-building"
         ],
         "leadership": []
-      }
+      },
+      "category": "Innovation Programs & Events"
     },
     {
       "id": "forward-deployed-innovator-enterprise-ai",
@@ -562,10 +542,10 @@
       "description": "Forward-deployed engineer who turns ambiguous operational needs into production-ready AI workflows, integrations, and measurable delivery.",
       "location": "Global",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Experience": "Hands-On",
+        "Stack": "Production",
+        "Impact": "Pipeline",
+        "Specialization": "Voice & Agents"
       },
       "requiredKeywords": [
         "Forward-Deployed Engineer",
@@ -581,8 +561,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h3",
-              "work-margadarshaka-h0"
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h6"
             ]
           },
           {
@@ -620,7 +600,8 @@
           "skill-ai-and-ml"
         ],
         "leadership": []
-      }
+      },
+      "category": "AI Engineering"
     },
     {
       "id": "agentic-systems-architect-autonomous-ai-labs",
@@ -631,10 +612,10 @@
       "description": "AI agent engineer designing tool-using workflows, orchestration, guardrails, and human handoffs for practical automation systems.",
       "location": "Global",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Experience": "Hands-On",
+        "Stack": "Production",
+        "Impact": "Pipeline",
+        "Specialization": "Voice & Agents"
       },
       "requiredKeywords": [
         "AI Agents",
@@ -650,8 +631,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h1",
-              "work-margadarshaka-h0"
+              "work-margadarshaka-h0",
+              "work-margadarshaka-h6"
             ]
           },
           {
@@ -689,7 +670,8 @@
           "skill-ai-and-ml"
         ],
         "leadership": []
-      }
+      },
+      "category": "AI Engineering"
     },
     {
       "id": "core-ai-pipeline-engineer-biotech",
@@ -700,10 +682,10 @@
       "description": "Machine learning engineer building practical model pipelines, evaluation workflows, and production-oriented AI systems.",
       "location": "Global",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Experience": "Hands-On",
+        "Stack": "Production",
+        "Impact": "Pipeline",
+        "Specialization": "Voice & Agents"
       },
       "requiredKeywords": [
         "Machine Learning Engineer",
@@ -719,8 +701,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-margadarshaka-h6",
+              "work-margadarshaka-h0"
             ]
           },
           {
@@ -759,7 +741,8 @@
           "skill-systems-and-devops"
         ],
         "leadership": []
-      }
+      },
+      "category": "AI Engineering"
     },
     {
       "id": "ai-governance-ethics-officer-medtech",
@@ -771,9 +754,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Controls": "Documented",
+        "Impact": "Governance",
+        "Specialization": "Risk"
       },
       "requiredKeywords": [
         "Responsible AI",
@@ -789,8 +772,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h9"
             ]
           },
           {
@@ -828,7 +811,8 @@
           "skill-ai-and-ml"
         ],
         "leadership": []
-      }
+      },
+      "category": "Risk, Compliance & Responsible AI"
     },
     {
       "id": "behavioral-product-manager-digital-wellness",
@@ -840,9 +824,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Launches": "Multi-Venture",
+        "Impact": "Shipped",
+        "Specialization": "0→1"
       },
       "requiredKeywords": [
         "Product Management",
@@ -865,7 +849,7 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
+              "work-margadarshaka-h7",
               "work-margadarshaka-h1"
             ]
           },
@@ -897,7 +881,8 @@
           "skill-product-design-and-spatial-tools"
         ],
         "leadership": []
-      }
+      },
+      "category": "Product Management"
     },
     {
       "id": "strategic-interaction-designer-spatial-computing",
@@ -909,9 +894,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Systems": "Cross-Stack",
+        "Impact": "Legibility",
+        "Specialization": "Design–Quant"
       },
       "requiredKeywords": [
         "Interaction Design",
@@ -927,8 +912,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-margadarshaka-h10",
+              "work-margadarshaka-h7"
             ]
           },
           {
@@ -959,7 +944,8 @@
           "skill-product-design-and-spatial-tools"
         ],
         "leadership": []
-      }
+      },
+      "category": "Product, UX & Experience Design"
     },
     {
       "id": "design-systems-architect-enterprise-b2b-saas",
@@ -971,9 +957,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Systems": "Cross-Stack",
+        "Impact": "Legibility",
+        "Specialization": "Design–Quant"
       },
       "requiredKeywords": [
         "Design Systems",
@@ -989,15 +975,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h1",
-              "work-margadarshaka-h3"
-            ]
-          },
-          {
-            "id": "work-astropatshala",
-            "highlights": [
-              "work-astropatshala-h2",
-              "work-astropatshala-h1"
+              "work-margadarshaka-h10",
+              "work-margadarshaka-h11"
             ]
           }
         ],
@@ -1010,10 +989,10 @@
             ]
           },
           {
-            "id": "proj-restaurant-operations-platform-for-independent-client",
+            "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform",
             "highlights": [
-              "proj-restaurant-operations-platform-for-independent-client-h0",
-              "proj-restaurant-operations-platform-for-independent-client-h1"
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h5",
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h7"
             ]
           }
         ],
@@ -1021,6 +1000,10 @@
           "skill-product-design-and-spatial-tools"
         ],
         "leadership": []
+      },
+      "category": "Product, UX & Experience Design",
+      "limits": {
+        "projects": 3
       }
     },
     {
@@ -1033,9 +1016,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Systems": "Cross-Stack",
+        "Impact": "Legibility",
+        "Specialization": "Design–Quant"
       },
       "requiredKeywords": [
         "Data Dashboards",
@@ -1051,31 +1034,24 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
-            ]
-          },
-          {
-            "id": "work-savi-hotels-resorts-jaipur-india",
-            "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h1",
-              "work-savi-hotels-resorts-jaipur-india-h3"
+              "work-margadarshaka-h11",
+              "work-margadarshaka-h10"
             ]
           }
         ],
         "projects": [
           {
-            "id": "proj-pacakatva-culinary-data-platform",
+            "id": "proj-bloom-creative-terminal-visualization",
             "highlights": [
-              "proj-pacakatva-culinary-data-platform-h0",
-              "proj-pacakatva-culinary-data-platform-h2"
+              "proj-bloom-creative-terminal-visualization-h0",
+              "proj-bloom-creative-terminal-visualization-h4"
             ]
           },
           {
-            "id": "proj-bloom-creative-terminal-visualization",
+            "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform",
             "highlights": [
-              "proj-bloom-creative-terminal-visualization-h4",
-              "proj-bloom-creative-terminal-visualization-h0"
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h6",
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h4"
             ]
           }
         ],
@@ -1083,7 +1059,8 @@
           "skill-product-design-and-spatial-tools"
         ],
         "leadership": []
-      }
+      },
+      "category": "Product, UX & Experience Design"
     },
     {
       "id": "design-systems-architect-fintech-platforms",
@@ -1095,9 +1072,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Systems": "Cross-Stack",
+        "Impact": "Legibility",
+        "Specialization": "Design–Quant"
       },
       "requiredKeywords": [
         "FinTech",
@@ -1113,15 +1090,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h1",
-              "work-margadarshaka-h3"
-            ]
-          },
-          {
-            "id": "work-astropatshala",
-            "highlights": [
-              "work-astropatshala-h2",
-              "work-astropatshala-h1"
+              "work-margadarshaka-h10",
+              "work-margadarshaka-h11"
             ]
           }
         ],
@@ -1129,15 +1099,15 @@
           {
             "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
             "highlights": [
-              "proj-project-ganet-finance-digital-garden-and-learning-collective-h1",
-              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0"
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h1"
             ]
           },
           {
             "id": "proj-bwc-quantitative-portfolio-audit-engine",
             "highlights": [
               "proj-bwc-quantitative-portfolio-audit-engine-h0",
-              "proj-bwc-quantitative-portfolio-audit-engine-h3"
+              "proj-bwc-quantitative-portfolio-audit-engine-h2"
             ]
           }
         ],
@@ -1145,6 +1115,10 @@
           "skill-product-design-and-spatial-tools"
         ],
         "leadership": []
+      },
+      "category": "Product, UX & Experience Design",
+      "limits": {
+        "projects": 3
       }
     },
     {
@@ -1157,9 +1131,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Systems": "Cross-Stack",
+        "Impact": "Legibility",
+        "Specialization": "Design–Quant"
       },
       "requiredKeywords": [
         "Creative Technologist",
@@ -1207,7 +1181,8 @@
           "skill-product-design-and-spatial-tools"
         ],
         "leadership": []
-      }
+      },
+      "category": "Product, UX & Experience Design"
     },
     {
       "id": "generative-search-architect-media-conglomerates",
@@ -1219,9 +1194,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Channels": "Multi",
+        "Impact": "GTM",
+        "Specialization": "Content Ops"
       },
       "requiredKeywords": [
         "SEO",
@@ -1237,8 +1212,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h1",
-              "work-margadarshaka-h0"
+              "work-margadarshaka-h4",
+              "work-margadarshaka-h5"
             ]
           },
           {
@@ -1267,7 +1242,8 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Growth, Content & Developer Community"
     },
     {
       "id": "zero-cost-growth-hacker-d2c-marketplaces",
@@ -1279,9 +1255,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Channels": "Multi",
+        "Impact": "GTM",
+        "Specialization": "Content Ops"
       },
       "requiredKeywords": [
         "Growth Marketing",
@@ -1334,7 +1310,8 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Growth, Content & Developer Community"
     },
     {
       "id": "data-narrative-consultant-macro-economic-research",
@@ -1346,9 +1323,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Models": "Reproducible",
+        "Impact": "Decision",
+        "Specialization": "Analytics"
       },
       "requiredKeywords": [
         "Macroeconomic Research",
@@ -1359,14 +1336,13 @@
         "Research Communication"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Macroeconomic_Research.pdf",
-      "family": "Consultant",
       "content": {
         "experience": [
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-margadarshaka-h4",
+              "work-margadarshaka-h5"
             ]
           },
           {
@@ -1397,7 +1373,8 @@
           "skill-data-and-databases"
         ],
         "leadership": []
-      }
+      },
+      "category": "Data & Decision Intelligence"
     },
     {
       "id": "data-narrative-consultant-policy-think-tanks",
@@ -1409,9 +1386,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Models": "Reproducible",
+        "Impact": "Decision",
+        "Specialization": "Analytics"
       },
       "requiredKeywords": [
         "Policy Analysis",
@@ -1422,7 +1399,6 @@
         "Decision Tools"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Policy_Think_Tanks.pdf",
-      "family": "Consultant",
       "content": {
         "experience": [
           {
@@ -1460,7 +1436,8 @@
           "skill-data-and-databases"
         ],
         "leadership": []
-      }
+      },
+      "category": "Data & Decision Intelligence"
     },
     {
       "id": "data-narrative-consultant-economic-development",
@@ -1472,9 +1449,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Models": "Reproducible",
+        "Impact": "Decision",
+        "Specialization": "Analytics"
       },
       "requiredKeywords": [
         "Economic Development",
@@ -1485,7 +1462,6 @@
         "Research Communication"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Economic_Development.pdf",
-      "family": "Consultant",
       "content": {
         "experience": [
           {
@@ -1523,7 +1499,8 @@
           "skill-data-and-databases"
         ],
         "leadership": []
-      }
+      },
+      "category": "Data & Decision Intelligence"
     },
     {
       "id": "analytics-intelligence-lead-e-commerce-logistics",
@@ -1535,9 +1512,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Models": "Reproducible",
+        "Impact": "Decision",
+        "Specialization": "Analytics"
       },
       "requiredKeywords": [
         "Business Intelligence",
@@ -1590,7 +1567,8 @@
           "skill-data-and-databases"
         ],
         "leadership": []
-      }
+      },
+      "category": "Data & Decision Intelligence"
     },
     {
       "id": "customer-facing-founding-engineer-pre-seed-saas",
@@ -1601,10 +1579,10 @@
       "description": "Founding engineer translating customer problems into initial architecture, production MVPs, and pragmatic technical decisions for early-stage products.",
       "location": "Global",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Experience": "Hands-On",
+        "Systems": "Linux",
+        "Impact": "Reliability",
+        "Specialization": "Infrastructure"
       },
       "requiredKeywords": [
         "Founding Engineer",
@@ -1620,7 +1598,7 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h1",
+              "work-margadarshaka-h6",
               "work-margadarshaka-h3"
             ]
           },
@@ -1659,7 +1637,8 @@
           "skill-backend-and-apis"
         ],
         "leadership": []
-      }
+      },
+      "category": "Technical Delivery, Infrastructure & Solutions"
     },
     {
       "id": "developer-experience-dx-evangelist-devtools",
@@ -1671,9 +1650,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Channels": "Multi",
+        "Impact": "GTM",
+        "Specialization": "Content Ops"
       },
       "requiredKeywords": [
         "Developer Relations",
@@ -1728,7 +1707,8 @@
           "skill-backend-and-apis"
         ],
         "leadership": []
-      }
+      },
+      "category": "Growth, Content & Developer Community"
     },
     {
       "id": "enterprise-resilience-engineer-managed-service-providers",
@@ -1739,10 +1719,10 @@
       "description": "Infrastructure and security engineer supporting resilient Linux systems, networking, access controls, incident response, and regulated service environments.",
       "location": "Global",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Experience": "Hands-On",
+        "Systems": "Linux",
+        "Impact": "Reliability",
+        "Specialization": "Infrastructure"
       },
       "requiredKeywords": [
         "Infrastructure Engineering",
@@ -1756,32 +1736,33 @@
       "content": {
         "experience": [
           {
-            "id": "work-margadarshaka",
+            "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-savi-hotels-resorts-jaipur-india-h8",
+              "work-savi-hotels-resorts-jaipur-india-h9"
             ]
           },
           {
-            "id": "work-siya-the-restaurant-srbs-group",
+            "id": "work-margadarshaka",
             "highlights": [
-              "work-siya-the-restaurant-srbs-group-h0",
-              "work-siya-the-restaurant-srbs-group-h2"
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h2"
             ]
           }
         ],
         "projects": [
           {
-            "id": "proj-software-engineering-and-systems-projects",
+            "id": "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform",
             "highlights": [
-              "proj-software-engineering-and-systems-projects-h2",
-              "proj-software-engineering-and-systems-projects-h0"
+              "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform-h2",
+              "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform-h3"
             ]
           },
           {
-            "id": "proj-personal-knowledge-management-system",
+            "id": "proj-hospitality-and-venture-operations-automation",
             "highlights": [
-              "proj-personal-knowledge-management-system-h2"
+              "proj-hospitality-and-venture-operations-automation-h1",
+              "proj-hospitality-and-venture-operations-automation-h2"
             ]
           }
         ],
@@ -1789,7 +1770,8 @@
           "skill-systems-and-devops"
         ],
         "leadership": []
-      }
+      },
+      "category": "Technical Delivery, Infrastructure & Solutions"
     },
     {
       "id": "systems-qa-auditor-fintech-infrastructure",
@@ -1800,10 +1782,10 @@
       "description": "Software QA analyst testing workflows, data integrity, failure handling, and operational controls across financial and technology platforms.",
       "location": "Global",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Experience": "Hands-On",
+        "Systems": "Linux",
+        "Impact": "Reliability",
+        "Specialization": "Infrastructure"
       },
       "requiredKeywords": [
         "Software QA",
@@ -1850,7 +1832,8 @@
           "skill-systems-and-devops"
         ],
         "leadership": []
-      }
+      },
+      "category": "Technical Delivery, Infrastructure & Solutions"
     },
     {
       "id": "proptech-underwriter-designer-high-end-real-estate-pe",
@@ -1862,9 +1845,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Cases": "20+",
+        "Impact": "Exhibit-Linked",
+        "Specialization": "Strategy"
       },
       "requiredKeywords": [
         "Real Estate Investment",
@@ -1885,41 +1868,28 @@
             ]
           },
           {
-            "id": "work-srbs-group-jaipur-india",
-            "highlights": [
-              "work-srbs-group-jaipur-india-h2",
-              "work-srbs-group-jaipur-india-h0"
-            ]
-          },
-          {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
               "work-savi-hotels-resorts-jaipur-india-h2",
-              "work-savi-hotels-resorts-jaipur-india-h3"
+              "work-savi-hotels-resorts-jaipur-india-h7"
             ]
           }
         ],
         "projects": [
           {
-            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "id": "proj-london-airbnb-pricing-and-regression-models",
             "highlights": [
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
-            ]
-          },
-          {
-            "id": "proj-bwc-adaptive-efficiency-investment-desk",
-            "highlights": [
-              "proj-bwc-adaptive-efficiency-investment-desk-h0",
-              "proj-bwc-adaptive-efficiency-investment-desk-h1"
+              "proj-london-airbnb-pricing-and-regression-models-h1",
+              "proj-london-airbnb-pricing-and-regression-models-h3"
             ]
           }
         ],
         "skills": [
-          "skill-product-design-and-spatial-tools"
+          "skill-data-and-databases"
         ],
         "leadership": []
-      }
+      },
+      "category": "Strategy, Investment & Private Wealth"
     },
     {
       "id": "experiential-event-producer-tech-conferences",
@@ -1931,9 +1901,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Programmes": "10+",
+        "Impact": "Live Delivery",
+        "Specialization": "Events"
       },
       "requiredKeywords": [
         "Event Production",
@@ -1986,21 +1956,22 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Innovation Programs & Events"
     },
     {
       "id": "gastronomic-systems-operator-culinary-consulting",
       "role": "Culinary Strategy & Operations Consultant",
-      "industry": "Restaurant Groups & Culinary Ventures",
+      "industry": "Restaurant Menu & BOH Systems",
       "targeted": true,
       "weight": 10,
       "description": "Combines menu engineering, restaurant analytics, operational design, and food technology to improve culinary concepts, margins, and service systems.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Focus": "Menu & Operations",
-        "Systems": "Data-Led",
-        "Specialization": "Culinary Consulting"
+        "Properties": "4 Hotels",
+        "Impact": "Turnaround",
+        "Specialization": "Hospitality"
       },
       "requiredKeywords": [
         "Menu Engineering",
@@ -2016,44 +1987,36 @@
         "languages": 0
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Culinary_Strategy_Operations_Consultant.pdf",
-      "family": "Culinary Strategy & Consulting",
       "content": {
         "experience": [
           {
             "id": "work-siya-the-restaurant-srbs-group",
             "highlights": [
-              "work-siya-the-restaurant-srbs-group-h3",
-              "work-siya-the-restaurant-srbs-group-h0"
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h1"
             ]
           },
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h0",
-              "work-savi-hotels-resorts-jaipur-india-h4"
-            ]
-          },
-          {
-            "id": "work-astropatshala",
-            "highlights": [
-              "work-astropatshala-h0",
-              "work-astropatshala-h1"
+              "work-savi-hotels-resorts-jaipur-india-h4",
+              "work-savi-hotels-resorts-jaipur-india-h0"
             ]
           }
         ],
         "projects": [
           {
-            "id": "proj-culinary-operations-rotation",
+            "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform",
             "highlights": [
-              "proj-culinary-operations-rotation-h0",
-              "proj-culinary-operations-rotation-h2"
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h2",
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h4"
             ]
           },
           {
-            "id": "proj-independent-culinary-development-and-kitchen-systems-practice",
+            "id": "proj-hospitality-craft-and-innovation-article",
             "highlights": [
-              "proj-independent-culinary-development-and-kitchen-systems-practice-h1",
-              "proj-independent-culinary-development-and-kitchen-systems-practice-h0"
+              "proj-hospitality-craft-and-innovation-article-h0",
+              "proj-hospitality-craft-and-innovation-article-h1"
             ]
           }
         ],
@@ -2061,7 +2024,8 @@
           "skill-culinary-strategy-and-food-technology"
         ],
         "leadership": []
-      }
+      },
+      "category": "Hospitality & Culinary Operations"
     },
     {
       "id": "operations-flow-manager-foodtech",
@@ -2073,9 +2037,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Properties": "4 Hotels",
+        "Impact": "Turnaround",
+        "Specialization": "Hospitality"
       },
       "requiredKeywords": [
         "Operations Management",
@@ -2127,7 +2091,8 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Hospitality & Culinary Operations"
     },
     {
       "id": "heavy-industry-value-engineer-climatetech",
@@ -2138,10 +2103,10 @@
       "description": "Builds commercial cases for climate and energy solutions: battery-integration economics, carbon-market positioning, and implementation options.",
       "location": "Global",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Experience": "Hands-On",
+        "Systems": "Linux",
+        "Impact": "Reliability",
+        "Specialization": "Infrastructure"
       },
       "requiredKeywords": [
         "ClimateTech",
@@ -2155,10 +2120,10 @@
       "content": {
         "experience": [
           {
-            "id": "work-margadarshaka",
+            "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-margadarshaka-h1",
-              "work-margadarshaka-h3"
+              "work-savi-hotels-resorts-jaipur-india-h4",
+              "work-savi-hotels-resorts-jaipur-india-h6"
             ]
           },
           {
@@ -2171,23 +2136,26 @@
         ],
         "projects": [
           {
-            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "id": "proj-octopus-energy-battery-integration-strategy",
             "highlights": [
-              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1",
-              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0"
+              "proj-octopus-energy-battery-integration-strategy-h0",
+              "proj-octopus-energy-battery-integration-strategy-h2"
             ]
           },
           {
             "id": "proj-global-development-and-climate-hypothesis-testing",
             "highlights": [
-              "proj-global-development-and-climate-hypothesis-testing-h2",
-              "proj-global-development-and-climate-hypothesis-testing-h1"
+              "proj-global-development-and-climate-hypothesis-testing-h1",
+              "proj-global-development-and-climate-hypothesis-testing-h2"
             ]
           }
         ],
-        "skills": [],
+        "skills": [
+          "skill-data-and-databases"
+        ],
         "leadership": []
-      }
+      },
+      "category": "Technical Delivery, Infrastructure & Solutions"
     },
     {
       "id": "heavy-industry-value-engineer-heavy-manufacturing-tech",
@@ -2198,10 +2166,10 @@
       "description": "Assesses industrial and hardware ventures for technical feasibility, manufacturing economics, governance risk, and go-to-market readiness.",
       "location": "Global",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Experience": "Hands-On",
+        "Systems": "Linux",
+        "Impact": "Reliability",
+        "Specialization": "Infrastructure"
       },
       "requiredKeywords": [
         "Industrial Technology",
@@ -2215,17 +2183,17 @@
       "content": {
         "experience": [
           {
-            "id": "work-margadarshaka",
-            "highlights": [
-              "work-margadarshaka-h2",
-              "work-margadarshaka-h3"
-            ]
-          },
-          {
             "id": "work-srbs-group-jaipur-india",
             "highlights": [
               "work-srbs-group-jaipur-india-h2",
               "work-srbs-group-jaipur-india-h0"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h2",
+              "work-margadarshaka-h3"
             ]
           }
         ],
@@ -2238,54 +2206,55 @@
             ]
           },
           {
-            "id": "proj-samsung-and-huawei-strategic-resilience-analysis",
+            "id": "proj-ecolithify-sustainable-tableware-concept",
             "highlights": [
-              "proj-samsung-and-huawei-strategic-resilience-analysis-h1",
-              "proj-samsung-and-huawei-strategic-resilience-analysis-h0"
+              "proj-ecolithify-sustainable-tableware-concept-h0",
+              "proj-ecolithify-sustainable-tableware-concept-h1"
             ]
           }
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Technical Delivery, Infrastructure & Solutions"
     },
     {
-      "id": "heavy-industry-value-engineer-agritech",
+      "id": "solutions-engineer-culinary-hospitality-systems",
       "role": "Solutions Engineer",
-      "industry": "Agricultural Technology",
+      "industry": "Culinary & Hospitality Systems",
       "targeted": true,
       "weight": 10,
-      "description": "Translates food-system and ingredient-science evidence into commercial product cases, test matrices, and implementation paths for agri-food technology.",
+      "description": "Translates culinary operations, ingredient science, and hospitality data into commercial product cases, test matrices, and implementation paths for food-and-hospitality systems.",
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Properties": "4 Hotels",
+        "Impact": "Turnaround",
+        "Specialization": "Hospitality"
       },
       "requiredKeywords": [
-        "Agri-Food Technology",
+        "Culinary Operations",
         "Food Science",
-        "Solutions Engineering",
+        "Hospitality Systems",
+        "Menu Engineering",
         "Product Validation",
-        "Commercialisation",
-        "Implementation"
+        "Commercialisation"
       ],
-      "pdfFilename": "Kartavya_Jharwal_Resume_Solutions_Engineer_Agricultural_Technology.pdf",
+      "pdfFilename": "Kartavya_Jharwal_Resume_Solutions_Engineer_Culinary_Hospitality_Systems.pdf",
       "content": {
         "experience": [
-          {
-            "id": "work-margadarshaka",
-            "highlights": [
-              "work-margadarshaka-h3",
-              "work-margadarshaka-h1"
-            ]
-          },
           {
             "id": "work-siya-the-restaurant-srbs-group",
             "highlights": [
               "work-siya-the-restaurant-srbs-group-h0",
               "work-siya-the-restaurant-srbs-group-h3"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h4",
+              "work-savi-hotels-resorts-jaipur-india-h6"
             ]
           }
         ],
@@ -2305,9 +2274,12 @@
             ]
           }
         ],
-        "skills": [],
+        "skills": [
+          "skill-culinary-strategy-and-food-technology"
+        ],
         "leadership": []
-      }
+      },
+      "category": "Hospitality & Culinary Operations"
     },
     {
       "id": "ux-research-translation-lead-civic-tech-platforms",
@@ -2319,9 +2291,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Systems": "Cross-Stack",
+        "Impact": "Legibility",
+        "Specialization": "Design–Quant"
       },
       "requiredKeywords": [
         "UX Research",
@@ -2344,8 +2316,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-margadarshaka-h4",
+              "work-margadarshaka-h5"
             ]
           },
           {
@@ -2376,7 +2348,8 @@
           "skill-product-design-and-spatial-tools"
         ],
         "leadership": []
-      }
+      },
+      "category": "Product, UX & Experience Design"
     },
     {
       "id": "management-consultant-mbb-standard-big-3-consulting",
@@ -2388,9 +2361,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Cases": "20+",
+        "Impact": "Exhibit-Linked",
+        "Specialization": "Strategy"
       },
       "requiredKeywords": [
         "Strategy Consulting",
@@ -2401,21 +2374,27 @@
         "Market Structure"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Consultant_MBB_Strategy_Consulting.pdf",
-      "family": "Strategy & Investment",
       "content": {
         "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h2"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h0",
+              "work-savi-hotels-resorts-jaipur-india-h2"
+            ]
+          },
           {
             "id": "work-astropatshala",
             "highlights": [
               "work-astropatshala-h0",
-              "work-astropatshala-h2"
-            ]
-          },
-          {
-            "id": "work-independent-healthcare-venture-client-anonymised",
-            "highlights": [
-              "work-independent-healthcare-venture-client-anonymised-h0",
-              "work-independent-healthcare-venture-client-anonymised-h1"
+              "work-astropatshala-h1"
             ]
           }
         ],
@@ -2428,16 +2407,17 @@
             ]
           },
           {
-            "id": "proj-walmart-pfand-circular-retail-strategy",
+            "id": "proj-noritake-hospitality-tableware-positioning-strategy",
             "highlights": [
-              "proj-walmart-pfand-circular-retail-strategy-h0",
-              "proj-walmart-pfand-circular-retail-strategy-h1"
+              "proj-noritake-hospitality-tableware-positioning-strategy-h0",
+              "proj-noritake-hospitality-tableware-positioning-strategy-h1"
             ]
           }
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Strategy, Investment & Private Wealth"
     },
     {
       "id": "management-consultant-mbb-standard-tier-2-strategy",
@@ -2449,9 +2429,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Cases": "20+",
+        "Impact": "Exhibit-Linked",
+        "Specialization": "Strategy"
       },
       "requiredKeywords": [
         "Strategy Consulting",
@@ -2462,7 +2442,6 @@
         "Executive Communication"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Consultant_Tier_2_Strategy_Consulting.pdf",
-      "family": "Strategy & Investment",
       "content": {
         "experience": [
           {
@@ -2498,7 +2477,8 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Strategy, Investment & Private Wealth"
     },
     {
       "id": "management-consultant-mbb-standard-corporate-turnarounds",
@@ -2510,9 +2490,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Cases": "20+",
+        "Impact": "Exhibit-Linked",
+        "Specialization": "Strategy"
       },
       "requiredKeywords": [
         "Corporate Turnaround",
@@ -2523,7 +2503,6 @@
         "Implementation"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Consultant_Corporate_Turnarounds.pdf",
-      "family": "Strategy & Investment",
       "content": {
         "experience": [
           {
@@ -2532,20 +2511,6 @@
               "work-savi-hotels-resorts-jaipur-india-h0",
               "work-savi-hotels-resorts-jaipur-india-h1"
             ]
-          },
-          {
-            "id": "work-astropatshala",
-            "highlights": [
-              "work-astropatshala-h0",
-              "work-astropatshala-h2"
-            ]
-          },
-          {
-            "id": "work-margadarshaka",
-            "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
-            ]
           }
         ],
         "projects": [
@@ -2553,19 +2518,18 @@
             "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
             "highlights": [
               "proj-leased-hotel-turnaround-and-operating-model-strategy-h0",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
-            ]
-          },
-          {
-            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
-            "highlights": [
-              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1",
-              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h0"
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
             ]
           }
         ],
         "skills": [],
         "leadership": []
+      },
+      "category": "Strategy, Investment & Private Wealth",
+      "limits": {
+        "projectHighlights": 4
       }
     },
     {
@@ -2578,9 +2542,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Cases": "20+",
+        "Impact": "Exhibit-Linked",
+        "Specialization": "Strategy"
       },
       "requiredKeywords": [
         "Investment Banking",
@@ -2591,7 +2555,6 @@
         "Risk Management"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Bulge_Bracket_Investment_Banking.pdf",
-      "family": "Strategy & Investment",
       "content": {
         "experience": [
           {
@@ -2629,7 +2592,8 @@
           "skill-data-and-databases"
         ],
         "leadership": []
-      }
+      },
+      "category": "Strategy, Investment & Private Wealth"
     },
     {
       "id": "investment-banking-analyst-boutique-ma-advisory",
@@ -2641,9 +2605,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Cases": "20+",
+        "Impact": "Exhibit-Linked",
+        "Specialization": "Strategy"
       },
       "requiredKeywords": [
         "M&A Advisory",
@@ -2654,7 +2618,6 @@
         "Commercial Diligence"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Boutique_M_A_Advisory.pdf",
-      "family": "Strategy & Investment",
       "content": {
         "experience": [
           {
@@ -2692,7 +2655,8 @@
           "skill-data-and-databases"
         ],
         "leadership": []
-      }
+      },
+      "category": "Strategy, Investment & Private Wealth"
     },
     {
       "id": "investment-banking-analyst-growth-equity",
@@ -2704,9 +2668,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Cases": "20+",
+        "Impact": "Exhibit-Linked",
+        "Specialization": "Strategy"
       },
       "requiredKeywords": [
         "Growth Equity",
@@ -2717,7 +2681,6 @@
         "Transaction Execution"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Growth_Equity.pdf",
-      "family": "Strategy & Investment",
       "content": {
         "experience": [
           {
@@ -2762,7 +2725,8 @@
           "skill-data-and-databases"
         ],
         "leadership": []
-      }
+      },
+      "category": "Strategy, Investment & Private Wealth"
     },
     {
       "id": "tactical-it-systems-administrator-managed-service-providers",
@@ -2773,10 +2737,10 @@
       "description": "Systems administrator supporting Linux estates, networking, access, deployment, troubleshooting, and reliable institutional services.",
       "location": "Global",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Experience": "Hands-On",
+        "Systems": "Linux",
+        "Impact": "Reliability",
+        "Specialization": "Infrastructure"
       },
       "requiredKeywords": [
         "Systems Administration",
@@ -2792,37 +2756,31 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h1",
-              "work-savi-hotels-resorts-jaipur-india-h6"
+              "work-savi-hotels-resorts-jaipur-india-h6",
+              "work-savi-hotels-resorts-jaipur-india-h1"
             ]
           },
           {
-            "id": "work-srbs-group-jaipur-india",
+            "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-srbs-group-jaipur-india-h3"
-            ]
-          },
-          {
-            "id": "work-margadarshaka",
-            "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-savi-hotels-resorts-jaipur-india-h8",
+              "work-savi-hotels-resorts-jaipur-india-h9"
             ]
           }
         ],
         "projects": [
           {
-            "id": "proj-software-engineering-and-systems-projects",
+            "id": "proj-hospitality-and-venture-operations-automation",
             "highlights": [
-              "proj-software-engineering-and-systems-projects-h1",
-              "proj-software-engineering-and-systems-projects-h2"
+              "proj-hospitality-and-venture-operations-automation-h2",
+              "proj-hospitality-and-venture-operations-automation-h1"
             ]
           },
           {
-            "id": "proj-personal-knowledge-management-system",
+            "id": "proj-software-engineering-and-systems-projects",
             "highlights": [
-              "proj-personal-knowledge-management-system-h2",
-              "proj-personal-knowledge-management-system-h3"
+              "proj-software-engineering-and-systems-projects-h2",
+              "proj-software-engineering-and-systems-projects-h3"
             ]
           }
         ],
@@ -2830,7 +2788,8 @@
           "skill-systems-and-devops"
         ],
         "leadership": []
-      }
+      },
+      "category": "Technical Delivery, Infrastructure & Solutions"
     },
     {
       "id": "open-source-community-lead-open-source-foundations",
@@ -2842,9 +2801,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Channels": "Multi",
+        "Impact": "GTM",
+        "Specialization": "Content Ops"
       },
       "requiredKeywords": [
         "Developer Community",
@@ -2867,8 +2826,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-margadarshaka-h4",
+              "work-margadarshaka-h5"
             ]
           },
           {
@@ -2897,7 +2856,8 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Growth, Content & Developer Community"
     },
     {
       "id": "phygital-spatial-designer-museumexpo-design",
@@ -2909,9 +2869,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Systems": "Cross-Stack",
+        "Impact": "Legibility",
+        "Specialization": "Design–Quant"
       },
       "requiredKeywords": [
         "Spatial Experience Design",
@@ -2959,7 +2919,8 @@
           "skill-product-design-and-spatial-tools"
         ],
         "leadership": []
-      }
+      },
+      "category": "Product, UX & Experience Design"
     },
     {
       "id": "systematic-organizational-designer-enterprise-transformation",
@@ -2971,9 +2932,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Engagements": "Multi",
+        "Impact": "Operating Model",
+        "Specialization": "Systems"
       },
       "requiredKeywords": [
         "Organizational Design",
@@ -2984,7 +2945,6 @@
         "Process Design"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_Enterprise_Transformation.pdf",
-      "family": "Consultant",
       "content": {
         "experience": [
           {
@@ -3027,7 +2987,8 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Organizational & Systems Design"
     },
     {
       "id": "systematic-organizational-designer-civictech",
@@ -3039,9 +3000,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Engagements": "Multi",
+        "Impact": "Operating Model",
+        "Specialization": "Systems"
       },
       "requiredKeywords": [
         "CivicTech",
@@ -3052,7 +3013,6 @@
         "Process Design"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_CivicTech.pdf",
-      "family": "Consultant",
       "content": {
         "experience": [
           {
@@ -3095,7 +3055,8 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Organizational & Systems Design"
     },
     {
       "id": "systematic-organizational-designer-deeptech-skunkworks",
@@ -3107,9 +3068,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Engagements": "Multi",
+        "Impact": "Operating Model",
+        "Specialization": "Systems"
       },
       "requiredKeywords": [
         "Deep-Tech",
@@ -3120,14 +3081,13 @@
         "Staged Validation"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_Deep_Tech_Innovation_Labs.pdf",
-      "family": "Consultant",
       "content": {
         "experience": [
           {
             "id": "work-margadarshaka",
             "highlights": [
               "work-margadarshaka-h3",
-              "work-margadarshaka-h1"
+              "work-margadarshaka-h4"
             ]
           },
           {
@@ -3163,10 +3123,11 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Organizational & Systems Design"
     },
     {
-      "id": "culinary-ops-hybrid-architect-b2b-foodtech",
+      "id": "culinary-stagiaire-michelin-fine-dining-kitchens",
       "role": "Culinary Stagiaire",
       "industry": "Michelin & Fine-Dining Kitchens",
       "targeted": true,
@@ -3174,10 +3135,10 @@
       "description": "Entry-level kitchen candidate prepared for line-cook, commis, and stagiaire work through disciplined mise en place, knife work, sauce preparation, food safety, and service timing.",
       "location": "Global",
       "metrics": {
-        "Experience": "Entry Level",
-        "Placements": "Multiple",
-        "Training": "Hands-On",
-        "Focus": "Kitchen Craft"
+        "Experience": "5+ Yrs",
+        "Properties": "4 Hotels",
+        "Impact": "Turnaround",
+        "Specialization": "Hospitality"
       },
       "requiredKeywords": [
         "Culinary Stagiaire",
@@ -3194,21 +3155,26 @@
         "languages": 0
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Culinary_Stagiaire_Michelin_Fine_Dining_Kitchens.pdf",
-      "family": "Culinary Stagiaire",
       "content": {
         "experience": [
           {
-            "id": "work-margadarshaka",
+            "id": "work-siya-the-restaurant-srbs-group",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-siya-the-restaurant-srbs-group-h1",
+              "work-siya-the-restaurant-srbs-group-h0"
             ]
           },
           {
-            "id": "work-astropatshala",
+            "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-astropatshala-h2",
-              "work-astropatshala-h0"
+              "work-savi-hotels-resorts-jaipur-india-h0",
+              "work-savi-hotels-resorts-jaipur-india-h2"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h1"
             ]
           }
         ],
@@ -3232,10 +3198,11 @@
           "skill-professional-kitchen-practice"
         ],
         "leadership": []
-      }
+      },
+      "category": "Hospitality & Culinary Operations"
     },
     {
-      "id": "culinary-ops-hybrid-architect-airline-catering-logistics",
+      "id": "back-of-house-logistics-coordinator-high-volume-catering",
       "role": "Back-of-House Logistics Coordinator",
       "industry": "High-Volume Catering",
       "targeted": true,
@@ -3244,9 +3211,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Systems": "Multi-Site",
-        "Focus": "BOH Logistics",
-        "Delivery": "High Volume"
+        "Properties": "4 Hotels",
+        "Impact": "Turnaround",
+        "Specialization": "Hospitality"
       },
       "requiredKeywords": [
         "Back-of-House Operations",
@@ -3262,13 +3229,13 @@
         "languages": 0
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Back_Of_House_Logistics_Coordinator_High_Volume_Catering.pdf",
-      "family": "Back-of-House Operations",
       "content": {
         "experience": [
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h6"
+              "work-savi-hotels-resorts-jaipur-india-h6",
+              "work-savi-hotels-resorts-jaipur-india-h8"
             ]
           },
           {
@@ -3279,10 +3246,9 @@
             ]
           },
           {
-            "id": "work-margadarshaka",
+            "id": "work-srbs-group-jaipur-india",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-srbs-group-jaipur-india-h1"
             ]
           }
         ],
@@ -3305,10 +3271,11 @@
           "skill-back-of-house-operations"
         ],
         "leadership": []
-      }
+      },
+      "category": "Hospitality & Culinary Operations"
     },
     {
-      "id": "culinary-ops-hybrid-architect-stadium-hospitality",
+      "id": "front-of-house-reception-associate-hotels-restaurants",
       "role": "Front-of-House and Reception Associate",
       "industry": "Hotels and Restaurants",
       "targeted": true,
@@ -3317,9 +3284,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Guest Impact": "30% Repeat",
-        "Focus": "FOH & Reception",
-        "Service": "Guest Led"
+        "Properties": "4 Hotels",
+        "Impact": "Turnaround",
+        "Specialization": "Hospitality"
       },
       "requiredKeywords": [
         "Front of House",
@@ -3335,7 +3302,6 @@
         "languages": 0
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Front_Of_House_Reception_Associate_Hotels_Restaurants.pdf",
-      "family": "Front-of-House & Reception",
       "content": {
         "experience": [
           {
@@ -3379,7 +3345,8 @@
           "skill-front-of-house-and-reception"
         ],
         "leadership": []
-      }
+      },
+      "category": "Hospitality & Culinary Operations"
     },
     {
       "id": "autodidact-skunkworks-researcher-corporate-rd-labs",
@@ -3390,10 +3357,10 @@
       "description": "Research and development engineer exploring ambiguous technical problems through rapid prototypes, applied experiments, and evidence-led iteration.",
       "location": "Global",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "High",
-        "Specialization": "Expert"
+        "Experience": "Hands-On",
+        "Systems": "Linux",
+        "Impact": "Reliability",
+        "Specialization": "Infrastructure"
       },
       "requiredKeywords": [
         "Research and Development",
@@ -3409,8 +3376,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-margadarshaka-h8",
+              "work-margadarshaka-h3"
             ]
           },
           {
@@ -3446,7 +3413,8 @@
         ],
         "skills": [],
         "leadership": []
-      }
+      },
+      "category": "Technical Delivery, Infrastructure & Solutions"
     },
     {
       "id": "product-manager-startup-accelerators",
@@ -3458,9 +3426,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Products": "4+",
-        "Impact": "High",
-        "Specialization": "Zero-to-One"
+        "Launches": "Multi-Venture",
+        "Impact": "Shipped",
+        "Specialization": "0→1"
       },
       "requiredKeywords": [
         "Product Manager",
@@ -3484,17 +3452,10 @@
             ]
           },
           {
-            "id": "work-astropatshala",
-            "highlights": [
-              "work-astropatshala-h1",
-              "work-astropatshala-h2"
-            ]
-          },
-          {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-margadarshaka-h10",
+              "work-margadarshaka-h8"
             ]
           }
         ],
@@ -3507,10 +3468,10 @@
             ]
           },
           {
-            "id": "proj-jeki-cross-channel-campaign-for-afrikids",
+            "id": "proj-restaurant-operations-platform-for-independent-client",
             "highlights": [
-              "proj-jeki-cross-channel-campaign-for-afrikids-h0",
-              "proj-jeki-cross-channel-campaign-for-afrikids-h1"
+              "proj-restaurant-operations-platform-for-independent-client-h0",
+              "proj-restaurant-operations-platform-for-independent-client-h1"
             ]
           }
         ],
@@ -3521,7 +3482,8 @@
         "leadership": [
           "lead-hult-founders-lab"
         ]
-      }
+      },
+      "category": "Product Management"
     },
     {
       "id": "project-manager-startup-accelerators",
@@ -3533,9 +3495,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Delivery": "End-to-End",
-        "Specialization": "Execution"
+        "Scope": "Multi-Venture",
+        "Impact": "Operator",
+        "Specialization": "Cadence & Gates"
       },
       "requiredKeywords": [
         "Project Manager",
@@ -3555,7 +3517,7 @@
             "id": "work-srbs-group-jaipur-india",
             "highlights": [
               "work-srbs-group-jaipur-india-h1",
-              "work-srbs-group-jaipur-india-h0"
+              "work-srbs-group-jaipur-india-h3"
             ]
           },
           {
@@ -3580,13 +3542,6 @@
               "proj-project-oulm-one-ymca-youth-community-platform-h0",
               "proj-project-oulm-one-ymca-youth-community-platform-h1"
             ]
-          },
-          {
-            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
-            "highlights": [
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1"
-            ]
           }
         ],
         "skills": [
@@ -3595,7 +3550,8 @@
         "leadership": [
           "lead-hult-founders-lab"
         ]
-      }
+      },
+      "category": "Executive Operations & Chief of Staff"
     },
     {
       "id": "devops-associate-startup-accelerators",
@@ -3626,39 +3582,40 @@
       "content": {
         "experience": [
           {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h8",
+              "work-savi-hotels-resorts-jaipur-india-h9"
+            ]
+          },
+          {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-margadarshaka-h6",
+              "work-margadarshaka-h0"
             ]
           },
           {
-            "id": "work-siya-the-restaurant-srbs-group",
+            "id": "work-hult-ai-collective",
             "highlights": [
-              "work-siya-the-restaurant-srbs-group-h0",
-              "work-siya-the-restaurant-srbs-group-h2"
-            ]
-          },
-          {
-            "id": "work-astropatshala",
-            "highlights": [
-              "work-astropatshala-h1",
-              "work-astropatshala-h0"
+              "work-hult-ai-collective-h0",
+              "work-hult-ai-collective-h4"
             ]
           }
         ],
         "projects": [
           {
-            "id": "proj-software-engineering-and-systems-projects",
+            "id": "proj-hospitality-and-venture-operations-automation",
             "highlights": [
-              "proj-software-engineering-and-systems-projects-h2",
-              "proj-software-engineering-and-systems-projects-h0"
+              "proj-hospitality-and-venture-operations-automation-h0",
+              "proj-hospitality-and-venture-operations-automation-h3"
             ]
           },
           {
-            "id": "proj-personal-knowledge-management-system",
+            "id": "proj-software-engineering-and-systems-projects",
             "highlights": [
-              "proj-personal-knowledge-management-system-h2"
+              "proj-software-engineering-and-systems-projects-h0",
+              "proj-software-engineering-and-systems-projects-h2"
             ]
           }
         ],
@@ -3669,10 +3626,11 @@
         "leadership": [
           "lead-hult-founders-lab"
         ]
-      }
+      },
+      "category": "Technical Delivery, Infrastructure & Solutions"
     },
     {
-      "id": "founders-associate-startup-accelerators",
+      "id": "founders-associate-healthcare-startup-ecosystems",
       "role": "Founder's Associate",
       "industry": "Healthcare & Startup Ecosystems",
       "targeted": true,
@@ -3681,9 +3639,9 @@
       "location": "London, UK",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Functions": "Cross-Functional",
-        "Launches": "2",
-        "Specialization": "Venture Building"
+        "Ventures": "Stealth+Live",
+        "Impact": "Healthcare",
+        "Specialization": "Founder Ops"
       },
       "requiredKeywords": [
         "Founder's Associate",
@@ -3714,10 +3672,10 @@
             ]
           },
           {
-            "id": "work-margadarshaka",
+            "id": "work-srbs-group-jaipur-india",
             "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h4"
             ]
           },
           {
@@ -3737,10 +3695,10 @@
             ]
           },
           {
-            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "id": "proj-astropatshala-brand-naming-and-voice-system",
             "highlights": [
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
+              "proj-astropatshala-brand-naming-and-voice-system-h0",
+              "proj-astropatshala-brand-naming-and-voice-system-h1"
             ]
           }
         ],
@@ -3750,7 +3708,8 @@
         "leadership": [
           "lead-hult-founders-lab"
         ]
-      }
+      },
+      "category": "Executive Operations & Chief of Staff"
     },
     {
       "id": "gtm-analyst-startup-accelerators",
@@ -3762,9 +3721,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Funnels": "AARRR",
-        "Impact": "Measurable",
-        "Specialization": "Growth"
+        "Channels": "Multi",
+        "Impact": "GTM",
+        "Specialization": "Content Ops"
       },
       "requiredKeywords": [
         "GTM Analyst",
@@ -3793,13 +3752,6 @@
               "work-independent-healthcare-venture-client-anonymised-h0",
               "work-independent-healthcare-venture-client-anonymised-h1"
             ]
-          },
-          {
-            "id": "work-srbs-group-jaipur-india",
-            "highlights": [
-              "work-srbs-group-jaipur-india-h0",
-              "work-srbs-group-jaipur-india-h2"
-            ]
           }
         ],
         "projects": [
@@ -3825,7 +3777,8 @@
         "leadership": [
           "lead-hult-founders-lab"
         ]
-      }
+      },
+      "category": "Growth, Content & Developer Community"
     },
     {
       "id": "ui-ux-designer-startup-accelerators",
@@ -3837,9 +3790,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Projects": "20+",
-        "Impact": "User-Led",
-        "Specialization": "End-to-End"
+        "Systems": "Cross-Stack",
+        "Impact": "Legibility",
+        "Specialization": "Design–Quant"
       },
       "requiredKeywords": [
         "UI/UX Designer",
@@ -3856,17 +3809,17 @@
       "content": {
         "experience": [
           {
-            "id": "work-margadarshaka",
-            "highlights": [
-              "work-margadarshaka-h2",
-              "work-margadarshaka-h0"
-            ]
-          },
-          {
             "id": "work-independent-healthcare-venture-client-anonymised",
             "highlights": [
               "work-independent-healthcare-venture-client-anonymised-h0",
               "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h2",
+              "work-margadarshaka-h0"
             ]
           }
         ],
@@ -3893,7 +3846,8 @@
         "leadership": [
           "lead-hult-founders-lab"
         ]
-      }
+      },
+      "category": "Product, UX & Experience Design"
     },
     {
       "id": "systems-designer-startup-accelerators",
@@ -3905,9 +3859,9 @@
       "location": "Global",
       "metrics": {
         "Experience": "5+ Yrs",
-        "Systems": "End-to-End",
-        "Impact": "High",
-        "Specialization": "Architecture"
+        "Engagements": "Multi",
+        "Impact": "Operating Model",
+        "Specialization": "Systems"
       },
       "requiredKeywords": [
         "Systems Designer",
@@ -3924,13 +3878,6 @@
       "content": {
         "experience": [
           {
-            "id": "work-margadarshaka",
-            "highlights": [
-              "work-margadarshaka-h0",
-              "work-margadarshaka-h1"
-            ]
-          },
-          {
             "id": "work-astropatshala",
             "highlights": [
               "work-astropatshala-h0",
@@ -3938,25 +3885,26 @@
             ]
           },
           {
-            "id": "work-hult-ai-collective",
+            "id": "work-margadarshaka",
             "highlights": [
-              "work-hult-ai-collective-h0",
-              "work-hult-ai-collective-h2"
+              "work-margadarshaka-h3",
+              "work-margadarshaka-h8"
             ]
           }
         ],
         "projects": [
           {
+            "id": "proj-family-governance-and-office-access-model",
+            "highlights": [
+              "proj-family-governance-and-office-access-model-h0",
+              "proj-family-governance-and-office-access-model-h1"
+            ]
+          },
+          {
             "id": "proj-project-oulm-one-ymca-youth-community-platform",
             "highlights": [
               "proj-project-oulm-one-ymca-youth-community-platform-h0",
               "proj-project-oulm-one-ymca-youth-community-platform-h1"
-            ]
-          },
-          {
-            "id": "proj-personal-knowledge-management-system",
-            "highlights": [
-              "proj-personal-knowledge-management-system-h2"
             ]
           }
         ],
@@ -3967,6 +3915,621 @@
         "leadership": [
           "lead-hult-founders-lab"
         ]
+      },
+      "category": "Organizational & Systems Design"
+    },
+    {
+      "id": "chief-of-staff-founder-led-family-owned-enterprises",
+      "role": "Chief of Staff",
+      "category": "Executive Operations & Chief of Staff",
+      "industry": "Founder-Led & Family-Owned Enterprises",
+      "targeted": true,
+      "weight": 10,
+      "description": "Executive operator supporting founder and managing-director priorities across investment decisions, operating controls, governance, business continuity, and time-sensitive special projects.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Scope": "Multi-Venture",
+        "Impact": "Operator",
+        "Specialization": "Cadence & Gates"
+      },
+      "requiredKeywords": [
+        "Chief of Staff",
+        "Executive Operations",
+        "Decision Support",
+        "Operating Cadence",
+        "Governance",
+        "Business Continuity"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Chief_of_Staff_Founder_Led_Family_Owned_Enterprises.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h4"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h4",
+              "work-savi-hotels-resorts-jaipur-india-h6"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-family-governance-and-office-access-model",
+            "highlights": [
+              "proj-family-governance-and-office-access-model-h0",
+              "proj-family-governance-and-office-access-model-h3"
+            ]
+          },
+          {
+            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
+            "highlights": [
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1",
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h3"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-founder-and-venture-building",
+          "skill-data-and-databases"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      }
+    },
+    {
+      "id": "family-office-analyst-private-wealth-family-enterprise",
+      "role": "Family Office Analyst",
+      "category": "Strategy, Investment & Private Wealth",
+      "industry": "Private Wealth & Family Enterprise Advisory",
+      "targeted": true,
+      "weight": 10,
+      "description": "Analyst combining family-enterprise operating context, asset diligence, governance design, portfolio controls, succession workflows, and adviser coordination for private-wealth decision support.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Cases": "20+",
+        "Impact": "Exhibit-Linked",
+        "Specialization": "Strategy"
+      },
+      "requiredKeywords": [
+        "Family Office",
+        "Private Wealth",
+        "Family Governance",
+        "Portfolio Analysis",
+        "Due Diligence",
+        "Succession Planning"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Family_Office_Analyst_Private_Wealth_Family_Enterprise.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h2"
+            ]
+          },
+          {
+            "id": "work-family-real-estate-business-jaipur-india",
+            "highlights": [
+              "work-family-real-estate-business-jaipur-india-h0",
+              "work-family-real-estate-business-jaipur-india-h1"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h2",
+              "work-savi-hotels-resorts-jaipur-india-h7"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-family-governance-and-office-access-model",
+            "highlights": [
+              "proj-family-governance-and-office-access-model-h1",
+              "proj-family-governance-and-office-access-model-h2"
+            ]
+          },
+          {
+            "id": "proj-bwc-adaptive-efficiency-investment-desk",
+            "highlights": [
+              "proj-bwc-adaptive-efficiency-investment-desk-h0",
+              "proj-bwc-adaptive-efficiency-investment-desk-h2"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases",
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": []
+      }
+    },
+    {
+      "id": "ai-knowledge-operations-specialist-ai-enabled-content-platforms",
+      "role": "AI Knowledge Operations Specialist",
+      "category": "Growth, Content & Developer Community",
+      "industry": "AI-Enabled Content & Knowledge Platforms",
+      "targeted": true,
+      "weight": 10,
+      "description": "Builds structured knowledge workflows that connect source capture, metadata, retrieval, publishing, provenance, and reusable technical content across AI and research environments.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Channels": "Multi",
+        "Impact": "GTM",
+        "Specialization": "Content Ops"
+      },
+      "requiredKeywords": [
+        "Knowledge Operations",
+        "Content Operations",
+        "Information Architecture",
+        "Metadata Management",
+        "Static Publishing",
+        "Workflow Automation"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_AI_Knowledge_Operations_Specialist_AI_Content_Platforms.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h2"
+            ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h3",
+              "work-hult-ai-collective-h4"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-the-bard-static-publishing-engine",
+            "highlights": [
+              "proj-the-bard-static-publishing-engine-h0",
+              "proj-the-bard-static-publishing-engine-h2"
+            ]
+          },
+          {
+            "id": "proj-personal-knowledge-management-system",
+            "highlights": [
+              "proj-personal-knowledge-management-system-h0",
+              "proj-personal-knowledge-management-system-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-backend-and-apis",
+          "skill-data-and-databases",
+          "skill-ai-and-ml"
+        ],
+        "leadership": [
+          "lead-peer-instruction"
+        ]
+      }
+    },
+    {
+      "id": "data-scientist-applied-analytics-decision-science",
+      "role": "Data Scientist",
+      "category": "Data & Decision Intelligence",
+      "industry": "Applied Analytics & Decision Science",
+      "targeted": true,
+      "weight": 10,
+      "description": "Applied data scientist building reproducible datasets, statistical models, experiments, and decision tools across pricing, operations, portfolio risk, and service economics.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Models": "Reproducible",
+        "Impact": "Decision",
+        "Specialization": "Analytics"
+      },
+      "requiredKeywords": [
+        "Data Scientist",
+        "Statistical Modelling",
+        "Regression Analysis",
+        "Hypothesis Testing",
+        "Python",
+        "Decision Science"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Data_Scientist_Applied_Analytics_Decision_Science.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h2"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h4",
+              "work-savi-hotels-resorts-jaipur-india-h6"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-bwc-quantitative-portfolio-audit-engine",
+            "highlights": [
+              "proj-bwc-quantitative-portfolio-audit-engine-h0",
+              "proj-bwc-quantitative-portfolio-audit-engine-h2"
+            ]
+          },
+          {
+            "id": "proj-global-development-and-climate-hypothesis-testing",
+            "highlights": [
+              "proj-global-development-and-climate-hypothesis-testing-h0",
+              "proj-global-development-and-climate-hypothesis-testing-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases",
+          "skill-ai-and-ml",
+          "skill-backend-and-apis"
+        ],
+        "leadership": [
+          "lead-peer-instruction"
+        ]
+      }
+    },
+    {
+      "id": "risk-compliance-analyst-technology-regulated-industries",
+      "role": "Risk & Compliance Analyst",
+      "category": "Risk, Compliance & Responsible AI",
+      "industry": "Technology & Regulated Industries",
+      "targeted": true,
+      "weight": 10,
+      "description": "Maps operational, privacy, governance, and regulatory risks into documented controls, decision gates, audit trails, and accountable stakeholder handoffs.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Controls": "Documented",
+        "Impact": "Governance",
+        "Specialization": "Risk"
+      },
+      "requiredKeywords": [
+        "Risk Assessment",
+        "Compliance Controls",
+        "Regulatory Analysis",
+        "Privacy by Design",
+        "Governance",
+        "Audit Trails"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Risk_Compliance_Analyst_Technology_Regulated_Industries.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h4",
+              "work-srbs-group-jaipur-india-h5"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h3",
+              "work-savi-hotels-resorts-jaipur-india-h6"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-independent-risk-modelling-and-control-design",
+            "highlights": [
+              "proj-independent-risk-modelling-and-control-design-h0",
+              "proj-independent-risk-modelling-and-control-design-h4"
+            ]
+          },
+          {
+            "id": "proj-independent-legal-documentation-and-filing-support",
+            "highlights": [
+              "proj-independent-legal-documentation-and-filing-support-h1",
+              "proj-independent-legal-documentation-and-filing-support-h4"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases",
+          "skill-systems-and-devops",
+          "skill-ai-and-ml"
+        ],
+        "leadership": []
+      }
+    },
+    {
+      "id": "event-hospitality-experience-host-corporate-events-luxury-hospitality",
+      "role": "Event & Hospitality Experience Host",
+      "category": "Hospitality & Culinary Operations",
+      "industry": "Corporate Events & Luxury Hospitality",
+      "targeted": true,
+      "weight": 10,
+      "description": "Hosts and quality-assures corporate and milestone hospitality events—bridging BOH execution in Jaipur with London client-side judgment on service polish, décor, and relationship-led entertainment.",
+      "location": "Jaipur, India / London, UK",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Events": "4 Corporate",
+        "Focus": "MICE QA",
+        "Service": "Luxury"
+      },
+      "requiredKeywords": [
+        "Corporate Events",
+        "MICE",
+        "Hospitality Experience",
+        "Event Facilitation",
+        "Luxury Service",
+        "Client Entertainment"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Event_Hospitality_Experience_Host_Corporate_Events_Luxury_Hospitality.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h10",
+              "work-savi-hotels-resorts-jaipur-india-h11"
+            ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h6"
+            ]
+          },
+          {
+            "id": "work-family-real-estate-business-jaipur-india",
+            "highlights": [
+              "work-family-real-estate-business-jaipur-india-h2",
+              "work-family-real-estate-business-jaipur-india-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-culinary-operations-rotation",
+            "highlights": [
+              "proj-culinary-operations-rotation-h2"
+            ]
+          },
+          {
+            "id": "proj-hospitality-craft-and-innovation-article",
+            "highlights": [
+              "proj-hospitality-craft-and-innovation-article-h0",
+              "proj-hospitality-craft-and-innovation-article-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-front-of-house-and-reception"
+        ],
+        "leadership": []
+      }
+    },
+    {
+      "id": "legal-operations-analyst-law-firms-and-transaction-advisory",
+      "role": "Legal Operations Analyst",
+      "category": "Legal Operations & Transaction Support",
+      "industry": "Law Firms & Transaction Advisory",
+      "targeted": true,
+      "weight": 10,
+      "description": "Supports law-firm and transaction-advisory teams with filing preparation, corporate-record verification, diligence dataroom discipline, and counsel-directed documentation—not licensed legal practice.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Focus": "Filing Ops",
+        "Records": "Cross-Border",
+        "Specialization": "Documentation"
+      },
+      "requiredKeywords": [
+        "Legal Operations",
+        "Filing Preparation",
+        "Corporate Records",
+        "Due Diligence Support",
+        "Documentation",
+        "Companies House"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Legal_Operations_Analyst_Law_Firms_Transaction_Advisory.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h4",
+              "work-srbs-group-jaipur-india-h5"
+            ]
+          },
+          {
+            "id": "work-family-real-estate-business-jaipur-india",
+            "highlights": [
+              "work-family-real-estate-business-jaipur-india-h0",
+              "work-family-real-estate-business-jaipur-india-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-independent-legal-documentation-and-filing-support",
+            "highlights": [
+              "proj-independent-legal-documentation-and-filing-support-h0",
+              "proj-independent-legal-documentation-and-filing-support-h3"
+            ]
+          },
+          {
+            "id": "proj-family-governance-and-office-access-model",
+            "highlights": [
+              "proj-family-governance-and-office-access-model-h0",
+              "proj-family-governance-and-office-access-model-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases"
+        ],
+        "leadership": []
+      }
+    },
+    {
+      "id": "experiential-event-producer-financial-services-law-firms",
+      "role": "Experiential Event Producer",
+      "category": "Innovation Programs & Events",
+      "industry": "Financial Services & Law Firms",
+      "targeted": true,
+      "weight": 10,
+      "description": "Produces finance- and law-firm-facing programmes—hackathons, conference lead magnets, and corporate hospitality—where regulatory credibility and client entertainment quality must read as one arc.",
+      "location": "London, UK / Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Programmes": "10+",
+        "Impact": "Live Delivery",
+        "Specialization": "Events"
+      },
+      "requiredKeywords": [
+        "Event Production",
+        "Financial Services",
+        "Law Firms",
+        "Conference Marketing",
+        "Corporate Events",
+        "Sponsorship"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Event_Producer_Financial_Services_Law_Firms.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h1",
+              "work-hult-ai-collective-h5"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h10",
+              "work-savi-hotels-resorts-jaipur-india-h11"
+            ]
+          },
+          {
+            "id": "work-family-real-estate-business-jaipur-india",
+            "highlights": [
+              "work-family-real-estate-business-jaipur-india-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-carbon-forward-conference-lead-magnet-design",
+            "highlights": [
+              "proj-carbon-forward-conference-lead-magnet-design-h0",
+              "proj-carbon-forward-conference-lead-magnet-design-h1"
+            ]
+          },
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": []
+      }
+    },
+    {
+      "id": "strategy-development-associate-hospitality-corporate-groups",
+      "role": "Strategy & Operations Associate",
+      "category": "Executive Operations & Chief of Staff",
+      "industry": "Hospitality Corporate Groups",
+      "targeted": true,
+      "weight": 10,
+      "description": "Supports hospitality corporate development—portfolio innovation envelopes, property turnaround diagnostics, and lease-decision evidence—for group-level strategy teams distinct from single-asset operations.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Scope": "Multi-Venture",
+        "Impact": "Operator",
+        "Specialization": "Cadence & Gates"
+      },
+      "requiredKeywords": [
+        "Hospitality Corporate Development",
+        "Portfolio Strategy",
+        "Innovation Diagnostic",
+        "Turnaround",
+        "RevPAR",
+        "Operating Model"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Hospitality_Corporate_Groups.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h0",
+              "work-savi-hotels-resorts-jaipur-india-h4"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
+            "highlights": [
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h0",
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1"
+            ]
+          },
+          {
+            "id": "proj-noritake-hospitality-tableware-positioning-strategy",
+            "highlights": [
+              "proj-noritake-hospitality-tableware-positioning-strategy-h0",
+              "proj-noritake-hospitality-tableware-positioning-strategy-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-founder-and-venture-building",
+          "skill-data-and-databases"
+        ],
+        "leadership": []
       }
     }
   ],
@@ -3983,6 +4546,13 @@
     "previewOnly": true,
     "frontendVisible": false,
     "selectableVariant": false,
-    "roleSpecificTailoringStatus": "Role × industry pairs have unique summaries, keywords, and tagged evidence as of 2026-08-29."
+    "roleSpecificTailoringStatus": "Editorial polish: cluster/friction rewrites, thin-pair fixes, design rebalance, gated pairs; 68 role × industry pairs as of 2026-08-30."
+  },
+  "variantAliases": {
+    "heavy-industry-value-engineer-agritech": "solutions-engineer-culinary-hospitality-systems",
+    "culinary-ops-hybrid-architect-b2b-foodtech": "culinary-stagiaire-michelin-fine-dining-kitchens",
+    "culinary-ops-hybrid-architect-airline-catering-logistics": "back-of-house-logistics-coordinator-high-volume-catering",
+    "culinary-ops-hybrid-architect-stadium-hospitality": "front-of-house-reception-associate-hotels-restaurants",
+    "founders-associate-startup-accelerators": "founders-associate-healthcare-startup-ecosystems"
   }
 }

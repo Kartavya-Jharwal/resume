@@ -22,7 +22,7 @@ resume.json + variants.json + Source Serif 4
 Optional: Chromium fit + 59 PDFs → dist/resumes/
 ```
 
-See [PILLARS.md](./PILLARS.md) for the four-layer model.
+See [PILLARS.md](./PILLARS.md) for the five-layer model. Pillar 5 ([DISCOVERABILITY.md](./DISCOVERABILITY.md)) is connective tissue for SEO, structured data, cold GEO, and agent fetch paths; implementation is phased and mostly ahead of the current build.
 
 ## One source, two representations
 
@@ -61,3 +61,14 @@ Local publish only — no cloud GitHub Actions build.
 `bun run deploy:pdf` runs `build:pdf --yes`, full tests, then the same publish step.
 
 GitHub Pages on `Kartavya-Jharwal/resume` must use **Deploy from a branch** → `gh-pages` / `/`. Custom domain `resume.kartavya.tech` is set in repo Pages settings; `dist/CNAME` preserves the hostname in the published tree. The user site (`Kartavya-Jharwal.github.io` / `kartavya.tech`) is separate; this product is the project site at `/resume` on those hosts and at the subdomain when configured.
+
+## Repository layout vs deploy tree
+
+| Repo path | Deployed? | Notes |
+|-----------|-----------|-------|
+| `dist/` | Yes (entire tree) | Only artifact published to `gh-pages`. |
+| `public/data.js` | No | Local `bun run compile` output; gitignored. |
+| `dist/public/data.js` | Yes | Fitted `window.PROFILES` at site build. |
+| `dist/resumes/` | Yes | Optional PDFs from pillar 3. |
+| `output/` | No | Ad-hoc exports; gitignored. |
+| `tmp/` | No | Evidence and QA; gitignored. |

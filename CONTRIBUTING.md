@@ -1,6 +1,6 @@
 # Contributing
 
-This is a personal résumé product. Keep changes traceable to source data or to the v1.5 typesetting specification. See [PILLARS.md](./PILLARS.md) and edit **one pillar per session**.
+This is a personal résumé product. Keep changes traceable to source data or to the v1.5 typesetting specification. See [PILLARS.md](./PILLARS.md) and edit **one pillar per session** (typesetting, screen, PDF, data, or discoverability).
 
 ## Content changes
 
@@ -14,9 +14,9 @@ Variant IDs are lowercase kebab-case. Exactly one variant must set `fallback: tr
 
 ## Layout changes
 
-Read `TYPESETTING.md` before editing résumé CSS. Do not solve overflow by shrinking type, clipping, or browser-time deletion.
+Read `TYPESETTING.md` and `config/typesetting.json` before editing résumé CSS. Do not solve overflow by shrinking type, clipping, or browser-time deletion.
 
-Font-dependent measurements belong in `bun/src/font-metrics.js`. Layout measurement must enforce the inner content boundary (`sheet bottom − padding-bottom`).
+Font-dependent measurements belong in `bun/src/font-metrics.js`. Layout measurement must enforce the inner content boundary (`sheet bottom − padding-bottom`). Optical corrections are additive `[C]` tokens, never a silent change to `u` / `S0` / `S1` / `S2`.
 
 ## Preview
 
@@ -27,6 +27,7 @@ Serve `dist/` after `bun run build`. Repo-root `index.html` is not a valid previ
 - Production deploys from `dist/` only via `bun run deploy` (publishes to `origin` `gh-pages`).
 - `bun run build` is site-only; PDFs are optional via `build:pdf` or `deploy:pdf`.
 - Do not claim PDF/A or PDF/UA without external validator reports.
-- `public/data.js`, `.build-cache/`, and `dist/` are generated.
+- `public/data.js`, `.build-cache/`, `dist/`, `output/`, and `tmp/` are generated or local-only — do not commit.
+- Production PDFs belong in `dist/resumes/`, not repo-root `public/resumes/`.
 
 Use concise conventional commit subjects. Do not add co-author trailers.

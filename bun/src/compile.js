@@ -13,6 +13,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { formatDateRange, formatExpectedDate, formatPhone, nfc, typograph, NNBSP_PIPE } from './microtype.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '../..');
@@ -33,6 +34,7 @@ const profiles = variants.map(v => {
   const keywordBank = normaliseKeywordBank([
     v.role,
     v.industry,
+    v.category,
     v.description,
     ...(v.requiredKeywords || [])
   ]);
@@ -46,10 +48,10 @@ const profiles = variants.map(v => {
       if (!highlights.length) return null;
 
       return {
-        company: w.name,
-        role: w.position,
+        company: typograph(w.name),
+        role: typograph(w.position),
         date: formatDateRange(w.startDate, w.endDate),
-        highlights,
+        highlights: highlights.map(typograph),
         direct: split.direct.length > 0,
         global: split.direct.length === 0 && split.global.length > 0,
         featured: getFeaturedRank(universal.experience, w.name, vid),
@@ -71,9 +73,9 @@ const profiles = variants.map(v => {
         .map(h => h.text);
 
       return {
-        name: p.displayName || p.name,
-        description: limits.projectDescriptions === false ? '' : p.description,
-        highlights,
+        name: typograph(p.displayName || p.name),
+        description: limits.projectDescriptions === false ? '' : typograph(p.description || ''),
+        highlights: highlights.map(typograph),
         direct: projectScope.direct || split.direct.length > 0,
         global: !(projectScope.direct || split.direct.length > 0) && (projectScope.global || split.global.length > 0),
         featured: getFeaturedRank(universal.projects, p.name, vid),
@@ -108,10 +110,10 @@ const profiles = variants.map(v => {
         : 0;
   const work = isMasterCV
     ? (resume.work || []).map(w => ({
-        company: w.name,
-        role: w.position,
+        company: typograph(w.name),
+        role: typograph(w.position),
         date: formatDateRange(w.startDate, w.endDate),
-        highlights: (w.highlights || []).map(h => h.text)
+        highlights: (w.highlights || []).map(h => typograph(h.text))
       }))
     : explicitContent
       ? explicitContent.experience
@@ -119,9 +121,9 @@ const profiles = variants.map(v => {
           .map(({ score, recency, direct, global, featured, ...entry }) => entry);
   const projects = isMasterCV
     ? (resume.projects || []).map(p => ({
-        name: p.displayName || p.name,
-        description: p.description || '',
-        highlights: (p.highlights || []).map(h => h.text)
+        name: typograph(p.displayName || p.name),
+        description: typograph(p.description || ''),
+        highlights: (p.highlights || []).map(h => typograph(h.text))
       }))
     : explicitContent
       ? explicitContent.projects
@@ -130,18 +132,18 @@ const profiles = variants.map(v => {
 
 /* Education (non-optional) - all education entries */
   const education = (resume.education || []).map(e => ({
-    institution: e.institution,
-    school: e.school || '',
+    institution: typograph(e.institution),
+    school: typograph(e.school || ''),
     url: e.url || '',
-    location: e.location || '',
-    area: e.area || (e.majors || []).join(' and '),
-    studyType: e.studyType,
-    date: e.expected ? `Expected ${formatDate(e.endDate)}` : formatDateRange(e.startDate, e.endDate),
-    score: [e.score, e.academicStanding].filter(Boolean).join(' | '),
-    summary: e.summary || '',
+    location: typograph(e.location || ''),
+    area: typograph(e.area || (e.majors || []).join(' and ')),
+    studyType: typograph(e.studyType),
+    date: e.expected ? formatExpectedDate(e.endDate) : formatDateRange(e.startDate, e.endDate),
+    score: [e.score, e.academicStanding].filter(Boolean).map(typograph).join(NNBSP_PIPE),
+    summary: typograph(e.summary || ''),
     honors: (e.highlights || []).slice(0, limitOrInfinity(limits.educationHighlights))
-      .map(item => String(item).replace(/\.$/, '')),
-    courses: rankRelevantCoursework(e.courses || [], keywordBank, limits.coursework)
+      .map(item => typograph(String(item).replace(/\.$/, ''))),
+    courses: rankRelevantCoursework(e.courses || [], keywordBank, limits.coursework).map(typograph)
   }));
 
   /* Skills filtered by variant */
@@ -204,33 +206,34 @@ const profiles = variants.map(v => {
     : leadershipBuckets.direct.length
       ? leadershipBuckets.direct
       : leadershipBuckets.global)
-    .map(item => `${item.organization}${item.position ? `, ${item.position}` : ''}: ${item.summary || ''}`.trim())
+    .map(item => typograph(`${item.organization}${item.position ? `, ${item.position}` : ''}: ${item.summary || ''}`.trim()))
     .filter(Boolean)
     .slice(0, limitOrInfinity(limits.leadership));
 
   return {
     id: v.id,
     role: v.role,
-    family: v.family || v.role,
+    family: v.role,
+    category: v.category || v.role,
     industry: v.industry,
     fallback: v.fallback || false,
     isMasterCV,
     composition: composition,
 
     /* Identity */
-    name: resume.basics.name,
+    name: nfc(resume.basics.name),
 
 /* Contact - uses variant location, but canonical contact info from resume */
     contact: {
-      location: v.location || resume.basics.location.city,
+      location: typograph(v.location || resume.basics.location.city),
       email: resume.basics.email,
-      phone: resume.basics.phone,
+      phone: formatPhone(resume.basics.phone),
       url: resume.basics.url,
       profiles: resume.basics.profiles || []
     },
 
     /* Summary from variant description */
-    summary: isMasterCV ? (resume.basics.summary || '') : (v.description || resume.basics.summary || ''),
+    summary: typograph(isMasterCV ? (resume.basics.summary || '') : (v.description || resume.basics.summary || '')),
 
     /* Sections */
     experience: work,
@@ -256,8 +259,10 @@ const profiles = variants.map(v => {
 
 /* ── Generate JavaScript file ── */
 const sourceRevision = `${resume.meta?.version || 'unversioned'} / ${resume.meta?.lastModified || 'unknown'}`;
+const variantAliases = variantsDoc.variantAliases || {};
 const js = `/* Auto-generated by bun/src/compile.js - DO NOT EDIT */\n` +
   `/* Source: ${sourceRevision} */\n` +
+  `window.VARIANT_ALIASES = ${JSON.stringify(variantAliases, null, 1)};\n` +
   `window.PROFILES = ${JSON.stringify(profiles, null, 1)};\n`;
 
 const outArgIndex = process.argv.indexOf('--out');
@@ -271,18 +276,6 @@ writeFileSync(outFile, js, 'utf-8');
 console.log(`✓ Compiled ${profiles.length} profiles → ${requestedOutput}`);
 
 /* ── Helpers ── */
-function formatDateRange(start, end) {
-  return `${formatDate(start)} to ${formatDate(end)}`;
-}
-
-function formatDate(value) {
-  if (!value) return 'Present';
-  const [year, month] = value.split('-');
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  if (!month) return year;
-  return `${months[parseInt(month)-1]} ${year}`;
-}
-
 function hasExactVariant(tags, variantId) {
   return Array.isArray(tags) && tags.includes(variantId);
 }
@@ -438,10 +431,10 @@ function resolveExplicitContent(content, resumeData, contentLimits) {
       .slice(0, limitOrInfinity(contentLimits.experienceHighlights));
     if (!highlights.length) throw new Error(`Work "${selection.id}" has no resolved highlights`);
     return {
-      company: work.name,
-      role: work.position,
+      company: typograph(work.name),
+      role: typograph(work.position),
       date: formatDateRange(work.startDate, work.endDate),
-      highlights
+      highlights: highlights.map(typograph)
     };
   });
 
@@ -455,9 +448,9 @@ function resolveExplicitContent(content, resumeData, contentLimits) {
       .slice(0, limitOrInfinity(contentLimits.projectHighlights));
     if (!highlights.length) throw new Error(`Project "${selection.id}" has no resolved highlights`);
     return {
-      name: project.displayName || project.name,
-      description: contentLimits.projectDescriptions === false ? '' : (project.description || ''),
-      highlights
+      name: typograph(project.displayName || project.name),
+      description: contentLimits.projectDescriptions === false ? '' : typograph(project.description || ''),
+      highlights: highlights.map(typograph)
     };
   });
 

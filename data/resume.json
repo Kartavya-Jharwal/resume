@@ -1,8 +1,8 @@
 {
   "meta": {
-    "version": "1.9.1",
+    "version": "1.12.0",
     "canonical": "https://resume.kartavya.tech/data/resume.json",
-    "lastModified": "2026-08-29"
+    "lastModified": "2026-08-30"
   },
   "custom": {
     "limits": {
@@ -83,7 +83,7 @@
       "summary": "Builds a real-time AI voice platform for career and life counselling in Indian regional languages, with cost controls and human safeguarding built into the product architecture.",
       "highlights": [
         {
-          "text": "Architected a real-time voice pipeline around a projected INR 50 per call ceiling, balancing speech recognition, model inference, response latency, and human review.",
+          "text": "Held real-time voice delivery inside a projected INR 50-per-call ceiling—balancing Whisper inference, response latency, and mandatory human review before any scaled commit.",
           "variants": [
             "early-stage-operator-yc-alumni-startups",
             "forward-deployed-innovator-enterprise-ai",
@@ -100,7 +100,7 @@
           "id": "work-margadarshaka-h0"
         },
         {
-          "text": "Required human review after every AI-handled call and handed counsellors a structured case dossier for follow-up.",
+          "text": "Required human review after every AI-handled call and handed counsellors an auditable case dossier—entity links, session history, and follow-up tasks in one view.",
           "variants": [
             "early-stage-operator-yc-alumni-startups",
             "forward-deployed-innovator-enterprise-ai",
@@ -117,7 +117,7 @@
           "id": "work-margadarshaka-h1"
         },
         {
-          "text": "Rejected a premature full build after feasibility testing exposed payer-user misalignment and counselling-liability risk.",
+          "text": "Rejected a premature full build after feasibility testing exposed payer-user misalignment and counselling-liability risk—stopping spend before scaled commitment.",
           "variants": [
             "early-stage-operator-yc-alumni-startups",
             "forward-deployed-innovator-enterprise-ai",
@@ -134,7 +134,7 @@
           "id": "work-margadarshaka-h2"
         },
         {
-          "text": "Set a staged validation path to test demand, delivery economics, and human-review safeguards before scaling.",
+          "text": "Set stage gates on demand, delivery economics, and human-review cost—testing each before authorising the next build tranche.",
           "variants": [
             "early-stage-operator-yc-alumni-startups",
             "venture-diligence-analyst-pre-seed-funds",
@@ -146,6 +146,82 @@
             "systematic-organizational-designer-deeptech-skunkworks"
           ],
           "id": "work-margadarshaka-h3"
+        },
+        {
+          "id": "work-margadarshaka-h4",
+          "text": "Set stage gates on Margadarshaka's go-to-market—testing demand, unit economics, and human-review cost before any scaled build commitment.",
+          "variants": [
+            "early-stage-operator-yc-alumni-startups",
+            "gtm-analyst-startup-accelerators",
+            "founders-associate-healthcare-startup-ecosystems",
+            "zero-cost-growth-hacker-d2c-marketplaces"
+          ]
+        },
+        {
+          "id": "work-margadarshaka-h5",
+          "text": "Drafted early cap-table scenarios and angel-outreach materials while mapping investor fit against counselling-liability and payer-user alignment risks.",
+          "variants": [
+            "venture-diligence-analyst-pre-seed-funds",
+            "founders-associate-healthcare-startup-ecosystems",
+            "early-stage-operator-yc-alumni-startups"
+          ]
+        },
+        {
+          "id": "work-margadarshaka-h6",
+          "text": "Prototyped a Whisper/C++ edge inference path to hold per-call compute inside the INR 50 ceiling—bounded automation before full voice-stack spend.",
+          "variants": [
+            "core-ai-pipeline-engineer-biotech",
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "forward-deployed-innovator-enterprise-ai",
+            "devops-associate-startup-accelerators"
+          ]
+        },
+        {
+          "id": "work-margadarshaka-h7",
+          "text": "Designed a psychometric intake layer for career-guidance flows—translating trait signals into counsellor-ready prompts without automating judgment calls.",
+          "variants": [
+            "behavioral-product-manager-digital-wellness",
+            "ux-research-translation-lead-civic-tech-platforms",
+            "ai-governance-ethics-officer-medtech"
+          ]
+        },
+        {
+          "id": "work-margadarshaka-h8",
+          "text": "Ran structured discovery with six-plus practitioners on how AI-assisted career guidance is shifting—synthesising forecasts into product and positioning choices.",
+          "variants": [
+            "product-manager-startup-accelerators",
+            "innovation-ecosystem-architect-startup-accelerators",
+            "gtm-analyst-startup-accelerators"
+          ]
+        },
+        {
+          "id": "work-margadarshaka-h9",
+          "text": "Framed a low-price-point, SDG-aligned access path for regional-language counselling—stress-testing affordability without compromising safeguarding spend.",
+          "variants": [
+            "ai-governance-ethics-officer-medtech",
+            "behavioral-product-manager-digital-wellness"
+          ]
+        },
+        {
+          "id": "work-margadarshaka-h10",
+          "text": "Ran Margadarshaka delivery in two-week Scrum cadences—backlog grooming, design handoffs, and Kanban visibility across engineering and counselling stakeholders.",
+          "variants": [
+            "design-systems-architect-fintech-platforms",
+            "design-systems-architect-complex-data-dashboards",
+            "design-systems-architect-enterprise-b2b-saas",
+            "product-manager-startup-accelerators"
+          ]
+        },
+        {
+          "id": "work-margadarshaka-h11",
+          "text": "Turned post-call transcripts into structured case dossiers and counsellor dashboards—linking entities, session history, and follow-up tasks in one view.",
+          "variants": [
+            "design-systems-architect-fintech-platforms",
+            "design-systems-architect-complex-data-dashboards",
+            "design-systems-architect-enterprise-b2b-saas",
+            "ai-knowledge-operations-specialist-ai-enabled-content-platforms",
+            "data-narrative-consultant-macro-economic-research"
+          ]
         }
       ],
       "keywords": [
@@ -168,7 +244,7 @@
       "summary": "Runs operations, growth, and technology for an astrology consulting and education venture while the lead astrologer manages client delivery.",
       "highlights": [
         {
-          "text": "Built AstroPatshala's operating model from the ground up, turning pricing, licensing, service packaging, market entry, and delivery into a repeatable venture system.",
+          "text": "Built AstroPatshala's repeatable operating model by defining how pricing and licensing governed packaged services, market entry, and delivery.",
           "variants": [
             "early-stage-operator-yc-alumni-startups",
             "executive-translation-lead-tech-conglomerates",
@@ -182,7 +258,7 @@
           "id": "work-astropatshala-h0"
         },
         {
-          "text": "Built and maintained 2 production codebases that support customer acquisition, education delivery, research publishing, and internal operations.",
+          "text": "Built and maintained two production codebases governing customer acquisition, education delivery, research publishing, and internal operations—with deployment cadence tied to licensing releases.",
           "variants": [
             "early-stage-operator-yc-alumni-startups",
             "executive-translation-lead-tech-conglomerates",
@@ -196,7 +272,7 @@
           "id": "work-astropatshala-h1"
         },
         {
-          "text": "Ran continuous service and content experiments in Vedic astrology and Bhrigu Nadi, turning the work into an applied research base for consulting, education, and product decisions.",
+          "text": "Structured AstroPatshala research publishing and course licensing as repeatable GTM assets—pricing tiers, channel partners, and delivery packaging aligned to the operating model.",
           "variants": [
             "early-stage-operator-yc-alumni-startups",
             "executive-translation-lead-tech-conglomerates",
@@ -230,7 +306,7 @@
       "summary": "Founded a student-run AI organisation that delivers practical learning, events, and peer collaboration at Hult.",
       "highlights": [
         {
-          "text": "Founded Hult's student AI organisation and took it from operating concept to public launch, putting programming, outreach, events, treasury, and technical infrastructure in place.",
+          "text": "Took Hult's student AI organisation from operating concept to public launch by building its programming calendar, outreach cadence, event delivery, treasury controls, and technical infrastructure.",
           "variants": [
             "innovation-ecosystem-architect-startup-accelerators",
             "open-source-community-lead-open-source-foundations",
@@ -242,14 +318,15 @@
           "id": "work-hult-ai-collective-h0"
         },
         {
-          "text": "Produced the HAC x Hult Finance Hackathon in partnership with the Hult Banking Society, owning partner alignment, the event dossier, speaker outreach, workshops, and on-site delivery.",
+          "text": "Produced the HAC x Hult Finance Hackathon with the Hult Banking Society from partner alignment and the event dossier through speaker outreach, workshops, and on-site delivery.",
           "variants": [
             "innovation-ecosystem-architect-startup-accelerators",
             "open-source-community-lead-open-source-foundations",
             "experiential-event-producer-tech-conferences",
             "all",
             "developer-experience-dx-evangelist-devtools",
-            "project-manager-startup-accelerators"
+            "project-manager-startup-accelerators",
+            "experiential-event-producer-financial-services-law-firms"
           ],
           "id": "work-hult-ai-collective-h1"
         },
@@ -291,15 +368,25 @@
           "id": "work-hult-ai-collective-h4"
         },
         {
-          "text": "Built a sponsorship and partnership pipeline through fit research, institutional and commercial partner sourcing, tailored outreach, and follow-up for events and society programmes.",
+          "text": "Used partner-fit research to prioritise institutional and commercial prospects, then tailored outreach and follow-up into a sponsorship pipeline for HAC events and programmes.",
           "variants": [
             "innovation-ecosystem-architect-startup-accelerators",
             "innovation-ecosystem-architect-corporate-venture-labs",
             "experiential-event-producer-tech-conferences",
             "all",
-            "project-manager-startup-accelerators"
+            "project-manager-startup-accelerators",
+            "experiential-event-producer-financial-services-law-firms"
           ],
           "id": "work-hult-ai-collective-h5"
+        },
+        {
+          "id": "work-hult-ai-collective-h6",
+          "text": "Attended two formal corporate dinners during the Hult period; on the second, stepped into back-of-house logistics for a service gap—building client-side judgment on what reads as polished hospitality versus merely acceptable.",
+          "variants": [
+            "event-hospitality-experience-host-corporate-events-luxury-hospitality",
+            "experiential-event-producer-tech-conferences",
+            "innovation-ecosystem-architect-startup-accelerators"
+          ]
         }
       ],
       "keywords": [
@@ -322,11 +409,12 @@
       "summary": "Led hotel operations, turnaround execution, guest experience, financial controls, and operating-system improvement across four Savi properties within SRBS Group.",
       "highlights": [
         {
-          "text": "Spearheaded the first month of a leased-hotel turnaround, giving the property team a shared system map across RevPAR, occupancy, staffing, guest satisfaction, asset condition, and daily service friction.",
+          "text": "Built the hotel's month-one turnaround baseline by mapping RevPAR and room occupancy against staffing, guest satisfaction, asset condition, and daily service friction for the property team.",
           "variants": [
             "management-consultant-mbb-standard-corporate-turnarounds",
             "operations-flow-manager-foodtech",
             "gastronomic-systems-operator-culinary-consulting",
+            "culinary-stagiaire-michelin-fine-dining-kitchens",
             "project-manager-startup-accelerators",
             "executive-translation-lead-private-equity-operations",
             "all"
@@ -346,18 +434,19 @@
           "id": "work-savi-hotels-resorts-jaipur-india-h1"
         },
         {
-          "text": "Raised month-on-month occupancy above the inherited baseline by combining room revenue with complementary property uses, strengthening the property's future lease and management valuation case.",
+          "text": "Raised month-on-month room occupancy above the inherited baseline during the two-month operational lead, while tracking F&B sales as a separate commercial metric for the turnaround case.",
           "variants": [
             "management-consultant-mbb-standard-corporate-turnarounds",
             "proptech-underwriter-designer-high-end-real-estate-pe",
             "operations-flow-manager-foodtech",
+            "culinary-stagiaire-michelin-fine-dining-kitchens",
             "executive-translation-lead-private-equity-operations",
             "all"
           ],
           "id": "work-savi-hotels-resorts-jaipur-india-h2"
         },
         {
-          "text": "Applied a two-month kill gate when leasing velocity and profitability remained below threshold, then returned the property with a complete offboarding record and reusable pitchbook.",
+          "text": "Applied a two-month kill gate when leasing velocity and profitability stayed below threshold—returning the property with offboarding records and a reusable pitchbook.",
           "variants": [
             "management-consultant-mbb-standard-corporate-turnarounds",
             "proptech-underwriter-designer-high-end-real-estate-pe",
@@ -368,20 +457,21 @@
           "id": "work-savi-hotels-resorts-jaipur-india-h3"
         },
         {
-          "text": "Increased repeat bookings by 30% within 6 months across 4 hotels by converting structured guest feedback into targeted operating improvements.",
+          "text": "Increased repeat bookings by 30% within 6 months across 4 hotels by routing structured guest feedback into reception script updates, staffing changes, and amenity fixes reviewed in a weekly ops cadence.",
           "variants": [
             "gastronomic-systems-operator-culinary-consulting",
-            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "front-of-house-reception-associate-hotels-restaurants",
             "project-manager-startup-accelerators",
             "executive-translation-lead-fortune-500-strategy",
-            "all"
+            "all",
+            "strategy-development-associate-hospitality-corporate-groups"
           ],
           "id": "work-savi-hotels-resorts-jaipur-india-h4"
         },
         {
           "text": "Improved continuity between reception shifts through a shared handover queue for reservations, arrivals, payments, special requests, and service recovery.",
           "variants": [
-            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "front-of-house-reception-associate-hotels-restaurants",
             "project-manager-startup-accelerators",
             "executive-translation-lead-fortune-500-strategy",
             "all"
@@ -397,8 +487,8 @@
             "tactical-it-systems-administrator-managed-service-providers",
             "analytics-intelligence-lead-e-commerce-logistics",
             "all",
-            "culinary-ops-hybrid-architect-airline-catering-logistics",
-            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "back-of-house-logistics-coordinator-high-volume-catering",
+            "front-of-house-reception-associate-hotels-restaurants",
             "project-manager-startup-accelerators"
           ],
           "id": "work-savi-hotels-resorts-jaipur-india-h6"
@@ -413,6 +503,46 @@
             "all"
           ],
           "id": "work-savi-hotels-resorts-jaipur-india-h7"
+        },
+        {
+          "id": "work-savi-hotels-resorts-jaipur-india-h8",
+          "text": "Maintained a five-workstation, eleven-drive hotel IT estate during the operational-lead period—running cabling, storage health checks, and downtime-window patches so front desk and back office stayed live through the turnaround.",
+          "variants": [
+            "devops-associate-startup-accelerators",
+            "enterprise-resilience-engineer-managed-service-providers",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "design-systems-architect-complex-data-dashboards",
+            "all"
+          ]
+        },
+        {
+          "id": "work-savi-hotels-resorts-jaipur-india-h9",
+          "text": "Built a property mesh across hotel WiFi gateways, then tied check-in to ticket-based room credentials—issuing unique sign-in and password provisioning per arrival instead of shared lobby passwords.",
+          "variants": [
+            "devops-associate-startup-accelerators",
+            "enterprise-resilience-engineer-managed-service-providers",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "all"
+          ]
+        },
+        {
+          "id": "work-savi-hotels-resorts-jaipur-india-h10",
+          "text": "Supported four repeat corporate events for decade-long hotel clients—leading three on-site and overseeing two while off-site—by QA-ing buffet timing, staff readiness, and manager shortcuts while the GM ran procurement and venue coordination.",
+          "variants": [
+            "event-hospitality-experience-host-corporate-events-luxury-hospitality",
+            "chief-of-staff-founder-led-family-owned-enterprises",
+            "family-office-analyst-private-wealth-family-enterprise",
+            "proptech-underwriter-designer-high-end-real-estate-pe"
+          ]
+        },
+        {
+          "id": "work-savi-hotels-resorts-jaipur-india-h11",
+          "text": "Facilitated a milestone birthday and baby-shower package end to end—aligning décor vendors, artisanal menu choices, and live service recovery when mid-level managers cut corners on the floor.",
+          "variants": [
+            "event-hospitality-experience-host-corporate-events-luxury-hospitality",
+            "chief-of-staff-founder-led-family-owned-enterprises",
+            "family-office-analyst-private-wealth-family-enterprise"
+          ]
         }
       ],
       "keywords": [
@@ -441,7 +571,7 @@
       "summary": "Supported the Managing Director on hospitality acquisitions, commercial diligence, governance, legal coordination, and operational continuity across SRBS Group.",
       "highlights": [
         {
-          "text": "Recommended proceeding with the approximately GBP 40,000 Shimla hotel lease after integrating market conditions, prior operator books, asset quality, downside risks, operating synergies, and valuation into the acquisition thesis.",
+          "text": "Recommended—and subsequently helped execute—the approximately GBP 40,000 Shimla hotel lease after integrating market conditions, prior operator books, asset quality, downside risk, operating fit, and valuation.",
           "variants": [
             "proptech-underwriter-designer-high-end-real-estate-pe",
             "venture-diligence-analyst-pre-seed-funds",
@@ -456,6 +586,7 @@
           "text": "Executed the 8-day Shimla takeover through a room-by-room property rundown, inventory and quality verification, tenancy review, risk logging, stakeholder coordination, and documented handover to the incoming operating team.",
           "variants": [
             "proptech-underwriter-designer-high-end-real-estate-pe",
+            "culinary-stagiaire-michelin-fine-dining-kitchens",
             "project-manager-startup-accelerators",
             "executive-translation-lead-private-equity-operations",
             "all"
@@ -463,7 +594,7 @@
           "id": "work-srbs-group-jaipur-india-h1"
         },
         {
-          "text": "Built a reusable seven-part diligence framework spanning market attractiveness, operator quality, asset condition, legal exposure, commercial synergies, valuation logic, and post-transaction execution risk.",
+          "text": "Built a reusable seven-part diligence framework spanning market attractiveness, operator quality, asset condition, legal exposure, commercial fit, valuation logic, and post-transaction execution risk.",
           "variants": [
             "proptech-underwriter-designer-high-end-real-estate-pe",
             "venture-diligence-analyst-pre-seed-funds",
@@ -487,13 +618,26 @@
           "id": "work-srbs-group-jaipur-india-h3"
         },
         {
-          "text": "Enabled counsel to meet a time-sensitive Supreme Court filing deadline by drafting and delivering a legal addendum for a related family matter.",
+          "text": "Prepared a filing-ready legal addendum under counsel direction so counsel could meet a time-sensitive Indian Supreme Court deadline for a related family matter.",
           "variants": [
             "executive-translation-lead-fortune-500-strategy",
             "all",
-            "project-manager-startup-accelerators"
+            "project-manager-startup-accelerators",
+            "legal-operations-analyst-law-firms-and-transaction-advisory",
+            "family-office-analyst-private-wealth-family-enterprise",
+            "risk-compliance-analyst-technology-regulated-industries"
           ],
           "id": "work-srbs-group-jaipur-india-h4"
+        },
+        {
+          "id": "work-srbs-group-jaipur-india-h5",
+          "text": "Verified Indian corporate board resolutions and shareholder records against UK Companies House filings for multi-jurisdiction family-enterprise matters.",
+          "variants": [
+            "legal-operations-analyst-law-firms-and-transaction-advisory",
+            "family-office-analyst-private-wealth-family-enterprise",
+            "investment-banking-analyst-bulge-bracket-investment-banks",
+            "risk-compliance-analyst-technology-regulated-industries"
+          ]
         }
       ],
       "keywords": [
@@ -521,18 +665,30 @@
       "summary": "Coordinates commercial preparation, leasing, sales support, and client relationships across a family property portfolio in Jaipur.",
       "highlights": [
         {
-          "text": "Advanced a 12-property portfolio of 8 apartments and 4 hostels through construction coordination, commercial preparation, sales, and leasing.",
+          "text": "Moved a 12-property portfolio—8 apartments and 4 hostels—from construction coordination through commercial readiness into sales and leasing.",
           "variants": [
-            "proptech-underwriter-designer-high-end-real-estate-pe"
+            "proptech-underwriter-designer-high-end-real-estate-pe",
+            "family-office-analyst-private-wealth-family-enterprise"
           ],
           "id": "work-family-real-estate-business-jaipur-india-h0"
         },
         {
-          "text": "Converted local market knowledge and client relationships into transactions spanning monthly rents of GBP 800 to GBP 3,800 and penthouse sales of GBP 70,000 to GBP 90,000.",
+          "text": "Closed signed leases and sales by sequencing pricing bands, qualified viewings, negotiation, and handover for monthly rents of GBP 800 to GBP 3,800 and penthouse sales of GBP 70,000 to GBP 90,000.",
           "variants": [
-            "proptech-underwriter-designer-high-end-real-estate-pe"
+            "proptech-underwriter-designer-high-end-real-estate-pe",
+            "family-office-analyst-private-wealth-family-enterprise"
           ],
           "id": "work-family-real-estate-business-jaipur-india-h1"
+        },
+        {
+          "id": "work-family-real-estate-business-jaipur-india-h2",
+          "text": "Closed high-value residential deals by treating MD and partner entertainment—venue ambience, menu, and after-event hosting—as part of the relationship arc, not an afterthought once terms were agreed.",
+          "variants": [
+            "event-hospitality-experience-host-corporate-events-luxury-hospitality",
+            "family-office-analyst-private-wealth-family-enterprise",
+            "chief-of-staff-founder-led-family-owned-enterprises",
+            "proptech-underwriter-designer-high-end-real-estate-pe"
+          ]
         }
       ],
       "keywords": [
@@ -556,7 +712,8 @@
         {
           "text": "Created the restaurant's first digital consumption dataset by OCR-digitising 2 years of handwritten kitchen registers into a SKU-level baseline for par levels, preparation forecasts, and stock variance checks.",
           "variants": [
-            "culinary-ops-hybrid-architect-airline-catering-logistics",
+            "back-of-house-logistics-coordinator-high-volume-catering",
+            "culinary-stagiaire-michelin-fine-dining-kitchens",
             "gastronomic-systems-operator-culinary-consulting",
             "operations-flow-manager-foodtech",
             "analytics-intelligence-lead-e-commerce-logistics",
@@ -565,9 +722,10 @@
           "id": "work-siya-the-restaurant-srbs-group-h0"
         },
         {
-          "text": "Improved back-of-house control by linking delivery, storage, FIFO rotation, preparation allocation, shift handover, and daily reconciliation into one operating flow.",
+          "text": "Sequenced back-of-house control from delivery intake through storage and FIFO rotation, preparation allocation, shift handover, and daily reconciliation.",
           "variants": [
-            "culinary-ops-hybrid-architect-airline-catering-logistics"
+            "back-of-house-logistics-coordinator-high-volume-catering",
+            "culinary-stagiaire-michelin-fine-dining-kitchens"
           ],
           "id": "work-siya-the-restaurant-srbs-group-h1"
         },
@@ -616,7 +774,7 @@
             "ux-research-translation-lead-civic-tech-platforms",
             "behavioral-product-manager-digital-wellness",
             "product-manager-startup-accelerators",
-            "founders-associate-startup-accelerators",
+            "founders-associate-healthcare-startup-ecosystems",
             "all",
             "systematic-organizational-designer-civictech"
           ],
@@ -628,7 +786,7 @@
             "ux-research-translation-lead-civic-tech-platforms",
             "behavioral-product-manager-digital-wellness",
             "product-manager-startup-accelerators",
-            "founders-associate-startup-accelerators",
+            "founders-associate-healthcare-startup-ecosystems",
             "all",
             "systematic-organizational-designer-civictech"
           ],
@@ -643,7 +801,8 @@
         "product strategy",
         "web development"
       ],
-      "id": "work-independent-healthcare-venture-client-anonymised"
+      "id": "work-independent-healthcare-venture-client-anonymised",
+      "engagementCategory": "Independent & Stealth Ventures"
     }
   ],
   "volunteer": [
@@ -661,7 +820,7 @@
         "product-manager-startup-accelerators",
         "project-manager-startup-accelerators",
         "devops-associate-startup-accelerators",
-        "founders-associate-startup-accelerators",
+        "founders-associate-healthcare-startup-ecosystems",
         "gtm-analyst-startup-accelerators",
         "ui-ux-designer-startup-accelerators",
         "systems-designer-startup-accelerators",
@@ -750,7 +909,11 @@
             "product",
             "UX",
             "research",
-            "service"
+            "service",
+            "design systems",
+            "brand strategy",
+            "service design",
+            "information design"
           ]
         },
         {
@@ -815,7 +978,11 @@
             "UX",
             "service design",
             "founder",
-            "MVP"
+            "MVP",
+            "design systems",
+            "UX/UI",
+            "fintech",
+            "brand strategy"
           ]
         },
         {
@@ -825,7 +992,11 @@
             "visual",
             "spatial",
             "interaction",
-            "creative"
+            "creative",
+            "design systems",
+            "information design",
+            "visual hierarchy",
+            "dashboards"
           ]
         },
         {
@@ -835,7 +1006,10 @@
             "storytelling",
             "marketing",
             "brand",
-            "design"
+            "design",
+            "brand strategy",
+            "campaign",
+            "portfolio architecture"
           ]
         },
         {
@@ -846,6 +1020,21 @@
             "community",
             "presentation",
             "leadership"
+          ]
+        },
+        {
+          "name": "Strategic Ambiguity",
+          "keywords": [
+            "strategy",
+            "ambiguity",
+            "decision making",
+            "leadership",
+            "consulting",
+            "innovation",
+            "product",
+            "operations",
+            "systems",
+            "founder"
           ]
         }
       ],
@@ -1018,7 +1207,7 @@
         "innovation-ecosystem-architect-corporate-venture-labs",
         "product-manager-startup-accelerators",
         "project-manager-startup-accelerators",
-        "founders-associate-startup-accelerators",
+        "founders-associate-healthcare-startup-ecosystems",
         "gtm-analyst-startup-accelerators",
         "ui-ux-designer-startup-accelerators"
       ],
@@ -1054,7 +1243,7 @@
         "Service timing"
       ],
       "variants": [
-        "culinary-ops-hybrid-architect-b2b-foodtech"
+        "culinary-stagiaire-michelin-fine-dining-kitchens"
       ],
       "id": "skill-professional-kitchen-practice"
     },
@@ -1071,7 +1260,7 @@
         "Excel and OpenPyXL"
       ],
       "variants": [
-        "culinary-ops-hybrid-architect-airline-catering-logistics"
+        "back-of-house-logistics-coordinator-high-volume-catering"
       ],
       "id": "skill-back-of-house-operations"
     },
@@ -1088,7 +1277,7 @@
         "Order accuracy"
       ],
       "variants": [
-        "culinary-ops-hybrid-architect-stadium-hospitality"
+        "front-of-house-reception-associate-hotels-restaurants"
       ],
       "id": "skill-front-of-house-and-reception"
     }
@@ -1210,9 +1399,9 @@
       "url": "",
       "variants": [
         "gastronomic-systems-operator-culinary-consulting",
-        "culinary-ops-hybrid-architect-b2b-foodtech",
-        "culinary-ops-hybrid-architect-airline-catering-logistics",
-        "culinary-ops-hybrid-architect-stadium-hospitality",
+        "culinary-stagiaire-michelin-fine-dining-kitchens",
+        "back-of-house-logistics-coordinator-high-volume-catering",
+        "front-of-house-reception-associate-hotels-restaurants",
         "operations-flow-manager-foodtech",
         "all"
       ],
@@ -1231,9 +1420,9 @@
           "text": "Improved service readiness through repeatable mise en place routines spanning vegetable preparation, knife work, sauce bases, fermentation, temperature checks, and close-down hygiene.",
           "variants": [
             "gastronomic-systems-operator-culinary-consulting",
-            "culinary-ops-hybrid-architect-b2b-foodtech",
-            "culinary-ops-hybrid-architect-airline-catering-logistics",
-            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "culinary-stagiaire-michelin-fine-dining-kitchens",
+            "back-of-house-logistics-coordinator-high-volume-catering",
+            "front-of-house-reception-associate-hotels-restaurants",
             "operations-flow-manager-foodtech",
             "all"
           ],
@@ -1243,9 +1432,9 @@
           "text": "Standardised culinary development into a service-ready system built around preparation lists, labelled storage, FIFO rotation, allergen separation, and timed batch plans.",
           "variants": [
             "gastronomic-systems-operator-culinary-consulting",
-            "culinary-ops-hybrid-architect-b2b-foodtech",
-            "culinary-ops-hybrid-architect-airline-catering-logistics",
-            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "culinary-stagiaire-michelin-fine-dining-kitchens",
+            "back-of-house-logistics-coordinator-high-volume-catering",
+            "front-of-house-reception-associate-hotels-restaurants",
             "operations-flow-manager-foodtech",
             "all"
           ],
@@ -1264,7 +1453,7 @@
         "operations-flow-manager-foodtech",
         "proptech-underwriter-designer-high-end-real-estate-pe",
         "project-manager-startup-accelerators",
-        "founders-associate-startup-accelerators",
+        "founders-associate-healthcare-startup-ecosystems",
         "gastronomic-systems-operator-culinary-consulting",
         "all"
       ],
@@ -1284,7 +1473,7 @@
       ],
       "highlights": [
         {
-          "text": "Gave the hotel team a shared turnaround baseline in month one by mapping RevPAR, occupancy, staffing, guest satisfaction, asset condition, and guest or staff friction.",
+          "text": "Framed the month-one turnaround as a consultant diagnostic, mapping RevPAR, room occupancy, staffing, guest satisfaction, asset condition, and service friction into a lease-decision baseline.",
           "variants": [
             "management-consultant-mbb-standard-corporate-turnarounds",
             "executive-translation-lead-private-equity-operations",
@@ -1294,18 +1483,18 @@
           "id": "proj-leased-hotel-turnaround-and-operating-model-strategy-h0"
         },
         {
-          "text": "Reduced day-to-day operating friction in month two by designing mobile-first front-desk and staff workflows with the supporting technical architecture and infrastructure.",
+          "text": "Designed the month-two mobile-first front-desk and staff workflow architecture as an implementation case separate from day-to-day hotel operations.",
           "variants": [
             "management-consultant-mbb-standard-corporate-turnarounds",
             "operations-flow-manager-foodtech",
             "project-manager-startup-accelerators",
-            "founders-associate-startup-accelerators",
+            "founders-associate-healthcare-startup-ecosystems",
             "all"
           ],
           "id": "proj-leased-hotel-turnaround-and-operating-model-strategy-h1"
         },
         {
-          "text": "Raised month-on-month occupancy above the inherited baseline by turning RevPAR, staffing, guest-satisfaction, and occupancy analysis into a mixed-revenue operating model.",
+          "text": "Documented room-occupancy recovery and F&B sales as separate commercial levers in a mixed-revenue turnaround model used for the lease valuation case.",
           "variants": [
             "management-consultant-mbb-standard-corporate-turnarounds",
             "executive-translation-lead-private-equity-operations",
@@ -1315,13 +1504,13 @@
           "id": "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
         },
         {
-          "text": "Applied the two-month profitability kill gate, returned the property to prior management, and preserved the turnaround work in an offboarding trail and future-lease pitchbook.",
+          "text": "Preserved the two-month profitability kill gate, offboarding trail, and future-lease pitchbook as the decision record for the ETA case.",
           "variants": [
             "management-consultant-mbb-standard-corporate-turnarounds",
             "executive-translation-lead-private-equity-operations",
             "proptech-underwriter-designer-high-end-real-estate-pe",
             "project-manager-startup-accelerators",
-            "founders-associate-startup-accelerators",
+            "founders-associate-healthcare-startup-ecosystems",
             "all"
           ],
           "id": "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
@@ -1335,9 +1524,9 @@
       "url": "",
       "variants": [
         "gastronomic-systems-operator-culinary-consulting",
-        "culinary-ops-hybrid-architect-b2b-foodtech",
-        "culinary-ops-hybrid-architect-airline-catering-logistics",
-        "culinary-ops-hybrid-architect-stadium-hospitality",
+        "culinary-stagiaire-michelin-fine-dining-kitchens",
+        "back-of-house-logistics-coordinator-high-volume-catering",
+        "front-of-house-reception-associate-hotels-restaurants",
         "operations-flow-manager-foodtech",
         "all"
       ],
@@ -1356,8 +1545,8 @@
           "text": "Executed knife work, sauce bases, and timed batches against live service windows while maintaining FIFO, allergen, and temperature controls.",
           "variants": [
             "gastronomic-systems-operator-culinary-consulting",
-            "culinary-ops-hybrid-architect-b2b-foodtech",
-            "culinary-ops-hybrid-architect-airline-catering-logistics",
+            "culinary-stagiaire-michelin-fine-dining-kitchens",
+            "back-of-house-logistics-coordinator-high-volume-catering",
             "operations-flow-manager-foodtech",
             "all"
           ],
@@ -1367,7 +1556,7 @@
           "text": "Maintained saucier control from production through handover, protecting reduction timing, multi-sauce consistency, holding temperature, and close-down hygiene.",
           "variants": [
             "gastronomic-systems-operator-culinary-consulting",
-            "culinary-ops-hybrid-architect-b2b-foodtech",
+            "culinary-stagiaire-michelin-fine-dining-kitchens",
             "operations-flow-manager-foodtech",
             "all"
           ],
@@ -1377,7 +1566,7 @@
           "text": "Protected order accuracy under peak volume by coordinating service, resolving guest issues immediately, and shadowing the maitre d' through front-of-house handover.",
           "variants": [
             "gastronomic-systems-operator-culinary-consulting",
-            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "front-of-house-reception-associate-hotels-restaurants",
             "operations-flow-manager-foodtech",
             "all"
           ],
@@ -1433,12 +1622,13 @@
           "id": "proj-bwc-adaptive-efficiency-investment-desk-h1"
         },
         {
-          "text": "Kept the portfolio within its IPS through 25% single-name limits, drift checks, and regime sleeves calibrated near 1.0 beta for Foundation, 1.1 for Growth, 0.0 for Crisis, and 0.6 for Ceasefire conditions.",
+          "text": "Maintained IPS compliance by capping positions at 25% single-name limits, running weekly drift checks, and rebalancing sleeves across Foundation (~1.0 beta), Growth (1.1), Crisis (0.0), and Ceasefire (0.6) regime overlays.",
           "variants": [
             "investment-banking-analyst-bulge-bracket-investment-banks",
             "investment-banking-analyst-growth-equity",
             "data-narrative-consultant-macro-economic-research",
             "analytics-intelligence-lead-e-commerce-logistics",
+            "family-office-analyst-private-wealth-family-enterprise",
             "all"
           ],
           "id": "proj-bwc-adaptive-efficiency-investment-desk-h2"
@@ -1465,7 +1655,7 @@
           "id": "proj-bwc-adaptive-efficiency-investment-desk-h4"
         },
         {
-          "text": "Defended the strategy through a 2,600-word investment-committee memo and 20-slide oral defence, earning 422/430 overall, including 147/150 for architecture and logs, 118/120 for strategy and reporting, and 118/120 for the client postmortem.",
+          "text": "Defended the strategy through a 2,600-word investment-committee memo and 20-slide oral defence, scoring 422/430 overall across architecture and logs, strategy and reporting, and the client postmortem.",
           "variants": [
             "investment-banking-analyst-bulge-bracket-investment-banks",
             "investment-banking-analyst-growth-equity",
@@ -1573,8 +1763,7 @@
       "variants": [
         "management-consultant-mbb-standard-tier-2-strategy",
         "behavioral-product-manager-digital-wellness",
-        "all",
-        "heavy-industry-value-engineer-agritech"
+        "all"
       ],
       "keywords": [
         "corporate entrepreneurship",
@@ -1589,8 +1778,7 @@
           "variants": [
             "management-consultant-mbb-standard-tier-2-strategy",
             "behavioral-product-manager-digital-wellness",
-            "all",
-            "heavy-industry-value-engineer-agritech"
+            "all"
           ],
           "id": "proj-danone-yopro-apex-diagnostic-h0"
         },
@@ -1599,8 +1787,7 @@
           "variants": [
             "management-consultant-mbb-standard-tier-2-strategy",
             "behavioral-product-manager-digital-wellness",
-            "all",
-            "heavy-industry-value-engineer-agritech"
+            "all"
           ],
           "id": "proj-danone-yopro-apex-diagnostic-h1"
         },
@@ -1609,20 +1796,26 @@
           "variants": [
             "management-consultant-mbb-standard-tier-2-strategy",
             "behavioral-product-manager-digital-wellness",
-            "all",
-            "heavy-industry-value-engineer-agritech"
+            "all"
           ],
           "id": "proj-danone-yopro-apex-diagnostic-h2"
         },
         {
-          "text": "Modelled a phased UK pilot at GBP 3.20 per 200 g pot to test a roughly 30% premium against the 1.13 million-entry London Marathon market.",
+          "text": "Benchmarked a GBP 3.20 per 200 g APEX pot against a PPP- and exchange-rate-adjusted functional-yoghurt basket containing Core YoPRO and competitors, then scoped a stage-gated UK pilot to test the premium.",
           "variants": [
             "management-consultant-mbb-standard-tier-2-strategy",
             "behavioral-product-manager-digital-wellness",
-            "all",
-            "heavy-industry-value-engineer-agritech"
+            "all"
           ],
           "id": "proj-danone-yopro-apex-diagnostic-h3"
+        },
+        {
+          "id": "proj-danone-yopro-apex-diagnostic-h4",
+          "text": "Structured the YoPRO APEX diagnostic as a board-ready research packet—custom cover, sourced exhibits, and executive narrative—because graders were practising advisors and ex-partners, not rubric-only academics.",
+          "variants": [
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "all"
+          ]
         }
       ],
       "id": "proj-danone-yopro-apex-diagnostic"
@@ -1645,7 +1838,7 @@
         "all",
         "innovation-ecosystem-architect-corporate-venture-labs",
         "project-manager-startup-accelerators",
-        "founders-associate-startup-accelerators"
+        "founders-associate-healthcare-startup-ecosystems"
       ],
       "keywords": [
         "hospitality",
@@ -1668,12 +1861,13 @@
             "all",
             "innovation-ecosystem-architect-corporate-venture-labs",
             "project-manager-startup-accelerators",
-            "founders-associate-startup-accelerators"
+            "founders-associate-healthcare-startup-ecosystems",
+            "strategy-development-associate-hospitality-corporate-groups"
           ],
           "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h0"
         },
         {
-          "text": "Allocated a proposed INR 1,500 crore venture envelope through the Three Box framework and fuzzy gates tied to repeat purchase, NPS, contribution margin, and kill thresholds.",
+          "text": "Carved 30% of IHCL's proposed INR 5,000 crore envelope into an INR 1,500 crore Box 3 portfolio across Qmin, ama, Tree of Life, and new ventures, with fuzzy gates tied to repeat purchase, NPS, contribution margin, and kill thresholds.",
           "variants": [
             "management-consultant-mbb-standard-big-3-consulting",
             "management-consultant-mbb-standard-tier-2-strategy",
@@ -1685,7 +1879,7 @@
             "all",
             "innovation-ecosystem-architect-corporate-venture-labs",
             "project-manager-startup-accelerators",
-            "founders-associate-startup-accelerators"
+            "founders-associate-healthcare-startup-ecosystems"
           ],
           "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1"
         },
@@ -1702,7 +1896,7 @@
             "all",
             "innovation-ecosystem-architect-corporate-venture-labs",
             "project-manager-startup-accelerators",
-            "founders-associate-startup-accelerators"
+            "founders-associate-healthcare-startup-ecosystems"
           ],
           "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h2"
         },
@@ -1719,7 +1913,7 @@
             "all",
             "innovation-ecosystem-architect-corporate-venture-labs",
             "project-manager-startup-accelerators",
-            "founders-associate-startup-accelerators"
+            "founders-associate-healthcare-startup-ecosystems"
           ],
           "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h3"
         }
@@ -1883,7 +2077,7 @@
           "id": "proj-duve-venture-diligence-and-industry-tearsheet-h0"
         },
         {
-          "text": "Tested Duve's investment case against PMS dependencies, hotel-operator workflows, rollout friction, customer concentration, downside exposure, and strategic synergies.",
+          "text": "Tested Duve's investment case against PMS dependencies, hotel-operator workflows, rollout friction, customer concentration, downside exposure, and integration upside.",
           "variants": [
             "venture-diligence-analyst-pre-seed-funds",
             "investment-banking-analyst-boutique-ma-advisory",
@@ -1893,7 +2087,7 @@
           "id": "proj-duve-venture-diligence-and-industry-tearsheet-h1"
         },
         {
-          "text": "Framed Duve as a conditional follow-up opportunity rather than a clean proceed/pass decision, identifying PMS integration dependency, rollout friction, and customer concentration as the key diligence gates before conviction.",
+          "text": "Framed Duve as a conditional follow-up—not a clean proceed/pass—naming PMS integration dependency, rollout friction, and customer concentration as diligence gates before conviction.",
           "variants": [
             "venture-diligence-analyst-pre-seed-funds",
             "investment-banking-analyst-boutique-ma-advisory",
@@ -2009,7 +2203,7 @@
       ],
       "highlights": [
         {
-          "text": "Redesigned Redshaw Advisors' marketing and positioning model by turning carbon-credit diligence and ESG research into a clearer brand identity, audience proposition, and campaign architecture.",
+          "text": "Redesigned Redshaw Advisors' positioning by turning carbon-credit diligence and ESG research into a legible brand proposition, audience architecture, and campaign system.",
           "variants": [
             "hybrid-creative-technologist-elite-digital-agencies",
             "data-narrative-consultant-macro-economic-research",
@@ -2073,7 +2267,8 @@
             "hybrid-creative-technologist-elite-digital-agencies",
             "experiential-event-producer-tech-conferences",
             "zero-cost-growth-hacker-d2c-marketplaces",
-            "all"
+            "all",
+            "experiential-event-producer-financial-services-law-firms"
           ],
           "id": "proj-carbon-forward-conference-lead-magnet-design-h0"
         },
@@ -2083,7 +2278,8 @@
             "hybrid-creative-technologist-elite-digital-agencies",
             "experiential-event-producer-tech-conferences",
             "zero-cost-growth-hacker-d2c-marketplaces",
-            "all"
+            "all",
+            "experiential-event-producer-financial-services-law-firms"
           ],
           "id": "proj-carbon-forward-conference-lead-magnet-design-h1"
         }
@@ -2172,7 +2368,7 @@
         "ui-ux-designer-startup-accelerators",
         "systems-designer-startup-accelerators",
         "innovation-ecosystem-architect-startup-accelerators",
-        "founders-associate-startup-accelerators",
+        "founders-associate-healthcare-startup-ecosystems",
         "systematic-organizational-designer-civictech"
       ],
       "keywords": [
@@ -2195,13 +2391,13 @@
             "product-manager-startup-accelerators",
             "project-manager-startup-accelerators",
             "systems-designer-startup-accelerators",
-            "founders-associate-startup-accelerators",
+            "founders-associate-healthcare-startup-ecosystems",
             "systematic-organizational-designer-civictech"
           ],
           "id": "proj-project-oulm-one-ymca-youth-community-platform-h0"
         },
         {
-          "text": "Shifted the growth model away from daily active users and toward offline belonging, with intentional friction and physical verification for under-16 access.",
+          "text": "Shifted the growth model away from daily active users toward offline belonging—building accountability architecture with intentional verification friction for under-16 access.",
           "variants": [
             "ux-research-translation-lead-civic-tech-platforms",
             "behavioral-product-manager-digital-wellness",
@@ -2211,20 +2407,24 @@
             "project-manager-startup-accelerators",
             "ui-ux-designer-startup-accelerators",
             "systems-designer-startup-accelerators",
-            "founders-associate-startup-accelerators",
-            "systematic-organizational-designer-civictech"
+            "founders-associate-healthcare-startup-ecosystems",
+            "systematic-organizational-designer-civictech",
+            "design-systems-architect-enterprise-b2b-saas",
+            "design-systems-architect-complex-data-dashboards"
           ],
           "id": "proj-project-oulm-one-ymca-youth-community-platform-h1"
         },
         {
-          "text": "Delivered 6 connected outputs - technical MVP, identity, design tokens, skeleton states, posters, and venue touchpoints - as a safeguarding-aware service ecosystem.",
+          "text": "Delivered six connected outputs—technical MVP, identity, design tokens, skeleton states, posters, and venue touchpoints—as a safeguarding-aware service ecosystem with legible handoffs.",
           "variants": [
             "ux-research-translation-lead-civic-tech-platforms",
             "behavioral-product-manager-digital-wellness",
             "strategic-interaction-designer-spatial-computing",
             "ui-ux-designer-startup-accelerators",
-            "founders-associate-startup-accelerators",
-            "systematic-organizational-designer-civictech"
+            "founders-associate-healthcare-startup-ecosystems",
+            "systematic-organizational-designer-civictech",
+            "design-systems-architect-enterprise-b2b-saas",
+            "design-systems-architect-fintech-platforms"
           ],
           "id": "proj-project-oulm-one-ymca-youth-community-platform-h2"
         },
@@ -2316,7 +2516,7 @@
       ],
       "highlights": [
         {
-          "text": "Designed a coordinating family-governance and decision-rights framework that clarified ownership, authority, information flow, accountability, and the boundary between family, business, and investment decisions.",
+          "text": "Produced a family-governance proposal defining decision rights, ownership, authority, information flow, accountability, and boundaries between family, business, and investment decisions.",
           "variants": [
             "executive-translation-lead-fortune-500-strategy",
             "executive-translation-lead-private-equity-operations",
@@ -2552,7 +2752,7 @@
         "autodidact-skunkworks-researcher-corporate-rd-labs",
         "gastronomic-systems-operator-culinary-consulting",
         "all",
-        "heavy-industry-value-engineer-agritech"
+        "solutions-engineer-culinary-hospitality-systems"
       ],
       "keywords": [
         "food science",
@@ -2567,7 +2767,7 @@
             "autodidact-skunkworks-researcher-corporate-rd-labs",
             "gastronomic-systems-operator-culinary-consulting",
             "all",
-            "heavy-industry-value-engineer-agritech"
+            "solutions-engineer-culinary-hospitality-systems"
           ],
           "id": "proj-paca-applied-food-science-h0"
         },
@@ -2577,7 +2777,7 @@
             "autodidact-skunkworks-researcher-corporate-rd-labs",
             "gastronomic-systems-operator-culinary-consulting",
             "all",
-            "heavy-industry-value-engineer-agritech"
+            "solutions-engineer-culinary-hospitality-systems"
           ],
           "id": "proj-paca-applied-food-science-h1"
         }
@@ -2597,7 +2797,7 @@
         "phygital-spatial-designer-museumexpo-design",
         "all",
         "design-systems-architect-complex-data-dashboards",
-        "heavy-industry-value-engineer-agritech"
+        "solutions-engineer-culinary-hospitality-systems"
       ],
       "keywords": [
         "culinary systems",
@@ -2615,7 +2815,7 @@
             "phygital-spatial-designer-museumexpo-design",
             "all",
             "design-systems-architect-complex-data-dashboards",
-            "heavy-industry-value-engineer-agritech"
+            "solutions-engineer-culinary-hospitality-systems"
           ],
           "id": "proj-pacakatva-culinary-data-platform-h0"
         },
@@ -2627,7 +2827,7 @@
             "phygital-spatial-designer-museumexpo-design",
             "all",
             "design-systems-architect-complex-data-dashboards",
-            "heavy-industry-value-engineer-agritech"
+            "solutions-engineer-culinary-hospitality-systems"
           ],
           "id": "proj-pacakatva-culinary-data-platform-h1"
         },
@@ -2639,7 +2839,7 @@
             "phygital-spatial-designer-museumexpo-design",
             "all",
             "design-systems-architect-complex-data-dashboards",
-            "heavy-industry-value-engineer-agritech"
+            "solutions-engineer-culinary-hospitality-systems"
           ],
           "id": "proj-pacakatva-culinary-data-platform-h2"
         }
@@ -2864,7 +3064,7 @@
           "id": "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform-h3"
         },
         {
-          "text": "Modelled a tiered launch with GBP 65,000 initial capital, hardware priced from GBP 329 to GBP 999, recurring subscriptions, and GBP 800 annual maintenance contracts.",
+          "text": "Built Crestara's launch economics from GBP 50,000 seed funding plus GBP 12,000–15,000 founder and friends-and-family capital, pricing three hardware tiers at GBP 329–999 alongside subscriptions and GBP 800 annual maintenance contracts.",
           "variants": [
             "proptech-underwriter-designer-high-end-real-estate-pe",
             "strategic-interaction-designer-spatial-computing",
@@ -3292,17 +3492,19 @@
             "management-consultant-mbb-standard-big-3-consulting",
             "gastronomic-systems-operator-culinary-consulting",
             "heavy-industry-value-engineer-heavy-manufacturing-tech",
-            "all"
+            "all",
+            "strategy-development-associate-hospitality-corporate-groups"
           ],
           "id": "proj-noritake-hospitality-tableware-positioning-strategy-h0"
         },
         {
-          "text": "Modelled 15% to 25% premium pricing across 40% to 50% of tabletop revenue, projecting USD 54 million to USD 90 million in incremental revenue from repositioning.",
+          "text": "Applied Blue Ocean and strategic-group repositioning, then modelled 15% to 25% premium pricing across 40% to 50% of tabletop revenue to project USD 54 million to USD 90 million in incremental revenue.",
           "variants": [
             "management-consultant-mbb-standard-big-3-consulting",
             "gastronomic-systems-operator-culinary-consulting",
             "all",
-            "heavy-industry-value-engineer-heavy-manufacturing-tech"
+            "heavy-industry-value-engineer-heavy-manufacturing-tech",
+            "strategy-development-associate-hospitality-corporate-groups"
           ],
           "id": "proj-noritake-hospitality-tableware-positioning-strategy-h1"
         },
@@ -3315,6 +3517,14 @@
             "all"
           ],
           "id": "proj-noritake-hospitality-tableware-positioning-strategy-h2"
+        },
+        {
+          "id": "proj-noritake-hospitality-tableware-positioning-strategy-h3",
+          "text": "Delivered the Noritake repositioning as a director-grade strategy dossier—method-first exhibits, sourced comparables, and a defensible narrative arc for oral defence.",
+          "variants": [
+            "management-consultant-mbb-standard-big-3-consulting",
+            "all"
+          ]
         }
       ],
       "id": "proj-noritake-hospitality-tableware-positioning-strategy"
@@ -3350,7 +3560,7 @@
           "id": "proj-toast-hotel-f-b-expansion-strategy-h0"
         },
         {
-          "text": "Modelled a hotel F&B vertical for 50 to 200-property chains, projecting USD 120,000 ACV, an 11.9:1 LTV/CAC ratio, and USD 6.82 billion incremental 10-year NPV.",
+          "text": "Compared Toast's core restaurant economics with a 50–200-property hotel-chain model, deriving USD 120,000 ACV, 11.9:1 LTV/CAC versus 1.4:1 in core, and USD 6.82 billion incremental 10-year NPV.",
           "variants": [
             "management-consultant-mbb-standard-tier-2-strategy",
             "investment-banking-analyst-growth-equity",
@@ -3367,6 +3577,15 @@
             "all"
           ],
           "id": "proj-toast-hotel-f-b-expansion-strategy-h2"
+        },
+        {
+          "id": "proj-toast-hotel-f-b-expansion-strategy-h3",
+          "text": "Packaged the Toast hotel-chain expansion case as a partner-grade slide and memo set with exhibit-linked assumptions for committee-style review.",
+          "variants": [
+            "management-consultant-mbb-standard-big-3-consulting",
+            "investment-banking-analyst-bulge-bracket-investment-banks",
+            "all"
+          ]
         }
       ],
       "id": "proj-toast-hotel-f-b-expansion-strategy"
@@ -3459,7 +3678,7 @@
           "id": "proj-walmart-capital-budgeting-and-future-proofing-model-h0"
         },
         {
-          "text": "Calculated a 7.8% WACC, USD 164.05 billion NPV, 15.7% IRR, 2.83 profitability index, and discounted payback under 9 months using base-case operating and financing assumptions.",
+          "text": "Derived a 7.8% WACC from CAPM cost of equity, debt cost, capital weights, and a 21% tax rate, then discounted projected cash flows to USD 164.05 billion NPV, 15.7% IRR, 2.83 profitability index, and under-9-month discounted payback.",
           "variants": [
             "investment-banking-analyst-bulge-bracket-investment-banks",
             "management-consultant-mbb-standard-tier-2-strategy",
@@ -3512,7 +3731,7 @@
           "id": "proj-walmart-pfand-circular-retail-strategy-h0"
         },
         {
-          "text": "Set pilot targets of 50% fewer interface errors, 40% less manual intervention, 15% higher satisfaction, and 25% higher effective kiosk sales.",
+          "text": "Defined a six-month pilot scorecard using UI error rates, operational reports, post-interaction surveys, and kiosk transactions, targeting 50% fewer errors, 40% fewer manual interventions, 15% higher satisfaction, and 25% higher kiosk sales.",
           "variants": [
             "management-consultant-mbb-standard-big-3-consulting",
             "management-consultant-mbb-standard-tier-2-strategy",
@@ -3567,6 +3786,362 @@
         }
       ],
       "id": "proj-samsung-and-huawei-strategic-resilience-analysis"
+    },
+    {
+      "name": "AstroPatshala Brand Naming and Voice System",
+      "description": "Parallel brand architecture work for AstroPatshala spanning naming methodology, voice, and brandbook development alongside venture operations.",
+      "url": "",
+      "variants": [
+        "early-stage-operator-yc-alumni-startups",
+        "zero-cost-growth-hacker-d2c-marketplaces",
+        "gtm-analyst-startup-accelerators",
+        "hybrid-creative-technologist-elite-digital-agencies",
+        "founders-associate-healthcare-startup-ecosystems",
+        "ai-knowledge-operations-specialist-ai-enabled-content-platforms",
+        "all"
+      ],
+      "keywords": [
+        "brand strategy",
+        "naming",
+        "voice",
+        "brandbook",
+        "Double Diamond",
+        "rhizomatic process"
+      ],
+      "highlights": [
+        {
+          "text": "Developed the AstroPatshala name through a Double Diamond and rhizomatic naming process, using a Chaldean numerology engine and pan-Asian phonetic constraints to evaluate candidates.",
+          "variants": [
+            "early-stage-operator-yc-alumni-startups",
+            "gtm-analyst-startup-accelerators",
+            "founders-associate-healthcare-startup-ecosystems",
+            "ai-knowledge-operations-specialist-ai-enabled-content-platforms",
+            "all"
+          ],
+          "id": "proj-astropatshala-brand-naming-and-voice-system-h0"
+        },
+        {
+          "text": "Produced AstroPatshala brand strategy, voice, and brandbook in parallel with the venture operating model, pricing system, and delivery architecture.",
+          "variants": [
+            "early-stage-operator-yc-alumni-startups",
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "founders-associate-healthcare-startup-ecosystems",
+            "ai-knowledge-operations-specialist-ai-enabled-content-platforms",
+            "all"
+          ],
+          "id": "proj-astropatshala-brand-naming-and-voice-system-h1"
+        }
+      ],
+      "id": "proj-astropatshala-brand-naming-and-voice-system"
+    },
+    {
+      "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform",
+      "name": "Siya Menu COGS Redesign and Restaurant Data Platform",
+      "description": "End-to-end menu economics, BOM modelling, elasticity testing, manager-ready Excel casebook, print/web menu design, and parser-fed restaurant data platform for a 191-item SRBS restaurant operation.",
+      "url": "",
+      "keywords": [
+        "menu engineering",
+        "COGS",
+        "price elasticity",
+        "bill of materials",
+        "restaurant analytics",
+        "Excel modelling",
+        "parser",
+        "Three.js"
+      ],
+      "variants": [
+        "gastronomic-systems-operator-culinary-consulting",
+        "design-systems-architect-enterprise-b2b-saas",
+        "design-systems-architect-fintech-platforms",
+        "design-systems-architect-complex-data-dashboards",
+        "data-scientist-applied-analytics-decision-science",
+        "ai-knowledge-operations-specialist-ai-enabled-content-platforms",
+        "chief-of-staff-founder-led-family-owned-enterprises",
+        "management-consultant-mbb-standard-tier-2-strategy",
+        "operations-flow-manager-foodtech",
+        "all"
+      ],
+      "highlights": [
+        {
+          "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h0",
+          "text": "Digitized every historical menu revision into a comparable archive before any repricing or assortment decision.",
+          "variants": [
+            "gastronomic-systems-operator-culinary-consulting",
+            "data-scientist-applied-analytics-decision-science",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h1",
+          "text": "Built a competitor menu corpus—traditional and non-traditional—mapped to target ICP and occasion use before elasticity work began.",
+          "variants": [
+            "gastronomic-systems-operator-culinary-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h2",
+          "text": "Replaced informal call-and-chit ordering with a source-to-ingredient-to-SKU bill of materials tied to each menu line.",
+          "variants": [
+            "gastronomic-systems-operator-culinary-consulting",
+            "operations-flow-manager-foodtech",
+            "data-scientist-applied-analytics-decision-science",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h3",
+          "text": "Identified category-placeholder ghost items with negligible velocity and repriced edge-case fillers the market would bear.",
+          "variants": [
+            "gastronomic-systems-operator-culinary-consulting",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h4",
+          "text": "Ran short pricing experiments per item cluster to find ceiling price before margin erosion, then locked results in a failsafe Excel casebook.",
+          "variants": [
+            "gastronomic-systems-operator-culinary-consulting",
+            "data-scientist-applied-analytics-decision-science",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h5",
+          "text": "Rebuilt menu taxonomy—culinary families, seasonals, and pop-ups—alongside client-facing menu composition, photography selection, and print-ready PDF output.",
+          "variants": [
+            "gastronomic-systems-operator-culinary-consulting",
+            "design-systems-architect-enterprise-b2b-saas",
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h6",
+          "text": "Built a parser on the live Excel model so managers could mark 86'd items and seasonal prices, feeding a modular restaurant site with delivery hooks and item-level performance pixels.",
+          "variants": [
+            "design-systems-architect-enterprise-b2b-saas",
+            "ai-knowledge-operations-specialist-ai-enabled-content-platforms",
+            "operations-flow-manager-foodtech",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h7",
+          "text": "Extended the site with dynamic CSS, Three.js animation, allergen and FAQ content, and quick-commerce integration bundled into one manager handoff packet.",
+          "variants": [
+            "design-systems-architect-enterprise-b2b-saas",
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proj-hospitality-and-venture-operations-automation",
+      "name": "Hospitality and Venture Operations Automation",
+      "description": "Python cron automation across hotel mail, attendance, backups, revenue ingestion, ERP/POS hooks, and AstroPatshala micro-calculators.",
+      "url": "",
+      "keywords": [
+        "Python",
+        "cron",
+        "automation",
+        "Power BI",
+        "REST API",
+        "POS",
+        "PMS",
+        "ETL"
+      ],
+      "variants": [
+        "devops-associate-startup-accelerators",
+        "tactical-it-systems-administrator-managed-service-providers",
+        "data-scientist-applied-analytics-decision-science",
+        "ai-knowledge-operations-specialist-ai-enabled-content-platforms",
+        "all"
+      ],
+      "highlights": [
+        {
+          "id": "proj-hospitality-and-venture-operations-automation-h0",
+          "text": "Automated staff-attendance reminders and operational mail workflows across hotel properties with logged cron schedules and failure alerts.",
+          "variants": [
+            "devops-associate-startup-accelerators",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-hospitality-and-venture-operations-automation-h1",
+          "text": "Built backup and data-sync scripts with recovery paths tested during planned downtime windows.",
+          "variants": [
+            "devops-associate-startup-accelerators",
+            "enterprise-resilience-engineer-managed-service-providers",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-hospitality-and-venture-operations-automation-h2",
+          "text": "Wrote weekly revenue ingestion scripts feeding the Excel and Power BI reporting layer that paired with front-desk reconciliation controls.",
+          "variants": [
+            "data-scientist-applied-analytics-decision-science",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-hospitality-and-venture-operations-automation-h3",
+          "text": "Sketched REST integrations between ERP, POS, and PMS systems to reduce manual re-keying across property operations.",
+          "variants": [
+            "devops-associate-startup-accelerators",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-hospitality-and-venture-operations-automation-h4",
+          "text": "Shipped AstroPatshala positional and directional chart calculators as a bundle of small production Python tools alongside document batch-processing utilities.",
+          "variants": [
+            "ai-knowledge-operations-specialist-ai-enabled-content-platforms",
+            "data-scientist-applied-analytics-decision-science",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proj-independent-risk-modelling-and-control-design",
+      "name": "Independent Risk Modelling and Control Design",
+      "description": "NDA-safe risk registers, FMEA, GTM risk trees, and control-design practice spanning hospitality operations, venture launches, and spec-case financial methods.",
+      "url": "",
+      "keywords": [
+        "FMEA",
+        "risk register",
+        "controls",
+        "governance",
+        "crisis prevention",
+        "audit trail"
+      ],
+      "variants": [
+        "risk-compliance-analyst-technology-regulated-industries",
+        "family-office-analyst-private-wealth-family-enterprise",
+        "chief-of-staff-founder-led-family-owned-enterprises",
+        "investment-banking-analyst-bulge-bracket-investment-banks",
+        "all"
+      ],
+      "highlights": [
+        {
+          "id": "proj-independent-risk-modelling-and-control-design-h0",
+          "text": "Built hotel FMEA and operational risk registers during the Savi turnaround—mapping service failure modes, kill gates, and control owners.",
+          "variants": [
+            "risk-compliance-analyst-technology-regulated-industries",
+            "chief-of-staff-founder-led-family-owned-enterprises",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-independent-risk-modelling-and-control-design-h1",
+          "text": "Drafted GTM and market-risk trees for confidential venture launches without naming clients or claiming regulated advice.",
+          "variants": [
+            "risk-compliance-analyst-technology-regulated-industries",
+            "founders-associate-healthcare-startup-ecosystems",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-independent-risk-modelling-and-control-design-h2",
+          "text": "Reapplied credit and portfolio-risk methods from spec-case work as independent modelling exercises with documented assumptions.",
+          "variants": [
+            "risk-compliance-analyst-technology-regulated-industries",
+            "investment-banking-analyst-bulge-bracket-investment-banks",
+            "data-scientist-applied-analytics-decision-science",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-independent-risk-modelling-and-control-design-h3",
+          "text": "Produced crisis-prevention playbooks with escalation paths, documentation trails, and committee-ready memos.",
+          "variants": [
+            "risk-compliance-analyst-technology-regulated-industries",
+            "family-office-analyst-private-wealth-family-enterprise",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-independent-risk-modelling-and-control-design-h4",
+          "text": "Linked detection, decision, and audit-trail controls into a repeatable operating model for accountable stakeholder handoffs.",
+          "variants": [
+            "risk-compliance-analyst-technology-regulated-industries",
+            "chief-of-staff-founder-led-family-owned-enterprises",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proj-independent-legal-documentation-and-filing-support",
+      "name": "Independent Legal Documentation and Filing Support",
+      "description": "Confidential documentation practice supporting counsel-directed drafting, affidavit preparation, filing logistics, and cross-jurisdiction corporate-record verification.",
+      "url": "",
+      "keywords": [
+        "legal operations",
+        "filing preparation",
+        "affidavits",
+        "Companies House",
+        "documentation support",
+        "record verification"
+      ],
+      "variants": [
+        "legal-operations-analyst-law-firms-and-transaction-advisory",
+        "family-office-analyst-private-wealth-family-enterprise",
+        "risk-compliance-analyst-technology-regulated-industries",
+        "chief-of-staff-founder-led-family-owned-enterprises",
+        "all"
+      ],
+      "highlights": [
+        {
+          "id": "proj-independent-legal-documentation-and-filing-support-h0",
+          "text": "Prepared filing-ready civil and intellectual-property drafts from counsel dictation and record bundles—affidavits, indexes, and procedural cross-checks before chamber submission.",
+          "variants": [
+            "legal-operations-analyst-law-firms-and-transaction-advisory",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-independent-legal-documentation-and-filing-support-h1",
+          "text": "Built a repeatable affidavit workflow spanning fact chronology, exhibit mapping, and consistency checks against source documents.",
+          "variants": [
+            "legal-operations-analyst-law-firms-and-transaction-advisory",
+            "risk-compliance-analyst-technology-regulated-industries",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-independent-legal-documentation-and-filing-support-h2",
+          "text": "Verified Indian corporate board resolutions and shareholder records against UK Companies House filings for multi-jurisdiction family-enterprise matters.",
+          "variants": [
+            "legal-operations-analyst-law-firms-and-transaction-advisory",
+            "family-office-analyst-private-wealth-family-enterprise",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-independent-legal-documentation-and-filing-support-h3",
+          "text": "Ghost-typed and structurally edited legal memos and transaction papers under partner direction—preserving voice while tightening logic and citation hygiene.",
+          "variants": [
+            "legal-operations-analyst-law-firms-and-transaction-advisory",
+            "all"
+          ]
+        },
+        {
+          "id": "proj-independent-legal-documentation-and-filing-support-h4",
+          "text": "Tracked court and registry deadlines, version control, and sign-off chains so counsel could file under time pressure.",
+          "variants": [
+            "legal-operations-analyst-law-firms-and-transaction-advisory",
+            "family-office-analyst-private-wealth-family-enterprise",
+            "all"
+          ]
+        }
+      ]
     }
   ]
 }

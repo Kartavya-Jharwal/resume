@@ -5,49 +5,77 @@ import { fileURLToPath } from 'url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const resume = JSON.parse(readFileSync(resolve(ROOT, 'data/resume.json'), 'utf8'));
-const variants = JSON.parse(readFileSync(resolve(ROOT, 'data/variants.json'), 'utf8')).variants;
+const variantsDoc = JSON.parse(readFileSync(resolve(ROOT, 'data/variants.json'), 'utf8'));
+const variants = variantsDoc.variants;
 const payload = readFileSync(resolve(ROOT, 'dist/public/data.js'), 'utf8');
-const profiles = JSON.parse(payload.match(/window\.PROFILES\s*=\s*([\s\S]+);\s*$/)[1]);
+const profiles = JSON.parse(payload.match(/window\.PROFILES\s*=\s*(\[[\s\S]+\]);/)[1]);
 
-const families = {};
+const categories = {};
 for (const variant of variants) {
-  const family = variant.family || variant.role;
-  if (!families[family]) families[family] = { role: variant.role, pairs: [] };
+  const category = variant.category || variant.role;
+  if (!categories[category]) categories[category] = { pairs: [] };
   const profile = profiles.find(entry => entry.id === variant.id);
-  families[family].pairs.push({
-    industry: variant.industry,
+  const workIds = (variant.content?.experience || []).map(entry => entry.id);
+  const projectIds = (variant.content?.projects || []).map(entry => entry.id);
+  categories[category].pairs.push({
     id: variant.id,
+    role: variant.role,
+    industry: variant.industry,
     work: profile.experience.map(entry => entry.company),
+    workIds,
     projects: profile.projects.map(entry => entry.name),
+    projectIds,
     bullets: profile.experience.reduce((sum, entry) => sum + entry.highlights.length, 0)
       + profile.projects.reduce((sum, entry) => sum + entry.highlights.length, 0),
     chars: [profile.summary, ...profile.experience.flatMap(entry => entry.highlights), ...profile.projects.flatMap(entry => entry.highlights)].join(' ').length,
-    skills: profile.additional?.skillMap?.length || 0
+    skills: profile.additional?.skillMap?.length || 0,
+    composition: profile.composition
   });
 }
 
+const usedProjectIds = new Set();
+const usedWorkIds = new Set();
+for (const variant of variants) {
+  for (const entry of variant.content?.experience || []) usedWorkIds.add(entry.id);
+  for (const entry of variant.content?.projects || []) usedProjectIds.add(entry.id);
+}
+
+const orphanProjects = (resume.projects || [])
+  .map(entry => entry.id)
+  .filter(id => !usedProjectIds.has(id));
+
 const audit = {
+  sourceRevision: `${resume.meta?.version} / ${resume.meta?.lastModified}`,
   master: {
-    work: resume.work.map(entry => ({ id: entry.id, name: entry.name, bullets: entry.highlights.length })),
+    work: resume.work.map(entry => ({ id: entry.id, name: entry.name, bullets: entry.highlights.length, engagementCategory: entry.engagementCategory || null })),
     projects: resume.projects.map(entry => ({ id: entry.id, name: entry.name, bullets: entry.highlights.length })),
     leadership: (resume.volunteer || []).map(entry => ({ id: entry.id, name: entry.organization }))
   },
-  families: Object.entries(families).map(([name, data]) => ({ name, role: data.role, pairCount: data.pairs.length, pairs: data.pairs })),
+  categories: Object.entries(categories).map(([name, data]) => ({
+    name,
+    pairCount: data.pairs.length,
+    pairs: data.pairs.sort((a, b) => a.role.localeCompare(b.role) || a.industry.localeCompare(b.industry))
+  })).sort((a, b) => a.name.localeCompare(b.name)),
+  variantAliases: variantsDoc.variantAliases || {},
+  orphanProjects,
   totals: {
-    families: Object.keys(families).length,
+    categories: Object.keys(categories).length,
     pairs: variants.length,
     work: resume.work.length,
     projects: resume.projects.length,
-    avgBullets: Math.round(profiles.reduce((sum, profile) => sum + profile.experience.reduce((a, e) => a + e.highlights.length, 0) + profile.projects.reduce((a, e) => a + e.highlights.length, 0), 0) / profiles.length),
-    avgChars: Math.round(profiles.reduce((sum, profile) => sum + [profile.summary, ...profile.experience.flatMap(e => e.highlights), ...profile.projects.flatMap(e => e.highlights)].join(' ').length, 0) / profiles.length)
+    avgBullets: Math.round(profiles.filter(profile => !profile.isMasterCV).reduce((sum, profile) => sum + profile.experience.reduce((a, e) => a + e.highlights.length, 0) + profile.projects.reduce((a, e) => a + e.highlights.length, 0), 0) / Math.max(1, profiles.filter(profile => !profile.isMasterCV).length)),
+    avgChars: Math.round(profiles.filter(profile => !profile.isMasterCV).reduce((sum, profile) => sum + [profile.summary, ...profile.experience.flatMap(e => e.highlights), ...profile.projects.flatMap(e => e.highlights)].join(' ').length, 0) / Math.max(1, profiles.filter(profile => !profile.isMasterCV).length))
   },
   taxonomyNotes: [
-    'Strategy & Investment remains the largest navigation cluster with nine industries across four role titles.',
-    'Consultant groups Data Visualization and Organizational Design under one family label; consider splitting if the selector feels overloaded.',
-    'Agricultural Technology is agri-food evidence (PACA / PACAKATVA), not farm hardware; rename before external use if needed.',
-    'All 59 pairs now use explicit curated content: typically three work entries and two projects with unique evidence signatures.'
+    'Public selector remains Role → Industry; backend category structures validation, audit, and future expansion only.',
+    'PACA and PACAKATVA are classified under Hospitality & Culinary Operations, not agricultural technology.',
+    'Independent Healthcare Venture retains healthcare context with engagementCategory Independent & Stealth Ventures.',
+    'MBB Strategy Consulting is anchored by SRBS, Savi, AstroPatshala, Samsung/Huawei, and Noritake operating evidence.',
+    'All 66 pairs use explicit curated content plans; shared evidence across roles is intentional.',
+    'Culinary buckets A–C split stagiaire, menu/BOH consulting, and event hosting; Menu COGS project and Siya h2 never co-occur in one profile.',
+    'Legal Operations & Transaction Support is the 13th backend category (66th pair: legal-operations-analyst-law-firms-and-transaction-advisory).'
   ]
 };
 
 writeFileSync(resolve(ROOT, 'tmp/pillar4-audit.json'), `${JSON.stringify(audit, null, 2)}\n`, 'utf8');
-console.log('✓ Exported tmp/pillar4-audit.json');
+console.log(`✓ Exported tmp/pillar4-audit.json (${variants.length} pairs, ${Object.keys(categories).length} categories)`);

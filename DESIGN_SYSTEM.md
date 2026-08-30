@@ -1,19 +1,18 @@
 # KJ Design System
 
-The résumé microsite uses a small, layered design system so visual changes stay intentional without affecting the deterministic A4 document.
+The résumé microsite uses a small, layered design system so visual changes stay intentional without affecting the deterministic A4 document. Crawler meta, Open Graph, and future JSON-LD belong to pillar 5 ([DISCOVERABILITY.md](./DISCOVERABILITY.md)), not this file.
 
 ## Foundations
 
 [`assets/css/tokens.css`](assets/css/tokens.css) is the source of truth for:
 
 - primitive and semantic colour roles;
-- interface and résumé typography;
+- interface typography;
 - spacing and layout scales;
 - radii, borders, and elevation;
-- motion duration and easing curves;
-- A4 geometry and Source Serif metrics fallbacks.
+- motion duration and easing curves.
 
-The build appends measured font metrics to the production `tokens.css`, so extracted values override their safe source fallbacks. [`assets/css/style.css`](assets/css/style.css) contains only component, document, responsive, and print rules.
+A4 geometry, the 14/11/13/16 type scale, and Source Serif metrics live in [`config/typesetting.json`](config/typesetting.json) and are projected to [`assets/css/typesetting.css`](assets/css/typesetting.css). [`assets/css/style.css`](assets/css/style.css) contains only component, document, responsive, and print rules.
 
 ## Motion ownership
 

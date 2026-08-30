@@ -61,7 +61,6 @@
   --font-ui: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-resume-text: "Source Serif 4 Resume Text", Georgia, serif;
   --font-resume-title: "Source Serif 4 Resume Title", Georgia, serif;
-  --font-resume-display: "Source Serif 4 Resume Display", Georgia, serif;
   --text-2xs: 0.75rem;
   --text-xs: 0.8125rem;
   --text-sm: 0.875rem;
@@ -83,44 +82,34 @@
   --space-14: 56px;
   --space-16: 64px;
 
-  /* Shell spacing semantics */
-  --rail-pad: var(--space-8);
-  --rail-pad-compact: var(--space-6);
+  /* Shell spacing semantics — viewport-relative via clamp() */
+  --rail-pad: clamp(20px, 3.2vh, 32px);
+  --rail-pad-compact: clamp(16px, 2.4vh, 24px);
   --shell-gap: var(--space-4);
   --shell-gap-sm: var(--space-3);
   --card-inset: var(--space-2);
-  --control-inset-y: var(--space-3);
-  --control-inset-x: var(--space-4);
-  --control-min-height: 52px;
-  --btn-pad-y: var(--space-4);
-  --btn-pad-x: var(--space-4);
-  --btn-pad-y-dense: var(--space-3);
-  --btn-pad-x-dense: var(--space-3);
+  --control-inset-y: clamp(8px, 1.2vh, 12px);
+  --control-inset-x: clamp(12px, 1.6vh, 16px);
+  --control-min-height: clamp(40px, 5.4vh, 52px);
+  --btn-pad-y: clamp(10px, 1.6vh, 16px);
+  --btn-pad-x: clamp(12px, 1.6vh, 16px);
+  --btn-pad-y-dense: clamp(8px, 1.2vh, 12px);
+  --btn-pad-x-dense: clamp(8px, 1.2vh, 12px);
   --stack-gap: var(--space-3);
-  --zoom-pad: var(--space-2);
-  --spotify-embed-height: 80px;
+  --zoom-pad: clamp(4px, 0.7vh, 8px);
+  --spotify-embed-height: 152px;
   --link-highlight: #2f6fed;
 
-  /* Circular icon controls */
-  --icon-btn-size: 44px;
-  --icon-btn-size-sm: 28px;
-  --icon-glyph-size: 1.125rem;
-  --icon-glyph-size-sm: 0.6875rem;
+  /* Circular icon controls — scale to viewport height */
+  --icon-btn-size: clamp(36px, 5vh, 44px);
+  --icon-btn-size-sm: clamp(24px, 3vh, 28px);
+  --icon-glyph-size: clamp(0.9rem, 1.2vh + 0.5rem, 1.125rem);
+  --icon-glyph-size-sm: clamp(0.5625rem, 0.8vh + 0.3rem, 0.6875rem);
   --icon-btn-surface: transparent;
   --icon-btn-surface-rest: rgb(255 255 255 / 0.045);
-  --icon-btn-hover-surface: color-mix(in srgb, var(--accent) 10%, rgb(255 255 255 / 6%));
-  --icon-btn-active-surface: color-mix(in srgb, var(--accent) 16%, transparent);
-  --icon-btn-radial: radial-gradient(
-    circle at center,
-    color-mix(in srgb, var(--accent) 20%, transparent) 0%,
-    transparent 68%
-  );
-  --icon-btn-hover-glow:
-    0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent),
-    0 0 18px color-mix(in srgb, var(--accent) 22%, transparent);
-  --icon-btn-pressed-glow:
-    0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent),
-    0 0 10px color-mix(in srgb, var(--accent) 16%, transparent);
+  --icon-btn-hover-surface: rgb(255 255 255 / 0.10);
+  --icon-btn-active-surface: rgb(255 255 255 / 0.16);
+  --icon-btn-size-zoom: clamp(30px, 4vh, 36px);
 
   /* Shape and elevation */
   --radius-xs: 6px;
@@ -148,54 +137,34 @@
   --ease-out-expo: var(--ease-emphasized);
   --ease-interactive: var(--ease-standard);
 
-  /* Microsite layout */
-  --rail-width: clamp(280px, 22vw, 368px);
-  --rail-width-compact: 232px;
-  --stage-pad: var(--space-10);
-  --stage-pad-right: calc(var(--space-16) + var(--space-6));
-
-  /* Resume typesetting: fixed semantic scale */
-  --u: 11.7pt;
-  --micro-gap: calc(var(--u) / 2);
-  --s0: 9.35pt;
-  --s1: 9.8pt;
-  --s2: 23pt;
-  --margin-x: 17.5mm;
-  --margin-top: 16.5mm;
-  --margin-bottom: 33mm;
-
-  /* Build-time font extraction overrides these fallbacks in dist/tokens.css. */
-  --date-reserved-width: 105pt;
-  --col-gutter: calc(var(--u) / 2);
-  --cap-offset-s2: 5.86pt;
-  --hang-bullet: 0.04em;
-  --font-x-height: 0.475em;
-
-  --track-display: -0.015em;
-  --track-body: 0;
-  --track-label: 0.06em;
-  --weight-regular: 400;
-  --weight-emphasis: 600;
-  --rule-color: #8c8c8c;
+  /* Microsite layout — rails grow with viewport; right rail stays ≥ Spotify embed */
+  --rail-width: clamp(280px, 23vw, 400px);
+  --rail-width-right: clamp(292px, 23vw, 400px);
+  --rail-width-compact: clamp(260px, 24vw, 320px);
+  --stage-pad: var(--space-4);
+  --stage-pad-x: var(--space-4);
 }
 
 @media (prefers-color-scheme: light) {
   :root { --image-outline: rgb(0 0 0 / 0.1); }
 }
 
-/* Shell control spacing — viewport-aware overrides */
+/* Shell control spacing — compact desktop/tablet overrides */
 @media (min-width: 1024px) and (max-width: 1279px) {
   :root {
-    --control-inset-y: var(--space-2);
-    --control-inset-x: var(--space-3);
-    --control-min-height: 48px;
-    --btn-pad-y: var(--space-3);
-    --btn-pad-x: var(--space-3);
-    --btn-pad-y-dense: var(--space-2);
-    --btn-pad-x-dense: var(--space-2);
+    --rail-pad: clamp(16px, 2.4vh, 24px);
+    --rail-pad-compact: clamp(14px, 2vh, 20px);
+    --control-inset-y: clamp(6px, 1vh, 8px);
+    --control-inset-x: clamp(8px, 1.2vh, 12px);
+    --control-min-height: clamp(36px, 4.8vh, 48px);
+    --btn-pad-y: clamp(8px, 1.2vh, 12px);
+    --btn-pad-x: clamp(8px, 1.2vh, 12px);
+    --btn-pad-y-dense: clamp(6px, 0.8vh, 8px);
+    --btn-pad-x-dense: clamp(6px, 0.8vh, 8px);
     --stack-gap: var(--space-2);
-    --zoom-pad: var(--space-1);
-    --spotify-embed-height: 80px;
+    --zoom-pad: clamp(2px, 0.4vh, 4px);
+    --icon-btn-size: clamp(32px, 4.4vh, 40px);
+    --icon-btn-size-zoom: clamp(28px, 3.6vh, 34px);
     --text-2xs: 0.75rem;
   }
 }
@@ -211,6 +180,6 @@
     --btn-pad-x-dense: var(--space-3);
     --stack-gap: var(--space-3);
     --zoom-pad: var(--space-2);
-    --spotify-embed-height: 80px;
+    --spotify-embed-height: 152px;
   }
 }

@@ -6,7 +6,7 @@ The source data describes one person across many role and industry contexts. Bun
 
 The canonical URL is `https://resume.kartavya.tech`. The site is also reachable at `https://kartavya.tech/resume` and `https://kartavya-jharwal.github.io/resume`. GitHub Pages serves the `gh-pages` branch of this repository; set the custom domain to `resume.kartavya.tech` in the repo’s Pages settings.
 
-See [PILLARS.md](./PILLARS.md) for how typesetting, screen UI, PDF output, and data are separated.
+See [PILLARS.md](./PILLARS.md) for the five-layer model: typesetting, screen UI, PDF output, data, and discoverability/agent surface.
 
 ## Product model
 
@@ -27,7 +27,8 @@ https://resume.kartavya.tech/?role=Consultant&industry=Global+Strategy+Consultin
 bun ci                 # install the lockfile exactly
 bun run validate       # validate source data and variant references
 bun run metrics        # extract font metrics used by the CSS
-bun run compile        # create an unfitted debug payload (public/data.js)
+bun run fonts:sync     # vendor official Source Serif 4.005R TTF+WOFF2
+bun run compile        # unfitted debug payload → public/data.js (gitignored)
 bun run build          # create dist/ (site only; retains existing dist/resumes/)
 bun run build:pdf --yes  # fit + render all variant PDFs (~45 min)
 bun run test           # site build + production tests (--skip-pdfs)
@@ -63,18 +64,27 @@ Tagged PDF export is enabled, but this project does not claim PDF/UA or PDF/A co
 ```text
 data/resume.json          canonical résumé content
 data/variants.json        59 curated role × industry variants and PDF names
+assets/css/tokens.css     microsite UI tokens
+assets/css/typesetting.css  generated A4 geometry and type scale
 assets/css/style.css      screen shell plus normative A4 typesetting
 assets/js/app.js          rendering, controls, measurement, build fitting
-assets/fonts/             self-hosted Source Serif 4 web fonts and metric TTF
+assets/fonts/             official Source Serif 4.005R TTF + WOFF2
+config/typesetting.json   canonical typesetting numbers
 bun/src/validate.js       source validation
+bun/src/typesetting.js    unit conversions and CSS projection
 bun/src/font-metrics.js   build-time font inspection
 bun/src/compile.js        profile compiler
 bun/src/build.js          dist orchestrator (site default; --pdf for PDFs)
 bun/src/test.js           production artifact checks
 bun/src/deploy.js         publish dist/ to origin gh-pages
 TYPESETTING.md            v1.5 master typesetting specification
-PILLARS.md                four-layer product model
+TYPESETTING_CONFORMANCE.md requirement ledger
+DISCOVERABILITY.md        pillar 5 — SEO, JSON-LD, GEO, agent surface (roadmap)
+PILLARS.md                five-layer product model
+public/                   local compile target only (see public/README.md)
 dist/                     generated GitHub Pages artifact (ignored)
+output/                   ad-hoc local PDF exports (ignored)
+tmp/                      research and QA scratch (ignored)
 ```
 
 Production deploys locally: `bun run deploy` builds and tests the site (PDFs skipped), then force-pushes the contents of `dist/` to the `gh-pages` branch on `origin` (`Kartavya-Jharwal/resume`). Run `bun run deploy:pdf` when you want to refresh downloadable PDFs before publishing (~45 min).
