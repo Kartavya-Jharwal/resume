@@ -2,7 +2,7 @@
 
 The résumé is the product. The surrounding controls make it an explorable microsite, but every view remains a precisely typeset, downloadable A4 document.
 
-The source data describes one person across many role and industry contexts. Bun validates that source, compiles **59** curated variants, minifies the website, and writes the deployable artifact to `dist/`. PDF generation is a separate, explicit step when you choose to run it.
+The source data describes one person across many role and industry contexts. Bun validates that source, compiles **87** curated variants, minifies the website, and writes the deployable artifact to `dist/`. PDF generation is a separate, explicit step when you choose to run it.
 
 The canonical URL is `https://resume.kartavya.tech`. The site is also reachable at `https://kartavya.tech/resume` and `https://kartavya-jharwal.github.io/resume`. GitHub Pages serves the `gh-pages` branch of this repository; set the custom domain to `resume.kartavya.tech` in the repo’s Pages settings.
 
@@ -15,11 +15,13 @@ See [PILLARS.md](./PILLARS.md) for the five-layer model: typesetting, screen UI,
 - Searchable skills live in the source data and compiled payload. Recruiters can inspect the site, follow a focused deep link, or download the matching PDF when that file exists in `dist/resumes/`.
 - The résumé never reflows to a different document geometry. Screen rendering scales the fixed A4 page; print and PDF use the same internal layout.
 
-Deep links use the selector’s role-family and industry labels. A variant may declare a shared `family` such as `Consultant` while retaining a precise résumé title such as `Strategy Consultant`:
+Deep links use exact selector `role` and `industry` labels (compile sets `family` equal to `role` — there is no separate coarse family in source data):
 
 ```text
-https://resume.kartavya.tech/?role=Consultant&industry=Global+Strategy+Consulting
+https://resume.kartavya.tech/?role=Strategy+Consultant&industry=MBB+Strategy+Consulting
 ```
+
+See [`data/DATA_LAYER.md`](./data/DATA_LAYER.md) for taxonomy, categories, evidence threads, and **`all` tag doctrine** (v1.15.0).
 
 ## Commands
 
@@ -27,7 +29,7 @@ https://resume.kartavya.tech/?role=Consultant&industry=Global+Strategy+Consultin
 bun ci                 # install the lockfile exactly
 bun run validate       # validate source data and variant references
 bun run metrics        # extract font metrics used by the CSS
-bun run fonts:sync     # vendor official Source Serif 4.005R TTF+WOFF2
+bun run fonts:sync     # vendor Newsreader 1.003 TTF + WOFF2; preserves Satoshi in the manifest
 bun run compile        # unfitted debug payload → public/data.js (gitignored)
 bun run build          # create dist/ (site only; retains existing dist/resumes/)
 bun run build:pdf --yes  # fit + render all variant PDFs (~45 min)
@@ -48,7 +50,7 @@ bun run deploy:pdf     # full PDF build, test, then publish
 ### Site build (`bun run build`)
 
 1. Validate `data/resume.json` and `data/variants.json`.
-2. Inspect Source Serif 4 for required OpenType features, coverage, and metric extraction.
+2. Inspect Newsreader for required OpenType features, coverage, and metric extraction; copy Newsreader + Satoshi faces into `dist/`.
 3. Compile every curated profile.
 4. Bundle/minify browser JavaScript and CSS, copy self-hosted fonts/assets, write `dist/`.
 5. Mark each profile’s `pdfAvailable` from whether `dist/resumes/{pdfFilename}` exists.
@@ -63,24 +65,29 @@ Tagged PDF export is enabled, but this project does not claim PDF/UA or PDF/A co
 
 ```text
 data/resume.json          canonical résumé content
-data/variants.json        59 curated role × industry variants and PDF names
+data/variants.json        87 curated role × industry variants and PDF names
+data/DATA_LAYER.md        taxonomy, categories, threads, `all` tag doctrine, metadata contract
 assets/css/tokens.css     microsite UI tokens
 assets/css/typesetting.css  generated A4 geometry and type scale
 assets/css/style.css      screen shell plus normative A4 typesetting
 assets/js/app.js          rendering, controls, measurement, build fitting
-assets/fonts/             official Source Serif 4.005R TTF + WOFF2
-config/typesetting.json   canonical typesetting numbers
+assets/fonts/             Newsreader 1.003 (sheet, OFL) + Satoshi UI WOFF2s + font-manifest.json
+assets/img/og/            Open Graph artwork (defaults and proof cards)
+config/typesetting.json   canonical typesetting numbers (v1.6)
+config/typesetting-requirements.json  conformance requirement ids
+config/release-priority-variants.json  optional PDF / release prioritization
 bun/src/validate.js       source validation
 bun/src/typesetting.js    unit conversions and CSS projection
-bun/src/font-metrics.js   build-time font inspection
+bun/src/font-metrics.js   build-time Newsreader inspection
 bun/src/compile.js        profile compiler
 bun/src/build.js          dist orchestrator (site default; --pdf for PDFs)
 bun/src/test.js           production artifact checks
 bun/src/deploy.js         publish dist/ to origin gh-pages
-TYPESETTING.md            v1.5 master typesetting specification
+TYPESETTING.md            v1.6 master typesetting specification
 TYPESETTING_CONFORMANCE.md requirement ledger
 DISCOVERABILITY.md        pillar 5 — SEO, JSON-LD, GEO, agent surface (roadmap)
 PILLARS.md                five-layer product model
+ARCHITECTURE.md           system boundary, fonts, deploy
 public/                   local compile target only (see public/README.md)
 dist/                     generated GitHub Pages artifact (ignored)
 output/                   ad-hoc local PDF exports (ignored)
@@ -91,7 +98,7 @@ Production deploys locally: `bun run deploy` builds and tests the site (PDFs ski
 
 ## Editing content
 
-Edit only the JSON source, then run `bun run test`. Variant tags must reference an ID declared in `data/variants.json`. Exactly one variant must set `fallback: true`. The optional `family` field groups related titles under one first-level selector choice. Each family/industry pair must remain unique, and each pair needs its own summary.
+Edit only the JSON source, then run `bun run test`. Variant tags must reference an ID declared in `data/variants.json`. Exactly one variant must set `fallback: true`. Each role/industry pair must remain unique, and each pair needs its own summary. Backend `category` (22 v2 buckets) is documented in [`data/DATA_LAYER.md`](./data/DATA_LAYER.md) — do not set `family` in `variants.json`.
 
 After substantive content changes, run `bun run build:pdf --yes` when you want to refresh downloadable PDFs, then inspect `.build-cache/fit-report.json` and spot-check representative output.
 

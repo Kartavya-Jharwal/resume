@@ -1,6 +1,6 @@
 {
   "spec": "TYPESETTING.md",
-  "specVersion": "1.5",
+  "specVersion": "1.6.0",
   "units": {
     "cssPxPerIn": 96,
     "ptPerIn": 72,
@@ -12,14 +12,27 @@
     "r": 1.2,
     "s0PtInUse": 11,
     "s1PtInUse": 13,
-    "s2PtInUse": 16
+    "s2PtInUse": 16,
+    "namePtInUse": 20
+  },
+  "rhythm": {
+    "preSectionU": 1,
+    "labelToContentU": 0.5,
+    "entryGapU": 0.75,
+    "leadInToBulletU": 0,
+    "bulletGapU": 0.25,
+    "bulletTightenPt": 1,
+    "entryTitleGapU": 0.5,
+    "nameToContactU": 0.5,
+    "contactToBodyU": 0.5,
+    "summaryTailU": 0.25
   },
   "page": {
     "format": "A4",
     "widthMm": 210,
     "heightMm": 297,
-    "n": 12,
-    "footingTop": 1,
+    "n": 14,
+    "footingTop": 0.75,
     "footingBottom": 2
   },
   "tracking": {
@@ -39,8 +52,12 @@
     "bullet": "\u2022",
     "pipe": "|"
   },
+  "bullet": {
+    "indentU": 0.75,
+    "hangScale": 0.5
+  },
   "education": {
-    "detailInsetPt": 0,
+    "detailInsetPt": 7,
     "afterColonEm": 0.25,
     "colonHangEm": 0,
     "separator": "nnbsp-pipe"
@@ -54,14 +71,14 @@
   },
   "faces": {
     "text": {
-      "cssFamily": "Source Serif 4 Resume Text",
+      "cssFamily": "Newsreader Resume Text",
       "opsz": 11,
       "roles": ["s0", "s1"]
     },
     "title": {
-      "cssFamily": "Source Serif 4 Resume Title",
+      "cssFamily": "Newsreader Resume Title",
       "opsz": 16,
-      "roles": ["s2"]
+      "roles": ["s2", "name"]
     }
   },
   "print": {

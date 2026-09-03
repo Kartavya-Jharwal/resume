@@ -7,12 +7,20 @@ The résumé microsite uses a small, layered design system so visual changes sta
 [`assets/css/tokens.css`](assets/css/tokens.css) is the source of truth for:
 
 - primitive and semantic colour roles;
-- interface typography;
+- interface typography (`--text-micro` → `--text-lg`, tracking kickers);
 - spacing and layout scales;
-- radii, borders, and elevation;
-- motion duration and easing curves.
+- surface washes (`--surface-wash-02` … `--surface-wash-10`) for white-on-obsidian lifts;
+- radii, borders, elevation, and scrims;
+- overlay z-index stack (`--z-aside` … `--z-shortcuts-dialog`);
+- motion duration and easing curves;
+- rail / touch / fit control sizing (`--touch-target`, `--rail-section-gap`, `--fit-btn-min-height`).
 
-A4 geometry, the 14/11/13/16 type scale, and Source Serif metrics live in [`config/typesetting.json`](config/typesetting.json) and are projected to [`assets/css/typesetting.css`](assets/css/typesetting.css). [`assets/css/style.css`](assets/css/style.css) contains only component, document, responsive, and print rules.
+Typography is a dual stack:
+
+- **Satoshi** (`--font-ui`) — microsite chrome, rails, buttons, and status copy.
+- **Newsreader** (`--font-resume-text` / `--font-resume-title`) — the A4 sheet only.
+
+A4 geometry, the type scale, and Newsreader metrics live in [`config/typesetting.json`](config/typesetting.json) and are projected to [`assets/css/typesetting.css`](assets/css/typesetting.css). [`assets/css/style.css`](assets/css/style.css) holds `@font-face` rules for both families plus component, document, responsive, and print rules — prefer tokens over ad-hoc `rgb()` / rem sizes.
 
 ## Motion ownership
 
@@ -25,7 +33,8 @@ All programmatic motion is disabled in PDF fitting mode and when `prefers-reduce
 ## Component principles
 
 1. Keep the A4 sheet typographically neutral and evidence-first.
-2. Use mint only for interactive state, live status, and orientation cues.
-3. Use one elevation treatment per surface; borders describe grouping, shadows describe depth.
+2. Use mint only for interactive state, live status, keyword marks (`--accent-mark`), and orientation cues.
+3. Use one elevation treatment per surface; borders describe grouping, shadows describe depth (`--shadow-preview`, `--shadow-dialog`).
 4. Animate opacity, blur, and transforms only—never résumé font size, margins, or page geometry.
-5. Preserve visible focus and a minimum 44px touch target for controls.
+5. Preserve visible focus and a minimum `--touch-target` (44px) for chrome controls.
+6. Right-rail sections (View / Proof / Share / Listening) share kickers via `--tracking-kicker` and `--rail-section-gap`.

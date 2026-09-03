@@ -10,19 +10,19 @@ import { formatDateRange, formatExpectedDate } from './microtype.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const BUILD = resolve(ROOT, '.build-cache');
-const FONT_PATH = resolve(ROOT, 'assets/fonts/source-serif-4-variable-roman.ttf');
-const TEXT_FONT_PATH = resolve(ROOT, 'assets/fonts/source-serif-4-text-regular.ttf');
+const FONT_PATH = resolve(ROOT, 'assets/fonts/newsreader-variable-roman.ttf');
+const ITALIC_FONT_PATH = resolve(ROOT, 'assets/fonts/newsreader-variable-italic.ttf');
 const RESUME_PATH = resolve(ROOT, 'data/resume.json');
-const REQUIRED_FEATURES = ['case', 'liga', 'lnum', 'onum', 'pnum', 'smcp', 'tnum'];
+const REQUIRED_FEATURES = ['case', 'liga', 'pnum', 'tnum'];
 
 const canon = loadCanon();
 const derived = deriveCanon(canon);
 
-if (!existsSync(FONT_PATH) && !existsSync(TEXT_FONT_PATH)) {
-  throw new Error('Pinned Source Serif files are missing. Run bun run fonts:sync');
+if (!existsSync(FONT_PATH)) {
+  throw new Error('Pinned Newsreader files are missing. Run bun run fonts:sync');
 }
 
-const inspectionPath = existsSync(FONT_PATH) ? FONT_PATH : TEXT_FONT_PATH;
+const inspectionPath = FONT_PATH;
 const baseFont = fontkit.openSync(inspectionPath);
 const axes = baseFont.variationAxes || {};
 const hasOpsz = Boolean(axes.opsz);
@@ -37,8 +37,22 @@ const missingFeatures = REQUIRED_FEATURES.filter(feature => !features.has(featur
 if (missingFeatures.length) {
   throw new Error(`Typeface is missing required OpenType features: ${missingFeatures.join(', ')}`);
 }
-if (!hasOpsz && !existsSync(TEXT_FONT_PATH)) {
-  throw new Error('Typeface must expose an opsz axis or provide separate Text/Title masters.');
+if (!hasOpsz) {
+  throw new Error('Newsreader must expose an opsz axis.');
+}
+if (!existsSync(ITALIC_FONT_PATH)) {
+  throw new Error('Newsreader italic variable file is missing. Run bun run fonts:sync');
+}
+const italicFont = fontkit.openSync(ITALIC_FONT_PATH);
+const italicFeatures = new Set(italicFont.availableFeatures || []);
+if (!italicFeatures.has('liga')) {
+  throw new Error('Newsreader italic must expose OpenType features for experience subtitles.');
+}
+
+const liningRun = font.layout('1', ['tnum', 'lnum']);
+const oldstyleRun = font.layout('1', ['onum', 'pnum']);
+if (liningRun.glyphs[0].id === oldstyleRun.glyphs[0].id) {
+  throw new Error('Newsreader must support distinct lining and oldstyle figure sets.');
 }
 
 const resume = JSON.parse(readFileSync(RESUME_PATH, 'utf8'));
@@ -63,12 +77,13 @@ const bulletLsbEm = bullet.bbox.minX / font.unitsPerEm;
 const colon = font.glyphForCodePoint(0x003A);
 const colonAdvanceEm = colon.advanceWidth / font.unitsPerEm;
 const colonRsbEm = (colon.advanceWidth - colon.bbox.maxX) / font.unitsPerEm;
-const eduAfterColonEm = Math.max(0.18, colonRsbEm + 0.12) + (derived.optical.eduAfterColonEm || 0);
+const eduAfterColonEm = Math.max(derived.education.afterColonEm, colonRsbEm + 0.12) + (derived.optical.eduAfterColonEm || 0);
 const eduColonHangEm = Math.max(0, -colon.bbox.minX / font.unitsPerEm) + (derived.optical.eduColonHangEm || 0);
 const titleFont = hasOpsz && hasWght
-  ? baseFont.getVariation({ wght: 400, opsz: derived.s2Pt })
+  ? baseFont.getVariation({ wght: 400, opsz: derived.namePt })
   : font;
-const capOffsetPt = ((titleFont.ascent - titleFont.capHeight) / titleFont.unitsPerEm) * derived.s2Pt;
+const capOffsetPt = ((titleFont.ascent - titleFont.capHeight) / titleFont.unitsPerEm) * derived.namePt;
+const capOffsetS0Pt = ((font.ascent - font.capHeight) / font.unitsPerEm) * derived.s0Pt;
 const xHeightEm = font.xHeight / font.unitsPerEm;
 
 const resumeText = JSON.stringify(resume).normalize('NFC');
@@ -97,6 +112,7 @@ const metrics = {
   bulletLsbEm: Number((bulletLsbEm + (derived.optical.hangBulletEm || 0)).toFixed(4)),
   bulletLsbEmRaw: Number(bulletLsbEm.toFixed(4)),
   capOffsetPt: Number(capOffsetPt.toFixed(2)),
+  capOffsetS0Pt: Number(capOffsetS0Pt.toFixed(2)),
   xHeightEm: Number(xHeightEm.toFixed(3)),
   colonAdvanceEm: Number(colonAdvanceEm.toFixed(4)),
   colonRsbEm: Number(colonRsbEm.toFixed(4)),

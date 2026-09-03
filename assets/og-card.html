@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1200px;
+      height: 630px;
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      background: linear-gradient(145deg, #0b0e0e 0%, #121818 55%, #0d1111 100%);
+      color: #f4f7f7;
+      display: flex;
+      align-items: stretch;
+      overflow: hidden;
+    }
+    .card {
+      flex: 1;
+      padding: 64px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 24px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .brand img {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+    .kicker {
+      font-size: 14px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: #7fd4c5;
+      font-weight: 700;
+    }
+    .name {
+      margin-top: 8px;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+    .focus {
+      margin-top: 48px;
+    }
+    .role {
+      font-size: 34px;
+      font-weight: 650;
+      line-height: 1.2;
+      max-width: 900px;
+    }
+    .industry {
+      margin-top: 12px;
+      font-size: 24px;
+      color: #b7c3c3;
+      max-width: 900px;
+    }
+    .tagline {
+      font-size: 22px;
+      color: #d7e2e2;
+      font-weight: 600;
+    }
+    .url {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #7fd4c5;
+      letter-spacing: .04em;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div>
+      <div class="brand">
+        <img src="{{LOGO}}" alt="">
+        <div>
+          <div class="kicker">Resume dossier</div>
+          <div class="name">{{NAME}}</div>
+        </div>
+      </div>
+      <div class="focus">
+        <div class="role">{{ROLE}}</div>
+        <div class="industry">{{INDUSTRY}}</div>
+      </div>
+    </div>
+    <div>
+      <div class="tagline">{{TAGLINE}}</div>
+      <div class="url">resume.kartavya.tech</div>
+    </div>
+  </div>
+</body>
+</html>

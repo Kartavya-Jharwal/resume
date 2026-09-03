@@ -1,123 +1,52 @@
 #!/usr/bin/env bun
-/** Pin and vendor official Source Serif 4.005R TTF + WOFF2 from Adobe's GitHub release. */
+/** Pin Newsreader variable TTF + derived WOFF2 from google/fonts (OFL). */
 
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync, copyFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { compress } from 'wawoff2';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const FONTS = resolve(ROOT, 'assets/fonts');
 const CACHE = resolve(ROOT, '.build-cache/fonts-sync');
-const RELEASE = '4.005R';
-const DESKTOP_URL = `https://github.com/adobe-fonts/source-serif/releases/download/${RELEASE}/source-serif-4.005_Desktop.zip`;
-const WOFF2_URL = `https://github.com/adobe-fonts/source-serif/releases/download/${RELEASE}/source-serif-4.005_WOFF2.zip`;
-const LICENSE_URL = `https://raw.githubusercontent.com/adobe-fonts/source-serif/${RELEASE}/LICENSE.md`;
+const VERSION = '1.003';
+const COMMIT = '1ece6a8bfe5db1a2b90c76cc1fe5d3b2eed5dcf3';
+const REPO_BASE = 'https://raw.githubusercontent.com/google/fonts/main/ofl/newsreader';
+const ROMAN_URL = `${REPO_BASE}/Newsreader%5Bopsz%2Cwght%5D.ttf`;
+const ITALIC_URL = `${REPO_BASE}/Newsreader-Italic%5Bopsz%2Cwght%5D.ttf`;
+const LICENSE_URL = `${REPO_BASE}/OFL.txt`;
 
-const FILES = [
+const SOURCES = [
   {
     role: 'variable-roman-ttf',
-    zip: 'desktop',
-    source: ['VAR/SourceSerif4Variable-Roman.ttf', 'TTF/VAR/SourceSerif4Variable-Roman.ttf'],
-    dest: 'source-serif-4-variable-roman.ttf',
+    url: ROMAN_URL,
+    dest: 'newsreader-variable-roman.ttf',
+    woff2Dest: 'newsreader-variable-roman.woff2',
     flavor: 'truetype',
-    cssFamily: null,
-    opsz: 'variable',
-    wght: 'variable'
+    cssFamily: 'Newsreader Resume Text',
+    style: 'normal',
+    axes: ['opsz', 'wght'],
+    preload: true
   },
   {
-    role: 'text-regular-ttf',
-    zip: 'desktop',
-    source: ['TTF/SourceSerif4-Regular.ttf', 'SourceSerif4-Regular.ttf'],
-    dest: 'source-serif-4-text-regular.ttf',
+    role: 'variable-italic-ttf',
+    url: ITALIC_URL,
+    dest: 'newsreader-variable-italic.ttf',
+    woff2Dest: 'newsreader-variable-italic.woff2',
     flavor: 'truetype',
-    cssFamily: 'Source Serif 4 Resume Text',
-    opsz: 11,
-    wght: 400
-  },
-  {
-    role: 'text-semibold-ttf',
-    zip: 'desktop',
-    source: ['TTF/SourceSerif4-Semibold.ttf', 'SourceSerif4-Semibold.ttf'],
-    dest: 'source-serif-4-text-semibold.ttf',
-    flavor: 'truetype',
-    cssFamily: 'Source Serif 4 Resume Text',
-    opsz: 11,
-    wght: 600
-  },
-  {
-    role: 'text-italic-ttf',
-    zip: 'desktop',
-    source: ['TTF/SourceSerif4-It.ttf', 'SourceSerif4-It.ttf'],
-    dest: 'source-serif-4-text-italic.ttf',
-    flavor: 'truetype',
-    cssFamily: 'Source Serif 4 Resume Text',
-    opsz: 11,
-    wght: 400
-  },
-  {
-    role: 'title-regular-ttf',
-    zip: 'desktop',
-    source: ['TTF/SourceSerif4Subhead-Regular.ttf', 'TTF/SourceSerif4-Regular.ttf', 'SourceSerif4Subhead-Regular.ttf'],
-    dest: 'source-serif-4-title-regular.ttf',
-    flavor: 'truetype',
-    cssFamily: 'Source Serif 4 Resume Title',
-    opsz: 16,
-    wght: 400
-  },
-  {
-    role: 'text-regular-woff2',
-    zip: 'woff2',
-    source: [
-      'TTF/SourceSerif4-Regular.ttf.woff2',
-      'WOFF2/TTF/SourceSerif4-Regular.ttf.woff2',
-      'SourceSerif4-Regular.ttf.woff2'
-    ],
-    dest: 'source-serif-4-text-regular.woff2',
-    flavor: 'woff2',
-    cssFamily: 'Source Serif 4 Resume Text',
-    opsz: 11,
-    wght: 400
-  },
-  {
-    role: 'text-semibold-woff2',
-    zip: 'woff2',
-    source: [
-      'TTF/SourceSerif4-Semibold.ttf.woff2',
-      'SourceSerif4-Semibold.ttf.woff2'
-    ],
-    dest: 'source-serif-4-text-semibold.woff2',
-    flavor: 'woff2',
-    cssFamily: 'Source Serif 4 Resume Text',
-    opsz: 11,
-    wght: 600
-  },
-  {
-    role: 'text-italic-woff2',
-    zip: 'woff2',
-    source: [
-      'TTF/SourceSerif4-It.ttf.woff2',
-      'SourceSerif4-It.ttf.woff2'
-    ],
-    dest: 'source-serif-4-text-italic.woff2',
-    flavor: 'woff2',
-    cssFamily: 'Source Serif 4 Resume Text',
-    opsz: 11,
-    wght: 400
-  },
-  {
-    role: 'title-regular-woff2',
-    zip: 'woff2',
-    source: [
-      'TTF/SourceSerif4Subhead-Regular.ttf.woff2',
-      'SourceSerif4Subhead-Regular.ttf.woff2'
-    ],
-    dest: 'source-serif-4-title-regular.woff2',
-    flavor: 'woff2',
-    cssFamily: 'Source Serif 4 Resume Title',
-    opsz: 16,
-    wght: 400
+    cssFamily: 'Newsreader Resume Text',
+    style: 'italic',
+    axes: ['opsz', 'wght'],
+    preload: false
   }
+];
+
+const LEGACY_PREFIXES = [
+  'source-serif-4-',
+  'literata-',
+  'OFL-Source-Serif-4.md',
+  'OFL-Literata.txt'
 ];
 
 function sha256(bytes) {
@@ -125,97 +54,107 @@ function sha256(bytes) {
 }
 
 async function download(url, dest) {
-  if (existsSync(dest) && !process.argv.includes('--force')) return dest;
+  if (existsSync(dest) && !process.argv.includes('--force')) return readFileSync(dest);
   mkdirSync(dirname(dest), { recursive: true });
   const response = await fetch(url, { redirect: 'follow' });
   if (!response.ok) throw new Error(`Failed to download ${url}: ${response.status} ${response.statusText}`);
-  writeFileSync(dest, Buffer.from(await response.arrayBuffer()));
-  return dest;
+  const bytes = Buffer.from(await response.arrayBuffer());
+  writeFileSync(dest, bytes);
+  return bytes;
 }
 
-function extractZip(zipPath, destDir) {
-  mkdirSync(destDir, { recursive: true });
-  const result = Bun.spawnSync(['tar', '-xf', zipPath, '-C', destDir], { stdout: 'pipe', stderr: 'pipe' });
-  if (result.exitCode !== 0) {
-    const fallback = Bun.spawnSync([
-      'powershell',
-      '-NoProfile',
-      '-Command',
-      `Expand-Archive -LiteralPath '${zipPath.replace(/'/g, "''")}' -DestinationPath '${destDir.replace(/'/g, "''")}' -Force`
-    ], { stdout: 'pipe', stderr: 'pipe' });
-    if (fallback.exitCode !== 0) {
-      throw new Error(`Could not extract ${zipPath}: ${new TextDecoder().decode(result.stderr || fallback.stderr)}`);
+function removeLegacyFonts() {
+  for (const entry of readdirSync(FONTS)) {
+    if (LEGACY_PREFIXES.some(prefix => entry.startsWith(prefix) || entry === prefix)) {
+      rmSync(resolve(FONTS, entry), { force: true });
     }
   }
 }
 
-function walk(dir, acc = []) {
-  const glob = new Bun.Glob('**/*');
-  for (const match of glob.scanSync({ cwd: dir, onlyFiles: true })) acc.push(join(dir, match));
-  return acc;
-}
-
-function findSource(root, candidates) {
-  const files = walk(root);
-  for (const candidate of candidates) {
-    const match = files.find(file => file.replaceAll('\\', '/').endsWith(candidate) || file.replaceAll('\\', '/').endsWith(candidate.split('/').pop()));
-    if (match) return match;
-  }
-  return null;
-}
-
 mkdirSync(FONTS, { recursive: true });
 mkdirSync(CACHE, { recursive: true });
+removeLegacyFonts();
 
-const desktopZip = await download(DESKTOP_URL, join(CACHE, 'source-serif-4.005_Desktop.zip'));
-const woff2Zip = await download(WOFF2_URL, join(CACHE, 'source-serif-4.005_WOFF2.zip'));
-await download(LICENSE_URL, resolve(FONTS, 'OFL-Source-Serif-4.md'));
-
-const desktopDir = join(CACHE, 'desktop');
-const woff2Dir = join(CACHE, 'woff2');
-rmSync(desktopDir, { recursive: true, force: true });
-rmSync(woff2Dir, { recursive: true, force: true });
-extractZip(desktopZip, desktopDir);
-extractZip(woff2Zip, woff2Dir);
+await download(LICENSE_URL, resolve(FONTS, 'OFL-Newsreader.txt'));
 
 const files = [];
-for (const spec of FILES) {
-  const root = spec.zip === 'desktop' ? desktopDir : woff2Dir;
-  const found = findSource(root, spec.source);
-  if (!found) {
-    const listing = walk(root).map(file => file.slice(root.length + 1)).slice(0, 40).join('\n');
-    throw new Error(`Missing ${spec.role} in ${spec.zip} zip. First files:\n${listing}`);
-  }
-  const dest = resolve(FONTS, spec.dest);
-  copyFileSync(found, dest);
-  const bytes = readFileSync(dest);
+for (const spec of SOURCES) {
+  const cachePath = resolve(CACHE, spec.dest);
+  const bytes = await download(spec.url, cachePath);
+  const ttfPath = resolve(FONTS, spec.dest);
+  writeFileSync(ttfPath, bytes);
   files.push({
     role: spec.role,
     filename: spec.dest,
     flavor: spec.flavor,
     cssFamily: spec.cssFamily,
-    opsz: spec.opsz,
-    wght: spec.wght,
+    style: spec.style,
+    axes: spec.axes,
+    preload: spec.preload,
     sha256: sha256(bytes),
     bytes: bytes.length,
-    sourcePath: found.slice(root.length + 1).replaceAll('\\', '/')
+    sourcePath: spec.url
   });
-  console.log(`✓ ${spec.dest} ← ${files.at(-1).sourcePath}`);
+  console.log(`✓ ${spec.dest} (${bytes.length} bytes)`);
+
+  const woff2Bytes = Buffer.from(await compress(bytes));
+  const woff2Path = resolve(FONTS, spec.woff2Dest);
+  writeFileSync(woff2Path, woff2Bytes);
+  files.push({
+    role: spec.role.replace('-ttf', '-woff2'),
+    filename: spec.woff2Dest,
+    flavor: 'woff2',
+    cssFamily: spec.cssFamily,
+    style: spec.style,
+    axes: spec.axes,
+    preload: spec.preload,
+    derivedFrom: spec.dest,
+    sha256: sha256(woff2Bytes),
+    bytes: woff2Bytes.length,
+    sourcePath: spec.dest
+  });
+  console.log(`✓ ${spec.woff2Dest} (${woff2Bytes.length} bytes, ${(woff2Bytes.length / bytes.length * 100).toFixed(1)}% of TTF)`);
 }
 
+const newsreaderNames = new Set(files.map(file => file.filename));
+const previousManifestPath = resolve(FONTS, 'font-manifest.json');
+let preservedUi = [];
+if (existsSync(previousManifestPath)) {
+  try {
+    const previous = JSON.parse(readFileSync(previousManifestPath, 'utf8'));
+    preservedUi = (previous.files || []).filter(file =>
+      !newsreaderNames.has(file.filename) &&
+      (String(file.role || '').startsWith('ui-') || String(file.filename || '').startsWith('Satoshi-'))
+    );
+    for (const file of preservedUi) {
+      if (!existsSync(resolve(FONTS, file.filename))) {
+        throw new Error(`fonts:sync would drop missing UI face ${file.filename}; keep Satoshi files in assets/fonts/`);
+      }
+    }
+  } catch (error) {
+    if (error instanceof SyntaxError) throw error;
+    if (String(error.message || '').includes('fonts:sync would drop')) throw error;
+  }
+}
+files.push(...preservedUi);
+
 const manifest = {
-  family: 'Source Serif 4',
-  version: RELEASE,
+  family: 'Newsreader',
+  version: VERSION,
+  commit: COMMIT,
   license: 'OFL-1.1',
-  licenseFile: 'OFL-Source-Serif-4.md',
+  licenseFile: 'OFL-Newsreader.txt',
   source: {
-    desktop: DESKTOP_URL,
-    woff2: WOFF2_URL,
+    repository: 'https://github.com/productiontype/Newsreader',
+    distribution: 'https://github.com/google/fonts/tree/main/ofl/newsreader',
+    roman: ROMAN_URL,
+    italic: ITALIC_URL,
     license: LICENSE_URL
   },
-  notes: 'Official Adobe release. TTF is canonical for metrics and a future glyph PDF; WOFF2 is the Chromium face. Display optical size is intentionally unused at résumé sizes.',
+  notes: 'Newsreader variable (opsz, wght) for the A4 sheet. Satoshi UI faces in this manifest are preserved across sync (not re-downloaded here). TTF is canonical for metrics; WOFF2 is the cold-load face. Roman is preloaded; italic loads on first subtitle line. No GRAD axis.',
   files
 };
 
 writeFileSync(resolve(FONTS, 'font-manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
-console.log(`✓ Wrote assets/fonts/font-manifest.json (${files.length} files)`);
+console.log(`✓ Wrote assets/fonts/font-manifest.json (${files.length} files${preservedUi.length ? `, kept ${preservedUi.length} UI` : ''})`);
+

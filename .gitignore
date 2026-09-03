@@ -14,8 +14,8 @@ coverage
 
 # logs
 logs
-_.log
-report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+*.log
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # dotenv environment variable files
 .env
@@ -47,3 +47,9 @@ Canvas_Downloads/
 assets/img/logo/
 assets/img/logos/logo_kj_neutral.png
 assets/img/logos/logo_kj_og.png
+
+# One-off content mutators and scratch audits (not product runtime)
+bun/src/apply-*.js
+bun/src/_restore-*.js
+bun/src/deflate-*.js
+bun/src/variant-descriptions-*.js

@@ -6,15 +6,15 @@ The résumé engine is five intentional layers. Edit one pillar per agent sessio
 
 **Purpose:** Fixed A4 geometry and typographic excellence. The sheet never reflows.
 
-**Owns:** [TYPESETTING.md](./TYPESETTING.md), [TYPESETTING_CONFORMANCE.md](./TYPESETTING_CONFORMANCE.md), [config/typesetting.json](./config/typesetting.json), [assets/css/typesetting.css](./assets/css/typesetting.css), résumé rules in [assets/css/style.css](./assets/css/style.css), [bun/src/font-metrics.js](./bun/src/font-metrics.js), [bun/src/typesetting.js](./bun/src/typesetting.js), Source Serif 4.005R, unit grid, date column, bullet hang, print CSS.
+**Owns:** [TYPESETTING.md](./TYPESETTING.md), [TYPESETTING_CONFORMANCE.md](./TYPESETTING_CONFORMANCE.md), [config/typesetting.json](./config/typesetting.json), [assets/css/typesetting.css](./assets/css/typesetting.css), résumé rules in [assets/css/style.css](./assets/css/style.css), [bun/src/font-metrics.js](./bun/src/font-metrics.js), [bun/src/typesetting.js](./bun/src/typesetting.js), Newsreader 1.003 variable (sheet face), unit grid, date column, bullet hang, print CSS.
 
-**Does not own:** Side rails, mobile menu, Spotify, zoom chrome, Chromium PDF export, SEO or agent manifests.
+**Does not own:** Side rails, mobile menu, Spotify, zoom chrome, Satoshi UI chrome (pillar 2), Chromium PDF export, SEO or agent manifests.
 
 ## Pillar 2 — Screen renderer (microsite)
 
 **Purpose:** Centerpiece A4 proof on desktop and mobile. Left rail = profile configuration. Right rail = view controls, export, listening context.
 
-**Owns:** [index.html](./index.html), shell CSS, [assets/js/app.js](./assets/js/app.js) (rendering, controls, A4 scale on stage — not PDF fitting).
+**Owns:** [index.html](./index.html), shell CSS, Satoshi UI faces (`--font-ui`), [assets/js/app.js](./assets/js/app.js) (rendering, controls, A4 scale on stage — not PDF fitting).
 
 **Preview rule:** Serve **bundled** output only. Source `assets/js/app.js` imports bare npm specifiers (`motion`, `gsap`); the browser cannot load repo-root `index.html` directly. Use:
 
@@ -26,11 +26,24 @@ bun run serve      # rebuild site, then serve dist/
 
 ## Pillar 3 — PDF engine
 
-**Purpose:** Standalone searchable A4 PDFs per variant, ATS-oriented, generated from the same fitted payload as the screen. A separate pillar from the live site build.
+**Purpose:** Standalone searchable A4 PDFs (and optional flow DOCX) per variant, ATS-oriented, generated from the same composition payload as the screen. A separate pillar from the live site build.
 
-**Owns:** [bun/src/build.js](./bun/src/build.js) with `--pdf`, Playwright Chromium, `dist/resumes/`, fit report, PDF verification in [bun/src/test.js](./bun/src/test.js).
+**Owns:**
+- Production Chromium batch: [bun/src/build.js](./bun/src/build.js) with `--pdf`, Playwright, `dist/resumes/`, fit report
+- Composition emit (WeasyPrint max + flow DOCX): [bun/src/pillar3-emit.js](./bun/src/pillar3-emit.js), [bun/src/composition.js](./bun/src/composition.js), [bun/src/composition-render.js](./bun/src/composition-render.js), [assets/css/composition.css](./assets/css/composition.css), [bun/src/emit-pdf.py](./bun/src/emit-pdf.py), [bun/src/emit-docx.py](./bun/src/emit-docx.py)
+- Shared verification: [bun/src/pdf-verify.js](./bun/src/pdf-verify.js), PDF checks in [bun/src/test.js](./bun/src/test.js)
+- Fitting policy: `fitProfileForBuild` / `removeNextOptional` in [assets/js/app.js](./assets/js/app.js) (build-time only)
 
-**Optional by design:** `bun run build` deploys the **site only** and retains any existing `dist/resumes/`. Full PDF regeneration is explicit and slow (~45 minutes for all variants):
+**Composition emit (single profile, PDF/UA-2 + DOCX):**
+
+```bash
+bun run pillar3:emit
+bun run pillar3:emit -- --profile <variant-id>
+```
+
+Artifacts land in `tmp/pillar3-emit/<id>/` (PDF, DOCX, `report.json`). WeasyPrint on Windows needs GTK under `D:\KJ\Programs_Files\GTK3-Runtime`.
+
+**Optional by design:** `bun run build` deploys the **site only** and retains any existing `dist/resumes/`. Full Chromium PDF regeneration is explicit and slow (~45 minutes for all variants):
 
 ```bash
 bun run build:pdf --yes    # fit + render every variant PDF
@@ -44,11 +57,11 @@ PDF availability in the browser is determined at **site build** time from `dist/
 
 **Purpose:** One person, many curated role × industry views.
 
-**Owns:** [data/resume.json](./data/resume.json), [data/variants.json](./data/variants.json), [bun/src/compile.js](./bun/src/compile.js), [bun/src/validate.js](./bun/src/validate.js), variant tagging, evidence limits, omissions policy.
+**Owns:** [data/resume.json](./data/resume.json), [data/variants.json](./data/variants.json), [data/DATA_LAYER.md](./data/DATA_LAYER.md), [bun/src/compile.js](./bun/src/compile.js), [bun/src/validate.js](./bun/src/validate.js), [bun/src/category-taxonomy.js](./bun/src/category-taxonomy.js), variant tagging, evidence limits, omissions policy.
 
-**Pairs:** each selector choice is a unique role × industry pair. The public UI navigates Role → Industry only; backend `category` metadata (13 groups) structures validation, audit, and future expansion. Duplicate pair descriptions fail validation.
+**Pairs:** each selector choice is a unique role × industry pair (87 total). The public UI navigates Role → Industry only; backend `category` metadata (**22 v2 groups** — see [`data/DATA_LAYER.md`](./data/DATA_LAYER.md)) structures validation, audit, coursework ranking, and thread preservation. Duplicate pair descriptions fail validation.
 
-**Explicit content plans:** each variant in `data/variants.json` carries a `content` block with stable work/project ids and highlight ids from `data/resume.json`. The compiler resolves these plans directly (typically 3 work entries + 2 projects). Regenerate plans with `bun run content:plan` after retagging; assign ids first with `bun run content:ids`. Export audit JSON with `bun run content:audit`.
+**Explicit content plans:** each variant in `data/variants.json` carries a `content` block with stable work/project ids and highlight ids from `data/resume.json`. The compiler resolves these plans directly (typically 3 work entries + 2 projects). Regenerate plans with `bun run content:plan` after retagging; assign ids first with `bun run content:ids`. Export audit JSON with `bun run content:audit`. Run `bun run content:coverage` for `allTagReport` eligibility exposure (v1.15.0).
 
 **Variant aliases:** `variantAliases` in `data/variants.json` preserves deep links when variant ids are renamed (e.g. agritech → culinary/hospitality).
 
@@ -60,11 +73,9 @@ PDF availability in the browser is determined at **site build** time from `dist/
 
 ## Pillar 5 — Discoverability & agent surface
 
-**Purpose:** Connective tissue between the typeset product (pillars 1–3) and the open web — search engines, LLM crawlers, and autonomous agents. A cold visit should receive trustworthy, machine-readable context (who, what evidence, which PDF) before defaulting to skepticism.
+**Purpose:** Connective tissue between the typeset product (pillars 1–3) and the open web — search engines, LLM crawlers, and autonomous agents. A cold visit (no JS) should receive trustworthy, machine-readable context (who, fallback sheet, proofs, which PDF) before defaulting to skepticism.
 
-**Owns:** [DISCOVERABILITY.md](./DISCOVERABILITY.md), gateway `robots.txt` / `sitemap.xml` (emitted to `dist/` today), document `<head>` meta and Open Graph in [index.html](./index.html), future JSON-LD (`Person`, `ProfilePage`, `CreativeWork`), `llms.txt` / agent manifest, variant deep-link contracts, canonical PDF fetch URLs for agents.
-
-**Cold GEO / agent engine optimisation (planned):** structured summaries per variant, evidence pointers back to pillar 4 ids, fast PDF pull paths (`dist/resumes/{pdfFilename}`), and HTML that preserves semantic résumé structure so agents can appreciate typographic intent without executing the microsite shell.
+**Owns:** [DISCOVERABILITY.md](./DISCOVERABILITY.md), [`bun/src/discoverability.js`](./bun/src/discoverability.js), gateway `robots.txt` / `sitemap.xml` / `llms.txt`, cold `#sheet` + `#agent-provenance` injection, document `<head>` meta and Open Graph, JSON-LD (`Person`, `ProfilePage`, `DigitalDocument`), variant deep-link contracts, canonical PDF fetch URLs for agents.
 
 **Does not own:** A4 geometry (pillar 1), shell chrome and controls (pillar 2), Chromium PDF rendering (pillar 3), canonical JSON source (pillar 4).
 
@@ -89,5 +100,5 @@ See [public/README.md](./public/README.md) for the `public/` folder convention.
 | Download href | `resumes/` + `profile.pdfFilename` |
 | Variant count | `data/variants.json` |
 | Document geometry | [config/typesetting.json](./config/typesetting.json) → CSS; future PDF reads the same JSON |
-| Crawler gateway | `dist/robots.txt`, `dist/sitemap.xml` (pillar 5; variant URLs planned) |
-| Agent-readable identity | Pillar 4 source + pillar 5 structured surface (JSON-LD / manifest planned) |
+| Crawler gateway | `dist/robots.txt`, `dist/sitemap.xml`, `dist/llms.txt` (pillar 5) |
+| Agent-readable identity | Cold `dist/index.html` + JSON-LD from pillar 4 compile via pillar 5 |

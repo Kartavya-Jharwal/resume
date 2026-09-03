@@ -1,0 +1,118 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "purpose": "Outbound proof destinations for leave-site previews and future wrapper microsites. evidence[] stays internal; this registry is the public router."
+  },
+  "proofs": [
+    {
+      "id": "proof-site",
+      "status": "live",
+      "kind": "site",
+      "label": "kartavya.tech",
+      "title": "kartavya.tech",
+      "description": "Personal site and long-form project index.",
+      "url": "https://kartavya.tech/",
+      "match": [
+        "https://kartavya.tech",
+        "https://kartavya.tech/"
+      ],
+      "ogImage": "assets/img/og/site-og.svg",
+      "domain": "kartavya.tech"
+    },
+    {
+      "id": "proof-bwc",
+      "status": "live",
+      "kind": "article",
+      "label": "Adaptive Efficiency - BWC",
+      "title": "Adaptive Efficiency - BWC",
+      "description": "Flagship investment-desk case: StockTrak mandate, regime overlays, committee postmortem.",
+      "url": "https://kartavya.tech/ganet-project-bwc",
+      "match": [
+        "https://kartavya.tech/ganet-project-bwc"
+      ],
+      "ogImage": "assets/img/og/bwc-og.svg",
+      "domain": "kartavya.tech",
+      "projectIds": [
+        "proj-bwc-adaptive-efficiency-investment-desk"
+      ]
+    },
+    {
+      "id": "proof-nirmana",
+      "status": "live",
+      "kind": "article",
+      "label": "NIRMANA",
+      "title": "NIRMANA Design Capstone",
+      "description": "Cross-format design-learning system: toolkit, curriculum, media, spatial experience.",
+      "url": "https://kartavya.tech/Nirmana/",
+      "match": [
+        "https://kartavya.tech/Nirmana/",
+        "https://kartavya.tech/Nirmana"
+      ],
+      "ogImage": "assets/img/og/nirmana-og.svg",
+      "domain": "kartavya.tech",
+      "projectIds": [
+        "proj-nirmana-design-capstone"
+      ]
+    },
+    {
+      "id": "proof-hac",
+      "status": "live",
+      "kind": "article",
+      "label": "Hult AI Collective",
+      "title": "Hult AI Collective",
+      "description": "Campus AI collective programmes, events, and technical mentorship.",
+      "url": "https://kartavya.tech/HAC",
+      "match": [
+        "https://kartavya.tech/HAC",
+        "https://kartavya.tech/HAC/"
+      ],
+      "ogImage": "assets/img/og/hac-og.svg",
+      "domain": "kartavya.tech",
+      "workIds": [
+        "work-hult-ai-collective"
+      ]
+    },
+    {
+      "id": "proof-github",
+      "status": "live",
+      "kind": "profile",
+      "label": "GitHub",
+      "title": "GitHub | Kartavya-Jharwal",
+      "description": "Public repositories and systems work.",
+      "url": "https://github.com/Kartavya-Jharwal",
+      "match": [
+        "https://github.com/Kartavya-Jharwal"
+      ],
+      "ogImage": "assets/img/og/github-og.svg",
+      "domain": "github.com"
+    },
+    {
+      "id": "proof-linkedin",
+      "status": "live",
+      "kind": "profile",
+      "label": "LinkedIn",
+      "title": "LinkedIn | Kartavya Jharwal",
+      "description": "Professional profile and career timeline.",
+      "url": "https://linkedin.com/in/kartavyajharwal",
+      "match": [
+        "https://linkedin.com/in/kartavyajharwal",
+        "https://www.linkedin.com/in/kartavyajharwal"
+      ],
+      "ogImage": "assets/img/og/linkedin-og.svg",
+      "domain": "linkedin.com"
+    },
+    {
+      "id": "proof-wrapper-canvas",
+      "status": "planned",
+      "kind": "wrapper",
+      "label": "Canvas wrappers (planned)",
+      "title": "Project proof wrappers",
+      "description": "Internal Canvas evidence will ship as per-project microsites with dedicated OG cards.",
+      "url": "",
+      "match": [],
+      "ogImage": "assets/img/og/site-og.svg",
+      "domain": "kartavya.tech",
+      "notes": "Do not link until wrapper URLs are live. evidence[] paths remain non-public."
+    }
+  ]
+}

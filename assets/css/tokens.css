@@ -45,7 +45,9 @@
   --accent: var(--mint-500);
   --accent-bright: var(--mint-300);
   --accent-soft: color-mix(in srgb, var(--mint-500) 12%, transparent);
+  --accent-mark: color-mix(in srgb, var(--mint-500) 24%, transparent);
   --accent-line: color-mix(in srgb, var(--mint-500) 44%, transparent);
+  --accent-ring-soft: color-mix(in srgb, var(--mint-500) 42%, transparent);
   --focus-ring: var(--mint-300);
 
   --bg-obsidian: var(--bg-canvas);
@@ -58,15 +60,19 @@
   --border-obsidian: var(--border-subtle);
 
   /* Interface typography */
-  --font-ui: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-resume-text: "Source Serif 4 Resume Text", Georgia, serif;
-  --font-resume-title: "Source Serif 4 Resume Title", Georgia, serif;
+  --font-ui: 'Satoshi', ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-resume-text: "Newsreader Resume Text", Georgia, serif;
+  --font-resume-title: "Newsreader Resume Title", Georgia, serif;
+  --text-micro: 0.625rem;   /* domain labels, kbd micro */
+  --text-3xs: 0.6875rem;    /* status lines, alt links, hints */
   --text-2xs: 0.75rem;
   --text-xs: 0.8125rem;
   --text-sm: 0.875rem;
   --text-md: 1rem;
   --text-lg: 1.125rem;
   --tracking-label: 0.16em;
+  --tracking-kicker: 0.14em;
+  --tracking-micro: 0.12em;
   --tracking-display-ui: 0;
 
   /* Interface spacing (4pt sub-grid, 8pt layout rhythm) */
@@ -96,9 +102,26 @@
   --btn-pad-y-dense: clamp(8px, 1.2vh, 12px);
   --btn-pad-x-dense: clamp(8px, 1.2vh, 12px);
   --stack-gap: var(--space-3);
+  --rail-section-gap: clamp(14px, 2.4vh, 22px);
+  --rail-section-gap-tight: clamp(10px, 1.8vh, 16px);
   --zoom-pad: clamp(4px, 0.7vh, 8px);
   --spotify-embed-height: 152px;
+  --touch-target: 44px;
+  --fit-btn-min-height: 34px;
+  --hint-btn-min-height: 40px;
   --link-highlight: #2f6fed;
+  --link-preview-width: 260px;
+  --shortcuts-dialog-width: 420px;
+
+  /* Surface washes — white-on-obsidian lifts (use instead of ad-hoc rgb) */
+  --surface-wash-02: rgb(255 255 255 / 0.02);
+  --surface-wash-03: rgb(255 255 255 / 0.03);
+  --surface-wash-04: rgb(255 255 255 / 0.04);
+  --surface-wash-05: rgb(255 255 255 / 0.05);
+  --surface-wash-06: rgb(255 255 255 / 0.06);
+  --surface-wash-07: rgb(255 255 255 / 0.07);
+  --surface-wash-08: rgb(255 255 255 / 0.08);
+  --surface-wash-10: rgb(255 255 255 / 0.10);
 
   /* Circular icon controls — scale to viewport height */
   --icon-btn-size: clamp(36px, 5vh, 44px);
@@ -107,7 +130,7 @@
   --icon-glyph-size-sm: clamp(0.5625rem, 0.8vh + 0.3rem, 0.6875rem);
   --icon-btn-surface: transparent;
   --icon-btn-surface-rest: rgb(255 255 255 / 0.045);
-  --icon-btn-hover-surface: rgb(255 255 255 / 0.10);
+  --icon-btn-hover-surface: var(--surface-wash-10);
   --icon-btn-active-surface: rgb(255 255 255 / 0.16);
   --icon-btn-size-zoom: clamp(30px, 4vh, 36px);
 
@@ -123,8 +146,23 @@
   --shadow-border-hover: inset 0 0 0 1px var(--border-strong);
   --shadow-control: 0 1px 2px rgb(0 0 0 / 0.24), 0 10px 24px rgb(0 0 0 / 0.16);
   --shadow-floating: 0 20px 70px rgb(0 0 0 / 0.58);
+  --shadow-preview: var(--shadow-border), 0 14px 36px rgb(0 0 0 / 0.45);
+  --shadow-dialog: var(--shadow-border), 0 24px 64px rgb(0 0 0 / 0.55);
   --shadow-sheet: 0 3px 10px rgb(0 0 0 / 0.34), 0 36px 96px rgb(0 0 0 / 0.72);
   --image-outline: rgb(255 255 255 / 0.1);
+  --scrim: rgb(0 0 0 / 0.5);
+  --scrim-soft: rgb(0 0 0 / 0.42);
+
+  /* Overlay stacking (desktop + shared) */
+  --z-aside: 10;
+  --z-mtx-backdrop: 190;
+  --z-mtx-pop: 200;
+  --z-leave-scrim: 210;
+  --z-leave-dialog: 220;
+  --z-link-preview: 230;
+  --z-toast: 240;
+  --z-shortcuts-scrim: 250;
+  --z-shortcuts-dialog: 260;
 
   /* Motion primitives */
   --duration-instant: 90ms;
@@ -181,5 +219,12 @@
     --stack-gap: var(--space-3);
     --zoom-pad: var(--space-2);
     --spotify-embed-height: 152px;
+    --mobile-top-bar-h: clamp(48px, 6vh, 52px);
+    --mobile-profile-bar-h: clamp(48px, 6vh, 52px);
+    --mobile-chrome-h: calc(var(--mobile-top-bar-h) + var(--mobile-profile-bar-h) + env(safe-area-inset-top));
+    --z-mobile-scrim: 140;
+    --z-mobile-sheet: 150;
+    --z-mobile-chrome: 160;
+    --z-mobile-splash: 170;
   }
 }
