@@ -1,81 +1,98 @@
 # Pillar 5 — Discoverability & agent surface
 
-This pillar is the **connective tissue** between the résumé product and the open web. Pillars 1–4 produce a beautiful, deterministic document; pillar 5 makes that document **findable, legible, and actionable** for humans, search engines, LLM crawlers, and autonomous agents — especially on a **cold visit** where there is no prior relationship or trust.
+This pillar is the **connective tissue** between the résumé product and the open web. Pillars 1–4 produce a deterministic document; pillar 5 makes that document **findable, legible, and trustworthy** for humans, search engines, LLM crawlers, and autonomous agents — especially on a **cold visit with no JavaScript**.
+
+## Problem
+
+Without a cold agent surface, crawlers see an empty sheet and default to a hostile prior: self-reported marketing, inflated metrics, unverifiable competence. Pillar 5 re-poses pillar 4 truth in **agent-level language** so the first reaction is structured identity + checkable proofs, not skepticism.
 
 ## Goals
 
-1. **SEO** — Correct canonical URLs, crawlable gateway, sitemaps, and meta that reflect the live product (not a generic landing page).
-2. **Structured data** — JSON-LD for `Person`, `ProfilePage`, and per-variant `CreativeWork` / downloadable `DigitalDocument` where appropriate.
-3. **Cold GEO** (generative engine optimisation) — Concise, factual summaries and evidence pointers that generative systems can cite without hallucinating roles or inventing metrics.
-4. **Agent engine optimisation** — Machine-readable manifests (`llms.txt`, optional agent API surface) so tools can fetch context, select a variant, and retrieve the matching PDF without driving the microsite UI.
-5. **Trust on first contact** — Agents and crawlers should encounter verified structure (name, roles, industries, PDF URLs, source revision) before treating the site as unverified marketing copy.
+1. **Cold agent trust** — Static HTML carries the fallback résumé, claim discipline, and preferred sources without executing the microsite shell.
+2. **Evidence grounding** — Live [`data/proof-router.json`](./data/proof-router.json) URLs and project links surface as citeable external validity.
+3. **Child SEO** — `resume.kartavya.tech` ranks as Kartavya Jharwal’s dossier under parent [`kartavya.tech`](https://kartavya.tech/).
+4. **GEO / AI robots** — Explicit allow for citation/search crawlers; preferred-source map in `llms.txt`.
+5. **Structured data** — JSON-LD `Person` / `ProfilePage` / optional `DigitalDocument` compiled from the same payload as the sheet.
 
 ## Principles
 
-- **Same truth as pillar 4.** Structured surfaces are compiled from `data/resume.json` and `data/variants.json`, never hand-maintained duplicates.
-- **Respect pillar 1.** Public HTML for agents should expose semantic résumé structure; do not flatten typography into undifferentiated plain text when structured fields exist.
-- **PDF is a first-class fetch target.** Agents should resolve `https://resume.kartavya.tech/resumes/{pdfFilename}` when `pdfAvailable` is true, not scrape the canvas.
-- **Gateway vs deep links.** The microsite is the interactive gateway; variant query URLs (`?role=…&industry=…`) are shareable deep links. Sitemaps and JSON-LD must eventually reflect both without creating duplicate-content penalties.
-- **No false precision.** Omit fields rather than inventing employment dates, employers, or skills not present in source.
+- **Same truth as pillar 4.** Never invent employers, metrics, or skills.
+- **Claim classes:** identity · curated lens · attested bullets · external proof · engagement disclosure.
+- **Self-reported ≠ ungrounded.** State first-party provenance, then point at independent-checkable proofs.
+- **Polymath framing is earned breadth** from category/keyword coverage — not a credential slogan.
+- **Child of kartavya.tech.** `sameAs` / `isPartOf` always link the parent site.
+- **No false precision.** Omit rather than decorate.
+- **Internal `evidence[]` stays private** (Canvas paths). Public proofs only.
 
 ## Current state (shipped)
 
 | Asset | Location | Notes |
 |-------|----------|-------|
-| `<meta name="description">` | `index.html` | Static gateway copy |
-| Open Graph (`og:type=profile`) | `index.html` | Title + description; image planned |
-| Canonical URL | `index.html` | `https://resume.kartavya.tech/` |
-| `robots.txt` | `dist/robots.txt` | Emitted by `bun/src/build.js` |
-| `sitemap.xml` | `dist/sitemap.xml` | Single gateway URL today |
-| Compiled profiles | `dist/public/data.js` | Runtime payload; not yet a public JSON API |
-| PDFs | `dist/resumes/` | Linked when `pdfAvailable` |
+| Cold fallback `#sheet` | `dist/index.html` | Build-injected from fallback compiled profile |
+| `#agent-provenance` | `dist/index.html` | Claim classes, preferred sources, proof index (visually `sr-only`) |
+| Meta / OG / Twitter / canonical | `dist/index.html` | Fallback role × industry depth copy |
+| JSON-LD `@graph` | `#profileJsonLd` | Person `@id`, ProfilePage, optional PDF DigitalDocument |
+| `robots.txt` | `dist/robots.txt` | Explicit AI search/citation agents + `*` |
+| `sitemap.xml` | `dist/sitemap.xml` | Gateway + fallback + priority deep links |
+| `llms.txt` | `dist/llms.txt` | Preferred sources + anti-hallucination policy |
+| Proof router | `window.PROOF_ROUTER` | Leave-site OG + cold proof list |
+| OG image | `assets/img/og-default.png` → `dist/` | Tracked fallback; `OG_RENDER=1` regenerates |
+| Client share meta | `assets/js/app.js` | Deep-link updates after hydrate |
 
-## Planned work
+Implementation: [`bun/src/discoverability.js`](./bun/src/discoverability.js) via [`writeGatewayMetadata`](./bun/src/build.js).
 
-### Phase A — Structured identity (HTML head)
+## Claim discipline (agent copy)
 
-- [ ] JSON-LD `Person` block with stable `@id`, `name`, `url`, `sameAs` (LinkedIn, GitHub, site).
-- [ ] `ProfilePage` wrapper with `mainEntity` pointing at the active variant context.
-- [ ] Per-variant `CreativeWork` or `DigitalDocument` for PDFs with `encodingFormat: application/pdf` and absolute `contentUrl`.
-- [ ] Build-time injection from compile output (pillar 4 revision hash in a comment or `dateModified`).
+| Class | Meaning |
+|-------|---------|
+| Identity | Name, location, profiles from `basics` |
+| Curated view | `?role=&industry=` is one lens over one record |
+| Attested evidence | Highlight text as written in source; numbers are source-bound |
+| External proof | Live proof-router + `project.url` |
+| Engagement disclosure | Compile `engagementLabel` when present |
 
-### Phase B — Crawler expansion
+## AI crawler policy
 
-- [ ] Sitemap entries for fallback + high-priority variant deep links (or a sitemap index if count grows).
-- [ ] `link rel="alternate"` for PDF when available on the active profile.
-- [ ] Optional `humans.txt` / `security.txt` for transparency.
+Citation/search bots are **allowed** so the dossier can become a preferred source:
 
-### Phase C — Agent manifests
+- `OAI-SearchBot`, `ChatGPT-User`
+- `Claude-SearchBot`, `Claude-User`
+- `PerplexityBot`
+- `Googlebot`, `Google-Extended`
+- `User-agent: *`
 
-- [ ] Root `llms.txt` describing site purpose, variant model, PDF paths, and editing policy (“do not infer skills not in source”).
-- [ ] `/.well-known/ai-plugin.json` or successor manifest only if a real agent API is added (defer until needed).
-- [ ] Stable `GET /public/data.js` semantics documented for agents (read-only, revision header).
+Training-vs-citation distinction is documented here; do not silently block citation bots.
 
-### Phase D — Cold GEO copy
+## Planned / later
 
-- [ ] Short, variant-aware `description` meta (or `og:description`) generated at build time from the active/fallback profile summary.
-- [ ] Evidence-backed one-liners per category for external citation (no superlatives without source ids).
-- [ ] Optional public `resume.json` export (subset schema) for LLM ingestion — must stay in sync via compile.
+- [ ] Public subset `resume.json` export for LLM ingestion (must stay compile-synced)
+- [ ] Canvas proof wrapper microsites (`proof-wrapper-canvas`)
+- [ ] Optional `humans.txt` / `security.txt`
+- [ ] `/.well-known/ai-plugin.json` only if a real agent API is added
+- [ ] Rich Results Test / live deploy verification (manual)
 
 ## Non-goals
 
-- Replacing pillar 3 PDF generation or claiming PDF/UA conformance here.
-- Server-side rendering or dynamic APIs (the product stays static on GitHub Pages).
-- Hiding content from crawlers to “game” rankings; `noindex` remains reserved for private artifacts (e.g. master CV preview).
+- Replacing pillar 3 PDF generation
+- Dynamic SSR APIs (static GitHub Pages)
+- Per-variant HTML pages for all 87 pairs
+- Guaranteeing SERP #1 for “Kartavya”
 
 ## Ownership
 
 | Concern | Owner |
 |---------|--------|
-| Meta / OG / JSON-LD templates | Pillar 5 (`index.html` + build injection) |
-| Sitemap / robots | Pillar 5 (`bun/src/build.js` `writeGatewayMetadata`) |
+| Cold HTML / meta / JSON-LD / llms / robots | Pillar 5 (`discoverability.js` + build) |
 | Profile text and variant list | Pillar 4 |
-| PDF bytes and filenames | Pillar 3 + variant records |
-| Typographic HTML semantics | Pillar 1 + pillar 2 renderer |
+| Proof destinations | Pillar 4 `proof-router.json` |
+| PDF bytes | Pillar 3 |
+| Interactive shell hydrate | Pillar 2 |
 
-## Verification (future)
+## Verification
 
-- HTML validator + [Google Rich Results Test](https://search.google.com/test/rich-results) on `dist/index.html`.
-- Assert JSON-LD parses and `@id` URLs resolve.
-- Assert sitemap URLs return 200 on preview deploy.
-- Agent fixture: given cold `llms.txt`, resolve fallback profile + PDF URL without UI interaction.
+- `bun run build` then `bun run bun/src/test.js --skip-pdfs`
+- Cold HTML contains fallback name, role, and at least one proof URL
+- JSON-LD parses with `@id` and parent `sameAs`
+- `llms.txt` states anti-inference + preferred sources
+- `robots.txt` names AI search agents
+- Agent fixture: resolve fallback profile + PDF path from `llms.txt` without UI interaction

@@ -38,9 +38,9 @@ Coordinate spaces (never collapse these names):
 | ID | Rule | Status | Owner | Proof |
 |---|---|---|---|---|
 | TS-3-01 | A4 210×297mm exclusive | Keep | `.sheet`; `@page` | `test-typesetting.js` |
-| TS-3-02 | `n = 12`; L/R = 17.5mm | Keep | `--margin-x` | derived geometry test |
-| TS-3-03 | Text block 175×247.5mm (page aspect) | Keep | derived `textWidthMm` | unit test |
-| TS-3-04 | Top 16.5mm / bottom 33mm (1:2 footing) | Keep | `--margin-top --margin-bottom` | unit test |
+| TS-3-02 | `n = 14`; L/R = 15mm (packed) | Keep | `--margin-x` | derived geometry test |
+| TS-3-03 | Text block 180×254.6mm (page aspect) | Keep | derived `textWidthMm` | unit test |
+| TS-3-04 | Top ~11.6mm / bottom ~30.9mm (0.75:2 footing) | Keep | `--margin-top --margin-bottom` | unit test |
 | TS-3-05 | No Letter parallel table | Keep | canon `page.format` | JSON |
 
 ## §4 Row geometry
@@ -59,7 +59,7 @@ Coordinate spaces (never collapse these names):
 | ID | Rule | Status | Owner | Proof |
 |---|---|---|---|---|
 | TS-5-01 | Non-S0 leading rounds to integer `u` | Restore | `.r-name` `line-height: 2u` | CSS |
-| TS-5-02 | `text-box-trim` / `text-box-edge` on name, labels, bullets | Keep | those selectors | CSS; Lightning target 133 |
+| TS-5-02 | `text-box-trim` / `text-box-edge` on name and labels | Keep | `.r-name`, `.r-lbl` | CSS; bullets defer trim for rhythm |
 | TS-5-03 | `@supports` cap-offset polyfill from OS/2 | Keep | `--cap-offset-s2` | metrics + CSS |
 | TS-5-04 | No generic padding used as fake baseline lock | Restore | résumé CSS | CSS audit |
 | TS-5-05 | Firefox `text-box-trim` | Defer | grey-day | ledger |
@@ -93,7 +93,7 @@ Coordinate spaces (never collapse these names):
 | TS-9-01 | Name 16pt regular (size only) | Restore | `.r-name` | CSS |
 | TS-9-02 | Title/role line size only at S1 | Keep | `.r-role` | CSS |
 | TS-9-03 | Company/role weight only at S0 / 600 | Keep | `.r-co` | CSS |
-| TS-9-04 | Labels: small-caps + tracking, same size/weight | Restore | `.r-lbl` | CSS |
+| TS-9-04 | Labels: tracked uppercase, same size/weight | Restore | `.r-lbl` | CSS |
 | TS-9-05 | No per-entry copyfitting | Restore | no runtime size mutation | `measureA4Layout`; fitter omits only |
 | TS-9-06 | Two-line company + role stack | Keep | `renderExperience` | JS |
 
@@ -111,12 +111,15 @@ Coordinate spaces (never collapse these names):
 
 | ID | Rule | Status | Owner | Proof |
 |---|---|---|---|---|
-| TS-11-01 | 2u before a section label | Restore | `.r-sec` margin+padding | CSS |
-| TS-11-02 | 1u label → first content | Restore | `.r-lbl` margin-bottom | CSS |
-| TS-11-03 | 0.5u lead-in → first bullet; 0.5u between bullets | Keep | `.r-role + .r-ul`; `li + li` | CSS |
-| TS-11-04 | 1u end of any entry → next entry, with or without bullets | Keep | `.exp-block` etc. | CSS |
-| TS-11-05 | Last entry in a section has no extra trailing 1u | Keep | `:last-child` | CSS |
-| TS-11-06 | Divider subdivides the 2u pre-label budget | Restore | `.r-sec` border-top | CSS |
+| TS-11-01 | 1u before a section label (0.5u air / label / 0.5u to rule below) | Restore | `.r-sec`, `.r-lbl` | CSS |
+| TS-11-02 | 0.5u label → first content | Restore | `.r-lbl` margin-bottom | CSS |
+| TS-11-03 | 0u lead-in → first bullet; 0.75u entry gap via `.r-sec-body` flex `gap` | Keep | `.r-item-hdr + .r-ul`; `.r-sec-body` | CSS |
+| TS-11-04 | 0.5u end of any entry → next entry, with or without bullets | Keep | `.exp-block` etc. | CSS |
+| TS-11-05 | Last entry in a section has no extra trailing gap | Keep | `:last-child` | CSS |
+| TS-11-06 | Rule sits below section label | Restore | `.r-lbl` border-bottom | CSS |
+| TS-2-04 | Name centered at 20pt (`--name-size`) | Restore | `.r-name`, `config/typesetting.json` | CSS |
+| TS-2-05 | 0.5u name → contact row (`--name-contact-gap`) | Restore | `.r-ctc`, `rhythm.nameToContactU` | CSS |
+| TS-4-07 | Experience subtitle inline when it fits; stacks below long company titles | Restore | `roleLine`, `.exp-block .r-item-hdr` | compile + app.js |
 
 ## §12 Microtypography
 
@@ -143,9 +146,9 @@ Coordinate spaces (never collapse these names):
 
 | ID | Rule | Status | Owner | Proof |
 |---|---|---|---|---|
-| TS-14-01 | Required features: opsz or separate masters, smcp, 4 figure sets, real italic, Latin Ext | Restore | `fonts-sync.js`, `font-metrics.js` | manifest + metrics |
-| TS-14-02 | Source Serif 4.005R OFL is the implementation face | Restore | `assets/fonts/font-manifest.json` | hashes |
-| TS-14-03 | TTF (metrics/PDF) and WOFF2 (Chromium) are the same outlines | Restore | manifest pairs | font tests |
+| TS-14-01 | Required features: opsz, real italic, tnum/pnum/onum; labels use uppercase (no smcp) | Restore | `fonts-sync.js`, `font-metrics.js` | manifest + metrics |
+| TS-14-02 | Newsreader 1.003 OFL is the implementation face | Restore | `assets/fonts/font-manifest.json` | hashes |
+| TS-14-03 | Variable TTF (metrics + Chromium) is pinned in the manifest | Restore | manifest + font tests | hashes |
 | TS-14-04 | Commercial §14 names are candidates, not auto-compliant | Keep | this ledger | Phase 1A notes |
 | TS-14-05 | `GRAD` print compensation if axis exists, else no-op | Restore | `@media print` gated | metrics `hasGrad` |
 | TS-14-06 | Atkinson / dyslexia trade-off | Defer | not this brief | ledger |
@@ -162,7 +165,7 @@ Coordinate spaces (never collapse these names):
 
 | ID | Rule | Status | Owner | Proof |
 |---|---|---|---|---|
-| TS-16-01 | 0.5pt hairline, full text-block width | Restore | `.r-sec` border-top | CSS |
+| TS-16-01 | 0.5pt hairline, full text-block width | Restore | `.r-lbl` border-bottom | CSS |
 | TS-16-02 | Rule does not add to the 2u budget | Restore | margin/padding split | CSS |
 
 ## §17 Locale
@@ -209,7 +212,7 @@ Coordinate spaces (never collapse these names):
 | TS-EDU-02 | NNBSP separators, no ASCII ` - ` / ` \| ` | Restore | `renderEducation` | JS |
 | TS-EDU-03 | Run-in labels; colon attached; `--edu-after-colon` | Restore | education CSS/JS | fixture |
 | TS-EDU-04 | Value continuation hanging indent per row | Restore | float hang | CSS |
-| TS-EDU-05 | `--edu-detail-inset` default 0 | Restore | CSS | CSS |
+| TS-EDU-05 | `--edu-detail-inset` 0.5u on `.edu-fact` rows only | Restore | CSS | CSS |
 | TS-EDU-06 | Hidden fact rows consume 0 height | Restore | `[hidden]` | CSS |
 | TS-EDU-07 | No standing underlines on institution/degree | Restore | CSS | CSS |
 | TS-EDU-08 | Education fixture (wrap, colon, dates, hidden rows) | Restore | `bun/src/test-education.js` | tests |

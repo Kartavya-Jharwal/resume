@@ -20,9 +20,9 @@ DATA = json.loads((ROOT / 'data' / 'resume.json').read_text(encoding='utf-8'))
 OUTPUT = ROOT / 'Kartavya_Jharwal_Master_CV_ATS.pdf'
 FONT_DIR = ROOT / 'assets' / 'fonts'
 
-pdfmetrics.registerFont(TTFont('ResumeText', str(FONT_DIR / 'source-serif-4-text-regular.ttf')))
-pdfmetrics.registerFont(TTFont('ResumeTextSemibold', str(FONT_DIR / 'source-serif-4-text-semibold.ttf')))
-pdfmetrics.registerFont(TTFont('ResumeTitle', str(FONT_DIR / 'source-serif-4-title-regular.ttf')))
+pdfmetrics.registerFont(TTFont('ResumeText', str(FONT_DIR / 'newsreader-variable-roman.ttf')))
+pdfmetrics.registerFont(TTFont('ResumeTextSemibold', str(FONT_DIR / 'newsreader-variable-roman.ttf')))
+pdfmetrics.registerFont(TTFont('ResumeTitle', str(FONT_DIR / 'newsreader-variable-roman.ttf')))
 
 INK = colors.HexColor('#171918')
 MUTED = colors.HexColor('#525957')

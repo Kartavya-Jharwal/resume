@@ -26,13 +26,14 @@ assert(!app.includes('GPA: </span>') && !app.includes('GPA: <'), 'no literal spa
 assert(css.includes('float: left'), 'education labels hang via per-row float, not a global column');
 assert(css.includes('--edu-after-colon'), 'colon gap token is used');
 assert(css.includes('--edu-colon-optical-hang'), 'colon optical hang token is used');
-assert(css.includes('margin-left: var(--edu-detail-inset)'), 'education inset is the named token');
+assert(css.includes('.edu-fact') && css.includes('margin-left: var(--edu-detail-inset)'), 'education fact rows use the named inset token');
+assert(!css.includes('.edu-details {\n  margin-left: var(--edu-detail-inset)'), 'degree line must stay flush; inset applies to fact rows only');
 assert(css.includes('[hidden] { display: none !important; }'), 'hidden fact rows consume no box');
 assert(!css.includes('.edu-fact {\n  display: grid;\n  grid-template-columns: max-content minmax(0, 1fr);'), 'global coursework-width column is rejected');
 assert(css.includes('a.edu-institution:hover'), 'institution underline is hover/focus only');
 assert(!/a\.edu-institution \{\s*text-decoration: underline/.test(css), 'no standing institution underline');
 
-assert(typesetting.includes('--edu-detail-inset: 0pt'), 'mathematical education inset is 0');
+assert(typesetting.includes('--edu-detail-inset: 7pt'), 'mathematical education fact inset is 0.5u');
 assert(compile.includes('formatExpectedDate') && compile.includes('NNBSP_PIPE'), 'compiler emits education microtype');
 
 const fixture = {

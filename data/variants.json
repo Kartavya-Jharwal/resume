@@ -7,13 +7,13 @@
       "fallback": true,
       "targeted": true,
       "weight": 10,
-      "description": "Zero-to-one startup operator building go-to-market systems, operating cadence, and scalable processes for early-stage technology companies.",
-      "location": "Global",
+      "description": "Pre-Series A teams stall when GTM lives in the founder's head. I set funnel tracking, sprint rituals, and named owners so traction has a weekly operating rhythm.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Scope": "Multi-Venture",
-        "Impact": "Operator",
-        "Specialization": "Cadence & Gates"
+        "Experience": "Hands-on",
+        "Scope": "Multi-venture",
+        "Impact": "Operator cadence",
+        "Specialization": "GTM & cadence"
       },
       "requiredKeywords": [
         "Startup Operations",
@@ -27,10 +27,10 @@
       "content": {
         "experience": [
           {
-            "id": "work-astropatshala",
+            "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-astropatshala-h1",
-              "work-astropatshala-h0"
+              "work-savi-hotels-resorts-jaipur-india-h14",
+              "work-savi-hotels-resorts-jaipur-india-h12"
             ]
           },
           {
@@ -41,26 +41,26 @@
             ]
           },
           {
-            "id": "work-hult-ai-collective",
+            "id": "work-astropatshala",
             "highlights": [
-              "work-hult-ai-collective-h0",
-              "work-hult-ai-collective-h2"
+              "work-astropatshala-h1",
+              "work-astropatshala-h0"
             ]
           }
         ],
         "projects": [
           {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
+            ]
+          },
+          {
             "id": "proj-astropatshala-aarrr-growth-strategy",
             "highlights": [
               "proj-astropatshala-aarrr-growth-strategy-h0",
               "proj-astropatshala-aarrr-growth-strategy-h1"
-            ]
-          },
-          {
-            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
-            "highlights": [
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2"
             ]
           }
         ],
@@ -77,13 +77,13 @@
       "industry": "Early-Stage Funds",
       "targeted": true,
       "weight": 10,
-      "description": "Venture capital analyst evaluating early-stage markets, teams, products, business models, and investment narratives.",
-      "location": "Global",
+      "description": "Pre-seed funds need a pack before the partner meeting, not a TAM slide. I write market maps, team and product judgment, and investment notes in the shape London funds actually use.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Cases": "20+",
-        "Impact": "Exhibit-Linked",
-        "Specialization": "Strategy"
+        "Experience": "Student + Operator",
+        "Scope": "Diligence packs",
+        "Impact": "Investment judgment",
+        "Specialization": "Early-stage funds"
       },
       "requiredKeywords": [
         "Venture Capital",
@@ -127,10 +127,10 @@
             ]
           },
           {
-            "id": "proj-us-defence-drone-spinout-commercialisation-assessment",
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
             "highlights": [
-              "proj-us-defence-drone-spinout-commercialisation-assessment-h0",
-              "proj-us-defence-drone-spinout-commercialisation-assessment-h1"
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h4"
             ]
           }
         ],
@@ -139,7 +139,7 @@
         ],
         "leadership": []
       },
-      "category": "Strategy, Investment & Private Wealth"
+      "category": "Venture Capital & Early-Stage"
     },
     {
       "id": "executive-translation-lead-fortune-500-strategy",
@@ -147,13 +147,13 @@
       "industry": "Corporate Strategy",
       "targeted": true,
       "weight": 10,
-      "description": "Turns operating evidence into corporate-strategy recommendations: market analysis, financial controls, stakeholder communication, and executive-ready decision packs.",
-      "location": "Global",
+      "description": "Strategy groups drown in interviews and decks. I turn operating evidence into recommendations with market sizing, competitive moves, and execution gates a steering pack can actually use.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Scope": "Multi-Venture",
-        "Impact": "Operator",
-        "Specialization": "Cadence & Gates"
+        "Experience": "Hands-on",
+        "Scope": "Multi-venture",
+        "Impact": "Operator cadence",
+        "Specialization": "Corporate strategy"
       },
       "requiredKeywords": [
         "Corporate Strategy",
@@ -215,13 +215,13 @@
       "industry": "Private Equity Operations",
       "targeted": true,
       "weight": 10,
-      "description": "Supports PE-style operating diligence and post-deal execution: acquisition theses, takeover runbooks, valuation logic, and asset-level kill gates.",
-      "location": "Global",
+      "description": "PE operations groups need post-deal execution clarity. I translate acquisition theses into staffing models, occupancy levers, and service-friction diagnostics with documented kill gates.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Scope": "Multi-Venture",
-        "Impact": "Operator",
-        "Specialization": "Cadence & Gates"
+        "Experience": "Hands-on",
+        "Scope": "Multi-venture",
+        "Impact": "Operator cadence",
+        "Specialization": "PE operations"
       },
       "requiredKeywords": [
         "Private Equity",
@@ -244,7 +244,7 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h2",
+              "work-savi-hotels-resorts-jaipur-india-h14",
               "work-savi-hotels-resorts-jaipur-india-h3"
             ]
           }
@@ -276,13 +276,13 @@
       "industry": "Technology Strategy",
       "targeted": true,
       "weight": 10,
-      "description": "Connects operating models to production systems: digital workflows, venture tech stacks, and implementation architecture for technology-strategy work.",
-      "location": "Global",
+      "description": "Conglomerates bridging legacy ops and venture bets need one story. I map digital workflows, automation ROI, and innovation diagnostics into a single briefing, not three competing decks.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Scope": "Multi-Venture",
-        "Impact": "Operator",
-        "Specialization": "Cadence & Gates"
+        "Experience": "Hands-on",
+        "Scope": "Multi-venture",
+        "Impact": "Operator cadence",
+        "Specialization": "Technology strategy"
       },
       "requiredKeywords": [
         "Technology Strategy",
@@ -299,7 +299,7 @@
             "id": "work-astropatshala",
             "highlights": [
               "work-astropatshala-h1",
-              "work-astropatshala-h0"
+              "work-astropatshala-h2"
             ]
           },
           {
@@ -310,29 +310,32 @@
             ]
           },
           {
-            "id": "work-srbs-group-jaipur-india",
+            "id": "work-margadarshaka",
             "highlights": [
-              "work-srbs-group-jaipur-india-h3"
+              "work-margadarshaka-h6",
+              "work-margadarshaka-h10"
             ]
           }
         ],
         "projects": [
           {
-            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
+            "id": "proj-hospitality-and-venture-operations-automation",
             "highlights": [
-              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1",
-              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h0"
+              "proj-hospitality-and-venture-operations-automation-h0",
+              "proj-hospitality-and-venture-operations-automation-h3"
             ]
           },
           {
-            "id": "proj-family-governance-and-office-access-model",
+            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
             "highlights": [
-              "proj-family-governance-and-office-access-model-h0",
-              "proj-family-governance-and-office-access-model-h2"
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h0",
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h3"
             ]
           }
         ],
-        "skills": [],
+        "skills": [
+          "skill-backend-and-apis"
+        ],
         "leadership": []
       },
       "category": "Executive Operations & Chief of Staff"
@@ -343,13 +346,13 @@
       "industry": "Startup Accelerators",
       "targeted": true,
       "weight": 10,
-      "description": "Designs founder programs, mentorship, and community operating systems for accelerators, from launch cadence to partnership pipelines.",
-      "location": "Global",
+      "description": "Accelerators lose founder trust when programming feels generic. I design mentorship tracks, cohort rituals, and community operating systems that convert demo days into sustained deal flow.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Programmes": "10+",
-        "Impact": "Live Delivery",
-        "Specialization": "Events"
+        "Experience": "Hands-on",
+        "Scope": "Programmes",
+        "Impact": "Community delivery",
+        "Specialization": "Startup Accelerators"
       },
       "requiredKeywords": [
         "Innovation Programs",
@@ -411,13 +414,13 @@
       "industry": "University Innovation Hubs",
       "targeted": true,
       "weight": 10,
-      "description": "Builds student-run innovation communities inside universities: programming, events, peer teaching, and public learning infrastructure.",
-      "location": "Global",
+      "description": "University innovation hubs need student-led momentum without admin drag. I build programming calendars, peer mentorship, and event cadences that keep campus ventures visible to recruiters and investors.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Programmes": "10+",
-        "Impact": "Live Delivery",
-        "Specialization": "Events"
+        "Experience": "Hands-on",
+        "Scope": "Programmes",
+        "Impact": "Community delivery",
+        "Specialization": "University Innovation Hubs"
       },
       "requiredKeywords": [
         "University Innovation",
@@ -450,7 +453,7 @@
             "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
             "highlights": [
               "proj-project-ganet-finance-digital-garden-and-learning-collective-h0",
-              "proj-project-ganet-finance-digital-garden-and-learning-collective-h1"
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h4"
             ]
           },
           {
@@ -476,13 +479,13 @@
       "industry": "Corporate Venture Labs",
       "targeted": true,
       "weight": 10,
-      "description": "Connects corporate innovation briefs to founder-style delivery: partnership sourcing, venture diagnostics, and program operating hubs.",
-      "location": "Global",
+      "description": "Corporate venture labs struggle to source credible founder partnerships. I connect innovation briefs to external startup pipelines with partnership sourcing, pilot scoping, and governance handoffs.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Programmes": "10+",
-        "Impact": "Live Delivery",
-        "Specialization": "Events"
+        "Experience": "Hands-on",
+        "Scope": "Programmes",
+        "Impact": "Community delivery",
+        "Specialization": "Corporate Venture Labs"
       },
       "requiredKeywords": [
         "Corporate Innovation",
@@ -539,13 +542,13 @@
       "industry": "Enterprise & Applied AI",
       "targeted": true,
       "weight": 10,
-      "description": "Forward-deployed engineer who turns ambiguous operational needs into production-ready AI workflows, integrations, and measurable delivery.",
-      "location": "Global",
+      "description": "Enterprise AI buyers stall when pilots never reach production. I embed with operational teams, scope integration constraints, and ship working automations that survive compliance review.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "Hands-On",
-        "Stack": "Production",
-        "Impact": "Pipeline",
-        "Specialization": "Voice & Agents"
+        "Experience": "Hands-on",
+        "Scope": "Production AI",
+        "Impact": "Shipped pipelines",
+        "Specialization": "Enterprise"
       },
       "requiredKeywords": [
         "Forward-Deployed Engineer",
@@ -589,10 +592,10 @@
             ]
           },
           {
-            "id": "proj-restaurant-operations-platform-for-independent-client",
+            "id": "proj-hospitality-and-venture-operations-automation",
             "highlights": [
-              "proj-restaurant-operations-platform-for-independent-client-h2",
-              "proj-restaurant-operations-platform-for-independent-client-h1"
+              "proj-hospitality-and-venture-operations-automation-h2",
+              "proj-hospitality-and-venture-operations-automation-h3"
             ]
           }
         ],
@@ -609,13 +612,13 @@
       "industry": "Agentic AI & Automation",
       "targeted": true,
       "weight": 10,
-      "description": "AI agent engineer designing tool-using workflows, orchestration, guardrails, and human handoffs for practical automation systems.",
-      "location": "Global",
+      "description": "Agentic AI labs need more than demos. I architect tool-using workflows with orchestration layers, evaluation harnesses, and guardrails that keep autonomous agents auditable in production.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "Hands-On",
-        "Stack": "Production",
-        "Impact": "Pipeline",
-        "Specialization": "Voice & Agents"
+        "Experience": "Hands-on",
+        "Scope": "Production AI",
+        "Impact": "Shipped pipelines",
+        "Specialization": "Agentic AI"
       },
       "requiredKeywords": [
         "AI Agents",
@@ -679,13 +682,13 @@
       "industry": "Applied AI & Machine Learning Systems",
       "targeted": true,
       "weight": 10,
-      "description": "Machine learning engineer building practical model pipelines, evaluation workflows, and production-oriented AI systems.",
-      "location": "Global",
+      "description": "Applied ML teams need reliable pipelines, not notebook experiments. I build evaluation workflows, data hygiene, and model-serving paths suited to biotech-grade reproducibility.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "Hands-On",
-        "Stack": "Production",
-        "Impact": "Pipeline",
-        "Specialization": "Voice & Agents"
+        "Experience": "Hands-on",
+        "Scope": "Production AI",
+        "Impact": "Shipped pipelines",
+        "Specialization": "Applied AI"
       },
       "requiredKeywords": [
         "Machine Learning Engineer",
@@ -702,21 +705,14 @@
             "id": "work-margadarshaka",
             "highlights": [
               "work-margadarshaka-h6",
-              "work-margadarshaka-h0"
+              "work-margadarshaka-h9"
             ]
           },
           {
             "id": "work-hult-ai-collective",
             "highlights": [
               "work-hult-ai-collective-h3",
-              "work-hult-ai-collective-h0"
-            ]
-          },
-          {
-            "id": "work-siya-the-restaurant-srbs-group",
-            "highlights": [
-              "work-siya-the-restaurant-srbs-group-h3",
-              "work-siya-the-restaurant-srbs-group-h0"
+              "work-hult-ai-collective-h4"
             ]
           }
         ],
@@ -729,10 +725,10 @@
             ]
           },
           {
-            "id": "proj-software-engineering-and-systems-projects",
+            "id": "proj-agentic-workflow-and-evaluation-platform",
             "highlights": [
-              "proj-software-engineering-and-systems-projects-h1",
-              "proj-software-engineering-and-systems-projects-h0"
+              "proj-agentic-workflow-and-evaluation-platform-h0",
+              "proj-agentic-workflow-and-evaluation-platform-h1"
             ]
           }
         ],
@@ -750,13 +746,13 @@
       "industry": "Healthcare & Regulated Technology",
       "targeted": true,
       "weight": 10,
-      "description": "Responsible AI analyst focused on safeguarding, human oversight, risk controls, and accountable deployment in regulated services.",
-      "location": "Global",
+      "description": "MedTech deployments face heightened scrutiny on model behaviour. I document human oversight, risk controls, and safeguarding protocols that satisfy healthcare regulators and clinical reviewers.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Controls": "Documented",
-        "Impact": "Governance",
-        "Specialization": "Risk"
+        "Experience": "Student + Operator",
+        "Scope": "Control design",
+        "Impact": "Documented stress",
+        "Specialization": "Healthcare"
       },
       "requiredKeywords": [
         "Responsible AI",
@@ -800,10 +796,10 @@
             ]
           },
           {
-            "id": "proj-us-defence-drone-spinout-commercialisation-assessment",
+            "id": "proj-independent-risk-modelling-and-control-design",
             "highlights": [
-              "proj-us-defence-drone-spinout-commercialisation-assessment-h1",
-              "proj-us-defence-drone-spinout-commercialisation-assessment-h0"
+              "proj-independent-risk-modelling-and-control-design-h0",
+              "proj-independent-risk-modelling-and-control-design-h2"
             ]
           }
         ],
@@ -820,13 +816,13 @@
       "industry": "Digital Health & Consumer Products",
       "targeted": true,
       "weight": 10,
-      "description": "Product manager applying behavioral insight, safeguarding, and service design to trustworthy digital-health and consumer experiences.",
-      "location": "Global",
+      "description": "Digital wellness products fail when engagement overrides safeguarding. I apply behavioural insight and service design to prioritise features that improve outcomes without dark-pattern adoption.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Launches": "Multi-Venture",
-        "Impact": "Shipped",
-        "Specialization": "0→1"
+        "Experience": "Hands-on",
+        "Scope": "Product launches",
+        "Impact": "Roadmap discipline",
+        "Specialization": "Digital Health"
       },
       "requiredKeywords": [
         "Product Management",
@@ -873,7 +869,7 @@
             "id": "proj-danone-yopro-apex-diagnostic",
             "highlights": [
               "proj-danone-yopro-apex-diagnostic-h0",
-              "proj-danone-yopro-apex-diagnostic-h1"
+              "proj-danone-yopro-apex-diagnostic-h2"
             ]
           }
         ],
@@ -882,7 +878,7 @@
         ],
         "leadership": []
       },
-      "category": "Product Management"
+      "category": "Product Management & Platform"
     },
     {
       "id": "strategic-interaction-designer-spatial-computing",
@@ -890,13 +886,13 @@
       "industry": "Immersive & Interactive Products",
       "targeted": true,
       "weight": 10,
-      "description": "Interaction designer shaping complex digital and spatial experiences through service flows, prototypes, systems thinking, and behavioral detail.",
-      "location": "Global",
+      "description": "Immersive products confuse users when gesture logic is opaque. I design spatial interaction patterns, service journeys, and prototype tests that make complex digital experiences legible.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Systems": "Cross-Stack",
+        "Experience": "Student + Operator",
+        "Scope": "Product systems",
         "Impact": "Legibility",
-        "Specialization": "Design–Quant"
+        "Specialization": "Immersive"
       },
       "requiredKeywords": [
         "Interaction Design",
@@ -933,10 +929,10 @@
             ]
           },
           {
-            "id": "proj-design-digital-garden",
+            "id": "proj-presentation-format-conversion-platform",
             "highlights": [
-              "proj-design-digital-garden-h0",
-              "proj-design-digital-garden-h2"
+              "proj-presentation-format-conversion-platform-h0",
+              "proj-presentation-format-conversion-platform-h1"
             ]
           }
         ],
@@ -945,7 +941,7 @@
         ],
         "leadership": []
       },
-      "category": "Product, UX & Experience Design"
+      "category": "UI/UX & Product Design"
     },
     {
       "id": "design-systems-architect-enterprise-b2b-saas",
@@ -953,13 +949,13 @@
       "industry": "Enterprise B2B SaaS",
       "targeted": true,
       "weight": 10,
-      "description": "Designs scalable product systems for enterprise tools: component logic, service flows, and interfaces that survive implementation.",
-      "location": "Global",
+      "description": "Enterprise SaaS teams scale UI debt fast. I define component logic, service patterns, and documentation that let product squads ship consistent workflows without designer bottlenecks.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Systems": "Cross-Stack",
+        "Experience": "Student + Operator",
+        "Scope": "Product systems",
         "Impact": "Legibility",
-        "Specialization": "Design–Quant"
+        "Specialization": "Enterprise B2B SaaS"
       },
       "requiredKeywords": [
         "Design Systems",
@@ -978,6 +974,13 @@
               "work-margadarshaka-h10",
               "work-margadarshaka-h11"
             ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h2",
+              "work-hult-ai-collective-h0"
+            ]
           }
         ],
         "projects": [
@@ -985,14 +988,15 @@
             "id": "proj-nirmana-design-capstone",
             "highlights": [
               "proj-nirmana-design-capstone-h0",
-              "proj-nirmana-design-capstone-h1"
+              "proj-nirmana-design-capstone-h1",
+              "proj-nirmana-design-capstone-h2"
             ]
           },
           {
-            "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform",
+            "id": "proj-presentation-format-conversion-platform",
             "highlights": [
-              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h5",
-              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h7"
+              "proj-presentation-format-conversion-platform-h0",
+              "proj-presentation-format-conversion-platform-h1"
             ]
           }
         ],
@@ -1001,9 +1005,10 @@
         ],
         "leadership": []
       },
-      "category": "Product, UX & Experience Design",
+      "category": "UI/UX & Product Design",
       "limits": {
-        "projects": 3
+        "projects": 3,
+        "projectHighlights": 3
       }
     },
     {
@@ -1012,13 +1017,13 @@
       "industry": "Complex Data Dashboards",
       "targeted": true,
       "weight": 10,
-      "description": "Turns dense operational and financial data into usable dashboard systems, visual hierarchies, and decision-facing interfaces.",
-      "location": "Global",
+      "description": "Operations leaders cannot act on raw exports. I structure dashboard hierarchies, visual encoding, and drill-down flows that turn dense financial and operational data into decision-ready views.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Systems": "Cross-Stack",
+        "Experience": "Student + Operator",
+        "Scope": "Product systems",
         "Impact": "Legibility",
-        "Specialization": "Design–Quant"
+        "Specialization": "Complex Data Dashboards"
       },
       "requiredKeywords": [
         "Data Dashboards",
@@ -1034,8 +1039,8 @@
           {
             "id": "work-margadarshaka",
             "highlights": [
-              "work-margadarshaka-h11",
-              "work-margadarshaka-h10"
+              "work-margadarshaka-h10",
+              "work-margadarshaka-h11"
             ]
           }
         ],
@@ -1043,15 +1048,15 @@
           {
             "id": "proj-bloom-creative-terminal-visualization",
             "highlights": [
-              "proj-bloom-creative-terminal-visualization-h0",
+              "proj-bloom-creative-terminal-visualization-h1",
               "proj-bloom-creative-terminal-visualization-h4"
             ]
           },
           {
-            "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform",
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
             "highlights": [
-              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h6",
-              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h4"
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h2"
             ]
           }
         ],
@@ -1060,7 +1065,10 @@
         ],
         "leadership": []
       },
-      "category": "Product, UX & Experience Design"
+      "category": "UI/UX & Product Design",
+      "limits": {
+        "projectHighlights": 3
+      }
     },
     {
       "id": "design-systems-architect-fintech-platforms",
@@ -1068,13 +1076,13 @@
       "industry": "FinTech Platforms",
       "targeted": true,
       "weight": 10,
-      "description": "Shapes product systems for financial learning and decision tools, connecting research artefacts, models, and interface architecture.",
-      "location": "Global",
+      "description": "FinTech learning tools lose users when models and UI diverge. I unify financial modelling logic, interface systems, and research-led content architecture for decision-grade products.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Systems": "Cross-Stack",
+        "Experience": "Student + Operator",
+        "Scope": "Product systems",
         "Impact": "Legibility",
-        "Specialization": "Design–Quant"
+        "Specialization": "FinTech systems"
       },
       "requiredKeywords": [
         "FinTech",
@@ -1104,10 +1112,10 @@
             ]
           },
           {
-            "id": "proj-bwc-quantitative-portfolio-audit-engine",
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
             "highlights": [
-              "proj-bwc-quantitative-portfolio-audit-engine-h0",
-              "proj-bwc-quantitative-portfolio-audit-engine-h2"
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0"
             ]
           }
         ],
@@ -1116,9 +1124,10 @@
         ],
         "leadership": []
       },
-      "category": "Product, UX & Experience Design",
+      "category": "UI/UX & Product Design",
       "limits": {
-        "projects": 3
+        "projects": 3,
+        "projectHighlights": 3
       }
     },
     {
@@ -1127,13 +1136,13 @@
       "industry": "Digital Products & Agencies",
       "targeted": true,
       "weight": 10,
-      "description": "Creative technologist combining product design, native web development, prototyping, and technical storytelling for digital products and campaigns.",
-      "location": "Global",
+      "description": "Agency clients expect a working prototype, not a slide deck. I ship native web builds and narrative systems that sit between creative direction and engineering.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Systems": "Cross-Stack",
-        "Impact": "Legibility",
-        "Specialization": "Design–Quant"
+        "Experience": "Student + Operator",
+        "Scope": "Prototype delivery",
+        "Impact": "Narrative systems",
+        "Specialization": "Digital Products"
       },
       "requiredKeywords": [
         "Creative Technologist",
@@ -1147,33 +1156,33 @@
       "content": {
         "experience": [
           {
-            "id": "work-independent-healthcare-venture-client-anonymised",
-            "highlights": [
-              "work-independent-healthcare-venture-client-anonymised-h1",
-              "work-independent-healthcare-venture-client-anonymised-h0"
-            ]
-          },
-          {
             "id": "work-margadarshaka",
             "highlights": [
               "work-margadarshaka-h1",
               "work-margadarshaka-h3"
             ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
           }
         ],
         "projects": [
           {
-            "id": "proj-design-digital-garden",
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
             "highlights": [
-              "proj-design-digital-garden-h0",
-              "proj-design-digital-garden-h2"
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h2"
             ]
           },
           {
-            "id": "proj-jeki-cross-channel-campaign-for-afrikids",
+            "id": "proj-carbon-forward-conference-lead-magnet-design",
             "highlights": [
-              "proj-jeki-cross-channel-campaign-for-afrikids-h0",
-              "proj-jeki-cross-channel-campaign-for-afrikids-h1"
+              "proj-carbon-forward-conference-lead-magnet-design-h0",
+              "proj-carbon-forward-conference-lead-magnet-design-h1"
             ]
           }
         ],
@@ -1182,7 +1191,7 @@
         ],
         "leadership": []
       },
-      "category": "Product, UX & Experience Design"
+      "category": "Creative Technology & Hybrid Design"
     },
     {
       "id": "generative-search-architect-media-conglomerates",
@@ -1190,13 +1199,13 @@
       "industry": "Digital Media & Search Platforms",
       "targeted": true,
       "weight": 10,
-      "description": "SEO and generative-search specialist improving discoverability through technical SEO, structured content, search analytics, and AI-search readiness.",
-      "location": "Global",
+      "description": "Media properties lose traffic as search shifts to generative answers. I improve technical SEO, structured content, and AI-crawl readiness so discoverability survives algorithm churn.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Channels": "Multi",
-        "Impact": "GTM",
-        "Specialization": "Content Ops"
+        "Experience": "Hands-on",
+        "Scope": "Growth channels",
+        "Impact": "Acquisition loops",
+        "Specialization": "Digital Media"
       },
       "requiredKeywords": [
         "SEO",
@@ -1251,13 +1260,13 @@
       "industry": "D2C & Digital Ventures",
       "targeted": true,
       "weight": 10,
-      "description": "Growth marketing manager building low-cost acquisition, content, conversion, and retention systems for digital ventures.",
-      "location": "Global",
+      "description": "D2C marketplaces burning cash on paid acquisition need scrappy loops. I build content funnels, conversion experiments, and referral mechanics that grow users without proportional spend.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Channels": "Multi",
-        "Impact": "GTM",
-        "Specialization": "Content Ops"
+        "Experience": "Hands-on",
+        "Scope": "Growth channels",
+        "Impact": "Acquisition loops",
+        "Specialization": "D2C"
       },
       "requiredKeywords": [
         "Growth Marketing",
@@ -1319,21 +1328,22 @@
       "industry": "Macroeconomic Research",
       "targeted": true,
       "weight": 10,
-      "description": "Turns markets, models, and time-series analysis into visual narratives that make macroeconomic evidence decision-ready.",
-      "location": "Global",
+      "description": "Macro briefs die in spreadsheets. I turn time-series, factor outputs, and GANET charting into short visual narratives investors and policymakers can read without reopening the workbook.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Models": "Reproducible",
-        "Impact": "Decision",
-        "Specialization": "Analytics"
+        "Experience": "Student + Operator",
+        "Scope": "Decision models",
+        "Impact": "Evidence narrative",
+        "Specialization": "Macroeconomic Research"
       },
       "requiredKeywords": [
         "Macroeconomic Research",
-        "Data Visualization",
-        "Time Series",
+        "Financial Modelling",
         "Data Storytelling",
-        "Financial Models",
-        "Research Communication"
+        "Time Series",
+        "Scenario Analysis",
+        "Research Communication",
+        "Decision Speed"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Macroeconomic_Research.pdf",
       "content": {
@@ -1358,14 +1368,14 @@
             "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
             "highlights": [
               "proj-project-ganet-finance-digital-garden-and-learning-collective-h0",
-              "proj-project-ganet-finance-digital-garden-and-learning-collective-h1"
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h2"
             ]
           },
           {
-            "id": "proj-london-airbnb-pricing-and-regression-models",
+            "id": "proj-bwc-quantitative-portfolio-audit-engine",
             "highlights": [
-              "proj-london-airbnb-pricing-and-regression-models-h0",
-              "proj-london-airbnb-pricing-and-regression-models-h1"
+              "proj-bwc-quantitative-portfolio-audit-engine-h1",
+              "proj-bwc-quantitative-portfolio-audit-engine-h2"
             ]
           }
         ],
@@ -1382,13 +1392,13 @@
       "industry": "Policy Think Tanks",
       "targeted": true,
       "weight": 10,
-      "description": "Builds visual decision tools from policy-adjacent analysis: scenario evidence, risk maps, and executive-ready narrative packs.",
-      "location": "Global",
+      "description": "Think tanks lose impact when evidence stays opaque. I build scenario visuals, regulatory timelines, and comparative dashboards that make policy trade-offs explicit for briefing rooms.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Models": "Reproducible",
-        "Impact": "Decision",
-        "Specialization": "Analytics"
+        "Experience": "Student + Operator",
+        "Scope": "Decision models",
+        "Impact": "Evidence narrative",
+        "Specialization": "Policy Think Tanks"
       },
       "requiredKeywords": [
         "Policy Analysis",
@@ -1421,7 +1431,7 @@
             "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
             "highlights": [
               "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
-              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h2"
             ]
           },
           {
@@ -1445,13 +1455,13 @@
       "industry": "Economic Development",
       "targeted": true,
       "weight": 10,
-      "description": "Visualises development and climate-economy evidence: country-year datasets, hypothesis tests, and policy-facing charts.",
-      "location": "Global",
+      "description": "Development agencies need climate-economy evidence in grant-ready form. I visualise country-year datasets, hypothesis tests, and intervention maps for donor and ministry audiences.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Models": "Reproducible",
-        "Impact": "Decision",
-        "Specialization": "Analytics"
+        "Experience": "Student + Operator",
+        "Scope": "Decision models",
+        "Impact": "Evidence narrative",
+        "Specialization": "Economic Development"
       },
       "requiredKeywords": [
         "Economic Development",
@@ -1490,7 +1500,7 @@
           {
             "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
             "highlights": [
-              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h2",
               "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
             ]
           }
@@ -1508,13 +1518,13 @@
       "industry": "Commerce & Operations Analytics",
       "targeted": true,
       "weight": 10,
-      "description": "Business intelligence analyst turning operational and commercial data into decision-ready models, dashboards, and performance insights.",
-      "location": "Global",
+      "description": "Commercial ops need faster truth, not thicker decks. I compress market and operations feeds into reusable BI pivots that surface margin risk before SLAs break.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Models": "Reproducible",
-        "Impact": "Decision",
-        "Specialization": "Analytics"
+        "Experience": "Student + Operator",
+        "Scope": "Decision models",
+        "Impact": "Evidence narrative",
+        "Specialization": "Commerce"
       },
       "requiredKeywords": [
         "Business Intelligence",
@@ -1549,17 +1559,17 @@
         ],
         "projects": [
           {
-            "id": "proj-london-airbnb-pricing-and-regression-models",
+            "id": "proj-bwc-quantitative-portfolio-audit-engine",
             "highlights": [
-              "proj-london-airbnb-pricing-and-regression-models-h0",
-              "proj-london-airbnb-pricing-and-regression-models-h1"
+              "proj-bwc-quantitative-portfolio-audit-engine-h1",
+              "proj-bwc-quantitative-portfolio-audit-engine-h0"
             ]
           },
           {
             "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
             "highlights": [
               "proj-project-ganet-finance-digital-garden-and-learning-collective-h1",
-              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0"
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h2"
             ]
           }
         ],
@@ -1576,13 +1586,13 @@
       "industry": "Early-Stage Technology Products",
       "targeted": true,
       "weight": 10,
-      "description": "Founding engineer translating customer problems into initial architecture, production MVPs, and pragmatic technical decisions for early-stage products.",
-      "location": "Global",
+      "description": "Pre-seed SaaS teams need customer feedback in working code fast. I own initial architecture, MVP delivery, and iteration cycles with founders in the room.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "Hands-On",
-        "Systems": "Linux",
+        "Experience": "Hands-on",
+        "Scope": "Production systems",
         "Impact": "Reliability",
-        "Specialization": "Infrastructure"
+        "Specialization": "Early-Stage Technology Products"
       },
       "requiredKeywords": [
         "Founding Engineer",
@@ -1622,14 +1632,14 @@
             "id": "proj-software-engineering-and-systems-projects",
             "highlights": [
               "proj-software-engineering-and-systems-projects-h1",
-              "proj-software-engineering-and-systems-projects-h3"
+              "proj-software-engineering-and-systems-projects-h4"
             ]
           },
           {
             "id": "proj-bloom-creative-terminal-visualization",
             "highlights": [
               "proj-bloom-creative-terminal-visualization-h2",
-              "proj-bloom-creative-terminal-visualization-h3"
+              "proj-bloom-creative-terminal-visualization-h5"
             ]
           }
         ],
@@ -1646,13 +1656,13 @@
       "industry": "Developer Tools & API Platforms",
       "targeted": true,
       "weight": 10,
-      "description": "Developer relations engineer combining technical content, product feedback, demos, integrations, and community support for developer-facing products.",
-      "location": "Global",
+      "description": "DevTools companies win adoption through credible technical storytelling. I produce demos, integration guides, and product feedback loops that convert skeptical engineers into active users.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Channels": "Multi",
-        "Impact": "GTM",
-        "Specialization": "Content Ops"
+        "Experience": "Hands-on",
+        "Scope": "Growth channels",
+        "Impact": "Acquisition loops",
+        "Specialization": "Developer Tools"
       },
       "requiredKeywords": [
         "Developer Relations",
@@ -1696,10 +1706,10 @@
             ]
           },
           {
-            "id": "proj-personal-knowledge-management-system",
+            "id": "proj-the-bard-static-publishing-engine",
             "highlights": [
-              "proj-personal-knowledge-management-system-h0",
-              "proj-personal-knowledge-management-system-h1"
+              "proj-the-bard-static-publishing-engine-h0",
+              "proj-the-bard-static-publishing-engine-h1"
             ]
           }
         ],
@@ -1716,13 +1726,13 @@
       "industry": "Managed Services & Regulated Systems",
       "targeted": true,
       "weight": 10,
-      "description": "Infrastructure and security engineer supporting resilient Linux systems, networking, access controls, incident response, and regulated service environments.",
-      "location": "Global",
+      "description": "MSP clients in regulated sectors cannot afford downtime. I harden Linux estates, network segmentation, and incident runbooks that keep production systems recoverable under audit.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "Hands-On",
-        "Systems": "Linux",
+        "Experience": "Hands-on",
+        "Scope": "Production systems",
         "Impact": "Reliability",
-        "Specialization": "Infrastructure"
+        "Specialization": "Managed Services"
       },
       "requiredKeywords": [
         "Infrastructure Engineering",
@@ -1771,7 +1781,10 @@
         ],
         "leadership": []
       },
-      "category": "Technical Delivery, Infrastructure & Solutions"
+      "category": "Technical Delivery, Infrastructure & Solutions",
+      "limits": {
+        "includeSummary": false
+      }
     },
     {
       "id": "systems-qa-auditor-fintech-infrastructure",
@@ -1779,13 +1792,13 @@
       "industry": "Financial & Technology Platforms",
       "targeted": true,
       "weight": 10,
-      "description": "Software QA analyst testing workflows, data integrity, failure handling, and operational controls across financial and technology platforms.",
-      "location": "Global",
+      "description": "FinTech platforms fail regulators on edge cases, not happy paths. I audit workflows, data integrity, and failure handling with test matrices tied to operational risk controls.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "Hands-On",
-        "Systems": "Linux",
+        "Experience": "Hands-on",
+        "Scope": "Production systems",
         "Impact": "Reliability",
-        "Specialization": "Infrastructure"
+        "Specialization": "Financial"
       },
       "requiredKeywords": [
         "Software QA",
@@ -1833,7 +1846,10 @@
         ],
         "leadership": []
       },
-      "category": "Technical Delivery, Infrastructure & Solutions"
+      "category": "Technical Delivery, Infrastructure & Solutions",
+      "limits": {
+        "includeSummary": false
+      }
     },
     {
       "id": "proptech-underwriter-designer-high-end-real-estate-pe",
@@ -1841,46 +1857,54 @@
       "industry": "Real Estate Investment & PropTech",
       "targeted": true,
       "weight": 10,
-      "description": "Real estate investment analyst combining property operations, market analysis, underwriting logic, and PropTech product thinking.",
-      "location": "Global",
+      "description": "High-end real estate PE needs underwritable numbers, not brochure comps. I price assets from operating evidence, stress assumptions, and package PropTech-ready diligence packs.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Cases": "20+",
-        "Impact": "Exhibit-Linked",
-        "Specialization": "Strategy"
+        "Experience": "Hands-on",
+        "Scope": "Real-asset underwriting",
+        "Impact": "Portfolio judgment",
+        "Specialization": "PropTech underwriting"
       },
       "requiredKeywords": [
         "Real Estate Investment",
         "PropTech",
-        "Property Analysis",
+        "Financial Modelling",
         "Underwriting",
         "Market Research",
-        "Investment Analysis"
+        "Investment Analysis",
+        "Pricing Models"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Real_Estate_Investment_Analyst_PropTech.pdf",
       "content": {
         "experience": [
           {
-            "id": "work-family-real-estate-business-jaipur-india",
+            "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-family-real-estate-business-jaipur-india-h0",
-              "work-family-real-estate-business-jaipur-india-h1"
+              "work-savi-hotels-resorts-jaipur-india-h14",
+              "work-savi-hotels-resorts-jaipur-india-h3"
             ]
           },
           {
-            "id": "work-savi-hotels-resorts-jaipur-india",
+            "id": "work-family-real-estate-business-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h2",
-              "work-savi-hotels-resorts-jaipur-india-h7"
+              "work-family-real-estate-business-jaipur-india-h0",
+              "work-family-real-estate-business-jaipur-india-h2"
             ]
           }
         ],
         "projects": [
           {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
+            ]
+          },
+          {
             "id": "proj-london-airbnb-pricing-and-regression-models",
             "highlights": [
               "proj-london-airbnb-pricing-and-regression-models-h1",
-              "proj-london-airbnb-pricing-and-regression-models-h3"
+              "proj-london-airbnb-pricing-and-regression-models-h0"
             ]
           }
         ],
@@ -1889,7 +1913,7 @@
         ],
         "leadership": []
       },
-      "category": "Strategy, Investment & Private Wealth"
+      "category": "PropTech & Real Estate Investment"
     },
     {
       "id": "experiential-event-producer-tech-conferences",
@@ -1897,13 +1921,13 @@
       "industry": "Technology & Community Events",
       "targeted": true,
       "weight": 10,
-      "description": "Event producer delivering technology and community programmes across concept development, speaker coordination, promotion, logistics, and live delivery.",
-      "location": "Global",
+      "description": "Tech conferences stall when programming feels transactional. I produce concept-to-stage events with sponsor alignment, community rituals, and post-event follow-through.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Programmes": "10+",
-        "Impact": "Live Delivery",
-        "Specialization": "Events"
+        "Experience": "Hands-on",
+        "Scope": "Programmes",
+        "Impact": "Community delivery",
+        "Specialization": "Technology"
       },
       "requiredKeywords": [
         "Event Production",
@@ -1965,13 +1989,13 @@
       "industry": "Restaurant Menu & BOH Systems",
       "targeted": true,
       "weight": 10,
-      "description": "Combines menu engineering, restaurant analytics, operational design, and food technology to improve culinary concepts, margins, and service systems.",
-      "location": "Global",
+      "description": "Restaurants bleed margin on menu complexity. I apply menu engineering, BOH process design, and food-cost analytics to align kitchen capacity with profitable covers.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Properties": "4 Hotels",
-        "Impact": "Turnaround",
-        "Specialization": "Hospitality"
+        "Experience": "Hands-on",
+        "Scope": "Properties & kitchens",
+        "Impact": "Service recovery",
+        "Specialization": "Restaurant Menu"
       },
       "requiredKeywords": [
         "Menu Engineering",
@@ -1984,7 +2008,8 @@
       "limits": {
         "coursework": 4,
         "certifications": 0,
-        "languages": 0
+        "languages": 0,
+        "includeSummary": false
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Culinary_Strategy_Operations_Consultant.pdf",
       "content": {
@@ -1999,8 +2024,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h4",
-              "work-savi-hotels-resorts-jaipur-india-h0"
+              "work-savi-hotels-resorts-jaipur-india-h15",
+              "work-savi-hotels-resorts-jaipur-india-h16"
             ]
           }
         ],
@@ -2008,15 +2033,15 @@
           {
             "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform",
             "highlights": [
-              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h2",
-              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h4"
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h5",
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h2"
             ]
           },
           {
-            "id": "proj-hospitality-craft-and-innovation-article",
+            "id": "proj-culinary-operations-rotation",
             "highlights": [
-              "proj-hospitality-craft-and-innovation-article-h0",
-              "proj-hospitality-craft-and-innovation-article-h1"
+              "proj-culinary-operations-rotation-h0",
+              "proj-culinary-operations-rotation-h1"
             ]
           }
         ],
@@ -2033,13 +2058,13 @@
       "industry": "Food & Delivery Technology",
       "targeted": true,
       "weight": 10,
-      "description": "Operations manager improving service flow, handovers, controls, and data visibility across food and delivery businesses.",
-      "location": "Global",
+      "description": "FoodTech ops break at peak-hour handoffs. I redesign service flow, station controls, and live dashboards so kitchens and dispatch stay synchronised under surge load.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Properties": "4 Hotels",
-        "Impact": "Turnaround",
-        "Specialization": "Hospitality"
+        "Experience": "Hands-on",
+        "Scope": "Properties & kitchens",
+        "Impact": "Service recovery",
+        "Specialization": "Food"
       },
       "requiredKeywords": [
         "Operations Management",
@@ -2055,8 +2080,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h1",
-              "work-savi-hotels-resorts-jaipur-india-h0"
+              "work-savi-hotels-resorts-jaipur-india-h0",
+              "work-savi-hotels-resorts-jaipur-india-h2"
             ]
           },
           {
@@ -2092,7 +2117,10 @@
         "skills": [],
         "leadership": []
       },
-      "category": "Hospitality & Culinary Operations"
+      "category": "Hospitality & Culinary Operations",
+      "limits": {
+        "includeSummary": false
+      }
     },
     {
       "id": "heavy-industry-value-engineer-climatetech",
@@ -2100,13 +2128,13 @@
       "industry": "ClimateTech",
       "targeted": true,
       "weight": 10,
-      "description": "Builds commercial cases for climate and energy solutions: battery-integration economics, carbon-market positioning, and implementation options.",
-      "location": "Global",
+      "description": "ClimateTech buyers need commercial proof before capital commitments. I build battery-integration economics, ROI models, and technical feasibility cases for industrial decarbonisation sales.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "Hands-On",
-        "Systems": "Linux",
+        "Experience": "Hands-on",
+        "Scope": "Production systems",
         "Impact": "Reliability",
-        "Specialization": "Infrastructure"
+        "Specialization": "ClimateTech"
       },
       "requiredKeywords": [
         "ClimateTech",
@@ -2139,14 +2167,14 @@
             "id": "proj-octopus-energy-battery-integration-strategy",
             "highlights": [
               "proj-octopus-energy-battery-integration-strategy-h0",
-              "proj-octopus-energy-battery-integration-strategy-h2"
+              "proj-octopus-energy-battery-integration-strategy-h1"
             ]
           },
           {
-            "id": "proj-global-development-and-climate-hypothesis-testing",
+            "id": "proj-walmart-pfand-circular-retail-strategy",
             "highlights": [
-              "proj-global-development-and-climate-hypothesis-testing-h1",
-              "proj-global-development-and-climate-hypothesis-testing-h2"
+              "proj-walmart-pfand-circular-retail-strategy-h0",
+              "proj-walmart-pfand-circular-retail-strategy-h1"
             ]
           }
         ],
@@ -2155,7 +2183,10 @@
         ],
         "leadership": []
       },
-      "category": "Technical Delivery, Infrastructure & Solutions"
+      "category": "Technical Delivery, Infrastructure & Solutions",
+      "limits": {
+        "includeSummary": false
+      }
     },
     {
       "id": "heavy-industry-value-engineer-heavy-manufacturing-tech",
@@ -2163,13 +2194,13 @@
       "industry": "Industrial Technology",
       "targeted": true,
       "weight": 10,
-      "description": "Assesses industrial and hardware ventures for technical feasibility, manufacturing economics, governance risk, and go-to-market readiness.",
-      "location": "Global",
+      "description": "Industrial hardware ventures face buyer scepticism on manufacturability. I assess technical feasibility, supply-chain risk, and commercialisation paths for heavy-industry adoption.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "Hands-On",
-        "Systems": "Linux",
+        "Experience": "Hands-on",
+        "Scope": "Production systems",
         "Impact": "Reliability",
-        "Specialization": "Infrastructure"
+        "Specialization": "Industrial Technology"
       },
       "requiredKeywords": [
         "Industrial Technology",
@@ -2216,7 +2247,10 @@
         "skills": [],
         "leadership": []
       },
-      "category": "Technical Delivery, Infrastructure & Solutions"
+      "category": "Technical Delivery, Infrastructure & Solutions",
+      "limits": {
+        "includeSummary": false
+      }
     },
     {
       "id": "solutions-engineer-culinary-hospitality-systems",
@@ -2224,13 +2258,13 @@
       "industry": "Culinary & Hospitality Systems",
       "targeted": true,
       "weight": 10,
-      "description": "Translates culinary operations, ingredient science, and hospitality data into commercial product cases, test matrices, and implementation paths for food-and-hospitality systems.",
-      "location": "Global",
+      "description": "Hospitality tech buyers need solutions that respect kitchen reality. I translate ingredient science, service operations, and property data into deployable culinary-system recommendations.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Properties": "4 Hotels",
-        "Impact": "Turnaround",
-        "Specialization": "Hospitality"
+        "Experience": "Hands-on",
+        "Scope": "Properties & kitchens",
+        "Impact": "Service recovery",
+        "Specialization": "Culinary"
       },
       "requiredKeywords": [
         "Culinary Operations",
@@ -2269,7 +2303,7 @@
           {
             "id": "proj-pacakatva-culinary-data-platform",
             "highlights": [
-              "proj-pacakatva-culinary-data-platform-h0",
+              "proj-pacakatva-culinary-data-platform-h1",
               "proj-pacakatva-culinary-data-platform-h2"
             ]
           }
@@ -2279,7 +2313,10 @@
         ],
         "leadership": []
       },
-      "category": "Hospitality & Culinary Operations"
+      "category": "Hospitality & Culinary Operations",
+      "limits": {
+        "includeSummary": false
+      }
     },
     {
       "id": "ux-research-translation-lead-civic-tech-platforms",
@@ -2287,13 +2324,13 @@
       "industry": "Civic & Social-Impact Products",
       "targeted": true,
       "weight": 10,
-      "description": "UX researcher translating complex stakeholder needs into inclusive service journeys, product requirements, and evidence-led design decisions.",
-      "location": "Global",
+      "description": "Civic platforms fail when marginalised users are afterthoughts. I run inclusive research programmes that convert stakeholder complexity into service journeys engineering can implement.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Systems": "Cross-Stack",
+        "Experience": "Student + Operator",
+        "Scope": "Product systems",
         "Impact": "Legibility",
-        "Specialization": "Design–Quant"
+        "Specialization": "Civic"
       },
       "requiredKeywords": [
         "UX Research",
@@ -2337,10 +2374,10 @@
             ]
           },
           {
-            "id": "proj-independent-culinary-development-and-kitchen-systems-practice",
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
             "highlights": [
-              "proj-independent-culinary-development-and-kitchen-systems-practice-h1",
-              "proj-independent-culinary-development-and-kitchen-systems-practice-h0"
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0"
             ]
           }
         ],
@@ -2349,7 +2386,7 @@
         ],
         "leadership": []
       },
-      "category": "Product, UX & Experience Design"
+      "category": "UI/UX & Product Design"
     },
     {
       "id": "management-consultant-mbb-standard-big-3-consulting",
@@ -2357,13 +2394,13 @@
       "industry": "MBB Strategy Consulting",
       "targeted": true,
       "weight": 10,
-      "description": "Structures classic strategy cases: competitive resilience, industry economics, and board-ready recommendations from public and proprietary evidence.",
-      "location": "Global",
+      "description": "Consulting cases fail when the exhibit and the recommendation drift. I structure resilience work, industry economics, and recommendation trees from operating evidence, not from slide inventiveness.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Cases": "20+",
-        "Impact": "Exhibit-Linked",
-        "Specialization": "Strategy"
+        "Experience": "Student + Operator",
+        "Scope": "Strategy cases",
+        "Impact": "Exhibit-linked analysis",
+        "Specialization": "MBB rigor"
       },
       "requiredKeywords": [
         "Strategy Consulting",
@@ -2400,24 +2437,24 @@
         ],
         "projects": [
           {
-            "id": "proj-samsung-and-huawei-strategic-resilience-analysis",
+            "id": "proj-octopus-energy-battery-integration-strategy",
             "highlights": [
-              "proj-samsung-and-huawei-strategic-resilience-analysis-h0",
-              "proj-samsung-and-huawei-strategic-resilience-analysis-h1"
+              "proj-octopus-energy-battery-integration-strategy-h0",
+              "proj-octopus-energy-battery-integration-strategy-h1"
             ]
           },
           {
             "id": "proj-noritake-hospitality-tableware-positioning-strategy",
             "highlights": [
               "proj-noritake-hospitality-tableware-positioning-strategy-h0",
-              "proj-noritake-hospitality-tableware-positioning-strategy-h1"
+              "proj-noritake-hospitality-tableware-positioning-strategy-h2"
             ]
           }
         ],
         "skills": [],
         "leadership": []
       },
-      "category": "Strategy, Investment & Private Wealth"
+      "category": "MBB Strategy Consulting"
     },
     {
       "id": "management-consultant-mbb-standard-tier-2-strategy",
@@ -2425,13 +2462,13 @@
       "industry": "Tier-2 Strategy Consulting",
       "targeted": true,
       "weight": 10,
-      "description": "Delivers growth and commercial strategy through brand, portfolio, and go-to-market analysis for specialist consulting mandates.",
-      "location": "Global",
+      "description": "Tier-2 clients want strategy rigour plus brand translation. I pair commercial diagnostics with GTM and positioning recommendations grounded in Redshaw-class creative evidence.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Cases": "20+",
-        "Impact": "Exhibit-Linked",
-        "Specialization": "Strategy"
+        "Experience": "Student + Operator",
+        "Scope": "Commercial strategy",
+        "Impact": "Brand translation",
+        "Specialization": "Brand & GTM"
       },
       "requiredKeywords": [
         "Strategy Consulting",
@@ -2464,21 +2501,21 @@
             "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
             "highlights": [
               "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
-              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h2"
             ]
           },
           {
             "id": "proj-danone-yopro-apex-diagnostic",
             "highlights": [
-              "proj-danone-yopro-apex-diagnostic-h1",
-              "proj-danone-yopro-apex-diagnostic-h0"
+              "proj-danone-yopro-apex-diagnostic-h0",
+              "proj-danone-yopro-apex-diagnostic-h2"
             ]
           }
         ],
         "skills": [],
         "leadership": []
       },
-      "category": "Strategy, Investment & Private Wealth"
+      "category": "Tier-2 Strategy Consulting"
     },
     {
       "id": "management-consultant-mbb-standard-corporate-turnarounds",
@@ -2486,13 +2523,13 @@
       "industry": "Corporate Turnarounds",
       "targeted": true,
       "weight": 10,
-      "description": "Runs operating turnarounds from diagnosis to kill-gate: occupancy, staffing, service friction, and mixed-revenue models under time pressure.",
-      "location": "Global",
+      "description": "Distressed hospitality assets need kill-gate discipline, not optimism. I run turnaround diagnostics on occupancy, staffing, and service friction with documented stabilization controls.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Cases": "20+",
-        "Impact": "Exhibit-Linked",
-        "Specialization": "Strategy"
+        "Experience": "Hands-on",
+        "Scope": "Properties",
+        "Impact": "Kill gates",
+        "Specialization": "Asset turnaround"
       },
       "requiredKeywords": [
         "Corporate Turnaround",
@@ -2509,7 +2546,14 @@
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
               "work-savi-hotels-resorts-jaipur-india-h0",
-              "work-savi-hotels-resorts-jaipur-india-h1"
+              "work-savi-hotels-resorts-jaipur-india-h3"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h2"
             ]
           }
         ],
@@ -2518,16 +2562,21 @@
             "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
             "highlights": [
               "proj-leased-hotel-turnaround-and-operating-model-strategy-h0",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2",
               "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
+            ]
+          },
+          {
+            "id": "proj-independent-risk-modelling-and-control-design",
+            "highlights": [
+              "proj-independent-risk-modelling-and-control-design-h0",
+              "proj-independent-risk-modelling-and-control-design-h1"
             ]
           }
         ],
         "skills": [],
         "leadership": []
       },
-      "category": "Strategy, Investment & Private Wealth",
+      "category": "Corporate Turnarounds & Restructuring",
       "limits": {
         "projectHighlights": 4
       }
@@ -2538,21 +2587,23 @@
       "industry": "Bulge-Bracket Investment Banking",
       "targeted": true,
       "weight": 10,
-      "description": "Supports public-markets analysis: portfolio construction, factor models, downside protection, and investor-ready performance narrative.",
-      "location": "Global",
+      "description": "Capital-markets teams need models that survive a shock window. I run simulated-capital portfolio work, factor diagnostics, and Monte Carlo stress, then write the committee memo from the logs - not from slide inventiveness.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Cases": "20+",
-        "Impact": "Exhibit-Linked",
-        "Specialization": "Strategy"
+        "Experience": "Student + Operator",
+        "Scope": "Models & capital",
+        "Impact": "Shock-window evidence",
+        "Specialization": "Public markets"
       },
       "requiredKeywords": [
         "Investment Banking",
         "Financial Modelling",
+        "Simulation",
         "Portfolio Analysis",
         "Valuation",
         "Capital Markets",
-        "Risk Management"
+        "Risk Management",
+        "First Principles"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Bulge_Bracket_Investment_Banking.pdf",
       "content": {
@@ -2568,7 +2619,7 @@
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
               "work-savi-hotels-resorts-jaipur-india-h2",
-              "work-savi-hotels-resorts-jaipur-india-h7"
+              "work-savi-hotels-resorts-jaipur-india-h12"
             ]
           }
         ],
@@ -2581,10 +2632,10 @@
             ]
           },
           {
-            "id": "proj-walmart-capital-budgeting-and-future-proofing-model",
+            "id": "proj-bwc-quantitative-portfolio-audit-engine",
             "highlights": [
-              "proj-walmart-capital-budgeting-and-future-proofing-model-h2",
-              "proj-walmart-capital-budgeting-and-future-proofing-model-h0"
+              "proj-bwc-quantitative-portfolio-audit-engine-h0",
+              "proj-bwc-quantitative-portfolio-audit-engine-h2"
             ]
           }
         ],
@@ -2593,7 +2644,7 @@
         ],
         "leadership": []
       },
-      "category": "Strategy, Investment & Private Wealth"
+      "category": "Investment Banking & Capital Markets"
     },
     {
       "id": "investment-banking-analyst-boutique-ma-advisory",
@@ -2601,13 +2652,13 @@
       "industry": "Boutique M&A Advisory",
       "targeted": true,
       "weight": 10,
-      "description": "Builds deal materials for concentrated transactions: industry tearsheets, commercial diligence, workflow friction, and buyer-ready investment cases.",
-      "location": "Global",
+      "description": "Boutique M&A shops need concentrated deal materials fast. I build industry tearsheets, commercial exhibits, and buyer narratives for mid-market transactions.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Cases": "20+",
-        "Impact": "Exhibit-Linked",
-        "Specialization": "Strategy"
+        "Experience": "Student + Operator",
+        "Scope": "Models & capital",
+        "Impact": "Shock-window evidence",
+        "Specialization": "M&A advisory"
       },
       "requiredKeywords": [
         "M&A Advisory",
@@ -2637,10 +2688,10 @@
         ],
         "projects": [
           {
-            "id": "proj-us-defence-drone-spinout-commercialisation-assessment",
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
             "highlights": [
-              "proj-us-defence-drone-spinout-commercialisation-assessment-h0",
-              "proj-us-defence-drone-spinout-commercialisation-assessment-h1"
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
             ]
           },
           {
@@ -2656,7 +2707,7 @@
         ],
         "leadership": []
       },
-      "category": "Strategy, Investment & Private Wealth"
+      "category": "Investment Banking & Capital Markets"
     },
     {
       "id": "investment-banking-analyst-growth-equity",
@@ -2664,20 +2715,21 @@
       "industry": "Growth Equity",
       "targeted": true,
       "weight": 10,
-      "description": "Evaluates growth-stage operating assets through acquisition theses, diligence frameworks, and post-transaction execution risk.",
-      "location": "Global",
+      "description": "Growth equity needs operating truth under capital. I pair regime-aware portfolio work with GANET templates so diligence packs carry both numbers and the evidence trail behind them.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Cases": "20+",
-        "Impact": "Exhibit-Linked",
-        "Specialization": "Strategy"
+        "Experience": "Student + Operator",
+        "Scope": "Models & capital",
+        "Impact": "Shock-window evidence",
+        "Specialization": "Growth equity"
       },
       "requiredKeywords": [
         "Growth Equity",
+        "Financial Modelling",
         "Diligence Framework",
         "Valuation",
-        "Acquisition Thesis",
         "Operating Assets",
+        "Investment Narrative",
         "Transaction Execution"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Growth_Equity.pdf",
@@ -2693,8 +2745,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h7",
-              "work-savi-hotels-resorts-jaipur-india-h2"
+              "work-savi-hotels-resorts-jaipur-india-h2",
+              "work-savi-hotels-resorts-jaipur-india-h7"
             ]
           },
           {
@@ -2714,10 +2766,10 @@
             ]
           },
           {
-            "id": "proj-toast-hotel-f-b-expansion-strategy",
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
             "highlights": [
-              "proj-toast-hotel-f-b-expansion-strategy-h0",
-              "proj-toast-hotel-f-b-expansion-strategy-h1"
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h2"
             ]
           }
         ],
@@ -2726,7 +2778,7 @@
         ],
         "leadership": []
       },
-      "category": "Strategy, Investment & Private Wealth"
+      "category": "Investment Banking & Capital Markets"
     },
     {
       "id": "tactical-it-systems-administrator-managed-service-providers",
@@ -2734,13 +2786,13 @@
       "industry": "Managed Services & Institutional IT",
       "targeted": true,
       "weight": 10,
-      "description": "Systems administrator supporting Linux estates, networking, access, deployment, troubleshooting, and reliable institutional services.",
-      "location": "Global",
+      "description": "Institutional IT estates need reliable day-two ops. I administer Linux systems, access controls, network configuration, and deployment pipelines for MSP-managed environments.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "Hands-On",
-        "Systems": "Linux",
+        "Experience": "Hands-on",
+        "Scope": "Production systems",
         "Impact": "Reliability",
-        "Specialization": "Infrastructure"
+        "Specialization": "Managed Services"
       },
       "requiredKeywords": [
         "Systems Administration",
@@ -2789,7 +2841,10 @@
         ],
         "leadership": []
       },
-      "category": "Technical Delivery, Infrastructure & Solutions"
+      "category": "Technical Delivery, Infrastructure & Solutions",
+      "limits": {
+        "includeSummary": false
+      }
     },
     {
       "id": "open-source-community-lead-open-source-foundations",
@@ -2797,13 +2852,13 @@
       "industry": "Open Source & Developer Communities",
       "targeted": true,
       "weight": 10,
-      "description": "Developer community manager growing technical communities through contributor support, events, educational content, and feedback loops.",
-      "location": "Global",
+      "description": "Open-source foundations grow through contributor trust, not marketing blasts. I run maintainer programmes, documentation sprints, and governance rituals that sustain active communities.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Channels": "Multi",
-        "Impact": "GTM",
-        "Specialization": "Content Ops"
+        "Experience": "Hands-on",
+        "Scope": "Growth channels",
+        "Impact": "Acquisition loops",
+        "Specialization": "Open Source"
       },
       "requiredKeywords": [
         "Developer Community",
@@ -2847,10 +2902,10 @@
             ]
           },
           {
-            "id": "proj-software-engineering-and-systems-projects",
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
             "highlights": [
-              "proj-software-engineering-and-systems-projects-h1",
-              "proj-software-engineering-and-systems-projects-h2"
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h4"
             ]
           }
         ],
@@ -2865,13 +2920,13 @@
       "industry": "Cultural, Retail & Experiential Spaces",
       "targeted": true,
       "weight": 10,
-      "description": "Spatial experience designer connecting digital journeys, physical environments, community touchpoints, and service operations.",
-      "location": "Global",
+      "description": "Museum and expo briefs demand narrative continuity across touchpoints. I design phygital journeys linking digital content, physical wayfinding, and spatial storytelling.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Systems": "Cross-Stack",
-        "Impact": "Legibility",
-        "Specialization": "Design–Quant"
+        "Experience": "Student + Operator",
+        "Scope": "Spatial programmes",
+        "Impact": "Phygital legibility",
+        "Specialization": "Cultural"
       },
       "requiredKeywords": [
         "Spatial Experience Design",
@@ -2910,8 +2965,8 @@
           {
             "id": "proj-nirmana-design-capstone",
             "highlights": [
-              "proj-nirmana-design-capstone-h2",
-              "proj-nirmana-design-capstone-h1"
+              "proj-nirmana-design-capstone-h0",
+              "proj-nirmana-design-capstone-h2"
             ]
           }
         ],
@@ -2920,7 +2975,7 @@
         ],
         "leadership": []
       },
-      "category": "Product, UX & Experience Design"
+      "category": "Spatial & Experiential Design"
     },
     {
       "id": "systematic-organizational-designer-enterprise-transformation",
@@ -2928,13 +2983,13 @@
       "industry": "Enterprise Transformation",
       "targeted": true,
       "weight": 10,
-      "description": "Designs operating models, decision rights, and workflows that let family and multi-entity businesses professionalise without losing control.",
-      "location": "Global",
+      "description": "Family enterprises outgrow informal decision-making. I redesign operating models, decision rights, and workflow handoffs that let multi-venture groups scale without founder bottlenecks.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Engagements": "Multi",
-        "Impact": "Operating Model",
-        "Specialization": "Systems"
+        "Experience": "Hands-on",
+        "Scope": "Operating models",
+        "Impact": "Decision rights",
+        "Specialization": "Enterprise Transformation"
       },
       "requiredKeywords": [
         "Organizational Design",
@@ -2996,13 +3051,13 @@
       "industry": "CivicTech",
       "targeted": true,
       "weight": 10,
-      "description": "Designs service operating systems for civic and community organisations: booking, safeguarding, and digital-to-physical handoffs.",
-      "location": "Global",
+      "description": "Civic organisations drown in ad-hoc service delivery. I design booking systems, volunteer workflows, and accountability structures that keep community programmes repeatable.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Engagements": "Multi",
-        "Impact": "Operating Model",
-        "Specialization": "Systems"
+        "Experience": "Hands-on",
+        "Scope": "Operating models",
+        "Impact": "Decision rights",
+        "Specialization": "CivicTech"
       },
       "requiredKeywords": [
         "CivicTech",
@@ -3064,13 +3119,13 @@
       "industry": "Deep-Tech Innovation Labs",
       "targeted": true,
       "weight": 10,
-      "description": "Designs operating and governance models for deep-tech ventures: privacy architecture, staged validation, and lab-to-market decision rights.",
-      "location": "Global",
+      "description": "Deep-tech skunkworks need governance without killing speed. I architect privacy-first operating models, venture governance, and lab-to-spinout pathways for R&D portfolios.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Engagements": "Multi",
-        "Impact": "Operating Model",
-        "Specialization": "Systems"
+        "Experience": "Hands-on",
+        "Scope": "Operating models",
+        "Impact": "Decision rights",
+        "Specialization": "Deep-Tech Innovation Labs"
       },
       "requiredKeywords": [
         "Deep-Tech",
@@ -3110,7 +3165,7 @@
             "id": "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform",
             "highlights": [
               "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform-h2",
-              "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform-h0"
+              "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform-h4"
             ]
           },
           {
@@ -3132,13 +3187,13 @@
       "industry": "Michelin & Fine-Dining Kitchens",
       "targeted": true,
       "weight": 10,
-      "description": "Entry-level kitchen candidate prepared for line-cook, commis, and stagiaire work through disciplined mise en place, knife work, sauce preparation, food safety, and service timing.",
-      "location": "Global",
+      "description": "Michelin kitchens test mise en place before they test creativity. I work commis and line stations with sauce work, garde-manger fundamentals, and composure under service pressure.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Properties": "4 Hotels",
-        "Impact": "Turnaround",
-        "Specialization": "Hospitality"
+        "Experience": "Hands-on",
+        "Scope": "Properties & kitchens",
+        "Impact": "Service recovery",
+        "Specialization": "Fine-dining kitchens"
       },
       "requiredKeywords": [
         "Culinary Stagiaire",
@@ -3152,7 +3207,8 @@
       "limits": {
         "coursework": 0,
         "certifications": 0,
-        "languages": 0
+        "languages": 0,
+        "includeSummary": false
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Culinary_Stagiaire_Michelin_Fine_Dining_Kitchens.pdf",
       "content": {
@@ -3167,14 +3223,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h0",
-              "work-savi-hotels-resorts-jaipur-india-h2"
-            ]
-          },
-          {
-            "id": "work-srbs-group-jaipur-india",
-            "highlights": [
-              "work-srbs-group-jaipur-india-h1"
+              "work-savi-hotels-resorts-jaipur-india-h17",
+              "work-savi-hotels-resorts-jaipur-india-h16"
             ]
           }
         ],
@@ -3207,13 +3257,13 @@
       "industry": "High-Volume Catering",
       "targeted": true,
       "weight": 10,
-      "description": "Back-of-house operator focused on production planning, stock flow, kitchen data, handovers, reconciliation, and reliable service under volume.",
-      "location": "Global",
+      "description": "High-volume catering fails on prep timing, not recipes. I coordinate production planning, stock flow, and kitchen data capture so BOH teams hit service windows under volume pressure.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Properties": "4 Hotels",
-        "Impact": "Turnaround",
-        "Specialization": "Hospitality"
+        "Experience": "Hands-on",
+        "Scope": "Properties & kitchens",
+        "Impact": "Service recovery",
+        "Specialization": "High-Volume Catering"
       },
       "requiredKeywords": [
         "Back-of-House Operations",
@@ -3226,7 +3276,8 @@
       "limits": {
         "coursework": 2,
         "certifications": 0,
-        "languages": 0
+        "languages": 0,
+        "includeSummary": false
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Back_Of_House_Logistics_Coordinator_High_Volume_Catering.pdf",
       "content": {
@@ -3234,8 +3285,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h6",
-              "work-savi-hotels-resorts-jaipur-india-h8"
+              "work-savi-hotels-resorts-jaipur-india-h15",
+              "work-savi-hotels-resorts-jaipur-india-h6"
             ]
           },
           {
@@ -3280,13 +3331,13 @@
       "industry": "Hotels and Restaurants",
       "targeted": true,
       "weight": 10,
-      "description": "Guest-facing hospitality candidate experienced in reception workflows, booking operations, order accuracy, service recovery, and relationship-led guest retention.",
-      "location": "Global",
+      "description": "Hotels and restaurants lose guests at the first touchpoint. I handle reception workflows, booking operations, and guest recovery with calm professionalism under front-desk pressure.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Properties": "4 Hotels",
-        "Impact": "Turnaround",
-        "Specialization": "Hospitality"
+        "Experience": "Hands-on",
+        "Scope": "Properties & kitchens",
+        "Impact": "Service recovery",
+        "Specialization": "Hotels and Restaurants"
       },
       "requiredKeywords": [
         "Front of House",
@@ -3299,7 +3350,8 @@
       "limits": {
         "coursework": 0,
         "certifications": 0,
-        "languages": 0
+        "languages": 0,
+        "includeSummary": false
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Front_Of_House_Reception_Associate_Hotels_Restaurants.pdf",
       "content": {
@@ -3354,13 +3406,13 @@
       "industry": "Applied R&D Labs & Startups",
       "targeted": true,
       "weight": 10,
-      "description": "Research and development engineer exploring ambiguous technical problems through rapid prototypes, applied experiments, and evidence-led iteration.",
-      "location": "Global",
+      "description": "Corporate R&D labs fund explorations that need rapid falsification. I prototype ambiguous technical problems through iterative experiments, literature synthesis, and demo-ready artefacts.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "Hands-On",
-        "Systems": "Linux",
+        "Experience": "Hands-on",
+        "Scope": "Production systems",
         "Impact": "Reliability",
-        "Specialization": "Infrastructure"
+        "Specialization": "Applied R"
       },
       "requiredKeywords": [
         "Research and Development",
@@ -3422,13 +3474,13 @@
       "industry": "Startup Accelerators",
       "targeted": true,
       "weight": 10,
-      "description": "Customer-led product manager who turns ambiguous needs into prioritised roadmaps, MVPs, experiments, and measurable delivery.",
-      "location": "Global",
+      "description": "Accelerator cohorts ship features nobody asked for. I run customer discovery, prioritised roadmaps, and experiment cadences that keep founder teams aligned to validated demand.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Launches": "Multi-Venture",
-        "Impact": "Shipped",
-        "Specialization": "0→1"
+        "Experience": "Hands-on",
+        "Scope": "Product launches",
+        "Impact": "Roadmap discipline",
+        "Specialization": "Startup Accelerators"
       },
       "requiredKeywords": [
         "Product Manager",
@@ -3483,7 +3535,7 @@
           "lead-hult-founders-lab"
         ]
       },
-      "category": "Product Management"
+      "category": "Product Management & Platform"
     },
     {
       "id": "project-manager-startup-accelerators",
@@ -3491,13 +3543,13 @@
       "industry": "Startup Accelerators",
       "targeted": true,
       "weight": 10,
-      "description": "Project manager who turns ambiguous initiatives into milestones, owners, risk controls, and reliable cross-functional delivery.",
-      "location": "Global",
+      "description": "Accelerator programmes stall when milestones lack owners. I translate initiative briefs into delivery timelines, risk registers, and cross-team checkpoints founders can actually follow.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Scope": "Multi-Venture",
-        "Impact": "Operator",
-        "Specialization": "Cadence & Gates"
+        "Experience": "Hands-on",
+        "Scope": "Multi-venture",
+        "Impact": "Operator cadence",
+        "Specialization": "Startup Accelerators"
       },
       "requiredKeywords": [
         "Project Manager",
@@ -3508,7 +3560,8 @@
         "Operations"
       ],
       "limits": {
-        "leadership": 1
+        "leadership": 1,
+        "includeSummary": false
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_Project_Manager_Startup_Accelerators.pdf",
       "content": {
@@ -3523,8 +3576,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h1",
-              "work-savi-hotels-resorts-jaipur-india-h7"
+              "work-savi-hotels-resorts-jaipur-india-h14",
+              "work-savi-hotels-resorts-jaipur-india-h1"
             ]
           },
           {
@@ -3559,13 +3612,13 @@
       "industry": "Startup Accelerators",
       "targeted": true,
       "weight": 10,
-      "description": "Early-career DevOps engineer supporting Linux systems, deployment automation, networking, observability, and incident response.",
-      "location": "Global",
+      "description": "Early-stage startups treat infrastructure as an afterthought. I support Linux environments, CI/CD automation, and deployment hygiene so accelerator cohorts can demo without midnight outages.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "Hands-On",
-        "Systems": "Linux",
-        "Deployment": "Full-Stack",
-        "Specialization": "Reliability"
+        "Experience": "Hands-on",
+        "Scope": "Production systems",
+        "Impact": "Reliability",
+        "Specialization": "Startup Accelerators"
       },
       "requiredKeywords": [
         "DevOps Associate",
@@ -3576,7 +3629,8 @@
         "Infrastructure as Code"
       ],
       "limits": {
-        "leadership": 1
+        "leadership": 1,
+        "includeSummary": false
       },
       "pdfFilename": "Kartavya_Jharwal_Resume_DevOps_Associate_Startup_Accelerators.pdf",
       "content": {
@@ -3612,10 +3666,10 @@
             ]
           },
           {
-            "id": "proj-software-engineering-and-systems-projects",
+            "id": "proj-bloom-creative-terminal-visualization",
             "highlights": [
-              "proj-software-engineering-and-systems-projects-h0",
-              "proj-software-engineering-and-systems-projects-h2"
+              "proj-bloom-creative-terminal-visualization-h0",
+              "proj-bloom-creative-terminal-visualization-h6"
             ]
           }
         ],
@@ -3635,13 +3689,13 @@
       "industry": "Healthcare & Startup Ecosystems",
       "targeted": true,
       "weight": 10,
-      "description": "Startup analyst and developer with experience across healthcare, university incubation, and London's venture ecosystem, translating founder stories into GTM playbooks, MVPs, and focused execution.",
+      "description": "Healthcare founders need London incubator navigation plus clinical context. I handle MVP-to-GTM translation, stakeholder scheduling, and platform diligence alongside regulated venture priorities.",
       "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Ventures": "Stealth+Live",
-        "Impact": "Healthcare",
-        "Specialization": "Founder Ops"
+        "Experience": "Hands-on",
+        "Scope": "Multi-venture",
+        "Impact": "Operator cadence",
+        "Specialization": "Healthcare"
       },
       "requiredKeywords": [
         "Founder's Associate",
@@ -3672,33 +3726,33 @@
             ]
           },
           {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h14",
+              "work-savi-hotels-resorts-jaipur-india-h3"
+            ]
+          },
+          {
             "id": "work-srbs-group-jaipur-india",
             "highlights": [
               "work-srbs-group-jaipur-india-h0",
               "work-srbs-group-jaipur-india-h4"
             ]
-          },
-          {
-            "id": "work-astropatshala",
-            "highlights": [
-              "work-astropatshala-h0",
-              "work-astropatshala-h2"
-            ]
           }
         ],
         "projects": [
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1"
+            ]
+          },
           {
             "id": "proj-project-oulm-one-ymca-youth-community-platform",
             "highlights": [
               "proj-project-oulm-one-ymca-youth-community-platform-h0",
               "proj-project-oulm-one-ymca-youth-community-platform-h2"
-            ]
-          },
-          {
-            "id": "proj-astropatshala-brand-naming-and-voice-system",
-            "highlights": [
-              "proj-astropatshala-brand-naming-and-voice-system-h0",
-              "proj-astropatshala-brand-naming-and-voice-system-h1"
             ]
           }
         ],
@@ -3717,13 +3771,13 @@
       "industry": "Startup Accelerators",
       "targeted": true,
       "weight": 10,
-      "description": "GTM analyst combining customer research, funnel analytics, market mapping, and experimentation to identify growth opportunities.",
-      "location": "Global",
+      "description": "Accelerator founders confuse activity with pipeline. I combine customer research, funnel analytics, and market mapping into GTM recommendations with measurable conversion targets.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Channels": "Multi",
-        "Impact": "GTM",
-        "Specialization": "Content Ops"
+        "Experience": "Hands-on",
+        "Scope": "Growth channels",
+        "Impact": "Acquisition loops",
+        "Specialization": "Startup Accelerators"
       },
       "requiredKeywords": [
         "GTM Analyst",
@@ -3786,13 +3840,13 @@
       "industry": "Startup Accelerators",
       "targeted": true,
       "weight": 10,
-      "description": "UI/UX designer translating research and systems thinking into clear interfaces, service flows, prototypes, and testable product decisions.",
-      "location": "Global",
+      "description": "Accelerator products ship cluttered interfaces under time pressure. I translate research and systems thinking into interface flows, component choices, and usability tests founders can iterate on.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Systems": "Cross-Stack",
+        "Experience": "Student + Operator",
+        "Scope": "Product systems",
         "Impact": "Legibility",
-        "Specialization": "Design–Quant"
+        "Specialization": "Startup Accelerators"
       },
       "requiredKeywords": [
         "UI/UX Designer",
@@ -3819,7 +3873,7 @@
             "id": "work-margadarshaka",
             "highlights": [
               "work-margadarshaka-h2",
-              "work-margadarshaka-h0"
+              "work-margadarshaka-h7"
             ]
           }
         ],
@@ -3827,7 +3881,7 @@
           {
             "id": "proj-project-oulm-one-ymca-youth-community-platform",
             "highlights": [
-              "proj-project-oulm-one-ymca-youth-community-platform-h2",
+              "proj-project-oulm-one-ymca-youth-community-platform-h3",
               "proj-project-oulm-one-ymca-youth-community-platform-h1"
             ]
           },
@@ -3847,7 +3901,7 @@
           "lead-hult-founders-lab"
         ]
       },
-      "category": "Product, UX & Experience Design"
+      "category": "UI/UX & Product Design"
     },
     {
       "id": "systems-designer-startup-accelerators",
@@ -3855,13 +3909,13 @@
       "industry": "Startup Accelerators",
       "targeted": true,
       "weight": 10,
-      "description": "Systems designer mapping complex operations into coherent architectures, workflows, feedback loops, and governance mechanisms.",
-      "location": "Global",
+      "description": "Startup operations fragment across spreadsheets and Slack. I map workflows, data handoffs, and architecture diagrams that give accelerator teams a coherent operating blueprint.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Engagements": "Multi",
-        "Impact": "Operating Model",
-        "Specialization": "Systems"
+        "Experience": "Hands-on",
+        "Scope": "Operating models",
+        "Impact": "Decision rights",
+        "Specialization": "Startup Accelerators"
       },
       "requiredKeywords": [
         "Systems Designer",
@@ -3925,13 +3979,13 @@
       "industry": "Founder-Led & Family-Owned Enterprises",
       "targeted": true,
       "weight": 10,
-      "description": "Executive operator supporting founder and managing-director priorities across investment decisions, operating controls, governance, business continuity, and time-sensitive special projects.",
-      "location": "Global",
+      "description": "Founder-led enterprises leak priorities across ventures. I coordinate managing-director agendas, cross-property initiatives, and confidential decision packets so strategic work actually closes.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Scope": "Multi-Venture",
-        "Impact": "Operator",
-        "Specialization": "Cadence & Gates"
+        "Experience": "Hands-on",
+        "Scope": "Multi-venture",
+        "Impact": "Operator cadence",
+        "Specialization": "Founder-Led"
       },
       "requiredKeywords": [
         "Chief of Staff",
@@ -3954,15 +4008,15 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h4",
-              "work-savi-hotels-resorts-jaipur-india-h6"
+              "work-savi-hotels-resorts-jaipur-india-h14",
+              "work-savi-hotels-resorts-jaipur-india-h12"
             ]
           },
           {
-            "id": "work-astropatshala",
+            "id": "work-family-real-estate-business-jaipur-india",
             "highlights": [
-              "work-astropatshala-h0",
-              "work-astropatshala-h1"
+              "work-family-real-estate-business-jaipur-india-h0",
+              "work-family-real-estate-business-jaipur-india-h2"
             ]
           }
         ],
@@ -3970,15 +4024,15 @@
           {
             "id": "proj-family-governance-and-office-access-model",
             "highlights": [
-              "proj-family-governance-and-office-access-model-h0",
+              "proj-family-governance-and-office-access-model-h1",
               "proj-family-governance-and-office-access-model-h3"
             ]
           },
           {
-            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
             "highlights": [
-              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1",
-              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h3"
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h0"
             ]
           }
         ],
@@ -3994,36 +4048,30 @@
     {
       "id": "family-office-analyst-private-wealth-family-enterprise",
       "role": "Family Office Analyst",
-      "category": "Strategy, Investment & Private Wealth",
+      "category": "Private Wealth & Family Enterprise",
       "industry": "Private Wealth & Family Enterprise Advisory",
       "targeted": true,
       "weight": 10,
-      "description": "Analyst combining family-enterprise operating context, asset diligence, governance design, portfolio controls, succession workflows, and adviser coordination for private-wealth decision support.",
-      "location": "Global",
+      "description": "Family offices need structure that survives the next generation, not generic wealth copy. I work governance models, access design, and a reusable model vault across multi-entity portfolios.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Cases": "20+",
-        "Impact": "Exhibit-Linked",
-        "Specialization": "Strategy"
+        "Experience": "Hands-on",
+        "Scope": "Family enterprise",
+        "Impact": "Governance + model vault",
+        "Specialization": "Family governance"
       },
       "requiredKeywords": [
         "Family Office",
         "Private Wealth",
         "Family Governance",
         "Portfolio Analysis",
+        "Financial Modelling",
         "Due Diligence",
-        "Succession Planning"
+        "Knowledge Systems"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Family_Office_Analyst_Private_Wealth_Family_Enterprise.pdf",
       "content": {
         "experience": [
-          {
-            "id": "work-srbs-group-jaipur-india",
-            "highlights": [
-              "work-srbs-group-jaipur-india-h0",
-              "work-srbs-group-jaipur-india-h2"
-            ]
-          },
           {
             "id": "work-family-real-estate-business-jaipur-india",
             "highlights": [
@@ -4034,8 +4082,15 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h2",
-              "work-savi-hotels-resorts-jaipur-india-h7"
+              "work-savi-hotels-resorts-jaipur-india-h14",
+              "work-savi-hotels-resorts-jaipur-india-h13"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h2"
             ]
           }
         ],
@@ -4048,10 +4103,10 @@
             ]
           },
           {
-            "id": "proj-bwc-adaptive-efficiency-investment-desk",
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
             "highlights": [
-              "proj-bwc-adaptive-efficiency-investment-desk-h0",
-              "proj-bwc-adaptive-efficiency-investment-desk-h2"
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
             ]
           }
         ],
@@ -4069,13 +4124,13 @@
       "industry": "AI-Enabled Content & Knowledge Platforms",
       "targeted": true,
       "weight": 10,
-      "description": "Builds structured knowledge workflows that connect source capture, metadata, retrieval, publishing, provenance, and reusable technical content across AI and research environments.",
-      "location": "Global",
+      "description": "AI content platforms drown in unstructured sources. I build capture-to-retrieval workflows with metadata schemas, citation chains, and quality gates for knowledge products.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Channels": "Multi",
-        "Impact": "GTM",
-        "Specialization": "Content Ops"
+        "Experience": "Hands-on",
+        "Scope": "Growth channels",
+        "Impact": "Acquisition loops",
+        "Specialization": "AI-Enabled Content"
       },
       "requiredKeywords": [
         "Knowledge Operations",
@@ -4136,19 +4191,20 @@
       "industry": "Applied Analytics & Decision Science",
       "targeted": true,
       "weight": 10,
-      "description": "Applied data scientist building reproducible datasets, statistical models, experiments, and decision tools across pricing, operations, portfolio risk, and service economics.",
-      "location": "Global",
+      "description": "Decision science fails when assumptions stay hidden. I ship factor, regression, and Monte Carlo diagnostics with the method choices written down, not buried in a notebook.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Models": "Reproducible",
-        "Impact": "Decision",
-        "Specialization": "Analytics"
+        "Experience": "Student + Operator",
+        "Scope": "Decision models",
+        "Impact": "Evidence narrative",
+        "Specialization": "Applied Analytics"
       },
       "requiredKeywords": [
         "Data Scientist",
         "Statistical Modelling",
+        "Monte Carlo",
         "Regression Analysis",
-        "Hypothesis Testing",
+        "First Principles",
         "Python",
         "Decision Science"
       ],
@@ -4179,10 +4235,10 @@
             ]
           },
           {
-            "id": "proj-global-development-and-climate-hypothesis-testing",
+            "id": "proj-london-airbnb-pricing-and-regression-models",
             "highlights": [
-              "proj-global-development-and-climate-hypothesis-testing-h0",
-              "proj-global-development-and-climate-hypothesis-testing-h1"
+              "proj-london-airbnb-pricing-and-regression-models-h0",
+              "proj-london-airbnb-pricing-and-regression-models-h1"
             ]
           }
         ],
@@ -4203,21 +4259,22 @@
       "industry": "Technology & Regulated Industries",
       "targeted": true,
       "weight": 10,
-      "description": "Maps operational, privacy, governance, and regulatory risks into documented controls, decision gates, audit trails, and accountable stakeholder handoffs.",
-      "location": "Global",
+      "description": "Regulated teams find risks in the audit, not before. I write control trees and portfolio stress cases with named gates, owners, and a paper trail a reviewer can follow.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Controls": "Documented",
-        "Impact": "Governance",
-        "Specialization": "Risk"
+        "Experience": "Student + Operator",
+        "Scope": "Control design",
+        "Impact": "Documented stress",
+        "Specialization": "Technology"
       },
       "requiredKeywords": [
         "Risk Assessment",
+        "Financial Modelling",
         "Compliance Controls",
-        "Regulatory Analysis",
-        "Privacy by Design",
+        "Stress Testing",
         "Governance",
-        "Audit Trails"
+        "Audit Trails",
+        "First Principles"
       ],
       "pdfFilename": "Kartavya_Jharwal_Resume_Risk_Compliance_Analyst_Technology_Regulated_Industries.pdf",
       "content": {
@@ -4249,14 +4306,14 @@
             "id": "proj-independent-risk-modelling-and-control-design",
             "highlights": [
               "proj-independent-risk-modelling-and-control-design-h0",
-              "proj-independent-risk-modelling-and-control-design-h4"
+              "proj-independent-risk-modelling-and-control-design-h2"
             ]
           },
           {
-            "id": "proj-independent-legal-documentation-and-filing-support",
+            "id": "proj-bwc-quantitative-portfolio-audit-engine",
             "highlights": [
-              "proj-independent-legal-documentation-and-filing-support-h1",
-              "proj-independent-legal-documentation-and-filing-support-h4"
+              "proj-bwc-quantitative-portfolio-audit-engine-h2",
+              "proj-bwc-quantitative-portfolio-audit-engine-h0"
             ]
           }
         ],
@@ -4275,13 +4332,13 @@
       "industry": "Corporate Events & Luxury Hospitality",
       "targeted": true,
       "weight": 10,
-      "description": "Hosts and quality-assures corporate and milestone hospitality events—bridging BOH execution in Jaipur with London client-side judgment on service polish, décor, and relationship-led entertainment.",
-      "location": "Jaipur, India / London, UK",
+      "description": "Corporate milestone events fail when BOH and guest experience diverge. I host and quality-assure programmes bridging kitchen execution, service choreography, and client-facing hospitality standards.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Events": "4 Corporate",
-        "Focus": "MICE QA",
-        "Service": "Luxury"
+        "Experience": "Hands-on",
+        "Scope": "Properties & kitchens",
+        "Impact": "Service recovery",
+        "Specialization": "Corporate Events"
       },
       "requiredKeywords": [
         "Corporate Events",
@@ -4298,7 +4355,7 @@
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
               "work-savi-hotels-resorts-jaipur-india-h10",
-              "work-savi-hotels-resorts-jaipur-india-h11"
+              "work-savi-hotels-resorts-jaipur-india-h13"
             ]
           },
           {
@@ -4334,6 +4391,9 @@
           "skill-front-of-house-and-reception"
         ],
         "leadership": []
+      },
+      "limits": {
+        "includeSummary": false
       }
     },
     {
@@ -4343,13 +4403,13 @@
       "industry": "Law Firms & Transaction Advisory",
       "targeted": true,
       "weight": 10,
-      "description": "Supports law-firm and transaction-advisory teams with filing preparation, corporate-record verification, diligence dataroom discipline, and counsel-directed documentation—not licensed legal practice.",
-      "location": "Global",
+      "description": "Transaction teams lose days to record gaps. I prepare corporate filings, diligence binders, and ESG-adjacent documentation with indexes and cross-checks before chamber or partner review.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Focus": "Filing Ops",
-        "Records": "Cross-Border",
-        "Specialization": "Documentation"
+        "Experience": "Hands-on",
+        "Scope": "Transaction records",
+        "Impact": "Filing discipline",
+        "Specialization": "Law-firm ops"
       },
       "requiredKeywords": [
         "Legal Operations",
@@ -4382,7 +4442,7 @@
             "id": "proj-independent-legal-documentation-and-filing-support",
             "highlights": [
               "proj-independent-legal-documentation-and-filing-support-h0",
-              "proj-independent-legal-documentation-and-filing-support-h3"
+              "proj-independent-legal-documentation-and-filing-support-h2"
             ]
           },
           {
@@ -4406,13 +4466,13 @@
       "industry": "Financial Services & Law Firms",
       "targeted": true,
       "weight": 10,
-      "description": "Produces finance- and law-firm-facing programmes—hackathons, conference lead magnets, and corporate hospitality—where regulatory credibility and client entertainment quality must read as one arc.",
-      "location": "London, UK / Global",
+      "description": "Finance and law firms need client events that respect compliance. I produce conferences, hackathons, and lead-magnet programmes with brand rigour and regulatory-aware delivery.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Programmes": "10+",
-        "Impact": "Live Delivery",
-        "Specialization": "Events"
+        "Experience": "Hands-on",
+        "Scope": "Programmes",
+        "Impact": "Community delivery",
+        "Specialization": "Finance & law events"
       },
       "requiredKeywords": [
         "Event Production",
@@ -4436,12 +4496,13 @@
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
               "work-savi-hotels-resorts-jaipur-india-h10",
-              "work-savi-hotels-resorts-jaipur-india-h11"
+              "work-savi-hotels-resorts-jaipur-india-h13"
             ]
           },
           {
             "id": "work-family-real-estate-business-jaipur-india",
             "highlights": [
+              "work-family-real-estate-business-jaipur-india-h1",
               "work-family-real-estate-business-jaipur-india-h2"
             ]
           }
@@ -4475,13 +4536,13 @@
       "industry": "Hospitality Corporate Groups",
       "targeted": true,
       "weight": 10,
-      "description": "Supports hospitality corporate development—portfolio innovation envelopes, property turnaround diagnostics, and lease-decision evidence—for group-level strategy teams distinct from single-asset operations.",
-      "location": "Global",
+      "description": "Hospitality corporate groups need portfolio strategy, not property anecdotes. I support innovation envelopes, asset diagnostics, and group-level recommendations from operating evidence.",
+      "location": "London, UK",
       "metrics": {
-        "Experience": "5+ Yrs",
-        "Scope": "Multi-Venture",
-        "Impact": "Operator",
-        "Specialization": "Cadence & Gates"
+        "Experience": "Hands-on",
+        "Scope": "Multi-venture",
+        "Impact": "Operator cadence",
+        "Specialization": "Hospitality Corporate Groups"
       },
       "requiredKeywords": [
         "Hospitality Corporate Development",
@@ -4497,8 +4558,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h0",
-              "work-savi-hotels-resorts-jaipur-india-h4"
+              "work-savi-hotels-resorts-jaipur-india-h2",
+              "work-savi-hotels-resorts-jaipur-india-h12"
             ]
           },
           {
@@ -4531,6 +4592,1202 @@
         ],
         "leadership": []
       }
+    },
+    {
+      "id": "brand-strategist-carbon-markets-esg-advisory",
+      "role": "Brand Strategist",
+      "industry": "Carbon Markets & ESG Advisory",
+      "targeted": true,
+      "weight": 10,
+      "description": "Carbon-market advisors confuse buyers with opaque diligence. I translate ESG research and offset economics into legible brand narratives for investor and corporate audiences.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Campaign systems",
+        "Impact": "Brand translation",
+        "Specialization": "Carbon Markets"
+      },
+      "requiredKeywords": [
+        "Brand Strategy",
+        "ESG",
+        "Carbon Markets",
+        "Positioning",
+        "Campaign Architecture",
+        "Audience Design"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Brand_Strategist_Carbon_Markets_ESG_Advisory.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h4",
+              "work-srbs-group-jaipur-india-h0"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
+            ]
+          },
+          {
+            "id": "proj-carbon-forward-conference-lead-magnet-design",
+            "highlights": [
+              "proj-carbon-forward-conference-lead-magnet-design-h0",
+              "proj-carbon-forward-conference-lead-magnet-design-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      },
+      "category": "Creative Strategy & Brand"
+    },
+    {
+      "id": "brand-strategist-climate-tech-sustainability",
+      "role": "Brand Strategist",
+      "industry": "Climate Tech & Sustainability",
+      "targeted": true,
+      "weight": 10,
+      "description": "Climate-tech founders undersell resilience evidence. I connect technical narratives, sustainability proof points, and commercial positioning for credible market entry.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Campaign systems",
+        "Impact": "Brand translation",
+        "Specialization": "Climate Tech"
+      },
+      "requiredKeywords": [
+        "Brand Strategy",
+        "Climate Tech",
+        "Sustainability",
+        "Resilience",
+        "Market Positioning",
+        "ESG Communications"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Brand_Strategist_Climate_Tech_Sustainability.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h8",
+              "work-margadarshaka-h1"
+            ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h0",
+              "work-hult-ai-collective-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h2",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0"
+            ]
+          },
+          {
+            "id": "proj-samsung-and-huawei-strategic-resilience-analysis",
+            "highlights": [
+              "proj-samsung-and-huawei-strategic-resilience-analysis-h0",
+              "proj-samsung-and-huawei-strategic-resilience-analysis-h1"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      },
+      "category": "Creative Strategy & Brand"
+    },
+    {
+      "id": "creative-director-boutique-creative-agencies",
+      "role": "Creative Director",
+      "industry": "Boutique Creative Agencies",
+      "targeted": true,
+      "weight": 10,
+      "description": "Boutique agencies win pitches when vision feels spatial, not generic. I shape exhibition-linked brand narratives, identity systems, and campaign direction for cultural and commercial clients.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Campaign systems",
+        "Impact": "Brand translation",
+        "Specialization": "Boutique Creative Agencies"
+      },
+      "requiredKeywords": [
+        "Creative Direction",
+        "Brand Identity",
+        "Campaign Systems",
+        "Spatial Narrative",
+        "Client Delivery",
+        "Design Leadership"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Creative_Director_Boutique_Creative_Agencies.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h0",
+              "work-hult-ai-collective-h1"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h10",
+              "work-margadarshaka-h11"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h2"
+            ]
+          },
+          {
+            "id": "proj-nirmana-design-capstone",
+            "highlights": [
+              "proj-nirmana-design-capstone-h0",
+              "proj-nirmana-design-capstone-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      },
+      "category": "Creative Strategy & Brand"
+    },
+    {
+      "id": "visual-designer-campaign-identity-systems",
+      "role": "Visual Designer",
+      "industry": "Campaign & Identity Systems",
+      "targeted": true,
+      "weight": 10,
+      "description": "Campaign launches fracture when identity is not systematised. I build poster systems, venue touchpoints, and asset libraries that keep multi-channel rollouts visually coherent.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Campaign systems",
+        "Impact": "Brand translation",
+        "Specialization": "Campaign"
+      },
+      "requiredKeywords": [
+        "Visual Design",
+        "Identity Systems",
+        "Campaign Design",
+        "Typography",
+        "Brand Assets",
+        "Print and Digital"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Visual_Designer_Campaign_Identity_Systems.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h10",
+              "work-margadarshaka-h11"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h0",
+              "proj-project-oulm-one-ymca-youth-community-platform-h2"
+            ]
+          },
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      },
+      "category": "Creative Strategy & Brand"
+    },
+    {
+      "id": "graphic-designer-esg-impact-communications",
+      "role": "Graphic Designer",
+      "industry": "ESG & Impact Communications",
+      "targeted": true,
+      "weight": 10,
+      "description": "ESG communications drown audiences in data without design. I turn carbon-market diligence and impact research into audience-ready graphics for reports, events, and digital channels.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Campaign systems",
+        "Impact": "Brand translation",
+        "Specialization": "ESG"
+      },
+      "requiredKeywords": [
+        "Graphic Design",
+        "ESG Communications",
+        "Campaign Collateral",
+        "Visual Systems",
+        "Carbon Markets",
+        "Impact Design"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Graphic_Designer_ESG_Impact_Communications.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h2",
+              "work-astropatshala-h0"
+            ]
+          },
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h4",
+              "work-srbs-group-jaipur-india-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h2"
+            ]
+          },
+          {
+            "id": "proj-carbon-forward-conference-lead-magnet-design",
+            "highlights": [
+              "proj-carbon-forward-conference-lead-magnet-design-h0",
+              "proj-carbon-forward-conference-lead-magnet-design-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      },
+      "category": "Creative Strategy & Brand"
+    },
+    {
+      "id": "creative-strategist-fintech-decision-tools",
+      "role": "Creative Strategist",
+      "industry": "FinTech & Decision Tools",
+      "targeted": true,
+      "weight": 10,
+      "description": "FinTech decision tools confuse users when research and product feel disconnected. I bridge financial learning gardens, audience architecture, and messaging for products people trust.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Campaign systems",
+        "Impact": "Brand translation",
+        "Specialization": "FinTech"
+      },
+      "requiredKeywords": [
+        "Creative Strategy",
+        "FinTech",
+        "Audience Architecture",
+        "Research Gardens",
+        "Decision Tools",
+        "Brand Systems"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Creative_Strategist_FinTech_Decision_Tools.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h11",
+              "work-margadarshaka-h10"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h1",
+              "work-astropatshala-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
+            "highlights": [
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h1"
+            ]
+          },
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases",
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      },
+      "category": "Creative Strategy & Brand"
+    },
+    {
+      "id": "venture-capital-analyst-growth-stage-funds",
+      "role": "Venture Capital Analyst",
+      "industry": "Growth-Stage Funds",
+      "targeted": true,
+      "weight": 10,
+      "description": "Growth-stage funds need conviction on unit economics, not TAM slides. I evaluate scaling markets, cohort retention, and expansion risk for Series A-C diligence committees.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Diligence packs",
+        "Impact": "Investment judgment",
+        "Specialization": "Growth-Stage Funds"
+      },
+      "requiredKeywords": [
+        "Venture Capital",
+        "Growth Stage",
+        "Diligence",
+        "Unit Economics",
+        "Market Analysis",
+        "Investment Memos"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Venture_Capital_Analyst_Growth_Stage_Funds.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h2",
+              "work-srbs-group-jaipur-india-h0"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h5",
+              "work-margadarshaka-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-duve-venture-diligence-and-industry-tearsheet",
+            "highlights": [
+              "proj-duve-venture-diligence-and-industry-tearsheet-h1",
+              "proj-duve-venture-diligence-and-industry-tearsheet-h2"
+            ]
+          },
+          {
+            "id": "proj-toast-hotel-f-b-expansion-strategy",
+            "highlights": [
+              "proj-toast-hotel-f-b-expansion-strategy-h0",
+              "proj-toast-hotel-f-b-expansion-strategy-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases"
+        ],
+        "leadership": []
+      },
+      "category": "Venture Capital & Early-Stage"
+    },
+    {
+      "id": "portfolio-operations-associate-early-stage-funds",
+      "role": "Portfolio Operations Associate",
+      "industry": "Early-Stage Funds",
+      "targeted": true,
+      "weight": 10,
+      "description": "Early-stage portfolios stall between cheques and milestones. I support fund workflows, founder onboarding, and diligence artefact management so partners stay focused on deployment.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Diligence packs",
+        "Impact": "Investment judgment",
+        "Specialization": "Early-Stage Funds"
+      },
+      "requiredKeywords": [
+        "Portfolio Operations",
+        "Venture Capital",
+        "Founder Support",
+        "Reporting Cadence",
+        "Diligence",
+        "Platform Tools"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Portfolio_Operations_Associate_Early_Stage_Funds.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h4",
+              "work-margadarshaka-h5"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-duve-venture-diligence-and-industry-tearsheet",
+            "highlights": [
+              "proj-duve-venture-diligence-and-industry-tearsheet-h0",
+              "proj-duve-venture-diligence-and-industry-tearsheet-h1"
+            ]
+          },
+          {
+            "id": "proj-hospitality-and-venture-operations-automation",
+            "highlights": [
+              "proj-hospitality-and-venture-operations-automation-h0",
+              "proj-hospitality-and-venture-operations-automation-h1"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": []
+      },
+      "category": "Venture Capital & Early-Stage"
+    },
+    {
+      "id": "vc-platform-associate-early-stage-funds",
+      "role": "VC Platform Associate",
+      "industry": "Early-Stage Funds",
+      "targeted": true,
+      "weight": 10,
+      "description": "Platform teams exist to help founders between cheques, not to run events. I connect programming, introductions, and diligence support so partners spend time on deployment.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Diligence packs",
+        "Impact": "Investment judgment",
+        "Specialization": "Early-Stage Funds"
+      },
+      "requiredKeywords": [
+        "VC Platform",
+        "Founder Programming",
+        "Community Events",
+        "Diligence Support",
+        "Workflow Automation",
+        "Portfolio Services"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_VC_Platform_Associate_Early_Stage_Funds.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h0",
+              "work-hult-ai-collective-h5"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h2",
+              "work-margadarshaka-h8"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-us-defence-drone-spinout-commercialisation-assessment",
+            "highlights": [
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h0",
+              "proj-us-defence-drone-spinout-commercialisation-assessment-h1"
+            ]
+          },
+          {
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
+            "highlights": [
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h3",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h4"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      },
+      "category": "Venture Capital & Early-Stage"
+    },
+    {
+      "id": "investment-associate-corporate-venture-capital",
+      "role": "Investment Associate",
+      "industry": "Corporate Venture Capital",
+      "targeted": true,
+      "weight": 10,
+      "description": "Corporate venture arms need innovation diagnostics tied to parent strategy. I evaluate venture governance, pilot fit, and portfolio alignment for CVC investment committees.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Diligence packs",
+        "Impact": "Investment judgment",
+        "Specialization": "Corporate Venture Capital"
+      },
+      "requiredKeywords": [
+        "Corporate Venture Capital",
+        "Innovation Diagnostics",
+        "Venture Governance",
+        "Portfolio Bets",
+        "Diligence",
+        "Strategic Investing"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Investment_Associate_Corporate_Venture_Capital.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h2"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h0",
+              "work-savi-hotels-resorts-jaipur-india-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
+            "highlights": [
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1",
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h3"
+            ]
+          },
+          {
+            "id": "proj-duve-venture-diligence-and-industry-tearsheet",
+            "highlights": [
+              "proj-duve-venture-diligence-and-industry-tearsheet-h0",
+              "proj-duve-venture-diligence-and-industry-tearsheet-h2"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      },
+      "category": "Venture Capital & Early-Stage"
+    },
+    {
+      "id": "legal-operations-analyst-corporate-in-house-legal",
+      "role": "Legal Operations Analyst",
+      "industry": "Corporate In-House Legal",
+      "targeted": true,
+      "weight": 10,
+      "description": "In-house counsel burns hours on filing prep instead of judgment. I manage corporate records, compliance calendars, and contract-support workflows for lean legal teams.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Hands-on",
+        "Scope": "Transaction records",
+        "Impact": "Filing discipline",
+        "Specialization": "Corporate In-House Legal"
+      },
+      "requiredKeywords": [
+        "Legal Operations",
+        "Corporate Records",
+        "Filing Preparation",
+        "Governance Documentation",
+        "Compliance",
+        "Transaction Support"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Legal_Operations_Analyst_Corporate_In_House_Legal.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h5"
+            ]
+          },
+          {
+            "id": "work-family-real-estate-business-jaipur-india",
+            "highlights": [
+              "work-family-real-estate-business-jaipur-india-h0",
+              "work-family-real-estate-business-jaipur-india-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-independent-legal-documentation-and-filing-support",
+            "highlights": [
+              "proj-independent-legal-documentation-and-filing-support-h3",
+              "proj-independent-legal-documentation-and-filing-support-h4"
+            ]
+          },
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      },
+      "category": "Legal Operations & Transaction Support"
+    },
+    {
+      "id": "transaction-support-analyst-boutique-ma-advisory",
+      "role": "Transaction Support Analyst",
+      "industry": "Boutique M&A Advisory",
+      "targeted": true,
+      "weight": 10,
+      "description": "M&A boutiques need clean diligence rooms under tight closings. I prepare commercial exhibits, ESG-adjacent schedules, and data-room artefacts that keep deal teams moving.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Hands-on",
+        "Scope": "Transaction records",
+        "Impact": "Filing discipline",
+        "Specialization": "Boutique M"
+      },
+      "requiredKeywords": [
+        "Transaction Support",
+        "M&A Advisory",
+        "Due Diligence",
+        "ESG Diligence",
+        "Documentation",
+        "Deal Materials"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Transaction_Support_Analyst_Boutique_MA_Advisory.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h4"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h1",
+              "work-margadarshaka-h3"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-redshaw-advisors-brand-strategy-and-campaign-kit",
+            "highlights": [
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0",
+              "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1"
+            ]
+          },
+          {
+            "id": "proj-independent-legal-documentation-and-filing-support",
+            "highlights": [
+              "proj-independent-legal-documentation-and-filing-support-h1",
+              "proj-independent-legal-documentation-and-filing-support-h4"
+            ]
+          }
+        ],
+        "skills": [],
+        "leadership": []
+      },
+      "category": "Legal Operations & Transaction Support"
+    },
+    {
+      "id": "real-estate-investment-analyst-hospitality-asset-management",
+      "role": "Real Estate Investment Analyst",
+      "industry": "Hospitality Asset Management",
+      "targeted": true,
+      "weight": 10,
+      "description": "Hospitality asset managers need pricing grounded in operations, not comps alone. I combine leased-hotel turnaround evidence, revenue models, and capex assumptions for investment committees.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Hands-on",
+        "Scope": "Real-asset underwriting",
+        "Impact": "Portfolio judgment",
+        "Specialization": "Hospitality Asset Management"
+      },
+      "requiredKeywords": [
+        "Real Estate Investment",
+        "Hospitality Assets",
+        "Asset Management",
+        "Underwriting",
+        "RevPAR",
+        "Turnaround Analysis"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Real_Estate_Investment_Analyst_Hospitality_Asset_Management.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h2",
+              "work-savi-hotels-resorts-jaipur-india-h12"
+            ]
+          },
+          {
+            "id": "work-family-real-estate-business-jaipur-india",
+            "highlights": [
+              "work-family-real-estate-business-jaipur-india-h0",
+              "work-family-real-estate-business-jaipur-india-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "highlights": [
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h0",
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
+            ]
+          },
+          {
+            "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform",
+            "highlights": [
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h5",
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h2"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-data-and-databases"
+        ],
+        "leadership": []
+      },
+      "category": "PropTech & Real Estate Investment"
+    },
+    {
+      "id": "proptech-product-analyst-real-estate-saas-platforms",
+      "role": "PropTech Product Analyst",
+      "industry": "Real Estate SaaS Platforms",
+      "targeted": true,
+      "weight": 10,
+      "description": "Real-estate SaaS buyers sceptical of IoT hype need product clarity. I link digital-twin concepts, privacy-first sensor framing, and workflow fit for property-technology adoption.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Hands-on",
+        "Scope": "Real-asset underwriting",
+        "Impact": "Portfolio judgment",
+        "Specialization": "Real Estate SaaS Platforms"
+      },
+      "requiredKeywords": [
+        "PropTech",
+        "Real Estate SaaS",
+        "Product Analysis",
+        "Digital Twin",
+        "IoT",
+        "Underwriting"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_PropTech_Product_Analyst_Real_Estate_SaaS_Platforms.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h1",
+              "work-savi-hotels-resorts-jaipur-india-h8"
+            ]
+          },
+          {
+            "id": "work-family-real-estate-business-jaipur-india",
+            "highlights": [
+              "work-family-real-estate-business-jaipur-india-h0",
+              "work-family-real-estate-business-jaipur-india-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform",
+            "highlights": [
+              "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform-h1",
+              "proj-crestara-smart-room-digital-twin-and-privacy-first-iot-platform-h4"
+            ]
+          },
+          {
+            "id": "proj-london-airbnb-pricing-and-regression-models",
+            "highlights": [
+              "proj-london-airbnb-pricing-and-regression-models-h0",
+              "proj-london-airbnb-pricing-and-regression-models-h2"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-backend-and-apis"
+        ],
+        "leadership": []
+      },
+      "category": "PropTech & Real Estate Investment"
+    },
+    {
+      "id": "exhibition-designer-museums-cultural-institutions",
+      "role": "Exhibition Designer",
+      "industry": "Museums & Cultural Institutions",
+      "targeted": true,
+      "weight": 10,
+      "description": "Museum briefs fail when the room is a wall of text. I turn archival research into material choices, circulation, and interpretive environments a visitor can actually walk.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Spatial programmes",
+        "Impact": "Phygital legibility",
+        "Specialization": "Museums"
+      },
+      "requiredKeywords": [
+        "Exhibition Design",
+        "Museums",
+        "Spatial Narrative",
+        "Visitor Experience",
+        "Cultural Institutions",
+        "Design Capstone"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Exhibition_Designer_Museums_Cultural_Institutions.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h2",
+              "work-hult-ai-collective-h0"
+            ]
+          },
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h10",
+              "work-margadarshaka-h11"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-nirmana-design-capstone",
+            "highlights": [
+              "proj-nirmana-design-capstone-h0",
+              "proj-nirmana-design-capstone-h2"
+            ]
+          },
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h0",
+              "proj-project-oulm-one-ymca-youth-community-platform-h3"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      },
+      "category": "Spatial & Experiential Design"
+    },
+    {
+      "id": "experience-designer-retail-flagship-brand-spaces",
+      "role": "Experience Designer",
+      "industry": "Retail Flagship & Brand Spaces",
+      "targeted": true,
+      "weight": 10,
+      "description": "Retail flagships fail when digital and floor staff tell different stories. I design service touchpoints, spatial flows, and phygital moments that align brand promise with guest behaviour.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Spatial programmes",
+        "Impact": "Phygital legibility",
+        "Specialization": "Retail Flagship"
+      },
+      "requiredKeywords": [
+        "Experience Design",
+        "Retail Spaces",
+        "Service Design",
+        "Phygital",
+        "Brand Environments",
+        "Hospitality"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Experience_Designer_Retail_Flagship_Brand_Spaces.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h1",
+              "work-savi-hotels-resorts-jaipur-india-h4"
+            ]
+          },
+          {
+            "id": "work-siya-the-restaurant-srbs-group",
+            "highlights": [
+              "work-siya-the-restaurant-srbs-group-h0",
+              "work-siya-the-restaurant-srbs-group-h2"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-oulm-one-ymca-youth-community-platform",
+            "highlights": [
+              "proj-project-oulm-one-ymca-youth-community-platform-h1",
+              "proj-project-oulm-one-ymca-youth-community-platform-h2"
+            ]
+          },
+          {
+            "id": "proj-nirmana-design-capstone",
+            "highlights": [
+              "proj-nirmana-design-capstone-h1",
+              "proj-nirmana-design-capstone-h2"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      },
+      "category": "Spatial & Experiential Design"
+    },
+    {
+      "id": "creative-technologist-fintech-data-products",
+      "role": "Creative Technologist",
+      "industry": "FinTech & Data Products",
+      "targeted": true,
+      "weight": 10,
+      "description": "FinTech data products need interactive proofs before engineering commits. I prototype finance dashboards, audit engines, and terminal-style visualisations for stakeholder buy-in.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Student + Operator",
+        "Scope": "Prototype delivery",
+        "Impact": "Narrative systems",
+        "Specialization": "FinTech"
+      },
+      "requiredKeywords": [
+        "Creative Technologist",
+        "FinTech",
+        "Data Products",
+        "Prototyping",
+        "Visualization",
+        "Audit Tools"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Creative_Technologist_FinTech_Data_Products.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h10",
+              "work-margadarshaka-h11"
+            ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h3",
+              "work-hult-ai-collective-h0"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
+            "highlights": [
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h2"
+            ]
+          },
+          {
+            "id": "proj-bloom-creative-terminal-visualization",
+            "highlights": [
+              "proj-bloom-creative-terminal-visualization-h2",
+              "proj-bloom-creative-terminal-visualization-h5"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-backend-and-apis",
+          "skill-product-design-and-spatial-tools"
+        ],
+        "leadership": []
+      },
+      "category": "Creative Technology & Hybrid Design"
+    },
+    {
+      "id": "mlops-engineer-enterprise-applied-ai",
+      "role": "MLOps Engineer",
+      "industry": "Enterprise & Applied AI",
+      "targeted": true,
+      "weight": 10,
+      "description": "Enterprise AI pilots die in deployment. I ship production workflows with evaluation harnesses, monitoring hooks, and release pipelines that satisfy platform and security review.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Hands-on",
+        "Scope": "Production AI",
+        "Impact": "Shipped pipelines",
+        "Specialization": "Enterprise"
+      },
+      "requiredKeywords": [
+        "MLOps",
+        "Production AI",
+        "Deployment Automation",
+        "Evaluation",
+        "Pipelines",
+        "Enterprise Systems"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_MLOps_Engineer_Enterprise_Applied_AI.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h6",
+              "work-margadarshaka-h0"
+            ]
+          },
+          {
+            "id": "work-hult-ai-collective",
+            "highlights": [
+              "work-hult-ai-collective-h3",
+              "work-hult-ai-collective-h4"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-agentic-workflow-and-evaluation-platform",
+            "highlights": [
+              "proj-agentic-workflow-and-evaluation-platform-h0",
+              "proj-agentic-workflow-and-evaluation-platform-h1"
+            ]
+          },
+          {
+            "id": "proj-hospitality-and-venture-operations-automation",
+            "highlights": [
+              "proj-hospitality-and-venture-operations-automation-h1",
+              "proj-hospitality-and-venture-operations-automation-h3"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-ai-and-ml",
+          "skill-systems-and-devops"
+        ],
+        "leadership": []
+      },
+      "category": "AI Engineering"
+    },
+    {
+      "id": "speech-ml-engineer-regulated-language-technology",
+      "role": "Speech ML Engineer",
+      "industry": "Regulated Language Technology",
+      "targeted": true,
+      "weight": 10,
+      "description": "Regulated speech products need accuracy evidence, not a demo reel. I build Whisper-based recognition pipelines with evaluation matrices and bias checks before any unattended use.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Hands-on",
+        "Scope": "Production AI",
+        "Impact": "Shipped pipelines",
+        "Specialization": "Regulated Language Technology"
+      },
+      "requiredKeywords": [
+        "Speech Recognition",
+        "Whisper",
+        "Machine Learning",
+        "Regulated Technology",
+        "ASR",
+        "Model Evaluation"
+      ],
+      "pdfFilename": "Kartavya_Jharwal_Resume_Speech_ML_Engineer_Regulated_Language_Technology.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h6",
+              "work-margadarshaka-h9"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-amanuensis-hindi-speech-recognition",
+            "highlights": [
+              "proj-amanuensis-hindi-speech-recognition-h0",
+              "proj-amanuensis-hindi-speech-recognition-h1"
+            ]
+          },
+          {
+            "id": "proj-independent-risk-modelling-and-control-design",
+            "highlights": [
+              "proj-independent-risk-modelling-and-control-design-h2",
+              "proj-independent-risk-modelling-and-control-design-h4"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-ai-and-ml"
+        ],
+        "leadership": []
+      },
+      "category": "AI Engineering"
     }
   ],
   "internalTags": {
@@ -4546,7 +5803,7 @@
     "previewOnly": true,
     "frontendVisible": false,
     "selectableVariant": false,
-    "roleSpecificTailoringStatus": "Editorial polish: cluster/friction rewrites, thin-pair fixes, design rebalance, gated pairs; 68 role × industry pairs as of 2026-08-30."
+    "roleSpecificTailoringStatus": "Savi-Siya unified ETA pass: one property/period stack, XYZ+STAR bullets, Menu Design framing, kill-gate honesty, engagement hygiene as of 2026-09-04."
   },
   "variantAliases": {
     "heavy-industry-value-engineer-agritech": "solutions-engineer-culinary-hospitality-systems",

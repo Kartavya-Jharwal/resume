@@ -1,8 +1,6 @@
 # A Precision Specification for Single-Page Résumé Typesetting
 ### First Principles → Derived Rules → Reference Implementation
-**v1.6 — Master Document. Fully standalone: every rule, formula, and rationale below is complete in place. No section requires reading a prior version.**
-
-> **Archive:** [`docs/archive/TYPESETTING-v1.5.1.md`](docs/archive/TYPESETTING-v1.5.1.md) preserves the prior packed-composition baseline.
+**v1.5 — Master Document. Fully standalone: every rule, formula, and rationale below is complete in place. No section requires reading a prior version.**
 
 ---
 
@@ -30,7 +28,7 @@ A prior render was reviewed against this spec and specific, correctable problems
 
 **Visual concern, separate from the bug above.** A role/date/title row with nothing under it can still read as unfinished even once spacing is fixed. **[C, not forced]** If a one-line descriptor genuinely exists, use it. If not, the entry stands as title/date only — with the spacing bug fixed, it should read as intentionally brief, not broken.
 
-**Confirmed non-issue.** A single non-wrapping tagline/summary line (e.g. a "Professional Summary" statement) is exempt from the continuous-prose measure concerns in §3a/§4 by construction — it never reaches a second line at this column width. If such a line is ever lengthened enough to wrap, it stops being exempt and needs prose-appropriate leading, not the tight bullet λ this spec otherwise uses.
+**Confirmed non-issue.** A single non-wrapping tagline/summary line (e.g. an "Areas of Focus" statement) is exempt from the continuous-prose measure concerns in §3a/§4 by construction — it never reaches a second line at this column width. If such a line is ever lengthened enough to wrap, it stops being exempt and needs prose-appropriate leading, not the tight bullet λ this spec otherwise uses.
 
 **Flagged, not confirmed.** A rendered typeface should be checked against every criterion in §14 before its extracted metrics (§4, §6) are treated as final — a compliant typeface swap changes those numbers regardless of anything else in this document.
 
@@ -322,56 +320,30 @@ Rationale: this is a dense reference document read in short scanning bursts, not
 
 ## 11. Vertical Rhythm of Section Labels and Entries
 
-**[C — v1.6 composition]** The table below tightens v1.5.1 defaults for clearer entry separation and a denser title-to-bullet join. Values are authored in `config/typesetting.json` → `rhythm` and projected to CSS custom properties.
+**[C — v1.5.1 packed composition]** The table below tightens v1.5 defaults to match a dense one-page reference layout while keeping the same section model (tracked uppercase label, **rule below label**). Values are authored in `config/typesetting.json` → `rhythm` and projected to CSS custom properties.
 
 **[N]** The baseline grid (§5) locks *where* a line can sit but not *how much air* precedes a given element — that has to be stated separately, and stated unconditionally:
 
-| Position | Space (v1.6) | Applies |
+| Position | Space (v1.5.1) | Applies |
 |---|---|---|
 | Before a section label (e.g. EXPERIENCE, EDUCATION) | **1u (14pt)** — **0.5u** air / label / **0.5u** to rule | Unconditionally |
 | Section label → first line of content | **0.5u (7pt)** | Unconditionally |
-| Contact row → first section label | **0.5u (7pt)** via `--contact-to-body-gap`; summary section drops duplicate pre-label margin | After header |
-| Professional Summary paragraph → next section | **0.25u (3.5pt)** via `--summary-tail-gap` | When summary renders |
-| Role/project lead-in → first bullet | **0u** | When bullets exist |
+| Role/project lead-in → first bullet | **0.25u (3.5pt)** | When bullets exist |
 | Between bullets within the same role | **0.25u − 1pt (2.5pt)** | When bullets exist; wrapped lines inside a bullet use **1u − 1pt (13pt)** leading |
-| **End of any entry → next entry** | **0.75u (10.5pt)** via flex `gap` on `.r-sec-body` | **Unconditionally — with or without bullets** |
+| **End of any entry → next entry** | **0.5u (7pt)** | **Unconditionally — with or without bullets** |
 
-The last row is load-bearing (§0a): an entry with zero bullets gets exactly the same trailing space as an entry with five — there is no content-dependent branch in this rule. **v1.6 implementation note:** entry separation is enforced with `display:flex; flex-direction:column; gap:var(--entry-gap)` on `.r-sec-body` rather than per-block `margin-bottom`, which avoids margin-collapse failures between experience/project articles.
+The last row is load-bearing (§0a): an entry with zero bullets gets exactly the same trailing space as an entry with five — there is no content-dependent branch in this rule.
 
 A divider, if present (§16), subdivides the 1u pre-label budget rather than adding to it.
 
 ```css
 .r-sec { margin-top: var(--pre-sec-margin); }
-#r-summary { margin-top: 0; }
-.r-ctc { margin-bottom: var(--contact-to-body-gap); }
-.r-sec-body { display: flex; flex-direction: column; gap: var(--entry-gap); }
 .r-lbl { margin-bottom: var(--label-gap); padding-bottom: var(--pre-sec-pad); border-bottom: 0.5pt solid var(--rule-color); }
-.entry { margin-bottom: 0; }
+.entry { margin-bottom: var(--entry-gap); }
+.entry:last-of-type { margin-bottom: 0; }
 .role + ul { margin-top: var(--lead-in-gap); }
-#r-summary .summary-text { margin-bottom: var(--summary-tail-gap); }
 li + li { margin-top: var(--bullet-gap); }
 ```
-
-### §11a. Education detail inset (v1.6)
-
-**[C]** Fact rows under the degree line (**Double Major**, **GPA**, **Honors**, **Relevant Coursework**) carry a **0.5u (7pt)** left inset via `--edu-detail-inset` on `.edu-fact` only. The institution row and degree line remain flush with the section margin.
-
-### §11c. Experience header order (v1.6)
-
-**[C — §9 weight swap]** Two entry-header orders share the same DOM and spacing tokens; only which line carries emphasis changes.
-
-| Order | Primary (`.r-co`, bold) | Secondary (`.r-role`, italic) | When |
-|---|---|---|---|
-| **company-first** | Company | Role, location | Family ventures, AstroPatshala, founder startups |
-| **role-first** | Role | Company, location | Recognisable employers, universities, and other default experience |
-
-Secondary text follows primary on the same lead band with **`--entry-title-gap` (0.5u)**; when the band would collide with the right-flush date or wrap awkwardly, the stacked header rule applies (secondary drops to line 2). Each `resume.work[]` entry declares `headerOrder` (`company-first` | `role-first`); compile passes it through to the renderer.
-
-### §11b. Project engagement labels and dates (v1.6)
-
-**[C]** Tagged projects render `engagementLabel` inline after the project title in italic — same lead-band model as experience `roleLine`, stacking to line 2 when the title wraps or would collide with the right-flush date.
-
-**[N]** Projects carry `startDate` / `endDate` in source data; compile emits a formatted `date` string rendered right-flush in the project header using the same reserved date zone as experience.
 
 ---
 
@@ -509,9 +481,7 @@ a:hover, a:focus { text-decoration: underline; }
 
 **[N]** This document has exactly one valid physical geometry (§3, A4). It has **no content-reflow breakpoints, by design** — every rule from §1 onward (measure, leading, hang calibration, baseline grid, §4's reserved-zone math) is calibrated against one specific column width. Reflowing content at a different width would silently invalidate all of them at once. Applying conventional responsive-web breakpoints to a fixed-page print document is a category error — it imports a solution built for a document class that has no single correct width into one that, by definition, has exactly one.
 
-**Screen rendering is a proofing surface, not the deliverable.** `@media screen` rules should only ever affect *preview scale*, never internal layout, sizing, or spacing.
-
-**Raster AA policy (screen proof + Chromium PDF):** reject LCD/subpixel antialiasing on the résumé sheet. Subpixel AA paints RGB fringe on stem edges and reads as ink bleed both on-screen and when a soft raster proof is printed. Prefer monochrome edges (`-webkit-font-smoothing: none`, `-moz-osx-font-smoothing: grayscale`, `font-smooth: never`) over soft color-blended AA. Headless PDF generation disables LCD text and font subpixel positioning for the same reason. UI chrome may keep conventional grayscale AA; the sheet must not.
+**Screen rendering is a proofing surface, not the deliverable.** `@media screen` rules should only ever affect *preview scale*, never internal layout, sizing, or spacing:
 
 ```css
 @media screen and (max-width: 210mm) {

@@ -5,6 +5,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PDFDocument } from 'pdf-lib';
+import { A4_MEDIA_BOX } from './pdf-verify.js';
 import { formatDateRange, formatExpectedDate, NNBSP_PIPE, typograph } from './microtype.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -31,16 +32,33 @@ assert(match, 'dist/public/data.js does not match the production payload format'
 const expectedRevision = `${resume.meta?.version || 'unversioned'} / ${resume.meta?.lastModified || 'unknown'}`;
 assert(payload.includes(`Source: ${expectedRevision}`), `dist/public/data.js is stale (expected source revision ${expectedRevision})`);
 assert(payload.includes('window.VARIANT_ALIASES'), 'production payload must include variant alias map');
+assert(payload.includes('window.PROOF_ROUTER'), 'production payload must include proof router for leave-site OG previews');
 const profiles = JSON.parse(match[1]);
 assert(profiles.length === variants.length, 'production profile count must match variant count');
 assert(new Set(profiles.map(profile => profile.id)).size === profiles.length, 'profile ids must be unique');
 assert(profiles.some(profile => profile.fallback), 'a canonical fallback profile is required');
 if (!SKIP_PDFS) {
   assert(
-    profiles.find(profile => profile.fallback).omissions.every(omission => ['experienceHighlight', 'projectHighlight', 'skill', 'summary'].includes(omission.type)),
+    profiles.find(profile => profile.fallback).omissions.every(omission => [
+      'experienceHighlight',
+      'projectHighlight',
+      'skill',
+      'summary',
+      'coursework',
+      'educationHighlight',
+      'certification',
+      'language'
+    ].includes(omission.type)),
     'the universal resume may trim only optional bullets, excess skills, or its summary'
   );
 }
+
+assert(html.includes('newsreader-variable-roman.woff2'), 'production HTML must preload roman WOFF2');
+assert(html.includes('assets/css/typesetting.css'), 'production HTML must load typesetting.css');
+assert(existsSync(resolve(DIST, 'assets/css/typesetting.css')), 'dist must ship typesetting.css');
+const typesettingCss = readFileSync(resolve(DIST, 'assets/css/typesetting.css'), 'utf8');
+assert(/(--u:\s*14pt|--u:14pt)/.test(typesettingCss), 'dist typesetting.css must expose the 14pt unit grid');
+assert(typesettingCss.includes(':root') && typesettingCss.includes('.sheet'), 'typesetting tokens must bind to the sheet surface');
 
 const localReferences = [...html.matchAll(/(?:href|src)=["']([^"']+)["']/g)]
   .map(result => result[1])
@@ -57,9 +75,24 @@ for (const profile of profiles) {
   assert(profile.category, `${profile.id}: backend category is required`);
   assert(profile.contact?.email, `${profile.id}: email is required`);
   assert(Array.isArray(profile.experience), `${profile.id}: experience must be an array`);
+  profile.experience.forEach((entry, index) => {
+    assert(entry.headerOrder === 'company-first' || entry.headerOrder === 'role-first',
+      `${profile.id}: experience[${index}] must compile headerOrder`);
+  });
   assert(profile.experience.every(entry => entry.highlights?.length), `${profile.id}: experience entries need highlights`);
+  for (const entry of profile.experience) {
+    if (entry.location) {
+      assert(typeof entry.roleLine === 'string' && entry.roleLine.includes(entry.location),
+        `${profile.id}: roleLine must include location when present`);
+    }
+  }
   assert(Array.isArray(profile.projects), `${profile.id}: projects must be an array`);
   assert(profile.projects.every(entry => entry.highlights?.length), `${profile.id}: project entries need highlights`);
+  profile.projects.forEach((entry, index) => {
+    if (entry.date) {
+      assert(typeof entry.date === 'string' && entry.date.length > 0, `${profile.id}: project[${index}] must compile a date string`);
+    }
+  });
   const evidenceComposition = `${profile.experience.length}:${profile.projects.length}`;
   if (profile.isMasterCV) {
     assert(profile.id === 'all', `${profile.id}: only the all profile may be the master CV`);
@@ -148,14 +181,70 @@ for (const profile of profiles) {
       assert(pdf.getPageCount() === 1, `${profile.id}: targeted PDF must be one page`);
     }
     const size = pdf.getPage(0).getSize();
-    assert(Math.abs(size.width - 595.276) < 0.5 && Math.abs(size.height - 841.89) < 0.5, `${profile.id}: PDF must be A4`);
+    assert(Math.abs(size.width - A4_MEDIA_BOX.width) < 0.5 && Math.abs(size.height - A4_MEDIA_BOX.height) < 0.5, `${profile.id}: PDF must be A4`);
   }
 }
 
 assert(readFileSync(resolve(DIST, 'CNAME'), 'utf8').trim() === 'resume.kartavya.tech', 'dist/CNAME is incorrect');
 assert(!existsSync(resolve(DIST, 'roles')), 'role index and individual role pages must not be emitted');
 const sitemap = readFileSync(resolve(DIST, 'sitemap.xml'), 'utf8');
-assert((sitemap.match(/<url>/g) || []).length === 1, 'sitemap must expose only the frontend microsite gateway');
+const sitemapUrls = (sitemap.match(/<url>/g) || []).length;
+assert(sitemapUrls >= 1, 'sitemap must include the frontend microsite gateway');
+assert(sitemapUrls <= 24, 'sitemap should stay curated (gateway + fallback + priority variants)');
 assert(sitemap.includes('<loc>https://resume.kartavya.tech/</loc>'), 'sitemap must contain the frontend microsite');
-assert(readFileSync(resolve(DIST, 'robots.txt'), 'utf8').includes('https://resume.kartavya.tech/sitemap.xml'), 'robots.txt must advertise the sitemap');
-console.log(`✓ ${profiles.length} profiles${SKIP_PDFS ? '' : '/PDFs'} and the single microsite gateway passed production tests`);
+const robots = readFileSync(resolve(DIST, 'robots.txt'), 'utf8');
+assert(robots.includes('https://resume.kartavya.tech/sitemap.xml'), 'robots.txt must advertise the sitemap');
+assert(robots.includes('OAI-SearchBot'), 'robots.txt must allow OpenAI search bot');
+assert(robots.includes('Claude-SearchBot'), 'robots.txt must allow Claude search bot');
+assert(robots.includes('Google-Extended'), 'robots.txt must allow Google-Extended');
+const llms = readFileSync(resolve(DIST, 'llms.txt'), 'utf8');
+assert(existsSync(resolve(DIST, 'llms.txt')), 'llms.txt must be published at site root');
+assert(/do not invent/i.test(llms), 'llms.txt must state anti-hallucination policy');
+assert(llms.includes('kartavya.tech'), 'llms.txt must name parent domain');
+assert(llms.includes('Preferred sources'), 'llms.txt must list preferred sources');
+const ogPath = resolve(DIST, 'assets/img/og-default.png');
+assert(existsSync(ogPath), 'og-default.png must be published for share cards');
+assert(readFileSync(ogPath).byteLength > 1000, 'og-default.png must be a non-empty image');
+assert(html.includes('profileJsonLd'), 'index.html must include Person JSON-LD');
+assert(html.includes('leaveDialogPreview'), 'index.html must include leave-dialog OG preview mount');
+assert(html.includes('og:image'), 'index.html must include og:image meta');
+assert(html.includes('og:site_name'), 'index.html must include og:site_name');
+assert(html.includes('name="keywords"') || html.includes("name=keywords") || html.includes('id="metaKeywords"'), 'index.html must include keywords meta');
+assert(html.includes('agent-provenance'), 'index.html must include cold agent provenance');
+assert(html.includes('seo-entity'), 'index.html must include SEO entity surface');
+assert(html.includes('Kartavya Jharwal'), 'cold HTML must identify Kartavya Jharwal');
+assert(/\bKartavya\b/.test(html), 'cold HTML must include bare Kartavya alias');
+assert(/polymath/i.test(html), 'cold HTML must include polymath framing');
+assert(html.includes('https://kartavya.tech'), 'cold HTML must link parent domain');
+assert(/rel=["']me["']/.test(html), 'index.html must include rel=me identity links');
+
+const fallbackProfile = profiles.find(profile => profile.fallback) || profiles[0];
+assert(fallbackProfile, 'compiled profiles must include a fallback');
+assert(html.includes(fallbackProfile.role), `cold HTML must include fallback role (${fallbackProfile.role})`);
+assert(html.includes('r-name-inner'), 'cold HTML must prefill résumé name');
+assert(/Kartavya Jharwal \(Kartavya\)/.test(html), 'title/entity copy must front-load Kartavya alias');
+
+const jsonLdMatch = html.match(/<script[^>]*id=["']profileJsonLd["'][^>]*>([\s\S]*?)<\/script>/i);
+assert(jsonLdMatch, 'profileJsonLd script must be present');
+let jsonLd;
+try {
+  jsonLd = JSON.parse(jsonLdMatch[1]);
+} catch (error) {
+  throw new Error(`profileJsonLd must parse as JSON: ${error.message}`);
+}
+const graph = Array.isArray(jsonLd['@graph']) ? jsonLd['@graph'] : [jsonLd];
+const person = graph.find(node => node['@type'] === 'Person');
+assert(person, 'JSON-LD must include Person');
+assert(person['@id'] === 'https://resume.kartavya.tech/#person', 'Person must use stable @id');
+assert(person.givenName === 'Kartavya', 'Person must include givenName Kartavya');
+assert(Array.isArray(person.alternateName) && person.alternateName.includes('Kartavya'), 'Person must alternateName Kartavya');
+assert(Array.isArray(person.sameAs) && person.sameAs.some(url => String(url).includes('kartavya.tech')), 'Person sameAs must include parent domain');
+assert(graph.some(node => node['@type'] === 'ProfilePage'), 'JSON-LD must include ProfilePage');
+assert(graph.some(node => node['@type'] === 'WebSite'), 'JSON-LD must include WebSite');
+assert(graph.some(node => node['@type'] === 'BreadcrumbList'), 'JSON-LD must include BreadcrumbList');
+
+const liveProofUrl = 'https://kartavya.tech/HAC';
+assert(html.includes(liveProofUrl) || html.includes('proof-hac') || llms.includes('Hult AI Collective') || llms.includes(liveProofUrl), 'cold surface must expose at least one live proof');
+assert(/polymath/i.test(llms), 'llms.txt must explain polymath framing');
+
+console.log(`✓ ${profiles.length} profiles${SKIP_PDFS ? '' : '/PDFs'} and discoverability assets passed production tests`);

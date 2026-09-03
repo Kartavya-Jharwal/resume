@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>v1.5.1 rhythm probe</title>
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/typesetting.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <style>
+    body { margin: 0; background: #1b2121; }
+  </style>
+</head>
+<body>
+  <div class="sheet" id="sheet">
+    <h1 class="r-name" id="r-name">Kartavya Jharwal</h1>
+    <div class="r-ctc" id="r-ctc"><span class="ctc-part">London, UK</span></div>
+    <section class="r-sec" id="r-experience">
+      <h2 class="r-lbl" id="lbl">Experience</h2>
+      <div class="r-sec-body">
+        <article class="exp-block" id="exp1">
+          <div class="r-item-hdr">
+            <div class="r-item-lead">
+              <span class="r-co">Margadarshaka</span>
+              <span class="r-role" id="role">Co-Founder and Technical Lead, London, UK</span>
+            </div>
+            <span class="r-date">Jan 2025–Present</span>
+          </div>
+          <ul class="r-ul" id="bullets"><li>First bullet for rhythm measurement.</li></ul>
+        </article>
+        <article class="exp-block" id="exp2">
+          <div class="r-item-hdr">
+            <div class="r-item-lead">
+              <span class="r-co">Second Company</span>
+              <span class="r-role">Analyst, Remote</span>
+            </div>
+            <span class="r-date">2020–2024</span>
+          </div>
+          <ul class="r-ul"><li>Second entry bullet.</li></ul>
+        </article>
+      </div>
+    </section>
+  </div>
+  <pre id="rhythm-output" hidden></pre>
+  <script>
+    function gap(bottomEl, topEl) {
+      var bottom = bottomEl.getBoundingClientRect();
+      var top = topEl.getBoundingClientRect();
+      return top.top - bottom.bottom;
+    }
+
+    function tokenToCssPx(sheetStyle, name) {
+      var raw = String(sheetStyle.getPropertyValue(name) || '').trim();
+      var value = parseFloat(raw);
+      if (!Number.isFinite(value)) return 0;
+      if (raw.endsWith('pt')) return value * 96 / 72;
+      if (raw.endsWith('mm')) return value * 96 / 25.4;
+      return value;
+    }
+
+    async function emitRhythmProbe() {
+      await document.fonts.ready;
+      var sheet = document.querySelector('.sheet');
+      var sheetStyle = getComputedStyle(sheet);
+      var label = document.querySelector('.r-lbl');
+      var blocks = Array.prototype.slice.call(document.querySelectorAll('.exp-block'));
+      var header = blocks[0].querySelector('.r-item-hdr');
+      var role = header.querySelector('.r-role');
+      var bullets = document.querySelector('.r-ul');
+      var name = document.querySelector('.r-name');
+      var contact = document.querySelector('.r-ctc');
+      var payload = {
+        labelGap: gap(label, header),
+        entryGap: gap(blocks[0], blocks[1]),
+        leadInGap: gap(header, bullets),
+        nameContactGap: gap(name, contact),
+        nameAlign: getComputedStyle(name).textAlign,
+        nameSizePx: parseFloat(getComputedStyle(name).fontSize),
+        roleItalic: getComputedStyle(role).fontStyle,
+        expectedLabelGap: tokenToCssPx(sheetStyle, '--label-gap'),
+        expectedEntryGap: tokenToCssPx(sheetStyle, '--entry-gap'),
+        expectedLeadInGap: tokenToCssPx(sheetStyle, '--lead-in-gap'),
+        expectedNameContactGap: tokenToCssPx(sheetStyle, '--name-contact-gap'),
+        expectedNameSizePx: tokenToCssPx(sheetStyle, '--name-size')
+      };
+      document.getElementById('rhythm-output').textContent = JSON.stringify(payload);
+    }
+
+    window.addEventListener('load', function() {
+      emitRhythmProbe().catch(function(error) {
+        document.getElementById('rhythm-output').textContent = JSON.stringify({ error: String(error) });
+      });
+    });
+  </script>
+</body>
+</html>

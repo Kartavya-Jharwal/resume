@@ -1,0 +1,444 @@
+#!/usr/bin/env python3
+"""Pillar 3 flow DOCX — TYPESETTING.md canon precision (Newsreader, margins, rhythm, tables)."""
+
+from __future__ import annotations
+
+import json
+import shutil
+import sys
+import uuid
+import zipfile
+from pathlib import Path
+from xml.etree import ElementTree as ET
+
+from docx import Document
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+from docx.shared import Mm, Pt
+
+W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+R_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+CT_NS = "http://schemas.openxmlformats.org/package/2006/content-types"
+REL_NS = "http://schemas.openxmlformats.org/package/2006/relationships"
+
+
+def load_json(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def mm_to_pt(mm: float) -> float:
+    return mm * 72 / 25.4
+
+
+def set_run_font(
+    run,
+    family: str,
+    size_pt: float,
+    *,
+    bold: bool = False,
+    italic: bool = False,
+    spacing_pt: float = 0,
+    lining_nums: bool = False,
+    small_caps: bool = False,
+) -> None:
+    run.font.name = family
+    run.font.size = Pt(size_pt)
+    run.font.bold = bold
+    run.font.italic = italic
+    if small_caps:
+        run.font.small_caps = True
+    if spacing_pt:
+        run.font.spacing = Pt(spacing_pt)
+    rpr = run._element.get_or_add_rPr()
+    rfonts = rpr.find(qn("w:rFonts"))
+    if rfonts is None:
+        rfonts = OxmlElement("w:rFonts")
+        rpr.insert(0, rfonts)
+    rfonts.set(qn("w:ascii"), family)
+    rfonts.set(qn("w:hAnsi"), family)
+    rfonts.set(qn("w:cs"), family)
+
+    lig = OxmlElement("w:ligatures")
+    lig.set(qn("w:val"), "standardContextual")
+    rpr.append(lig)
+
+    if lining_nums:
+        num_form = OxmlElement("w:numForm")
+        num_form.set(qn("w:val"), "lining")
+        rpr.append(num_form)
+
+
+def set_paragraph_bottom_rule(paragraph, color_hex: str, padding_pt: float) -> None:
+    ppr = paragraph._element.get_or_add_pPr()
+    p_bdr = OxmlElement("w:pBdr")
+    bottom = OxmlElement("w:bottom")
+    bottom.set(qn("w:val"), "single")
+    bottom.set(qn("w:sz"), "4")  # 0.5pt in eighths of a point
+    bottom.set(qn("w:space"), str(max(1, int(round(padding_pt)))))
+    bottom.set(qn("w:color"), color_hex.lstrip("#").upper())
+    p_bdr.append(bottom)
+    ppr.append(p_bdr)
+
+
+def set_line_spacing(paragraph, line_pt: float) -> None:
+    paragraph.paragraph_format.line_spacing_rule = WD_LINE_SPACING.EXACTLY
+    paragraph.paragraph_format.line_spacing = Pt(line_pt)
+
+
+def strip_table_borders(table) -> None:
+    tbl = table._tbl
+    tbl_pr = tbl.tblPr
+    if tbl_pr is None:
+        tbl_pr = OxmlElement("w:tblPr")
+        tbl.insert(0, tbl_pr)
+    borders = OxmlElement("w:tblBorders")
+    for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
+        element = OxmlElement(f"w:{edge}")
+        element.set(qn("w:val"), "nil")
+        borders.append(element)
+    tbl_pr.append(borders)
+
+
+def set_default_style(doc: Document, canon: dict) -> None:
+    style = doc.styles["Normal"]
+    style.font.name = canon["fonts"]["familyText"]
+    style.font.size = Pt(canon["scale"]["s0Pt"])
+    style.paragraph_format.line_spacing_rule = WD_LINE_SPACING.EXACTLY
+    style.paragraph_format.line_spacing = Pt(canon["scale"]["uPt"])
+    style.paragraph_format.space_before = Pt(0)
+    style.paragraph_format.space_after = Pt(0)
+
+
+def add_label(doc: Document, canon: dict, text: str) -> None:
+    s0 = canon["scale"]["s0Pt"]
+    u = canon["scale"]["uPt"]
+    tracking_pt = canon["tracking"]["labelEm"] * s0
+    paragraph = doc.add_paragraph()
+    paragraph.paragraph_format.space_before = Pt(canon["rhythm"]["preSectionPt"] / 2)
+    paragraph.paragraph_format.space_after = Pt(canon["rhythm"]["labelGapPt"])
+    set_line_spacing(paragraph, u)
+    run = paragraph.add_run(text.upper())
+    set_run_font(run, canon["fonts"]["familyText"], s0, spacing_pt=tracking_pt, small_caps=True)
+    set_paragraph_bottom_rule(paragraph, canon["optical"]["ruleColor"], canon["rhythm"]["preSectionPt"] / 2)
+
+
+def add_name_block(doc: Document, canon: dict, profile: dict) -> None:
+    name_pt = canon["scale"]["namePt"]
+    name_leading = canon["scale"]["nameLeadingPt"]
+    s0 = canon["scale"]["s0Pt"]
+    u = canon["scale"]["uPt"]
+    tracking_pt = abs(canon["tracking"]["displayEm"] * name_pt)
+
+    title = doc.add_paragraph()
+    title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    title.paragraph_format.space_before = Pt(0)
+    title.paragraph_format.space_after = Pt(0)
+    set_line_spacing(title, name_leading)
+    title_run = title.add_run(profile.get("name", ""))
+    set_run_font(title_run, canon["fonts"]["familyTitle"], name_pt, spacing_pt=tracking_pt)
+
+    contact = profile.get("contact") or {}
+    bits = [contact.get("location"), contact.get("phone"), contact.get("email")]
+    if contact.get("website", {}).get("href"):
+        bits.append(contact["website"].get("label") or contact["website"]["href"])
+    elif contact.get("url"):
+        bits.append(str(contact["url"]).replace("https://", "").replace("http://", "").rstrip("/"))
+    for prof in contact.get("profiles") or []:
+        bits.append(prof.get("url") or prof.get("username") or prof.get("network") or "")
+    bits = [bit for bit in bits if bit]
+    if not bits:
+        return
+
+    contact_para = doc.add_paragraph()
+    contact_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    contact_para.paragraph_format.space_before = Pt(canon["rhythm"]["nameContactGapPt"])
+    contact_para.paragraph_format.space_after = Pt(canon["rhythm"].get("contactToBodyGapPt", 7))
+    set_line_spacing(contact_para, u)
+    contact_run = contact_para.add_run(" \u202f|\u202f ".join(bits))
+    set_run_font(contact_run, canon["fonts"]["familyText"], s0, lining_nums=True)
+
+
+def add_body(doc: Document, canon: dict, text: str, *, space_after: float = 0) -> None:
+    paragraph = doc.add_paragraph()
+    set_line_spacing(paragraph, canon["scale"]["uPt"])
+    paragraph.paragraph_format.space_after = Pt(space_after)
+    run = paragraph.add_run(text)
+    set_run_font(run, canon["fonts"]["familyText"], canon["scale"]["s0Pt"])
+
+
+def add_bullets(doc: Document, canon: dict, lines: list[str]) -> None:
+    indent_pt = canon["bullet"]["indentPt"]
+    hang_pt = canon["bullet"]["hangEm"] * canon["scale"]["s0Pt"]
+    left_indent = max(0, indent_pt - hang_pt)
+    for line in lines:
+        paragraph = doc.add_paragraph()
+        paragraph.paragraph_format.left_indent = Pt(left_indent)
+        paragraph.paragraph_format.first_line_indent = Pt(-hang_pt)
+        paragraph.paragraph_format.space_before = Pt(0)
+        paragraph.paragraph_format.space_after = Pt(canon["bullet"]["gapPt"])
+        set_line_spacing(paragraph, canon["bullet"]["linePt"])
+        marker = paragraph.add_run("\u2022\u00a0")
+        set_run_font(marker, canon["fonts"]["familyText"], canon["scale"]["s0Pt"])
+        body = paragraph.add_run(line)
+        set_run_font(body, canon["fonts"]["familyText"], canon["scale"]["s0Pt"])
+
+
+def add_entry_header(doc: Document, canon: dict, *, primary: str, secondary: str = "", date: str = "") -> None:
+    s0 = canon["scale"]["s0Pt"]
+    u = canon["scale"]["uPt"]
+    date_width = canon["metrics"]["dateReservedPt"]
+    text_width = mm_to_pt(canon["margins"]["textWidthMm"])
+    lead_width = max(40, text_width - date_width - canon["scale"]["colGutterPt"])
+
+    table = doc.add_table(rows=1, cols=2)
+    table.alignment = WD_TABLE_ALIGNMENT.LEFT
+    strip_table_borders(table)
+    row = table.rows[0]
+    row.cells[0].width = Pt(lead_width)
+    row.cells[1].width = Pt(date_width)
+
+    lead = row.cells[0].paragraphs[0]
+    set_line_spacing(lead, u)
+    primary_run = lead.add_run(primary)
+    set_run_font(primary_run, canon["fonts"]["familyText"], s0, bold=True)
+    if secondary:
+        secondary_run = lead.add_run(f", {secondary}")
+        set_run_font(secondary_run, canon["fonts"]["familyText"], s0, italic=True)
+
+    if date:
+        date_para = row.cells[1].paragraphs[0]
+        date_para.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        set_line_spacing(date_para, u)
+        date_run = date_para.add_run(date)
+        set_run_font(date_run, canon["fonts"]["familyText"], s0, lining_nums=True)
+
+    spacer = doc.add_paragraph()
+    spacer.paragraph_format.space_before = Pt(0)
+    spacer.paragraph_format.space_after = Pt(canon["rhythm"]["leadInGapPt"])
+    spacer.paragraph_format.line_spacing_rule = WD_LINE_SPACING.EXACTLY
+    spacer.paragraph_format.line_spacing = Pt(0.1)
+
+
+def embed_fonts(docx_path: Path, canon: dict) -> None:
+    fonts = {
+        canon["fonts"]["familyText"]: Path(canon["fonts"]["roman"]),
+        f"{canon['fonts']['familyText']} Italic": Path(canon["fonts"]["italic"]),
+        canon["fonts"]["familyTitle"]: Path(canon["fonts"]["roman"]),
+    }
+    temp_path = docx_path.with_suffix(".tmp.docx")
+    shutil.copyfile(docx_path, temp_path)
+
+    with zipfile.ZipFile(temp_path, "r") as zin:
+        archive = {name: zin.read(name) for name in zin.namelist()}
+
+    rels_path = "word/_rels/fontTable.xml.rels"
+    font_table_path = "word/fontTable.xml"
+    content_types_path = "[Content_Types].xml"
+    document_rels_path = "word/_rels/document.xml.rels"
+
+    if rels_path not in archive:
+        archive[rels_path] = (
+            b'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            b'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>'
+        )
+    if font_table_path not in archive:
+        archive[font_table_path] = (
+            b'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            b'<w:fonts xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"></w:fonts>'
+        )
+
+    rels_root = ET.fromstring(archive[rels_path])
+    fonts_root = ET.fromstring(archive[font_table_path])
+    content_root = ET.fromstring(archive[content_types_path])
+    existing_rels = len(rels_root.findall(f"{{{REL_NS}}}Relationship"))
+
+    for family, font_path in fonts.items():
+        if not font_path.exists():
+            raise FileNotFoundError(font_path)
+        rel_id = f"rId{existing_rels + 1}"
+        existing_rels += 1
+        archive_name = f"word/fonts/{font_path.name}"
+        if archive_name not in archive:
+            archive[archive_name] = font_path.read_bytes()
+            override = ET.Element(f"{{{CT_NS}}}Override")
+            override.set("PartName", f"/{archive_name}")
+            override.set("ContentType", "application/x-font-ttf")
+            content_root.append(override)
+
+        rel = ET.Element(f"{{{REL_NS}}}Relationship")
+        rel.set("Id", rel_id)
+        rel.set("Type", "http://schemas.openxmlformats.org/officeDocument/2006/relationships/font")
+        rel.set("Target", f"fonts/{font_path.name}")
+        rels_root.append(rel)
+
+        font_el = ET.Element(f"{{{W_NS}}}font")
+        font_el.set(f"{{{W_NS}}}name", family)
+        embed = ET.SubElement(font_el, f"{{{W_NS}}}embedRegular")
+        embed.set(f"{{{R_NS}}}id", rel_id)
+        embed.set(f"{{{W_NS}}}fontKey", "{" + str(uuid.uuid4()).upper() + "}")
+        fonts_root.append(font_el)
+
+    archive[rels_path] = ET.tostring(rels_root, encoding="utf-8", xml_declaration=True)
+    archive[font_table_path] = ET.tostring(fonts_root, encoding="utf-8", xml_declaration=True)
+    archive[content_types_path] = ET.tostring(content_root, encoding="utf-8", xml_declaration=True)
+
+    if document_rels_path in archive:
+        doc_rels = ET.fromstring(archive[document_rels_path])
+        has_font_table = any(
+            rel.get("Type") == "http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable"
+            for rel in doc_rels.findall(f"{{{REL_NS}}}Relationship")
+        )
+        if not has_font_table:
+            rel_ids = [rel.get("Id", "") for rel in doc_rels.findall(f"{{{REL_NS}}}Relationship")]
+            next_id = max((int(rid[3:]) for rid in rel_ids if rid.startswith("rId")), default=0) + 1
+            rel = ET.Element(f"{{{REL_NS}}}Relationship")
+            rel.set("Id", f"rId{next_id}")
+            rel.set("Type", "http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable")
+            rel.set("Target", "fontTable.xml")
+            doc_rels.append(rel)
+            archive[document_rels_path] = ET.tostring(doc_rels, encoding="utf-8", xml_declaration=True)
+            override = ET.Element(f"{{{CT_NS}}}Override")
+            override.set("PartName", "/word/fontTable.xml")
+            override.set(
+                "ContentType",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.fontTable+xml",
+            )
+            content_root = ET.fromstring(archive[content_types_path])
+            content_root.append(override)
+            archive[content_types_path] = ET.tostring(content_root, encoding="utf-8", xml_declaration=True)
+
+    with zipfile.ZipFile(docx_path, "w", compression=zipfile.ZIP_DEFLATED) as zout:
+        for name, data in archive.items():
+            zout.writestr(name, data)
+    temp_path.unlink(missing_ok=True)
+
+
+def build_document(profile: dict, canon: dict) -> Document:
+    doc = Document()
+    section = doc.sections[0]
+    section.page_height = Mm(canon["page"]["heightMm"])
+    section.page_width = Mm(canon["page"]["widthMm"])
+    section.top_margin = Mm(canon["margins"]["marginTopMm"])
+    section.bottom_margin = Mm(canon["margins"]["marginBottomMm"])
+    section.left_margin = Mm(canon["margins"]["marginXMm"])
+    section.right_margin = Mm(canon["margins"]["marginXMm"])
+
+    set_default_style(doc, canon)
+    add_name_block(doc, canon, profile)
+
+    if profile.get("summary"):
+        add_label(doc, canon, profile.get("summaryLabel") or "Professional Summary")
+        add_body(doc, canon, profile["summary"], space_after=canon["rhythm"].get("summaryTailGapPt", 3.5))
+
+    if profile.get("experience"):
+        add_label(doc, canon, "Professional Experience" if profile.get("isMasterCV") else "Relevant Experience")
+        for entry in profile["experience"]:
+            order = entry.get("headerOrder") or "company-first"
+            if order == "role-first":
+                primary = entry.get("role") or ""
+                secondary = entry.get("companyLine") or entry.get("company") or ""
+            else:
+                primary = entry.get("company") or ""
+                secondary = entry.get("roleLine") or entry.get("role") or ""
+            add_entry_header(doc, canon, primary=primary, secondary=secondary, date=entry.get("date", ""))
+            add_bullets(doc, canon, entry.get("highlights") or [])
+
+    if profile.get("projects"):
+        add_label(doc, canon, "Projects" if profile.get("isMasterCV") else "Related Projects")
+        for entry in profile["projects"]:
+            add_entry_header(
+                doc,
+                canon,
+                primary=entry.get("name", ""),
+                secondary=entry.get("engagementLabel") or "",
+                date=entry.get("date") or "",
+            )
+            if entry.get("description"):
+                add_body(doc, canon, entry["description"])
+            add_bullets(doc, canon, entry.get("highlights") or [])
+
+    if profile.get("education"):
+        add_label(doc, canon, "Education")
+        for entry in profile["education"]:
+            institution = entry.get("institution", "")
+            location = entry.get("location", "")
+            primary = institution if not location else f"{institution} \u202f|\u202f {location}"
+            add_entry_header(doc, canon, primary=primary, date=entry.get("date", ""))
+            degree_bits = [bit for bit in [entry.get("school"), entry.get("studyType")] if bit]
+            if degree_bits:
+                add_body(doc, canon, " \u202f|\u202f ".join(degree_bits))
+            for label, key in [
+                ("Double Major:", "area"),
+                ("GPA:", "score"),
+                ("Focus:", "summary"),
+                ("Honors:", "honors"),
+                ("Relevant Coursework:", "courses"),
+            ]:
+                value = entry.get(key)
+                if key in ("honors", "courses") and isinstance(value, list):
+                    value = "; ".join(value)
+                if not value:
+                    continue
+                paragraph = doc.add_paragraph()
+                paragraph.paragraph_format.left_indent = Pt(canon["education"]["detailInsetPt"])
+                set_line_spacing(paragraph, canon["scale"]["uPt"])
+                label_run = paragraph.add_run(label)
+                set_run_font(label_run, canon["fonts"]["familyText"], canon["scale"]["s0Pt"], italic=True)
+                value_run = paragraph.add_run(f" {value}")
+                set_run_font(
+                    value_run,
+                    canon["fonts"]["familyText"],
+                    canon["scale"]["s0Pt"],
+                    bold=(key == "score"),
+                )
+
+    additional = profile.get("additional") or {}
+    extra = []
+    if additional.get("skills"):
+        extra.append(("Skills", ", ".join(additional["skills"])))
+    if additional.get("certifications"):
+        extra.append(("Certifications", ", ".join(additional["certifications"])))
+    if additional.get("languages"):
+        extra.append(("Languages", ", ".join(additional["languages"])))
+    if additional.get("workAuthorization"):
+        extra.append(("Work authorization", additional["workAuthorization"]))
+    if additional.get("leadership"):
+        extra.append(("Leadership", " \u202f|\u202f ".join(additional["leadership"])))
+    if extra:
+        add_label(doc, canon, "Additional Information")
+        for label, value in extra:
+            paragraph = doc.add_paragraph()
+            set_line_spacing(paragraph, canon["scale"]["uPt"])
+            label_run = paragraph.add_run(f"{label}:")
+            set_run_font(label_run, canon["fonts"]["familyText"], canon["scale"]["s0Pt"], bold=True, italic=True)
+            value_run = paragraph.add_run(f" {value}")
+            set_run_font(value_run, canon["fonts"]["familyText"], canon["scale"]["s0Pt"])
+
+    return doc
+
+
+def main() -> int:
+    if len(sys.argv) != 4:
+        print("usage: emit-docx.py <profile.json> <canon.json> <output.docx>", file=sys.stderr)
+        return 2
+
+    profile = load_json(Path(sys.argv[1]).resolve())
+    canon = load_json(Path(sys.argv[2]).resolve())
+    docx_path = Path(sys.argv[3]).resolve()
+    staging = docx_path.with_suffix(".staging.docx")
+    docx_path.parent.mkdir(parents=True, exist_ok=True)
+
+    doc = build_document(profile, canon)
+    doc.save(str(staging))
+    embed_fonts(staging, canon)
+    if docx_path.exists():
+        docx_path.unlink()
+    staging.replace(docx_path)
+    print(f"docx:{docx_path}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

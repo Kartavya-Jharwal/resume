@@ -3,6 +3,8 @@ import { readFileSync, writeFileSync } from 'fs';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
+import { EVIDENCE_THREADS, THREAD_ANCHORS } from './category-taxonomy.js';
+
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const resume = JSON.parse(readFileSync(resolve(ROOT, 'data/resume.json'), 'utf8'));
 const variantsDoc = JSON.parse(readFileSync(resolve(ROOT, 'data/variants.json'), 'utf8'));
@@ -48,7 +50,14 @@ const audit = {
   sourceRevision: `${resume.meta?.version} / ${resume.meta?.lastModified}`,
   master: {
     work: resume.work.map(entry => ({ id: entry.id, name: entry.name, bullets: entry.highlights.length, engagementCategory: entry.engagementCategory || null })),
-    projects: resume.projects.map(entry => ({ id: entry.id, name: entry.name, bullets: entry.highlights.length })),
+    projects: resume.projects.map(entry => ({
+      id: entry.id,
+      name: entry.name,
+      bullets: entry.highlights.length,
+      engagementLabel: entry.engagementLabel || null,
+      engagementGroup: entry.engagementGroup || null,
+      url: entry.url || null
+    })),
     leadership: (resume.volunteer || []).map(entry => ({ id: entry.id, name: entry.organization }))
   },
   categories: Object.entries(categories).map(([name, data]) => ({
@@ -58,6 +67,10 @@ const audit = {
   })).sort((a, b) => a.name.localeCompare(b.name)),
   variantAliases: variantsDoc.variantAliases || {},
   orphanProjects,
+  evidenceThreads: {
+    threads: EVIDENCE_THREADS,
+    anchors: THREAD_ANCHORS
+  },
   totals: {
     categories: Object.keys(categories).length,
     pairs: variants.length,
@@ -67,13 +80,16 @@ const audit = {
     avgChars: Math.round(profiles.filter(profile => !profile.isMasterCV).reduce((sum, profile) => sum + [profile.summary, ...profile.experience.flatMap(e => e.highlights), ...profile.projects.flatMap(e => e.highlights)].join(' ').length, 0) / Math.max(1, profiles.filter(profile => !profile.isMasterCV).length))
   },
   taxonomyNotes: [
-    'Public selector remains Role → Industry; backend category structures validation, audit, and future expansion only.',
-    'PACA and PACAKATVA are classified under Hospitality & Culinary Operations, not agricultural technology.',
-    'Independent Healthcare Venture retains healthcare context with engagementCategory Independent & Stealth Ventures.',
-    'MBB Strategy Consulting is anchored by SRBS, Savi, AstroPatshala, Samsung/Huawei, and Noritake operating evidence.',
-    'All 66 pairs use explicit curated content plans; shared evidence across roles is intentional.',
+    'Public selector remains Role → Industry; backend category (v2, 22 buckets) structures validation, audit, and coursework ranking only.',
+    'VC is a category/employer archetype (industry), not a role — platform roles bifurcate as role × industry pairs.',
+    'MBB, Tier-2, Turnarounds, IB, VC, Family Office, and PropTech are separate backend categories (not one Strategy blob).',
+    'Product Management merged under Product Management & Platform; design split into UI/UX, Spatial, and Creative Technology categories.',
+    'Evidence threads (10) guarded by per-anchor highlight requirements — see bun/src/category-taxonomy.js THREAD_ANCHORS.',
+    'All 87 pairs use explicit curated content plans; shared evidence across roles is intentional.',
+    'v1.15.0: `all` tag discipline — denylisted narrow-domain bullets; role-specific descriptions; see DATA_LAYER.md.',
+    'Bucket depth v1.14.0: Creative Strategy & Brand (6), VC (5), Legal (3), PropTech (3), Spatial (3), AI Engineering (5).',
     'Culinary buckets A–C split stagiaire, menu/BOH consulting, and event hosting; Menu COGS project and Siya h2 never co-occur in one profile.',
-    'Legal Operations & Transaction Support is the 13th backend category (66th pair: legal-operations-analyst-law-firms-and-transaction-advisory).'
+    'Pillar 2 TODO: optional selectorGroup for coarse role-family collapse — family currently equals role at compile time.'
   ]
 };
 

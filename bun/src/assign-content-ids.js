@@ -30,7 +30,8 @@ const resume = JSON.parse(readFileSync(resumePath, 'utf8'));
 const used = new Set();
 
 for (const work of resume.work || []) {
-  work.id = ensureUniqueId(`work-${slugify(work.name)}`, used);
+  if (work.id) used.add(work.id);
+  else work.id = ensureUniqueId(`work-${slugify(work.name)}`, used);
   work.highlights = (work.highlights || []).map((highlight, index) => ({
     ...highlight,
     id: highlight.id || `${work.id}-h${index}`
@@ -38,7 +39,8 @@ for (const work of resume.work || []) {
 }
 
 for (const project of resume.projects || []) {
-  project.id = ensureUniqueId(`proj-${slugify(project.name)}`, used);
+  if (project.id) used.add(project.id);
+  else project.id = ensureUniqueId(`proj-${slugify(project.name)}`, used);
   project.highlights = (project.highlights || []).map((highlight, index) => ({
     ...highlight,
     id: highlight.id || `${project.id}-h${index}`
@@ -46,15 +48,18 @@ for (const project of resume.projects || []) {
 }
 
 for (const skill of resume.skills || []) {
-  skill.id = ensureUniqueId(`skill-${slugify(skill.name)}`, used);
+  if (skill.id) used.add(skill.id);
+  else skill.id = ensureUniqueId(`skill-${slugify(skill.name)}`, used);
 }
 
 for (const entry of resume.volunteer || []) {
-  entry.id = ensureUniqueId(`lead-${slugify(entry.organization)}`, used);
+  if (entry.id) used.add(entry.id);
+  else entry.id = ensureUniqueId(`lead-${slugify(entry.organization)}`, used);
 }
 
 for (const certificate of resume.certificates || []) {
-  certificate.id = ensureUniqueId(`cert-${slugify(certificate.name)}`, used);
+  if (certificate.id) used.add(certificate.id);
+  else certificate.id = ensureUniqueId(`cert-${slugify(certificate.name)}`, used);
 }
 
 writeFileSync(resumePath, `${JSON.stringify(resume, null, 2)}\n`, 'utf8');

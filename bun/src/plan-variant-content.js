@@ -55,6 +55,9 @@ function rankHighlights(entry, variantId, keywordBank, max) {
       score: scoreEntry(keywordBank, [highlight.text])
     }))
     .sort((a, b) => Number(b.direct) - Number(a.direct) || b.score - a.score);
+  if (!split.direct.length && pool.length) {
+    console.warn(`content:plan ${variantId}: ${entry.id || 'entry'} would use only global-eligible highlights`);
+  }
   return pool.slice(0, max).map(item => item.id);
 }
 
