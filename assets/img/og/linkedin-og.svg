@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0a66c2"/>
-  <rect x="48" y="48" width="1104" height="534" rx="24" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-  <text x="96" y="140" fill="#d9f3ff" font-family="Segoe UI, system-ui, sans-serif" font-size="28" font-weight="700" letter-spacing="4">PROOF ROUTER PLACEHOLDER</text>
-  <text x="96" y="260" fill="#ffffff" font-family="Segoe UI, system-ui, sans-serif" font-size="56" font-weight="700">LinkedIn</text>
-  <text x="96" y="330" fill="#e8f4ff" font-family="Segoe UI, system-ui, sans-serif" font-size="28">linkedin.com/in/kartavyajharwal</text>
-  <text x="96" y="520" fill="#d9f3ff" font-family="Segoe UI, system-ui, sans-serif" font-size="22">Replace with final linkedin-og.png</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#0a66c2"/><rect width="1104" height="534" x="48" y="48" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2" rx="24"/><text x="96" y="140" fill="#d9f3ff" font-family="Segoe UI, system-ui, sans-serif" font-size="28" font-weight="700" letter-spacing="4">PROOF ROUTER PLACEHOLDER</text><text x="96" y="260" fill="#fff" font-family="Segoe UI, system-ui, sans-serif" font-size="56" font-weight="700">LinkedIn</text><text x="96" y="330" fill="#e8f4ff" font-family="Segoe UI, system-ui, sans-serif" font-size="28">linkedin.com/in/kartavyajharwal</text><text x="96" y="520" fill="#d9f3ff" font-family="Segoe UI, system-ui, sans-serif" font-size="22">Replace with final linkedin-og.png</text></svg>
