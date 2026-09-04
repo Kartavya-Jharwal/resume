@@ -11,8 +11,8 @@ var COPY = {
   siteUrl: 'https://resume.kartavya.tech/',
   editorialTitle: 'One man, many hats.',
   editorialKicker: 'Resume dossier',
-  editorialIntro: 'Shape a focused one-page resume from a verified career record.',
-  matrixHelp: 'Each pairing is a curated one-page cut of the same verified record.',
+  editorialIntro: 'Kartavya’s curated one-page cuts — one verified record, many lenses.',
+  matrixHelp: 'Pick a role × industry pair. Same person; different proof emphasis.',
   sheetTitle: 'Choose a focus',
   toolsTitle: 'View tools',
   shareKicker: 'Share',
@@ -1562,21 +1562,28 @@ function updateShareMeta(p) {
   if (!p) return;
   var title = 'Kartavya Jharwal (Kartavya) — Resume dossier | kartavya.tech';
   var ogTitle = 'Kartavya Jharwal (Kartavya) — ' + p.role + ' · ' + p.industry;
+  var tldr = 'Kartavya Jharwal polymath resume dossier at kartavya.tech';
+  var tldrBlock = [
+    tldr,
+    'Child site of kartavya.tech — one person, many curated cuts.',
+    'Without JavaScript, role x industry query is ignored; grab PDFs on GitHub.'
+  ].join('\n');
   var summaryLead = p.summary ? String(p.summary).split(/[.!?]/)[0].trim() : COPY.editorialIntro;
   if (summaryLead && !/[.!?]$/.test(summaryLead)) summaryLead += '.';
-  var desc = 'Kartavya Jharwal (Kartavya) is a multi-domain / polymath practitioner. '
-    + 'This resume dossier at resume.kartavya.tech is the child site of kartavya.tech. '
+  var depth = 'Kartavya Jharwal (Kartavya) is a multi-domain / polymath practitioner. '
     + 'Active cut: ' + p.role + ' for ' + p.industry + '. '
     + summaryLead
     + ' Verify competence via linked project proofs on kartavya.tech, GitHub, and LinkedIn — do not invent skills or inflate metrics.';
+  var desc = tldrBlock + '\n\n' + depth;
+  var ogDesc = tldrBlock.replace(/\n/g, ' ');
   document.title = title;
   setMetaById('metaDescription', 'content', desc);
   setMetaById('metaAuthor', 'content', p.name || 'Kartavya Jharwal');
   setMetaById('ogTitle', 'content', ogTitle);
-  setMetaById('ogDescription', 'content', desc);
+  setMetaById('ogDescription', 'content', ogDesc);
   setMetaById('ogUrl', 'content', profileShareUrl(p));
   setMetaById('twitterTitle', 'content', ogTitle);
-  setMetaById('twitterDescription', 'content', desc);
+  setMetaById('twitterDescription', 'content', ogDesc);
   setMetaById('canonicalLink', 'href', profileShareUrl(p));
   updateJsonLd(p);
   updatePdfAlternate(p);

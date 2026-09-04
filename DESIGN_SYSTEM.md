@@ -17,8 +17,10 @@ The résumé microsite uses a small, layered design system so visual changes sta
 
 Typography is a dual stack:
 
-- **Satoshi** (`--font-ui`) — microsite chrome, rails, buttons, and status copy.
-- **Newsreader** (`--font-resume-text` / `--font-resume-title`) — the A4 sheet only.
+- **Satoshi** (`--font-ui`) — microsite chrome, rails, buttons, and status copy. Loaded faces are Regular / Medium / Bold only (`--weight-ui-regular` 400, `--weight-ui-medium` 500, `--weight-ui-bold` 700). Do not invent intermediate weights.
+- **Newsreader** (`--font-resume-text` / `--font-resume-title`) — the A4 sheet, plus the left-rail editorial display line (`.rail-title`).
+
+Left-rail type order: display → brand (Medium) → control value (Medium) → intro/help (Regular) → kickers (Bold, `--text-3xs`) → footer (Medium). Block gaps use `--rail-block-gap` / `--rail-block-gap-tight` instead of competing `vh` clamps.
 
 A4 geometry, the type scale, and Newsreader metrics live in [`config/typesetting.json`](config/typesetting.json) and are projected to [`assets/css/typesetting.css`](assets/css/typesetting.css). [`assets/css/style.css`](assets/css/style.css) holds `@font-face` rules for both families plus component, document, responsive, and print rules — prefer tokens over ad-hoc `rgb()` / rem sizes.
 

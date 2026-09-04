@@ -51,7 +51,7 @@ const tokens = typesettingCustomProperties(derived, {
 assert(derived.namePt === 20, 'name size must be 20pt');
 assert(derived.rhythm.preSectionU === 1, 'pre-section rhythm must be 1u total');
 assert(derived.rhythm.labelToContentU === 0.5, 'label gap must be 0.5u');
-assert(derived.rhythm.entryGapU === 0.75, 'entry gap must be 0.75u');
+assert(derived.rhythm.entryGapU === 0.5, 'entry gap must be 0.5u');
 assert(derived.rhythm.leadInToBulletU === 0, 'lead-in gap must be 0u');
 assert(derived.rhythm.bulletTightenPt === 1, 'bullet tighten must be 1pt');
 assert(derived.rhythm.nameToContactU === 0.5, 'name → contact gap must be 0.5u');
@@ -59,7 +59,7 @@ assert(derived.rhythm.nameToContactU === 0.5, 'name → contact gap must be 0.5u
 assert(pt(tokens['--pre-sec-margin']) === 7, 'pre-section margin must be 0.5u');
 assert(pt(tokens['--pre-sec-pad']) === 7, 'pre-section padding must be 0.5u');
 assert(pt(tokens['--label-gap']) === 7, 'label gap must be 7pt');
-assert(pt(tokens['--entry-gap']) === 10.5, 'entry gap must be 10.5pt');
+assert(pt(tokens['--entry-gap']) === 7, 'entry gap must be 7pt');
 assert(pt(tokens['--lead-in-gap']) === 0, 'lead-in gap must be 0pt');
 assert(pt(tokens['--micro-gap']) === 3.5, 'general micro-gap must stay 3.5pt');
 assert(pt(tokens['--bullet-line']) === 13, 'bullet line height must be 13pt');

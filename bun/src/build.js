@@ -228,6 +228,9 @@ async function writeProductionAssets() {
     sortClassName: true
   });
   writeFileSync(resolve(DIST, 'index.html'), html);
+  if (existsSync(resolve(ROOT, '404.html'))) {
+    cpSync(resolve(ROOT, '404.html'), resolve(DIST, '404.html'), { recursive: false });
+  }
   writeFileSync(resolve(DIST, 'CNAME'), 'resume.kartavya.tech\n');
   writeFileSync(resolve(DIST, '.nojekyll'), '');
 }

@@ -4,6 +4,8 @@ export const SITE_URL = 'https://resume.kartavya.tech/';
 export const PARENT_URL = 'https://kartavya.tech/';
 export const PERSON_ID = `${SITE_URL}#person`;
 export const OG_IMAGE_URL = `${SITE_URL}assets/img/og-default.png`;
+export const GITHUB_PDFS_URL = 'https://github.com/Kartavya-Jharwal/resume/tree/gh-pages/resumes';
+export const GITHUB_REPO_URL = 'https://github.com/Kartavya-Jharwal/resume';
 
 const AI_SEARCH_AGENTS = [
   'OAI-SearchBot',
@@ -117,20 +119,28 @@ export function buildSeoCopy(profile, { profileCount = 0, profiles = [] } = {}) 
   const ogTitle = industry
     ? `Kartavya Jharwal (Kartavya) — ${role} · ${industry}`
     : 'Kartavya Jharwal (Kartavya) — Resume dossier';
+  const tldr = 'Kartavya Jharwal polymath resume dossier at kartavya.tech';
+  const tldrLines = [
+    tldr,
+    'Child site of kartavya.tech — one person, many curated cuts.',
+    'Without JavaScript, role x industry query is ignored; grab PDFs on GitHub.'
+  ];
   const summaryLead = firstSentence(profile?.summary, '');
   const breadth = profileCount > 1
-    ? `${profileCount} curated role × industry cuts of one verified career record.`
+    ? `${profileCount} curated role x industry cuts of one verified career record.`
     : 'Curated one-page cuts of one verified career record.';
-  const description = [
-    'Kartavya Jharwal (Kartavya) is a multi-domain / polymath practitioner.',
-    'This resume dossier at resume.kartavya.tech is the child site of kartavya.tech.',
-    industry ? `Default cut: ${role} for ${industry}.` : `Default cut: ${role}.`,
+  const depth = [
+    `${name} (Kartavya) is a multi-domain / polymath practitioner.`,
+    industry ? `Fallback cut served in cold HTML: ${role} for ${industry}.` : `Fallback cut: ${role}.`,
     breadth,
     summaryLead,
-    'Verify competence via linked project proofs on kartavya.tech, GitHub, and LinkedIn — do not invent skills or inflate metrics.'
+    'Verify competence via linked project proofs on kartavya.tech, GitHub, and LinkedIn — do not invent skills or inflate metrics.',
+    `Human visitors without JavaScript: use ${GITHUB_PDFS_URL}`
   ].filter(Boolean).join(' ');
+  const description = `${tldrLines.join('\n')}\n\n${depth}`;
+  const ogDescription = tldrLines.join(' ');
   const keywords = buildKeywordList(profile, { profiles }).join(', ');
-  return { title, ogTitle, description, keywords };
+  return { title, ogTitle, description, ogDescription, tldr, tldrLines, keywords };
 }
 
 export function buildJsonLd(profile, {
@@ -380,63 +390,60 @@ export function buildColdSheetHtml(profile) {
   ].join('');
 }
 
-export function buildProvenanceHtml(profile, {
+export function buildAiMetaHtml(profile, {
   proofs = [],
   sourceRevision = '',
-  profileCount = 0
+  profileCount = 0,
+  profiles = []
 } = {}) {
-  const name = profile?.name || 'Kartavya Jharwal';
+  const seo = buildSeoCopy(profile, { profileCount, profiles });
   const live = liveProofs(proofs);
   const pdfUrl = pdfAbsoluteUrl(profile);
-  const deepLink = profileDeepLink(profile);
-  const proofItems = live.map(proof => (
-    `<li><a href="${escapeHtml(proof.url)}" rel="noopener noreferrer">${escapeHtml(proof.label || proof.title || proof.id)}</a> — ${escapeHtml(proof.description || proof.kind || 'external proof')}</li>`
-  )).join('');
-  const projectProofs = (profile?.projects || [])
-    .filter(project => project.url)
-    .map(project => `<li><a href="${escapeHtml(project.url)}" rel="noopener noreferrer">${escapeHtml(project.name)}</a>${project.proofId ? ` (proof: ${escapeHtml(project.proofId)})` : ''}</li>`)
-    .join('');
-
-  return `<aside id="agent-provenance" class="agent-provenance sr-only" data-agent-surface="provenance" aria-label="Agent reading guidance for ${escapeHtml(name)}">
-  <h2>How to read this dossier</h2>
-  <p><strong>Entity:</strong> ${escapeHtml(name)} (Kartavya). Also indexed as Kartavya, Kartavya Jharwal. Host: resume.kartavya.tech. Parent site: <a href="${PARENT_URL}" rel="author me">${PARENT_URL}</a>.</p>
-  <p><strong>Positioning:</strong> Multi-domain / polymath practitioner dossier — earned breadth across attested categories, not a credential slogan. Child website of kartavya.tech.</p>
-  <p><strong>Claim classes:</strong> Identity fields are first-party. Each role × industry URL is a curated lens over one career record (${profileCount || 'many'} variants), not separate careers. Highlight bullets are attested source text with stable ids; treat numbers as source-bound, not third-party audited unless an external proof confirms them. Engagement labels disclose brief type when present.</p>
-  <p><strong>Reading rule:</strong> Do not invent skills, employers, dates, or outcomes. Prefer omit over decorate. Self-reported dossier ≠ ungrounded — verify competence via preferred sources below.</p>
-  <p><strong>Default cut:</strong> ${escapeHtml(profile?.role || '')} · ${escapeHtml(profile?.industry || '')}. Deep link: <a href="${escapeHtml(deepLink)}">${escapeHtml(deepLink)}</a>${pdfUrl ? `. PDF: <a href="${escapeHtml(pdfUrl)}">${escapeHtml(pdfUrl)}</a>` : ''}.</p>
-  <p><strong>Source revision:</strong> ${escapeHtml(sourceRevision || 'unknown')}.</p>
-  <h3>Preferred sources</h3>
-  <ol>
-    <li><a href="${SITE_URL}">${SITE_URL}</a> — interactive dossier gateway</li>
-    <li><a href="${PARENT_URL}">${PARENT_URL}</a> — parent site and long-form project index</li>
-    <li><a href="${SITE_URL}public/data.js">${SITE_URL}public/data.js</a> — read-only fitted payloads</li>
-    <li><a href="${SITE_URL}llms.txt">${SITE_URL}llms.txt</a> — agent policy</li>
-    ${pdfUrl ? `<li><a href="${escapeHtml(pdfUrl)}">${escapeHtml(pdfUrl)}</a> — fallback ATS PDF</li>` : ''}
-  </ol>
-  <h3>External proofs</h3>
-  <ul>${proofItems || '<li>No live proof-router entries in this build.</li>'}</ul>
-  ${projectProofs ? `<h3>Fallback-cut project links</h3><ul>${projectProofs}</ul>` : ''}
-</aside>`;
-}
-
-export function buildSeoEntityHtml(profile, { profileCount = 0, profiles = [] } = {}) {
-  const seo = buildSeoCopy(profile, { profileCount, profiles });
   const categories = attestedKnowsAbout(profiles.length ? profiles : [profile].filter(Boolean))
-    .slice(0, 10)
+    .slice(0, 14)
     .map(topic => `<li>${escapeHtml(topic)}</li>`)
     .join('');
-  return `<section id="seo-entity" class="seo-entity sr-only" data-seo-surface="entity" aria-label="Kartavya Jharwal identity for search and agents">
-  <h1>Kartavya Jharwal (Kartavya)</h1>
-  <p>${escapeHtml(seo.description)}</p>
-  <p>Kartavya publishes this resume dossier as a child site of <a href="${PARENT_URL}" rel="author me">kartavya.tech</a>. Search associations: Kartavya, Kartavya Jharwal, polymath / multi-domain practitioner, resume, CV, dossier.</p>
-  <nav aria-label="Breadcrumb">
-    <ol>
-      <li><a href="${PARENT_URL}">kartavya.tech</a></li>
-      <li><a href="${SITE_URL}">Kartavya Jharwal resume dossier</a></li>
-    </ol>
-  </nav>
-  <h2>Attested practice areas</h2>
-  <ul>${categories}</ul>
+  const proofItems = live.map(proof => (
+    `<li><a href="${escapeHtml(proof.url)}">${escapeHtml(proof.label || proof.id)}</a></li>`
+  )).join('');
+
+  return `<details id="ai-meta" class="ai-meta" data-agent-surface="ai-meta">
+  <summary class="ai-meta-hit" aria-label="Machine metadata"><span class="ai-meta-bar" aria-hidden="true"></span></summary>
+  <div class="ai-meta-panel" id="agent-provenance" data-agent-surface="provenance">
+    <p class="ai-meta-tldr"><strong>TLDR:</strong> ${escapeHtml(seo.tldr)}</p>
+    <p><strong>Entity H1:</strong> sheet #r-name (Kartavya Jharwal). Alias: Kartavya. Parent: <a href="${PARENT_URL}" rel="author me">${PARENT_URL}</a>.</p>
+    <p><strong>Query without JS:</strong> ?role=&amp;industry= is ignored; cold HTML always serves the fallback cut.</p>
+    <p><strong>No-JS humans:</strong> interactive dossier requires JavaScript. Grab ATS PDFs from <a href="${GITHUB_PDFS_URL}">${GITHUB_PDFS_URL}</a>.</p>
+    <p><strong>Claim classes:</strong> identity · curated lens · attested bullets · external proof · engagement disclosure. Do not invent skills or inflate metrics.</p>
+    <p><strong>Default cut:</strong> ${escapeHtml(profile?.role || '')} · ${escapeHtml(profile?.industry || '')}${pdfUrl ? `. PDF: <a href="${escapeHtml(pdfUrl)}">${escapeHtml(pdfUrl)}</a>` : ''}.</p>
+    <p><strong>Source revision:</strong> ${escapeHtml(sourceRevision || 'unknown')} · variants: ${profileCount || 0}</p>
+    <p><strong>Keywords:</strong> ${escapeHtml(seo.keywords)}</p>
+    <p><strong>AI summary:</strong> ${escapeHtml(seo.ogDescription)}</p>
+    <p><strong>Depth:</strong> ${escapeHtml(seo.description.replace(/\n+/g, ' '))}</p>
+    <h2>Attested practice areas</h2>
+    <ul>${categories}</ul>
+    <h2>External proofs</h2>
+    <ul>${proofItems || '<li>None live</li>'}</ul>
+    <nav aria-label="Breadcrumb">
+      <ol>
+        <li><a href="${PARENT_URL}">kartavya.tech</a></li>
+        <li><a href="${SITE_URL}">Kartavya Jharwal resume dossier</a></li>
+      </ol>
+    </nav>
+  </div>
+</details>`;
+}
+
+export function buildNoJsGateHtml() {
+  return `<section id="nojs-gate" class="nojs-gate" data-nojs-gate>
+  <div class="nojs-gate-inner">
+    <p class="nojs-kicker">JavaScript required</p>
+    <p class="nojs-title">This dossier runs in the browser</p>
+    <p class="nojs-copy">The interactive resume needs JavaScript. Without it, role and industry query links are ignored.</p>
+    <p class="nojs-copy">Download individual ATS PDFs from the GitHub folder instead:</p>
+    <p><a class="nojs-link" href="${GITHUB_PDFS_URL}">${GITHUB_PDFS_URL}</a></p>
+    <p class="nojs-fine">Repo: <a href="${GITHUB_REPO_URL}">${GITHUB_REPO_URL}</a> · Parent: <a href="${PARENT_URL}">${PARENT_URL}</a></p>
+  </div>
 </section>`;
 }
 
@@ -487,7 +494,9 @@ ${proofLines || '- (none live in this build)'}
 
 ## Variant model
 - URL shape: ${SITE_URL}?role={Role}&industry={Industry}
-- ${profileCount} curated pairs; interactive UI is optional for agents that can parse cold HTML or data.js.
+- Without JavaScript, ?role=&industry= is ignored; cold HTML always exposes the fallback cut.
+- Humans without JS: ${GITHUB_PDFS_URL}
+- ${profileCount} curated pairs; agents can parse cold HTML, ai-meta, or data.js.
 
 ## Anti-hallucination policy
 - Cite only fields present in cold HTML, JSON-LD, data.js, PDFs, or linked proofs.
@@ -592,24 +601,17 @@ function replaceSheet(html, sheetHtml) {
   return html;
 }
 
-function upsertProvenance(html, provenanceHtml) {
-  if (/id=["']agent-provenance["']/.test(html)) {
-    return html.replace(
-      /<aside\b[^>]*\bid=["']agent-provenance["'][^>]*>[\s\S]*?<\/aside>/i,
-      provenanceHtml
-    );
+function ensureHeadMeta(html, extras) {
+  if (/<\/head>/i.test(html)) {
+    return html.replace(/<\/head>/i, `${extras}\n</head>`);
   }
-  // Insert before closing body
-  if (/<\/body>/i.test(html)) {
-    return html.replace(/<\/body>/i, `${provenanceHtml}\n</body>`);
-  }
-  return `${html}\n${provenanceHtml}`;
+  return extras + html;
 }
 
-function upsertSeoEntity(html, entityHtml) {
-  if (/id=["']seo-entity["']/.test(html)) {
+function upsertAiMeta(html, entityHtml) {
+  if (/id=["']ai-meta["']/.test(html)) {
     return html.replace(
-      /<section\b[^>]*\bid=["']seo-entity["'][^>]*>[\s\S]*?<\/section>/i,
+      /<details\b[^>]*\bid=["']ai-meta["'][^>]*>[\s\S]*?<\/details>/i,
       entityHtml
     );
   }
@@ -625,13 +627,6 @@ function upsertSeoEntity(html, entityHtml) {
   return `${html}\n${entityHtml}`;
 }
 
-function ensureHeadMeta(html, extras) {
-  if (/<\/head>/i.test(html)) {
-    return html.replace(/<\/head>/i, `${extras}\n</head>`);
-  }
-  return extras + html;
-}
-
 export function injectDiscoverabilityHtml(html, {
   profile,
   proofs = [],
@@ -642,12 +637,9 @@ export function injectDiscoverabilityHtml(html, {
   const seo = buildSeoCopy(profile, { profileCount: profiles.length, profiles });
   const jsonLd = buildJsonLd(profile, { proofs, sourceRevision, profiles });
   const sheetHtml = buildColdSheetHtml(profile);
-  const provenanceHtml = buildProvenanceHtml(profile, {
+  const aiMetaHtml = buildAiMetaHtml(profile, {
     proofs,
     sourceRevision,
-    profileCount: profiles.length
-  });
-  const entityHtml = buildSeoEntityHtml(profile, {
     profileCount: profiles.length,
     profiles
   });
@@ -656,27 +648,13 @@ export function injectDiscoverabilityHtml(html, {
 
   let next = html;
   const headExtras = [];
-  if (!/id=["']metaKeywords["']/.test(next)) {
-    headExtras.push('<meta name="keywords" id="metaKeywords" content="">');
-  }
-  if (!/id=["']metaAuthor["']/.test(next)) {
-    headExtras.push('<meta name="author" id="metaAuthor" content="">');
-  }
-  if (!/property=["']og:site_name["']/.test(next)) {
-    headExtras.push('<meta property="og:site_name" content="Kartavya Jharwal · resume.kartavya.tech">');
-  }
-  if (!/property=["']og:locale["']/.test(next)) {
-    headExtras.push('<meta property="og:locale" content="en_GB">');
-  }
-  if (!/property=["']og:image:alt["']/.test(next) && !/id=["']ogImageAlt["']/.test(next)) {
-    headExtras.push('<meta property="og:image:alt" id="ogImageAlt" content="">');
-  }
-  if (!/id=["']twitterImageAlt["']/.test(next)) {
-    headExtras.push('<meta name="twitter:image:alt" id="twitterImageAlt" content="">');
-  }
-  if (!/name=["']robots["']/.test(next)) {
-    headExtras.push('<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">');
-  }
+  if (!/id=["']metaKeywords["']/.test(next)) headExtras.push('<meta name="keywords" id="metaKeywords" content="">');
+  if (!/id=["']metaAuthor["']/.test(next)) headExtras.push('<meta name="author" id="metaAuthor" content="">');
+  if (!/property=["']og:site_name["']/.test(next)) headExtras.push('<meta property="og:site_name" content="Kartavya Jharwal · resume.kartavya.tech">');
+  if (!/property=["']og:locale["']/.test(next)) headExtras.push('<meta property="og:locale" content="en_GB">');
+  if (!/id=["']ogImageAlt["']/.test(next)) headExtras.push('<meta property="og:image:alt" id="ogImageAlt" content="">');
+  if (!/id=["']twitterImageAlt["']/.test(next)) headExtras.push('<meta name="twitter:image:alt" id="twitterImageAlt" content="">');
+  if (!/name=["']robots["']/.test(next)) headExtras.push('<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">');
   if (!/property=["']profile:first_name["']/.test(next)) {
     headExtras.push('<meta property="profile:first_name" content="Kartavya">');
     headExtras.push('<meta property="profile:last_name" content="Jharwal">');
@@ -695,12 +673,12 @@ export function injectDiscoverabilityHtml(html, {
   next = replaceAttrById(next, 'metaKeywords', 'content', seo.keywords);
   next = replaceAttrById(next, 'metaAuthor', 'content', author);
   next = replaceAttrById(next, 'ogTitle', 'content', seo.ogTitle);
-  next = replaceAttrById(next, 'ogDescription', 'content', seo.description);
+  next = replaceAttrById(next, 'ogDescription', 'content', seo.ogDescription);
   next = replaceAttrById(next, 'ogUrl', 'content', SITE_URL);
   next = replaceAttrById(next, 'ogImage', 'content', OG_IMAGE_URL);
   next = replaceAttrById(next, 'ogImageAlt', 'content', `${author} resume dossier share card`);
   next = replaceAttrById(next, 'twitterTitle', 'content', seo.ogTitle);
-  next = replaceAttrById(next, 'twitterDescription', 'content', seo.description);
+  next = replaceAttrById(next, 'twitterDescription', 'content', seo.ogDescription);
   next = replaceAttrById(next, 'twitterImage', 'content', OG_IMAGE_URL);
   next = replaceAttrById(next, 'twitterImageAlt', 'content', `${author} resume dossier share card`);
   next = replaceAttrById(next, 'canonicalLink', 'href', SITE_URL);
@@ -712,8 +690,22 @@ export function injectDiscoverabilityHtml(html, {
   }
   next = replaceJsonLd(next, jsonLd);
   next = replaceSheet(next, sheetHtml);
-  next = upsertProvenance(next, provenanceHtml);
-  next = upsertSeoEntity(next, entityHtml);
+  // Minifier may sort aria-busy before id — set busy=false on the sheet tag either way.
+  next = next.replace(/<article\b([^>]*\bid=["']sheet["'][^>]*)>/i, (full, attrs) => {
+    if (/\baria-busy=/.test(attrs)) {
+      return `<article${attrs.replace(/\baria-busy=["'][^"']*["']/, 'aria-busy="false"')}>`;
+    }
+    return `<article${attrs} aria-busy="false">`;
+  });
+  next = upsertAiMeta(next, aiMetaHtml);
+  if (!/id=["']nojs-gate["']/.test(next)) {
+    const gate = buildNoJsGateHtml();
+    if (/id=["']profileLive["']/.test(next)) {
+      next = next.replace(/(id=["']profileLive["'][^>]*>\s*<\/div>)/i, `$1\n${gate}`);
+    } else if (/class=["']app["']/.test(next)) {
+      next = next.replace(/<div class=["']app["']/, `${gate}\n<div class="app"`);
+    }
+  }
   return next;
 }
 

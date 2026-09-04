@@ -28,13 +28,15 @@ Without a cold agent surface, crawlers see an empty sheet and default to a hosti
 
 | Asset | Location | Notes |
 |-------|----------|-------|
-| Cold fallback `#sheet` | `dist/index.html` | Build-injected from fallback compiled profile |
-| `#agent-provenance` | `dist/index.html` | Claim classes, preferred sources, proof index (visually `sr-only`) |
-| Meta / OG / Twitter / canonical | `dist/index.html` | Fallback role × industry depth copy |
+| Cold fallback `#sheet` | `dist/index.html` | Build-injected; `#r-name` is the sole SEO H1; `aria-busy="false"` when prefilled |
+| `#nojs-gate` | `index.html` / `404.html` | Humans without JS: hide `.app`; explanatory copy + GitHub `gh-pages/resumes` PDF folder |
+| `#ai-meta` | `dist/index.html` | 2px dark dropdown: TLDR, keywords, AI summary, provenance, proofs (near-invisible contrast) |
+| Meta / OG / Twitter / canonical | `dist/index.html` | 7-word TLDR + 3-line block, then depth description |
 | JSON-LD `@graph` | `#profileJsonLd` | Person `@id`, ProfilePage, optional PDF DigitalDocument |
 | `robots.txt` | `dist/robots.txt` | Explicit AI search/citation agents + `*` |
 | `sitemap.xml` | `dist/sitemap.xml` | Gateway + fallback + priority deep links |
-| `llms.txt` | `dist/llms.txt` | Preferred sources + anti-hallucination policy |
+| `llms.txt` | `dist/llms.txt` | Preferred sources; notes query ignored without JS |
+| `404.html` | `dist/404.html` | Same no-JS PDF-folder pattern |
 | Proof router | `window.PROOF_ROUTER` | Leave-site OG + cold proof list |
 | OG image | `assets/img/og-default.png` → `dist/` | Tracked fallback; `OG_RENDER=1` regenerates |
 | Client share meta | `assets/js/app.js` | Deep-link updates after hydrate |

@@ -70,10 +70,16 @@
   --text-sm: 0.875rem;
   --text-md: 1rem;
   --text-lg: 1.125rem;
+  /* Satoshi ships Regular/Medium/Bold only — stay on real faces */
+  --weight-ui-regular: 400;
+  --weight-ui-medium: 500;
+  --weight-ui-bold: 700;
   --tracking-label: 0.16em;
   --tracking-kicker: 0.14em;
   --tracking-micro: 0.12em;
   --tracking-display-ui: 0;
+  --rail-block-gap: var(--space-6);
+  --rail-block-gap-tight: var(--space-4);
 
   /* Interface spacing (4pt sub-grid, 8pt layout rhythm) */
   --space-1: 4px;
@@ -204,6 +210,8 @@
     --icon-btn-size: clamp(32px, 4.4vh, 40px);
     --icon-btn-size-zoom: clamp(28px, 3.6vh, 34px);
     --text-2xs: 0.75rem;
+    --rail-block-gap: var(--space-5);
+    --rail-block-gap-tight: var(--space-3);
   }
 }
 

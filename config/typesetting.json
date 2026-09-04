@@ -18,7 +18,7 @@
   "rhythm": {
     "preSectionU": 1,
     "labelToContentU": 0.5,
-    "entryGapU": 0.75,
+    "entryGapU": 0.5,
     "leadInToBulletU": 0,
     "bulletGapU": 0.25,
     "bulletTightenPt": 1,

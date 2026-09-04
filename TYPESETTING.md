@@ -162,7 +162,7 @@ Worked example (A4): 496.06pt − 63pt − 7pt ≈ 426.06pt ≈ **150.2mm**.
 
 A title that still doesn't resolve within two lines is not a CSS problem — it's an overflow-validation failure (§20), surfaced for content editing (a shorter title/company string), exactly the way §20 already treats a section that doesn't fit the page.
 
-**[C — v1.5.1]** Experience entries use a single-line header when it fits: **company** (semibold) + *role, city, country* (italic S0, middle band) + right-flush **date**, with **0.5u** title gap between company and role (`entryTitleGapU` → `--entry-title-gap`). When the company wraps or would collide with the date column, the header stacks to company + date on line 1 and role on line 2 (`.r-item-hdr--stacked`).
+**[C — v1.5.1]** Experience entries use a single-line header when it fits: **company** (semibold) + *role, city, country* (italic S0, middle band) + right-flush **date**, with **0.5u** title gap between company and role (`entryTitleGapU` → `--entry-title-gap`). When the company wraps, the role would collide with the date column, or the role would crush into a leftover strip beside a long company (role needs about 42% of the lead band), the header stacks to company + date on line 1 and role on line 2 (`.r-item-hdr--stacked`).
 
 **[N]** Both the date column and the title text remain on the same baseline grid established in §5 — this is a sub-region of the same text block, not a separate typographic system.
 
@@ -334,7 +334,7 @@ Rationale: this is a dense reference document read in short scanning bursts, not
 | Professional Summary paragraph → next section | **0.25u (3.5pt)** via `--summary-tail-gap` | When summary renders |
 | Role/project lead-in → first bullet | **0u** | When bullets exist |
 | Between bullets within the same role | **0.25u − 1pt (2.5pt)** | When bullets exist; wrapped lines inside a bullet use **1u − 1pt (13pt)** leading |
-| **End of any entry → next entry** | **0.75u (10.5pt)** via flex `gap` on `.r-sec-body` | **Unconditionally — with or without bullets** |
+| **End of any entry → next entry** | **0.5u (7pt)** via flex `gap` on `.r-sec-body` | **Unconditionally — with or without bullets** |
 
 The last row is load-bearing (§0a): an entry with zero bullets gets exactly the same trailing space as an entry with five — there is no content-dependent branch in this rule. **v1.6 implementation note:** entry separation is enforced with `display:flex; flex-direction:column; gap:var(--entry-gap)` on `.r-sec-body` rather than per-block `margin-bottom`, which avoids margin-collapse failures between experience/project articles.
 
