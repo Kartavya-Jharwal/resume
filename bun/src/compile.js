@@ -479,37 +479,55 @@ function describeComposition(experienceCount, projectCount) {
 function resolveExplicitContent(content, resumeData, contentLimits) {
   const workById = new Map((resumeData.work || []).map(entry => [entry.id, entry]));
   const projectById = new Map((resumeData.projects || []).map(entry => [entry.id, entry]));
+  const experienceLimit = limitOrInfinity(contentLimits.experience);
+  const projectLimit = limitOrInfinity(contentLimits.projects);
+  const seenWork = new Set();
+  const seenProjects = new Set();
 
-  const experience = (content.experience || []).map(selection => {
-    const work = workById.get(selection.id);
-    if (!work) throw new Error(`Unknown work id "${selection.id}" in variant content plan`);
-    const highlightById = new Map((work.highlights || []).map(highlight => [highlight.id, highlight.text]));
-    const highlights = (selection.highlights || [])
-      .map(highlightId => highlightById.get(highlightId))
-      .filter(Boolean)
-      .slice(0, limitOrInfinity(contentLimits.experienceHighlights));
-    if (!highlights.length) throw new Error(`Work "${selection.id}" has no resolved highlights`);
-    return {
-      ...formatExperienceEntry(work),
-      highlights: highlights.map(typograph)
-    };
-  });
+  const experience = (content.experience || [])
+    .filter(selection => {
+      if (!selection?.id || seenWork.has(selection.id)) return false;
+      seenWork.add(selection.id);
+      return true;
+    })
+    .slice(0, experienceLimit)
+    .map(selection => {
+      const work = workById.get(selection.id);
+      if (!work) throw new Error(`Unknown work id "${selection.id}" in variant content plan`);
+      const highlightById = new Map((work.highlights || []).map(highlight => [highlight.id, highlight.text]));
+      const highlights = (selection.highlights || [])
+        .map(highlightId => highlightById.get(highlightId))
+        .filter(Boolean)
+        .slice(0, limitOrInfinity(contentLimits.experienceHighlights));
+      if (!highlights.length) throw new Error(`Work "${selection.id}" has no resolved highlights`);
+      return {
+        ...formatExperienceEntry(work),
+        highlights: highlights.map(typograph)
+      };
+    });
 
-  const projects = (content.projects || []).map(selection => {
-    const project = projectById.get(selection.id);
-    if (!project) throw new Error(`Unknown project id "${selection.id}" in variant content plan`);
-    const highlightById = new Map((project.highlights || []).map(highlight => [highlight.id, highlight.text]));
-    const highlights = (selection.highlights || [])
-      .map(highlightId => highlightById.get(highlightId))
-      .filter(Boolean)
-      .slice(0, limitOrInfinity(contentLimits.projectHighlights));
-    if (!highlights.length) throw new Error(`Project "${selection.id}" has no resolved highlights`);
-    return {
-      ...formatProjectEntry(project),
-      description: contentLimits.projectDescriptions === false ? '' : typograph(project.description || ''),
-      highlights: highlights.map(typograph)
-    };
-  });
+  const projects = (content.projects || [])
+    .filter(selection => {
+      if (!selection?.id || seenProjects.has(selection.id)) return false;
+      seenProjects.add(selection.id);
+      return true;
+    })
+    .slice(0, projectLimit)
+    .map(selection => {
+      const project = projectById.get(selection.id);
+      if (!project) throw new Error(`Unknown project id "${selection.id}" in variant content plan`);
+      const highlightById = new Map((project.highlights || []).map(highlight => [highlight.id, highlight.text]));
+      const highlights = (selection.highlights || [])
+        .map(highlightId => highlightById.get(highlightId))
+        .filter(Boolean)
+        .slice(0, limitOrInfinity(contentLimits.projectHighlights));
+      if (!highlights.length) throw new Error(`Project "${selection.id}" has no resolved highlights`);
+      return {
+        ...formatProjectEntry(project),
+        description: contentLimits.projectDescriptions === false ? '' : typograph(project.description || ''),
+        highlights: highlights.map(typograph)
+      };
+    });
 
   return {
     experience,

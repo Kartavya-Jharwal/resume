@@ -7,7 +7,7 @@
       "fallback": true,
       "targeted": true,
       "weight": 10,
-      "description": "Pre-Series A teams stall when GTM lives in the founder's head. I set funnel tracking, sprint rituals, and named owners so traction has a weekly operating rhythm.",
+      "description": "When YC-alumni teams need repeatable GTM cadence before Series A, I install funnel instrumentation, sprint rituals, and cross-functional owners so zero-to-one traction becomes an operating rhythm, not a founder bottleneck.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Hands-on",
@@ -77,7 +77,7 @@
       "industry": "Early-Stage Funds",
       "targeted": true,
       "weight": 10,
-      "description": "Pre-seed funds need a pack before the partner meeting, not a TAM slide. I write market maps, team and product judgment, and investment notes in the shape London funds actually use.",
+      "description": "Pre-seed funds need conviction packs before partner meetings. I produce market maps, team and product judgment, and investment narratives calibrated to London VC diligence standards.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Student + Operator",
@@ -147,7 +147,7 @@
       "industry": "Corporate Strategy",
       "targeted": true,
       "weight": 10,
-      "description": "Strategy groups drown in interviews and decks. I turn operating evidence into recommendations with market sizing, competitive moves, and execution gates a steering pack can actually use.",
+      "description": "Corporate strategy teams drowning in qualitative noise hire me to convert operating evidence into board-ready recommendations covering market sizing, competitive moves, and execution gates tied to Fortune-500 decision cycles.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Hands-on",
@@ -244,8 +244,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h14",
-              "work-savi-hotels-resorts-jaipur-india-h3"
+              "work-savi-hotels-resorts-jaipur-india-h0",
+              "work-savi-hotels-resorts-jaipur-india-h12"
             ]
           }
         ],
@@ -276,7 +276,7 @@
       "industry": "Technology Strategy",
       "targeted": true,
       "weight": 10,
-      "description": "Conglomerates bridging legacy ops and venture bets need one story. I map digital workflows, automation ROI, and innovation diagnostics into a single briefing, not three competing decks.",
+      "description": "Technology conglomerates bridging legacy operations and venture bets need me to map digital workflows, automation ROI, and innovation diagnostics into a single executive narrative.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Hands-on",
@@ -1136,7 +1136,7 @@
       "industry": "Digital Products & Agencies",
       "targeted": true,
       "weight": 10,
-      "description": "Agency clients expect a working prototype, not a slide deck. I ship native web builds and narrative systems that sit between creative direction and engineering.",
+      "description": "Agency clients expect interactive proofs, not slide decks. I ship native web prototypes, narrative systems, and production-ready builds that bridge creative direction and engineering.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Student + Operator",
@@ -1878,17 +1878,17 @@
       "content": {
         "experience": [
           {
-            "id": "work-savi-hotels-resorts-jaipur-india",
-            "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h14",
-              "work-savi-hotels-resorts-jaipur-india-h3"
-            ]
-          },
-          {
             "id": "work-family-real-estate-business-jaipur-india",
             "highlights": [
               "work-family-real-estate-business-jaipur-india-h0",
-              "work-family-real-estate-business-jaipur-india-h2"
+              "work-family-real-estate-business-jaipur-india-h1"
+            ]
+          },
+          {
+            "id": "work-savi-hotels-resorts-jaipur-india",
+            "highlights": [
+              "work-savi-hotels-resorts-jaipur-india-h0",
+              "work-savi-hotels-resorts-jaipur-india-h12"
             ]
           }
         ],
@@ -2024,8 +2024,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h15",
-              "work-savi-hotels-resorts-jaipur-india-h16"
+              "work-savi-hotels-resorts-jaipur-india-h4",
+              "work-savi-hotels-resorts-jaipur-india-h0"
             ]
           }
         ],
@@ -2033,8 +2033,8 @@
           {
             "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform",
             "highlights": [
-              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h5",
-              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h2"
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h2",
+              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h0"
             ]
           },
           {
@@ -2394,7 +2394,7 @@
       "industry": "MBB Strategy Consulting",
       "targeted": true,
       "weight": 10,
-      "description": "Consulting cases fail when the exhibit and the recommendation drift. I structure resilience work, industry economics, and recommendation trees from operating evidence, not from slide inventiveness.",
+      "description": "MBB engagement managers need exhibit-linked analysis under partner scrutiny. I structure resilience cases, industry economics, and recommendation trees from operating evidence.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Student + Operator",
@@ -2808,15 +2808,15 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h6",
-              "work-savi-hotels-resorts-jaipur-india-h1"
+              "work-savi-hotels-resorts-jaipur-india-h8",
+              "work-savi-hotels-resorts-jaipur-india-h9"
             ]
           },
           {
-            "id": "work-savi-hotels-resorts-jaipur-india",
+            "id": "work-hult-ai-collective",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h8",
-              "work-savi-hotels-resorts-jaipur-india-h9"
+              "work-hult-ai-collective-h0",
+              "work-hult-ai-collective-h4"
             ]
           }
         ],
@@ -3187,7 +3187,7 @@
       "industry": "Michelin & Fine-Dining Kitchens",
       "targeted": true,
       "weight": 10,
-      "description": "Michelin kitchens test mise en place before they test creativity. I work commis and line stations with sauce work, garde-manger fundamentals, and composure under service pressure.",
+      "description": "Michelin kitchens demand mise en place discipline before creativity. I arrive prepared for commis and line-cook stations with sauce work, garde-manger fundamentals, and service-pressure composure.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Hands-on",
@@ -3223,8 +3223,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h17",
-              "work-savi-hotels-resorts-jaipur-india-h16"
+              "work-savi-hotels-resorts-jaipur-india-h0",
+              "work-savi-hotels-resorts-jaipur-india-h2"
             ]
           }
         ],
@@ -3285,8 +3285,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h15",
-              "work-savi-hotels-resorts-jaipur-india-h6"
+              "work-savi-hotels-resorts-jaipur-india-h6",
+              "work-savi-hotels-resorts-jaipur-india-h8"
             ]
           },
           {
@@ -3576,7 +3576,7 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h14",
+              "work-savi-hotels-resorts-jaipur-india-h0",
               "work-savi-hotels-resorts-jaipur-india-h1"
             ]
           },
@@ -3726,33 +3726,33 @@
             ]
           },
           {
-            "id": "work-savi-hotels-resorts-jaipur-india",
-            "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h14",
-              "work-savi-hotels-resorts-jaipur-india-h3"
-            ]
-          },
-          {
             "id": "work-srbs-group-jaipur-india",
             "highlights": [
               "work-srbs-group-jaipur-india-h0",
               "work-srbs-group-jaipur-india-h4"
             ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h2"
+            ]
           }
         ],
         "projects": [
-          {
-            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
-            "highlights": [
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1"
-            ]
-          },
           {
             "id": "proj-project-oulm-one-ymca-youth-community-platform",
             "highlights": [
               "proj-project-oulm-one-ymca-youth-community-platform-h0",
               "proj-project-oulm-one-ymca-youth-community-platform-h2"
+            ]
+          },
+          {
+            "id": "proj-astropatshala-brand-naming-and-voice-system",
+            "highlights": [
+              "proj-astropatshala-brand-naming-and-voice-system-h0",
+              "proj-astropatshala-brand-naming-and-voice-system-h1"
             ]
           }
         ],
@@ -4008,7 +4008,7 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h14",
+              "work-savi-hotels-resorts-jaipur-india-h0",
               "work-savi-hotels-resorts-jaipur-india-h12"
             ]
           },
@@ -4029,10 +4029,10 @@
             ]
           },
           {
-            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "id": "proj-ihcl-taj-hotels-corporate-innovation-diagnostic",
             "highlights": [
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h0"
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h0",
+              "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h2"
             ]
           }
         ],
@@ -4052,7 +4052,7 @@
       "industry": "Private Wealth & Family Enterprise Advisory",
       "targeted": true,
       "weight": 10,
-      "description": "Family offices need structure that survives the next generation, not generic wealth copy. I work governance models, access design, and a reusable model vault across multi-entity portfolios.",
+      "description": "Family offices need durable capital judgment, not generic wealth copy. I combine governance design with a reusable model vault and diligence narrative across multi-entity portfolios.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Hands-on",
@@ -4073,6 +4073,13 @@
       "content": {
         "experience": [
           {
+            "id": "work-srbs-group-jaipur-india",
+            "highlights": [
+              "work-srbs-group-jaipur-india-h0",
+              "work-srbs-group-jaipur-india-h2"
+            ]
+          },
+          {
             "id": "work-family-real-estate-business-jaipur-india",
             "highlights": [
               "work-family-real-estate-business-jaipur-india-h0",
@@ -4082,15 +4089,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h14",
-              "work-savi-hotels-resorts-jaipur-india-h13"
-            ]
-          },
-          {
-            "id": "work-srbs-group-jaipur-india",
-            "highlights": [
-              "work-srbs-group-jaipur-india-h0",
-              "work-srbs-group-jaipur-india-h2"
+              "work-savi-hotels-resorts-jaipur-india-h2",
+              "work-savi-hotels-resorts-jaipur-india-h12"
             ]
           }
         ],
@@ -4103,10 +4103,10 @@
             ]
           },
           {
-            "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
+            "id": "proj-project-ganet-finance-digital-garden-and-learning-collective",
             "highlights": [
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h2",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h0",
+              "proj-project-ganet-finance-digital-garden-and-learning-collective-h1"
             ]
           }
         ],
@@ -4191,7 +4191,7 @@
       "industry": "Applied Analytics & Decision Science",
       "targeted": true,
       "weight": 10,
-      "description": "Decision science fails when assumptions stay hidden. I ship factor, regression, and Monte Carlo diagnostics with the method choices written down, not buried in a notebook.",
+      "description": "Decision science fails when assumptions stay hidden. I ship factor, regression, and Monte Carlo diagnostics with explicit method choices that survive peer and committee review.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Student + Operator",
@@ -4259,7 +4259,7 @@
       "industry": "Technology & Regulated Industries",
       "targeted": true,
       "weight": 10,
-      "description": "Regulated teams find risks in the audit, not before. I write control trees and portfolio stress cases with named gates, owners, and a paper trail a reviewer can follow.",
+      "description": "Regulated teams need risk modelled before audit day. I build control trees and portfolio stress cases, then document gates, owners, and remediation trails that survive scrutiny.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Student + Operator",
@@ -4354,8 +4354,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h10",
-              "work-savi-hotels-resorts-jaipur-india-h13"
+              "work-savi-hotels-resorts-jaipur-india-h2",
+              "work-savi-hotels-resorts-jaipur-india-h10"
             ]
           },
           {
@@ -4403,7 +4403,7 @@
       "industry": "Law Firms & Transaction Advisory",
       "targeted": true,
       "weight": 10,
-      "description": "Transaction teams lose days to record gaps. I prepare corporate filings, diligence binders, and ESG-adjacent documentation with indexes and cross-checks before chamber or partner review.",
+      "description": "Transaction teams lose days to record gaps. I prepare corporate filings, diligence binders, and ESG-adjacent documentation with the filing discipline law-firm partners expect.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Hands-on",
@@ -5104,7 +5104,7 @@
       "industry": "Early-Stage Funds",
       "targeted": true,
       "weight": 10,
-      "description": "Platform teams exist to help founders between cheques, not to run events. I connect programming, introductions, and diligence support so partners spend time on deployment.",
+      "description": "Platform teams exist to compound founder success, not run events. I connect programming, community introductions, and diligence support into a fund-wide value-add engine.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Student + Operator",
@@ -5374,8 +5374,8 @@
           {
             "id": "work-savi-hotels-resorts-jaipur-india",
             "highlights": [
-              "work-savi-hotels-resorts-jaipur-india-h2",
-              "work-savi-hotels-resorts-jaipur-india-h12"
+              "work-savi-hotels-resorts-jaipur-india-h0",
+              "work-savi-hotels-resorts-jaipur-india-h2"
             ]
           },
           {
@@ -5391,14 +5391,14 @@
             "id": "proj-leased-hotel-turnaround-and-operating-model-strategy",
             "highlights": [
               "proj-leased-hotel-turnaround-and-operating-model-strategy-h0",
-              "proj-leased-hotel-turnaround-and-operating-model-strategy-h3"
+              "proj-leased-hotel-turnaround-and-operating-model-strategy-h1"
             ]
           },
           {
-            "id": "proj-siya-menu-cogs-redesign-and-restaurant-data-platform",
+            "id": "proj-london-airbnb-pricing-and-regression-models",
             "highlights": [
-              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h5",
-              "proj-siya-menu-cogs-redesign-and-restaurant-data-platform-h2"
+              "proj-london-airbnb-pricing-and-regression-models-h0",
+              "proj-london-airbnb-pricing-and-regression-models-h2"
             ]
           }
         ],
@@ -5478,7 +5478,7 @@
       "industry": "Museums & Cultural Institutions",
       "targeted": true,
       "weight": 10,
-      "description": "Museum briefs fail when the room is a wall of text. I turn archival research into material choices, circulation, and interpretive environments a visitor can actually walk.",
+      "description": "Museum curators need spatial narratives, not flat didactics. I translate archival research into material choices, circulation logic, and interpretive environments visitors remember.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Student + Operator",
@@ -5732,7 +5732,7 @@
       "industry": "Regulated Language Technology",
       "targeted": true,
       "weight": 10,
-      "description": "Regulated speech products need accuracy evidence, not a demo reel. I build Whisper-based recognition pipelines with evaluation matrices and bias checks before any unattended use.",
+      "description": "Regulated speech products need accuracy evidence, not demo wow. I build Whisper-based recognition pipelines with evaluation matrices and bias audits for language-technology deployment.",
       "location": "London, UK",
       "metrics": {
         "Experience": "Hands-on",
@@ -5803,7 +5803,7 @@
     "previewOnly": true,
     "frontendVisible": false,
     "selectableVariant": false,
-    "roleSpecificTailoringStatus": "Savi-Siya unified ETA pass: one property/period stack, XYZ+STAR bullets, Menu Design framing, kill-gate honesty, engagement hygiene as of 2026-09-04."
+    "roleSpecificTailoringStatus": "v1.15.0: all-tag discipline on narrow-domain bullets; 87 role-specific descriptions; design depth + weak-identity content swaps."
   },
   "variantAliases": {
     "heavy-industry-value-engineer-agritech": "solutions-engineer-culinary-hospitality-systems",

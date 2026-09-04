@@ -387,21 +387,32 @@ for (const [index, variant] of variants.entries()) {
   const content = variant.content;
   const experience = requireArray(content.experience, `${path}.content.experience`);
   const projects = requireArray(content.projects, `${path}.content.projects`);
+  const variantLimits = { ...limits, ...(variant.limits || {}) };
   if (!experience.length && !projects.length) {
     errors.push(`${path}.content must include at least one experience or project selection`);
   }
   const bulletCount = experience.reduce((sum, entry) => sum + requireArray(entry.highlights, `${path}.content.experience highlights`).length, 0)
     + projects.reduce((sum, entry) => sum + requireArray(entry.highlights, `${path}.content.projects highlights`).length, 0);
   if (bulletCount < 4) errors.push(`${path}.content resolves to fewer than four evidence bullets`);
-  if (experience.length > limits.experience) errors.push(`${path}.content.experience exceeds resume.custom.limits.experience`);
-  if (projects.length > limits.projects) errors.push(`${path}.content.projects exceeds resume.custom.limits.projects`);
+  if (experience.length > variantLimits.experience) errors.push(`${path}.content.experience exceeds limit ${variantLimits.experience}`);
+  if (projects.length > variantLimits.projects) errors.push(`${path}.content.projects exceeds limit ${variantLimits.projects}`);
 
+  const seenWorkIds = new Set();
+  const seenProjectIds = new Set();
   const signature = [];
   for (const [entryIndex, entry] of experience.entries()) {
     requireText(entry.id, `${path}.content.experience[${entryIndex}].id`);
     if (!workIds.has(entry.id)) errors.push(`${path}.content.experience[${entryIndex}].id references unknown work "${entry.id}"`);
+    if (seenWorkIds.has(entry.id)) {
+      errors.push(`${path}.content.experience lists work "${entry.id}" more than once`);
+    }
+    seenWorkIds.add(entry.id);
     signature.push(entry.id);
-    for (const [highlightIndex, highlightId] of requireArray(entry.highlights, `${path}.content.experience[${entryIndex}].highlights`).entries()) {
+    const entryHighlights = requireArray(entry.highlights, `${path}.content.experience[${entryIndex}].highlights`);
+    if (entryHighlights.length > variantLimits.experienceHighlights) {
+      errors.push(`${path}.content.experience[${entryIndex}].highlights exceeds limit ${variantLimits.experienceHighlights}`);
+    }
+    for (const [highlightIndex, highlightId] of entryHighlights.entries()) {
       requireText(highlightId, `${path}.content.experience[${entryIndex}].highlights[${highlightIndex}]`);
       if (workHighlightIds.get(highlightId) !== entry.id) {
         errors.push(`${path}.content.experience[${entryIndex}].highlights[${highlightIndex}] does not belong to work "${entry.id}"`);
@@ -410,8 +421,16 @@ for (const [index, variant] of variants.entries()) {
   }
   for (const [entryIndex, entry] of projects.entries()) {
     requireText(entry.id, `${path}.content.projects[${entryIndex}].id`);
+    if (seenProjectIds.has(entry.id)) {
+      errors.push(`${path}.content.projects lists project "${entry.id}" more than once`);
+    }
+    seenProjectIds.add(entry.id);
     signature.push(entry.id);
-    for (const [highlightIndex, highlightId] of requireArray(entry.highlights, `${path}.content.projects[${entryIndex}].highlights`).entries()) {
+    const entryHighlights = requireArray(entry.highlights, `${path}.content.projects[${entryIndex}].highlights`);
+    if (entryHighlights.length > variantLimits.projectHighlights) {
+      errors.push(`${path}.content.projects[${entryIndex}].highlights exceeds limit ${variantLimits.projectHighlights}`);
+    }
+    for (const [highlightIndex, highlightId] of entryHighlights.entries()) {
       requireText(highlightId, `${path}.content.projects[${entryIndex}].highlights[${highlightIndex}]`);
       if (projectHighlightIds.get(highlightId) !== entry.id) {
         errors.push(`${path}.content.projects[${entryIndex}].highlights[${highlightIndex}] does not belong to project "${entry.id}"`);

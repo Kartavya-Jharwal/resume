@@ -1057,6 +1057,7 @@ function syncChildren(parent, items, keyFn, createFn, updateFn) {
   });
 
   var nextChildren = [];
+  var nextSet = new Set();
   items.forEach(function(item, index) {
     var key = keyFn(item, index);
     var child = existing[key];
@@ -1066,11 +1067,18 @@ function syncChildren(parent, items, keyFn, createFn, updateFn) {
     }
     updateFn(child, item, index);
     nextChildren.push(child);
+    nextSet.add(child);
     delete existing[key];
   });
 
   Object.keys(existing).forEach(function(key) {
     existing[key].remove();
+  });
+
+  // Drop Flip clones, separators, and any other non-keyed leftovers so profile
+  // switches cannot accumulate contact lines or experience blocks.
+  Array.from(parent.children).forEach(function(child) {
+    if (!nextSet.has(child)) child.remove();
   });
 
   nextChildren.forEach(function(child, index) {
@@ -1736,9 +1744,6 @@ function renderContact(p) {
     }
   );
 
-  Array.from(el.querySelectorAll(':scope > .sep')).forEach(function(sep) {
-    sep.remove();
-  });
   var contactParts = Array.from(el.querySelectorAll(':scope > .ctc-part'));
   contactParts.forEach(function(part, index) {
     if (index === contactParts.length - 1) return;
@@ -1775,21 +1780,26 @@ function syncExperienceHeaderLayouts(root) {
     var companyStyle = getComputedStyle(company);
     var companyLineHeight = parseFloat(companyStyle.lineHeight) || 1;
     var companyLines = Math.max(1, Math.round(company.offsetHeight / Math.max(1, companyLineHeight)));
+    var roleStyle = getComputedStyle(role);
+    var roleLineHeight = parseFloat(roleStyle.lineHeight) || 1;
+    var roleLines = Math.max(1, Math.round(role.offsetHeight / Math.max(1, roleLineHeight)));
     var companyRect = company.getBoundingClientRect();
     var roleRect = role.getBoundingClientRect();
     var roleOnNewLine = roleRect.top > companyRect.top + 2;
+    /* Role sharing the company line but wrapping in a leftover strip. */
+    var roleSqueezed = !roleOnNewLine && roleLines > 1;
 
     if (date) {
       var dateRect = date.getBoundingClientRect();
       var overlapsDate = companyRect.right > dateRect.left - 0.5 ||
         roleRect.right > dateRect.left - 0.5;
-      if (companyLines > 1 || overlapsDate) {
+      if (companyLines > 1 || overlapsDate || roleSqueezed || roleOnNewLine) {
         header.classList.add('r-item-hdr--stacked');
       }
       return;
     }
 
-    if (companyLines > 1 || roleOnNewLine) {
+    if (companyLines > 1 || roleOnNewLine || roleSqueezed) {
       header.classList.add('r-item-hdr--stacked');
     }
   });
@@ -2534,6 +2544,7 @@ function renderProfileWithTransition(p) {
     : null;
 
   if (activeProfileTransition) activeProfileTransition.kill();
+  // Always paint from clean section bodies so Flip cannot leave ghost experience/contact nodes.
   renderProfile(p);
 
   if (layoutState) {
@@ -2542,6 +2553,7 @@ function renderProfileWithTransition(p) {
       ease: 'power3.inOut',
       nested: true,
       prune: true,
+      absolute: false,
       scale: false,
       simple: true,
       clearProps: 'transform',

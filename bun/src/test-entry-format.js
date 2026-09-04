@@ -28,7 +28,10 @@ assert(typesetting.includes('--lead-in-gap'), 'lead-in gap token must exist');
 assert(compile.includes('formatExperienceEntry') && compile.includes('roleLine'), 'compiler must emit roleLine');
 assert(compile.includes('work.headerOrder'), 'compiler must read headerOrder from source work');
 assert(app.includes('syncExperienceHeaderLayouts'), 'renderer must resolve long-title header collisions');
+assert(app.includes('roleSqueezed'), 'renderer must stack when role wraps in a leftover strip');
 assert(app.includes('r-item-lead'), 'experience header must wrap company and role in a lead band');
+assert(style.includes('min-width: 42%'), 'role/label must not crush below a readable lead share');
+assert(!style.includes('flex: 1 1 12ch'), 'legacy 12ch role flex basis must not remain');
 assert(app.includes('experienceLeadLines'), 'renderer must swap lead lines by headerOrder');
 assert(app.includes('pr.engagementLabel'), 'project header must render engagement label inline');
 

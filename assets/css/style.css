@@ -422,8 +422,11 @@ body.highlight-links .sheet a {
   font-size: var(--s0);
   font-style: italic;
   font-weight: var(--weight-regular);
-  flex: 1 1 12ch;
-  min-width: 0;
+  /* Prefer sitting beside company when ≥~42% of the lead remains;
+     otherwise wrap to a full-width second line — never crush into a
+     leftover strip (min-width:0 + 12ch was causing that). */
+  flex: 1 1 42%;
+  min-width: 42%;
   line-height: var(--u);
   margin: 0;
   padding-left: 0;
@@ -494,8 +497,8 @@ body.highlight-links .sheet a {
   font-size: var(--s0);
   font-style: italic;
   font-weight: var(--weight-regular);
-  flex: 1 1 12ch;
-  min-width: 0;
+  flex: 1 1 42%;
+  min-width: 42%;
   line-height: var(--u);
   margin: 0;
   padding-left: 0;
@@ -1595,13 +1598,17 @@ body.master-cv-active .r-sec { break-inside: auto; }
   outline-offset: 3px;
 }
 
+#r-additional .r-sec-body {
+  /* Info lines are prose paragraphs, not experience entries — use micro rhythm. */
+  gap: var(--micro-gap);
+}
 #r-additional p {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   column-gap: var(--edu-after-colon);
   align-items: baseline;
+  margin: 0;
 }
-#r-additional p + p { margin-top: var(--micro-gap); }
 #r-additional b { white-space: nowrap; }
 
 /* Utilities & New UI Components */

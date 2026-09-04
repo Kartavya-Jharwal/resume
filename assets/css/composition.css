@@ -177,8 +177,8 @@ html, body {
   font-size: var(--s0);
   font-style: italic;
   font-weight: var(--weight-regular);
-  flex: 1 1 12ch;
-  min-width: 0;
+  flex: 1 1 42%;
+  min-width: 42%;
   line-height: var(--u);
 }
 .exp-block .r-item-hdr--stacked,
@@ -253,3 +253,15 @@ html, body {
   font-style: italic;
   margin-right: var(--edu-after-colon);
 }
+
+#r-additional .r-sec-body {
+  gap: var(--micro-gap);
+}
+#r-additional p {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: var(--edu-after-colon);
+  align-items: baseline;
+  margin: 0;
+}
+#r-additional b { white-space: nowrap; }
