@@ -1,0 +1,618 @@
+{
+  "innovation-ecosystem-architect-startup-accelerators": {
+    "filename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_Startup_Accelerators.pdf",
+    "engine": "weasyprint",
+    "profile": "64032baaccbdd58e86edb9814a9dedd6bfe6e636eba31a6b724d364ab9dab5a3",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "10e638b43747260746bd7412b33110550a9f98f1a5ddab9fe810c7b098ce4a98"
+  },
+  "innovation-ecosystem-architect-university-innovation-hubs": {
+    "filename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_University_Innovation_Hubs.pdf",
+    "engine": "weasyprint",
+    "profile": "6970d0001ff9a56dbb7f2b668c14f5f4183edb9b5bea0f0d86af4988584cb24f",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "2ad62f5b035b682a2255b617a3dec5b157e156cd58867c868c9f24cd2eb4511a"
+  },
+  "executive-translation-lead-tech-conglomerates": {
+    "filename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Technology_Strategy.pdf",
+    "engine": "weasyprint",
+    "profile": "9d8cefaf8ee7dd8576670157e2fb106c73bd13bbeb60c313d08696d80ad7e8e4",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "e732dab82fea6526c429cc4c62c12f3b7190cacf994453a13fb0040bbf6de0ba"
+  },
+  "core-ai-pipeline-engineer-biotech": {
+    "filename": "Kartavya_Jharwal_Resume_Machine_Learning_Engineer_Applied_AI.pdf",
+    "engine": "weasyprint",
+    "profile": "92e9c0e8f62998ce901921c4370d1029c198fc31a2aefdc436ba29152b62e00c",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "0291cbda0c2d7c925519d26edb017b63b6879d30200f81ca75037e8889152026"
+  },
+  "early-stage-operator-yc-alumni-startups": {
+    "filename": "Kartavya_Jharwal_Resume_Startup_Operations_Manager_Early_Stage_Technology.pdf",
+    "engine": "weasyprint",
+    "profile": "0460186241fd1117ff75dd992a133f57131c4e36d6c82b60132e14af4f9ebd75",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "83309ba525f590eaae6208e9fd86ee6a33965a19386d32b95c88488b10e7c611"
+  },
+  "executive-translation-lead-fortune-500-strategy": {
+    "filename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Corporate_Strategy.pdf",
+    "engine": "weasyprint",
+    "profile": "ea976c5e9c3b1c947c20f17137d37a09db3f9bbca7639f2c10066d42172af666",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "44fb4d9dd076aa00ad9d68774a21e5dfa6ac73f81826a75817f39988344d9328"
+  },
+  "executive-translation-lead-private-equity-operations": {
+    "filename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Private_Equity_Operations.pdf",
+    "engine": "weasyprint",
+    "profile": "17690ac035dfa3121b891102127f1c261b14822bf6b890cdc317a504eed233ff",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "1552d6596dc3b16acd6e387699cee76fb6de3243614686eda5c5ea3d9d42e08e"
+  },
+  "innovation-ecosystem-architect-corporate-venture-labs": {
+    "filename": "Kartavya_Jharwal_Resume_Innovation_Program_Manager_Corporate_Venture_Labs.pdf",
+    "engine": "weasyprint",
+    "profile": "e2bf26d931a8594ba66f634780cb2397d1e2c3af4dede36fc0f700ed88c25c7d",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "fc575666091fbb3fb4c0d75d1222a80e4d59859880916b28d00b1d16516b4f37"
+  },
+  "forward-deployed-innovator-enterprise-ai": {
+    "filename": "Kartavya_Jharwal_Resume_Forward_Deployed_Engineer_Enterprise_Applied_AI.pdf",
+    "engine": "weasyprint",
+    "profile": "4181e9dc26904b50d6181a64e0ce0019d3bc5a667848ed7cdf6f5a08af1d2679",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "388705f35992d7b4a410586dd4a52e216fddd3111aef889ce2579b97857ba179"
+  },
+  "ai-governance-ethics-officer-medtech": {
+    "filename": "Kartavya_Jharwal_Resume_Responsible_AI_Analyst_Healthcare_Regulated_Technology.pdf",
+    "engine": "weasyprint",
+    "profile": "622a4c263313663f53296d5dcbdca184a1685b7af24ed78c3bb5e2baefddb157",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "389725a6c0a905cdc715bb60b7beae6413ee5beb5a9cd3215bd157ff85a8bb46"
+  },
+  "venture-diligence-analyst-pre-seed-funds": {
+    "filename": "Kartavya_Jharwal_Resume_Venture_Capital_Analyst_Early_Stage_Funds.pdf",
+    "engine": "weasyprint",
+    "profile": "4b7e7acdfbb177debf682e17416fc313c33630593cd8f074cb61503b89b6e56d",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "c9464d659a029663733d7d93c7a9908fa18b62c95ae551e661c9e894d7f2dc74"
+  },
+  "agentic-systems-architect-autonomous-ai-labs": {
+    "filename": "Kartavya_Jharwal_Resume_AI_Agent_Engineer_Agentic_AI_Automation.pdf",
+    "engine": "weasyprint",
+    "profile": "224b05964905b032bfea1b14a2fd7afebaceb36bd81141359d576f52db46ce5a",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "1729884a4af902bddb9f23943a01cb4125cc4832603f8e8bc91bfb05c31ad2be"
+  },
+  "strategic-interaction-designer-spatial-computing": {
+    "filename": "Kartavya_Jharwal_Resume_Interaction_Designer_Immersive_Interactive_Products.pdf",
+    "engine": "weasyprint",
+    "profile": "c4ae0a976454f2729a4d73ccecacf5068a71dd12403f26c7c227c86e1eb0c84c",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "723f8565495c691cbc5a044631f6865187d1258adaa76d36b2458686e7a1ab7b"
+  },
+  "behavioral-product-manager-digital-wellness": {
+    "filename": "Kartavya_Jharwal_Resume_Product_Manager_Digital_Health_Consumer_Products.pdf",
+    "engine": "weasyprint",
+    "profile": "75c72f205e55eca7f9ddb10a48d9d1fb0a8a251ca9ced546c60f6560fb4be7f9",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "cbf2b87da3c26a42f55371ac2a5ccd4f796b5fbe8a860f9f8590b050d8c57e8c"
+  },
+  "design-systems-architect-complex-data-dashboards": {
+    "filename": "Kartavya_Jharwal_Resume_Product_Designer_Complex_Data_Dashboards.pdf",
+    "engine": "weasyprint",
+    "profile": "7f558290813a2f058c31dde74b8b29c53848fd97f8df45a681f65e7765498731",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "4c503b202c1f733f65b68234d3f743a4cc52d6dd685c53339d62a3e940f34f80"
+  },
+  "design-systems-architect-enterprise-b2b-saas": {
+    "filename": "Kartavya_Jharwal_Resume_Product_Designer_Enterprise_B2B_SaaS.pdf",
+    "engine": "weasyprint",
+    "profile": "c96f6b517536db4e03e8226bfce72d295d2a2f8098a08684df15846c55fd1a8f",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "78e998650902fd5385c5a2b1c26a6cc7a8c8a3387f327ec547dcab93b42b96d1"
+  },
+  "design-systems-architect-fintech-platforms": {
+    "filename": "Kartavya_Jharwal_Resume_Product_Designer_FinTech_Platforms.pdf",
+    "engine": "weasyprint",
+    "profile": "c7379d79e6d30cf5889b4787dac3f8a750b277ba4e49bc4e6808fd541cad7c11",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "ba57a0f31d098434895370e36bc923b16a26cb3f828450d4c30514faa02f7183"
+  },
+  "hybrid-creative-technologist-elite-digital-agencies": {
+    "filename": "Kartavya_Jharwal_Resume_Creative_Technologist_Digital_Products_Agencies.pdf",
+    "engine": "weasyprint",
+    "profile": "87569b9d94c750d74de4f41ede2f75cddba8060138773c5f68270440c51b81ab",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "e1f82d2ffe8307deb1dd533e17fcdcfcb540add40465d5318cde2de4e355e070"
+  },
+  "zero-cost-growth-hacker-d2c-marketplaces": {
+    "filename": "Kartavya_Jharwal_Resume_Growth_Marketing_Manager_D2C_Digital_Ventures.pdf",
+    "engine": "weasyprint",
+    "profile": "33fc6adb7c27143bbb0fba96bd6747d42acfa0555256590e536c2d975013d472",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "bb5386ce6422077c308215add1f5f9a24f3f10125653129a5a2961697ab9b411"
+  },
+  "data-narrative-consultant-policy-think-tanks": {
+    "filename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Policy_Think_Tanks.pdf",
+    "engine": "weasyprint",
+    "profile": "126779188d0098d7fc0f9c4186e11f78ab6e4e89891940ec6d84adafeacf25bd",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "3b180c81aad61a1191c7d9775fcb6c1051392db7d3e7f7f3370dc22fd8957753"
+  },
+  "generative-search-architect-media-conglomerates": {
+    "filename": "Kartavya_Jharwal_Resume_SEO_Generative_Search_Specialist_Digital_Media.pdf",
+    "engine": "weasyprint",
+    "profile": "6d6431c5177603dbdc4cf3f708a5b131e0b523b469f65e5e1a124c03d608ab24",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "0ab2aefdd2c0aede75155c4971b5065d172c5599756b3e45484470c241a07489"
+  },
+  "data-narrative-consultant-macro-economic-research": {
+    "filename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Macroeconomic_Research.pdf",
+    "engine": "weasyprint",
+    "profile": "772ec6590f6022c5842bee4f490667c00bb201a0c8faa5f918c77cf6be7df638",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "556f9fcd3df91424508533df94eb3a4fe367e26390b3c9ff5ec7398d1c057a42"
+  },
+  "data-narrative-consultant-economic-development": {
+    "filename": "Kartavya_Jharwal_Resume_Data_Visualization_Consultant_Economic_Development.pdf",
+    "engine": "weasyprint",
+    "profile": "c09b5ef8542dd8c378126a16bd1797c7170c8d49baad07df82affea4a7ba6629",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "bc57946e776ed2ab7e3b73fd1fe5f0271f8155bf7ba502a2d55ce09e43f36729"
+  },
+  "analytics-intelligence-lead-e-commerce-logistics": {
+    "filename": "Kartavya_Jharwal_Resume_Business_Intelligence_Analyst_Commerce_Operations.pdf",
+    "engine": "weasyprint",
+    "profile": "3aca5251fde3d75a81c8708f1d3105c2c3635fe066ba2c4b301c5b4cb2aa83db",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "eedcb5d8481f6c00d8242a51609f93649362c613ee29d51586c9dae5bd672e0d"
+  },
+  "customer-facing-founding-engineer-pre-seed-saas": {
+    "filename": "Kartavya_Jharwal_Resume_Founding_Engineer_Early_Stage_Products.pdf",
+    "engine": "weasyprint",
+    "profile": "2090a74ecce741c0d1fd02a49871f641ddc0b4d1d1bfab890cd150861e982312",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "6ffb59b911e95cfdfc64585186ddf13e55ac503056437e40b78776d2ee811335"
+  },
+  "developer-experience-dx-evangelist-devtools": {
+    "filename": "Kartavya_Jharwal_Resume_Developer_Relations_Engineer_Developer_Tools_APIs.pdf",
+    "engine": "weasyprint",
+    "profile": "bb7d5296f6eafa81b1f6a0f75f8bffadd4f48046fdfe3c93a191af79453ac491",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "c3f9d5dc7dd2075170dd517119d2c116e7cdd43413b91bce8a03399da4d7e8d6"
+  },
+  "enterprise-resilience-engineer-managed-service-providers": {
+    "filename": "Kartavya_Jharwal_Resume_Infrastructure_Security_Engineer_Managed_Regulated_Systems.pdf",
+    "engine": "weasyprint",
+    "profile": "20de374a47e098f46295bf2890fe972bd63dfdab1ef88403803a6bd26f0f9cd8",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "ddfec6ad73f80baf9597e9750be00de0c5a69b9a575e0320fa11e1081434fd71"
+  },
+  "systems-qa-auditor-fintech-infrastructure": {
+    "filename": "Kartavya_Jharwal_Resume_Software_QA_Analyst_Financial_Technology_Platforms.pdf",
+    "engine": "weasyprint",
+    "profile": "ed71341f681bb241d2e712dfec1e93c8f65a5c160d732748e364604e00fa3134",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "8aefebc5f0f53370c1a5130c9d70ed6a8e2c16a8c1951d1a4a2e3b7ec6b97968"
+  },
+  "proptech-underwriter-designer-high-end-real-estate-pe": {
+    "filename": "Kartavya_Jharwal_Resume_Real_Estate_Investment_Analyst_PropTech.pdf",
+    "engine": "weasyprint",
+    "profile": "8dc55878375ed8984b7eb2d07d38f482f18d703176c18a6035b43334e0c00080",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "1c3cb8d0139d7913f947ef014e80fd9342bc37957d68341f50f922edb7ffe577"
+  },
+  "solutions-engineer-culinary-hospitality-systems": {
+    "filename": "Kartavya_Jharwal_Resume_Solutions_Engineer_Culinary_Hospitality_Systems.pdf",
+    "engine": "weasyprint",
+    "profile": "b19b5760674d3a70b6769bcf40f5974892a39885b5d575e08a51949e515ef3e3",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "d13cae7cb9b01ea646662dd581718726da893e00a9436adcc9ace6ed4013b095"
+  },
+  "experiential-event-producer-tech-conferences": {
+    "filename": "Kartavya_Jharwal_Resume_Event_Producer_Technology_Community_Events.pdf",
+    "engine": "weasyprint",
+    "profile": "c9088fa32567f43aa66470dda8f2502e9b0f3675b344ac2458731b81d61fbe0e",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "0dda8aaf8b19a6333233a60a454ee48927b6f353948159b9668a343d2d11f185"
+  },
+  "heavy-industry-value-engineer-heavy-manufacturing-tech": {
+    "filename": "Kartavya_Jharwal_Resume_Solutions_Engineer_Industrial_Technology.pdf",
+    "engine": "weasyprint",
+    "profile": "a6525ef6afc1d3bc0c023dd514038592da73a4f0e332b6867c244f56e7c6307c",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "2ac46762452325f8f21270e0573e47615e4cac146cb039b0f51846ba9ecdeff4"
+  },
+  "gastronomic-systems-operator-culinary-consulting": {
+    "filename": "Kartavya_Jharwal_Resume_Culinary_Strategy_Operations_Consultant.pdf",
+    "engine": "weasyprint",
+    "profile": "2daac45a4167020a189c6fe1a1b67154205dcc6fa02fb44e3ce607441304ee7a",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "a857b8140d2ff8c291997d115705589de9704c3b0dd8023f2a21710b86551b96"
+  },
+  "operations-flow-manager-foodtech": {
+    "filename": "Kartavya_Jharwal_Resume_Operations_Manager_Food_Delivery_Technology.pdf",
+    "engine": "weasyprint",
+    "profile": "5cbf1df6560a4c8c0c039625f01363af25cebada16ac439c494d64c38a85864e",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "a8e4efc5fb0c68207b571d6b991ff8732c9ce1552d217081ce3d58d728da3866"
+  },
+  "heavy-industry-value-engineer-climatetech": {
+    "filename": "Kartavya_Jharwal_Resume_Solutions_Engineer_ClimateTech.pdf",
+    "engine": "weasyprint",
+    "profile": "597d70bbca93965fc99a5f7abd96f2cc888f1e2d6a22fec501e4020891f29bec",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "7d88b49d5dd2f749557ec283cdea9983eb5de0f86204da017511d4a67612c87b"
+  },
+  "ux-research-translation-lead-civic-tech-platforms": {
+    "filename": "Kartavya_Jharwal_Resume_UX_Researcher_Civic_Social_Impact_Products.pdf",
+    "engine": "weasyprint",
+    "profile": "e890451bc6af67511135f2335e1be2796efcd2e22b7731a027586bac14fc7581",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "82a82585c3c3a831a1a9794881ef2817eb816ce1ddbdc072f24f527e1338641f"
+  },
+  "management-consultant-mbb-standard-big-3-consulting": {
+    "filename": "Kartavya_Jharwal_Resume_Strategy_Consultant_MBB_Strategy_Consulting.pdf",
+    "engine": "weasyprint",
+    "profile": "ced549c50879743076f2f241b97d51512b430be2dd674088eb9eb89bf397d5e1",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "5d53c5339b4e2310c81e77df91b3561c3e36ddfab6502b045394f3ffc873efe1"
+  },
+  "management-consultant-mbb-standard-tier-2-strategy": {
+    "filename": "Kartavya_Jharwal_Resume_Strategy_Consultant_Tier_2_Strategy_Consulting.pdf",
+    "engine": "weasyprint",
+    "profile": "d93d63c09e12d47d2d55f6e4832befe951451b01ba4bb2fb293ac82537fe0d20",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "c9f60169058aebd9af59e6f0b640f399c840cd09f55f81629deb2349d7f67d33"
+  },
+  "management-consultant-mbb-standard-corporate-turnarounds": {
+    "filename": "Kartavya_Jharwal_Resume_Strategy_Consultant_Corporate_Turnarounds.pdf",
+    "engine": "weasyprint",
+    "profile": "c45f33ad200234c128edbf5b6f0eea599f5630f477eb9651bd20841263632e35",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "fcc63c5edb8ca06806c39624946057abe998343a467b0a351d16dbb19e4c03fe"
+  },
+  "investment-banking-analyst-bulge-bracket-investment-banks": {
+    "filename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Bulge_Bracket_Investment_Banking.pdf",
+    "engine": "weasyprint",
+    "profile": "b0a4a6d741fddaed1ca42de9fd11f8a015dae9e0e8d7ce99e9d2472b5013538d",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "d7762147ce00f026549be61a4c29b2626a784d24268d70b7b5fc0f93a6c1c381"
+  },
+  "investment-banking-analyst-boutique-ma-advisory": {
+    "filename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Boutique_M_A_Advisory.pdf",
+    "engine": "weasyprint",
+    "profile": "8c7b62f99fd033d128837b0984f35188ece700dbcf1ff63c22287e8d234da8a0",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "2a4c80ab05a6f12af6544feab23e22e3634276648158152d3b3d183273d96a6c"
+  },
+  "tactical-it-systems-administrator-managed-service-providers": {
+    "filename": "Kartavya_Jharwal_Resume_Systems_Administrator_Managed_Institutional_IT.pdf",
+    "engine": "weasyprint",
+    "profile": "fa18cbcdcb5197462741585e27ea92ced2c556869e714bc5d87548fe47b27c9c",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "687dc31d7e3496d69c109fbeab6f8c7b64db412f21db5b5a9160bf60f3ccd73a"
+  },
+  "investment-banking-analyst-growth-equity": {
+    "filename": "Kartavya_Jharwal_Resume_Investment_Banking_Analyst_Growth_Equity.pdf",
+    "engine": "weasyprint",
+    "profile": "504a9a99f06c7ee178efd2d8f9257764ed48f40d020c2d5a815fb99684a93cd0",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "a22a3ab3fa57a451fb0d3cac8af0355b54c3a9bee35fa4690354b967b98f756f"
+  },
+  "phygital-spatial-designer-museumexpo-design": {
+    "filename": "Kartavya_Jharwal_Resume_Spatial_Experience_Designer_Cultural_Retail_Spaces.pdf",
+    "engine": "weasyprint",
+    "profile": "c302c2c4c98bc80d54a08e2825ef1a45220c57d8c01a82f9e3c7fb415aba2d1e",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "20c41b93a80c88775c42fbf9f966b1c12de34062cf950435285b57cf5388e4dc"
+  },
+  "open-source-community-lead-open-source-foundations": {
+    "filename": "Kartavya_Jharwal_Resume_Developer_Community_Manager_Open_Source.pdf",
+    "engine": "weasyprint",
+    "profile": "b49afade1e7489a15cd389fda7cb71a5b2302c2659cb83264ea70383813506c4",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "b32f97457f3809186eccd3767aacf8af0b77370bde3b7ce539534914a9bcdaee"
+  },
+  "systematic-organizational-designer-enterprise-transformation": {
+    "filename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_Enterprise_Transformation.pdf",
+    "engine": "weasyprint",
+    "profile": "526a44f31ec2f6f9cfd359bb39f815926306c9684c8060b74d05cca931df736b",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "e7c32d9c960f35591c2a981c2477b7f5a0c3412eae2dc4e5f37db9ca7b87a56b"
+  },
+  "systematic-organizational-designer-deeptech-skunkworks": {
+    "filename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_Deep_Tech_Innovation_Labs.pdf",
+    "engine": "weasyprint",
+    "profile": "71d884b204560729c61afe47bfd32c312706e9451b2215e5b81e762e03ec6e1c",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "4440f86a2cfb0c1f5911933066afc9f26a0ddbe3e4317a12893eadc94924fa1a"
+  },
+  "systematic-organizational-designer-civictech": {
+    "filename": "Kartavya_Jharwal_Resume_Organizational_Design_Consultant_CivicTech.pdf",
+    "engine": "weasyprint",
+    "profile": "c2d63e675097330650d0efc9b8e77dbcdf2bf6c2ee8fcabe5d134dcfca7351c1",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "18b52872654b34f929f1df358da24800d07198b3b0be1bdc208418e2db3e58c1"
+  },
+  "culinary-stagiaire-michelin-fine-dining-kitchens": {
+    "filename": "Kartavya_Jharwal_Resume_Culinary_Stagiaire_Michelin_Fine_Dining_Kitchens.pdf",
+    "engine": "weasyprint",
+    "profile": "42397070d0dd2ddcfe8cba3e4a424c1d6e7af04778bec66d1ddc42f80b4e523b",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "ab59806bdd0c0141b926cb37185088601066bb3607b131e49eb6ba73cfdf126e"
+  },
+  "back-of-house-logistics-coordinator-high-volume-catering": {
+    "filename": "Kartavya_Jharwal_Resume_Back_Of_House_Logistics_Coordinator_High_Volume_Catering.pdf",
+    "engine": "weasyprint",
+    "profile": "d5a97beebe51d849c6b6e826624e41695233a06f47ca78d3b29cfd54e43d21a9",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "3ba7b4647e757cb1d4b9b290f8de4ab2e013fc77456af601ce8636e557b8e8ec"
+  },
+  "front-of-house-reception-associate-hotels-restaurants": {
+    "filename": "Kartavya_Jharwal_Resume_Front_Of_House_Reception_Associate_Hotels_Restaurants.pdf",
+    "engine": "weasyprint",
+    "profile": "24abfd2047b363711e243cc2cb197ea18aaaaf63a54ceae0ccf8b7d0a3e1b2f2",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "3ce745f0a37d9285bbfce4d2d165b4e8d1e48e33780a85984629bce1cd78d980"
+  },
+  "product-manager-startup-accelerators": {
+    "filename": "Kartavya_Jharwal_Resume_Product_Manager_Startup_Accelerators.pdf",
+    "engine": "weasyprint",
+    "profile": "acf17cd2f431c083b791672f4dc423c32b512d5ecf03247b9b4bacf2dfa23469",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "0feb0cda6d745ef161b0047bcce0c7326b1dcd7a0fb70310311caf83ca4906b6"
+  },
+  "autodidact-skunkworks-researcher-corporate-rd-labs": {
+    "filename": "Kartavya_Jharwal_Resume_Research_Development_Engineer_Applied_RD.pdf",
+    "engine": "weasyprint",
+    "profile": "75ed868d61238a30edb98994e0c138e67486560921de1dbc9a881cca670a8512",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "51e154b62bb7635202485cf7835b775a8289e2739617b1586f4284032425eef1"
+  },
+  "project-manager-startup-accelerators": {
+    "filename": "Kartavya_Jharwal_Resume_Project_Manager_Startup_Accelerators.pdf",
+    "engine": "weasyprint",
+    "profile": "74bae208ec83af27aa2da07f45b53322b3ea39d2b93901c4ef0309a7d7e230b2",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "e9afc28266b8dee6a8bb088fa2da588b00bd96a592984c2f122fc8ee54c702af"
+  },
+  "strategic-design-engineer-founder-led-startups": {
+    "filename": "Kartavya_Jharwal_Resume_Strategic_Design_Engineer.pdf",
+    "engine": "weasyprint",
+    "profile": "afec12ed0909aaa6f9dbf2cd93379416cfe5a158ef1d67855202638ecdd78b4d",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "40f7a30a0335b9f7d75820a283aef6fd23d71fc92f37263b870137c289050314"
+  },
+  "founders-associate-healthcare-startup-ecosystems": {
+    "filename": "Kartavya_Jharwal_Resume_Founders_Associate_Healthcare.pdf",
+    "engine": "weasyprint",
+    "profile": "44a1b9c4d3cb554f729be40d5047bd676f39400d06f6a29bf607d367dbbc5ea8",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "462d30d1928f71db982b8482e7d7d9430a7b2e9d6c6441c135c3128fa200aa63"
+  },
+  "devops-associate-startup-accelerators": {
+    "filename": "Kartavya_Jharwal_Resume_DevOps_Associate_Startup_Accelerators.pdf",
+    "engine": "weasyprint",
+    "profile": "63f339e9e727871e658adb6452883d73eb07a14bdefdd98c190669721e82468e",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "18e8e8e05d625e964ad8cb09e7ed5a7ba6f4fd43dca04222b3e705ef674c3d5c"
+  },
+  "gtm-analyst-startup-accelerators": {
+    "filename": "Kartavya_Jharwal_Resume_GTM_Analyst_Startup_Accelerators.pdf",
+    "engine": "weasyprint",
+    "profile": "6785228315a7f5c5b76d8184da5c0100c7016941d8b8a66eb4fbaae3cb3d2f99",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "47e8c8b5264f615384d75acdf7c951b28b0f23447ab1b8578efc4a9937106074"
+  },
+  "ui-ux-designer-startup-accelerators": {
+    "filename": "Kartavya_Jharwal_Resume_UI_UX_Designer_Startup_Accelerators.pdf",
+    "engine": "weasyprint",
+    "profile": "bb8572f8d1931c9f51e9681365e9b223d660064443a4547a86083cec1e3ae1cc",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "c73c8d399dec3a38df36903e8e167e12bdc85e9679444eb69ef0eae4a697fc66"
+  },
+  "systems-designer-startup-accelerators": {
+    "filename": "Kartavya_Jharwal_Resume_Systems_Designer_Startup_Accelerators.pdf",
+    "engine": "weasyprint",
+    "profile": "646e119c238911d37c07461a1aa01162874c2278dd1b1a1d32de29b883dd4625",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "cd466cf914d62fe9ddc6c3636b97276f9fbfc092e3ce794b4445de4fdfcdc961"
+  },
+  "family-office-analyst-private-wealth-family-enterprise": {
+    "filename": "Kartavya_Jharwal_Resume_Family_Office_Analyst_Private_Wealth_Family_Enterprise.pdf",
+    "engine": "weasyprint",
+    "profile": "5f0f46c7799244741d7633e9811e6f23cb3e2d78cdf5ae06843624d96702914b",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "394ebe4ff77356fdeff566b9f6fa4361375b248eeebb5b5498076e4c851eb6f6"
+  },
+  "chief-of-staff-founder-led-family-owned-enterprises": {
+    "filename": "Kartavya_Jharwal_Resume_Chief_of_Staff_Founder_Led_Family_Owned_Enterprises.pdf",
+    "engine": "weasyprint",
+    "profile": "7a2e56773cfd8d31ad005bac050c2b88f8f542473da5359d5c713fd1dbfcfc1f",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "a271eccdb8e4938c0a1c937b53b49444c8afaa831cdafabafe51c1baf06c01c0"
+  },
+  "ai-knowledge-operations-specialist-ai-enabled-content-platforms": {
+    "filename": "Kartavya_Jharwal_Resume_AI_Knowledge_Operations_Specialist_AI_Content_Platforms.pdf",
+    "engine": "weasyprint",
+    "profile": "fbaad4022ea615b999a67c50c35ba27b5bc85eab4280805bdb36514730236daa",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "d511791a52b95b83c0876c7da0193e185fbc625e83a33cef2c952044ae1806c4"
+  },
+  "data-scientist-applied-analytics-decision-science": {
+    "filename": "Kartavya_Jharwal_Resume_Data_Scientist_Applied_Analytics_Decision_Science.pdf",
+    "engine": "weasyprint",
+    "profile": "76c31674cf015e58a8495127ea066f064a6f2917960070e69de7d96aa7f3aa8c",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "74928fc98e8f961d1fa6a77a146b6da8ad2fb310174d13205310bddb11eaefd1"
+  },
+  "event-hospitality-experience-host-corporate-events-luxury-hospitality": {
+    "filename": "Kartavya_Jharwal_Resume_Event_Hospitality_Experience_Host_Corporate_Events_Luxury_Hospitality.pdf",
+    "engine": "weasyprint",
+    "profile": "2c2f86c330553fa28f591a00074e0aae1720acc5cff676aa04fbba493248bbef",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "904370031cc314a3b07b0a2134bdfb9e6dd4eebd00e4312c3c5bfc87c8ea6977"
+  },
+  "risk-compliance-analyst-technology-regulated-industries": {
+    "filename": "Kartavya_Jharwal_Resume_Risk_Compliance_Analyst_Technology_Regulated_Industries.pdf",
+    "engine": "weasyprint",
+    "profile": "43a6d03fcb2b20e9277d7462c0547a2f43bd936b16d9c7de947c200fe6131331",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "f4eb68b28bdedcd7c1e4b38d96156df687699021d3160d58c3a495f51d90f7b0"
+  },
+  "legal-operations-analyst-law-firms-and-transaction-advisory": {
+    "filename": "Kartavya_Jharwal_Resume_Legal_Operations_Analyst_Law_Firms_Transaction_Advisory.pdf",
+    "engine": "weasyprint",
+    "profile": "96b8549feede31908e3f733faf95b8fc1bc06db6b4ad0e77d7f995257f1c5c0a",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "59b1916b42a0e57c80326daf0bb65d47031df09a8218a2f7a24a12f074b99094"
+  },
+  "strategy-development-associate-hospitality-corporate-groups": {
+    "filename": "Kartavya_Jharwal_Resume_Strategy_Operations_Associate_Hospitality_Corporate_Groups.pdf",
+    "engine": "weasyprint",
+    "profile": "f9272a62082a78e06e49e3bca4a4f6a798750daa96362a161c6be481012879b2",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "af2a1f33020681b1c5da9d2b9df09b17bc0f06d680cd086f6aec5e6c6916f59d"
+  },
+  "brand-strategist-carbon-markets-esg-advisory": {
+    "filename": "Kartavya_Jharwal_Resume_Brand_Strategist_Carbon_Markets_ESG_Advisory.pdf",
+    "engine": "weasyprint",
+    "profile": "20d51f214d063d45a241abc86564689793d83238e53880302ac0f11f5bf8f4a5",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "62b226c8da3af476ea1e6bb4d91ff8740b1497d5f9d3c9dd3818b0518898f599"
+  },
+  "experiential-event-producer-financial-services-law-firms": {
+    "filename": "Kartavya_Jharwal_Resume_Event_Producer_Financial_Services_Law_Firms.pdf",
+    "engine": "weasyprint",
+    "profile": "832cd031a28defabae98f8372d4886229c299c823828cc1c69c5f2030f3a5f02",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "80a3b6b78b9e7635da4ca96ef3ba1c3d9f292c549fbad7b175da624da57a2203"
+  },
+  "creative-director-boutique-creative-agencies": {
+    "filename": "Kartavya_Jharwal_Resume_Creative_Director_Boutique_Creative_Agencies.pdf",
+    "engine": "weasyprint",
+    "profile": "4cf28d72d00bfcc7146d7df869704cb5fa8477f8e806f6f12d31544506298794",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "9f138918f7825e52ae0f0a31f322c57ee4262333139956095746ceedf7324886"
+  },
+  "visual-designer-campaign-identity-systems": {
+    "filename": "Kartavya_Jharwal_Resume_Visual_Designer_Campaign_Identity_Systems.pdf",
+    "engine": "weasyprint",
+    "profile": "a439c3215e67377200a306cb831a9f5398014e0e89042a3ed84a6772d8345686",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "8997d8dc237277ab15f30ad03e879dc13ea9885029d88ef56b31e22159a93478"
+  },
+  "creative-strategist-fintech-decision-tools": {
+    "filename": "Kartavya_Jharwal_Resume_Creative_Strategist_FinTech_Decision_Tools.pdf",
+    "engine": "weasyprint",
+    "profile": "0dca69a31acbde3dbd42402a353f1f9e36821e3295d4b500634c3d5c6d77c43d",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "08c98da8ac9b61e8130f44ed09d522ea8d7c5079575eabccca8e5ae709ec4b01"
+  },
+  "graphic-designer-esg-impact-communications": {
+    "filename": "Kartavya_Jharwal_Resume_Graphic_Designer_ESG_Impact_Communications.pdf",
+    "engine": "weasyprint",
+    "profile": "5152157c769c5f1ff159390c642e4d70531daf6c9414b38bbc01987a67bb302d",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "6dec04783c983d149e9635b20ad9fb4786abcc089aa34aee9331fca336671b83"
+  },
+  "venture-capital-analyst-growth-stage-funds": {
+    "filename": "Kartavya_Jharwal_Resume_Venture_Capital_Analyst_Growth_Stage_Funds.pdf",
+    "engine": "weasyprint",
+    "profile": "ab8e528f47516d0c854045bdc8b6ba755cc7584517013773df39cce572b9fb26",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "a23883f8d8936efcecbefdb7e9d02950faf6fdefeb0d420f9ed843f944ac8180"
+  },
+  "vc-platform-associate-early-stage-funds": {
+    "filename": "Kartavya_Jharwal_Resume_VC_Platform_Associate_Early_Stage_Funds.pdf",
+    "engine": "weasyprint",
+    "profile": "4d74a030be6641bbcaf3c2ec71bdfd3926a25d4a77729fb8354eee74080c8eda",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "4a3e086ccc000a2e05bbf7d2af553fc79a2c5f219e90119e81938cf6f1fe63cf"
+  },
+  "portfolio-operations-associate-early-stage-funds": {
+    "filename": "Kartavya_Jharwal_Resume_Portfolio_Operations_Associate_Early_Stage_Funds.pdf",
+    "engine": "weasyprint",
+    "profile": "fd344a8762108faf75d523773c57dee4488f7ce21ab1fb0e7265688a4ab3512e",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "035635e4c50bbd83d25aa884311c47fd39ff2aa4897c01263d692f9e9692e872"
+  },
+  "transaction-support-analyst-boutique-ma-advisory": {
+    "filename": "Kartavya_Jharwal_Resume_Transaction_Support_Analyst_Boutique_MA_Advisory.pdf",
+    "engine": "weasyprint",
+    "profile": "46a7c49511dc36101924ccdeb05800b46e5941345bf1a6f107079d37ba5eaf4a",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "6c27eaa01800432e1f4c8fb9178d0092be1c053f6becaa8dd0af3040a6f0127b"
+  },
+  "investment-associate-corporate-venture-capital": {
+    "filename": "Kartavya_Jharwal_Resume_Investment_Associate_Corporate_Venture_Capital.pdf",
+    "engine": "weasyprint",
+    "profile": "d2b36b09ad5cb56be325dce2c56d73a8e3524ad1f7b7a8fcad9bf7ed37086ba5",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "f35dc92c79c4e955c9f2490ad39efd172479308db719ca3896fa8523e31f131d"
+  },
+  "legal-operations-analyst-corporate-in-house-legal": {
+    "filename": "Kartavya_Jharwal_Resume_Legal_Operations_Analyst_Corporate_In_House_Legal.pdf",
+    "engine": "weasyprint",
+    "profile": "ab4a2893c76a402f52d112c16602e2577bfb31c7691f65104c688d0624394694",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "7a06da973f84de7d63554e0b3323df724ccc642de0ad783eceeb8b987d2a291f"
+  },
+  "real-estate-investment-analyst-hospitality-asset-management": {
+    "filename": "Kartavya_Jharwal_Resume_Real_Estate_Investment_Analyst_Hospitality_Asset_Management.pdf",
+    "engine": "weasyprint",
+    "profile": "222215f982b1fb35193403d50f4d533d6d7737bcb2b7148f8b727abcb12548d5",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "af6d654b3932e17342cfc14ee38a3cad41dd6e3fc0fa7153844e4b3938878fcb"
+  },
+  "proptech-product-analyst-real-estate-saas-platforms": {
+    "filename": "Kartavya_Jharwal_Resume_PropTech_Product_Analyst_Real_Estate_SaaS_Platforms.pdf",
+    "engine": "weasyprint",
+    "profile": "bb15f5614dceeb80a148840ba52b8c62bf4db7eb23f4d1f1abc92e7a5bdf1948",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "eb3cf844b8fca44b2a62502b4da495b9fad281f2f114028e16e34c89cad5eb7e"
+  },
+  "exhibition-designer-museums-cultural-institutions": {
+    "filename": "Kartavya_Jharwal_Resume_Exhibition_Designer_Museums_Cultural_Institutions.pdf",
+    "engine": "weasyprint",
+    "profile": "c8017eb8e781aa53f5a74fa1c58ab8e25cc23656f3e7b0cf655e2ff91c0946d5",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "e53ea48181da208e02fcfe1ff201149247701d634f08206280dea90ea5dd7fd0"
+  },
+  "experience-designer-retail-flagship-brand-spaces": {
+    "filename": "Kartavya_Jharwal_Resume_Experience_Designer_Retail_Flagship_Brand_Spaces.pdf",
+    "engine": "weasyprint",
+    "profile": "40d44e74418da6158fc885f178c56dd6c36bd8417998c6037574fd5719f84253",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "b98cf6415e3c46ef99f5d9a6c062ec228575f121df490ab6a1537d613ad8599d"
+  },
+  "creative-technologist-fintech-data-products": {
+    "filename": "Kartavya_Jharwal_Resume_Creative_Technologist_FinTech_Data_Products.pdf",
+    "engine": "weasyprint",
+    "profile": "4fab7ec64c84b67781efeec9b5b2c12ebb0f1a674a53c7e843159a7e3ddd9c8d",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "7368489e1e31b2ab1b2af430ac8798277c6503897cd3260b535c027a33557099"
+  },
+  "speech-ml-engineer-regulated-language-technology": {
+    "filename": "Kartavya_Jharwal_Resume_Speech_ML_Engineer_Regulated_Language_Technology.pdf",
+    "engine": "weasyprint",
+    "profile": "c9ce4999ec1969dbe772860cb8a0357ded3dc7b4a5ff0c5cad65ebc0f6c58fb5",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "c87cd92844906755dbcecfaa280d058a5d44ef5a1c640b3ffa4834b9446952f5"
+  },
+  "mlops-engineer-enterprise-applied-ai": {
+    "filename": "Kartavya_Jharwal_Resume_MLOps_Engineer_Enterprise_Applied_AI.pdf",
+    "engine": "weasyprint",
+    "profile": "63d61bbd9e0960caa4fc7f85323f609bde1a80fcd4274f4cb20f405e5387815a",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "ae7cecb62c8fcfe4c67220b07e99ef25926d1fc886a20399323e9b23e0e99be1"
+  },
+  "brand-strategist-climate-tech-sustainability": {
+    "filename": "Kartavya_Jharwal_Resume_Brand_Strategist_Climate_Tech_Sustainability.pdf",
+    "engine": "weasyprint",
+    "profile": "15c0e07802a6e3a866440d8d74b7de1182b41d0ab3a5be82f70c8ac6f0575857",
+    "renderer": "6771cac406ceb4192aa03aae550baaae6192bcac103f4c9ac9156970e4dc31d5",
+    "sha256": "1981eb07760a6a1da878e9e3e21f3249c799f4339ca056af010e80a033327719"
+  }
+}

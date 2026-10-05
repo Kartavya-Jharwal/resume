@@ -1,0 +1,48 @@
+{
+  "mode": "site",
+  "pdfGeneration": "skipped; retained PDFs verified against fitted content",
+  "profiles": 88,
+  "pdfs": 88,
+  "priorityVariants": 13,
+  "priorityMissingPdfs": [],
+  "totalOmissions": 0,
+  "maximumFitPasses": 1,
+  "metrics": {
+    "family": "Newsreader 16pt Regular",
+    "inspectionPath": "assets/fonts/newsreader-variable-roman.ttf",
+    "unitsPerEm": 2000,
+    "variation": {
+      "wght": 400,
+      "opsz": 11
+    },
+    "hasOpsz": true,
+    "hasWght": true,
+    "hasGrad": false,
+    "availableFeatures": [
+      "case",
+      "kern",
+      "liga",
+      "mark",
+      "mkmk",
+      "ordn",
+      "pnum",
+      "rvrn",
+      "sups",
+      "tnum"
+    ],
+    "dateSample": "Jun 2024–Aug 2024",
+    "dateMeasuredPt": 104.275,
+    "dateReservedPt": 105,
+    "dateMeasuredFontUnits": 18959.083,
+    "bulletLsbEm": 0.088,
+    "bulletLsbEmRaw": 0.088,
+    "capOffsetPt": 1.3,
+    "capOffsetS0Pt": 0.72,
+    "xHeightEm": 0.426,
+    "colonAdvanceEm": 0.2799,
+    "colonRsbEm": 0.0689,
+    "eduAfterColonEm": 0.25,
+    "eduColonHangEm": 0,
+    "unsupportedCodePoints": []
+  }
+}
