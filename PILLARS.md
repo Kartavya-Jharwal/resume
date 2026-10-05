@@ -8,7 +8,7 @@ The résumé engine is five intentional layers. Edit one pillar per agent sessio
 
 **Owns:** [TYPESETTING.md](./TYPESETTING.md), [TYPESETTING_CONFORMANCE.md](./TYPESETTING_CONFORMANCE.md), [config/typesetting.json](./config/typesetting.json), [assets/css/typesetting.css](./assets/css/typesetting.css), résumé rules in [assets/css/style.css](./assets/css/style.css), [bun/src/font-metrics.js](./bun/src/font-metrics.js), [bun/src/typesetting.js](./bun/src/typesetting.js), Newsreader 1.003 variable (sheet face), unit grid, date column, bullet hang, print CSS.
 
-**Does not own:** Side rails, mobile menu, Spotify, zoom chrome, Satoshi UI chrome (pillar 2), Chromium PDF export, SEO or agent manifests.
+**Does not own:** Side rails, mobile menu, Spotify, zoom chrome, Satoshi UI chrome (pillar 2), PDF/DOCX emit (pillar 3), SEO or agent manifests.
 
 ## Pillar 2 — Screen renderer (microsite)
 
@@ -24,34 +24,36 @@ bun run preview    # serve dist/ when already built
 bun run serve      # rebuild site, then serve dist/
 ```
 
-## Pillar 3 — PDF engine
+## Pillar 3 — PDF / DOCX engine
 
-**Purpose:** Standalone searchable A4 PDFs (and optional flow DOCX) per variant, ATS-oriented, generated from the same composition payload as the screen. A separate pillar from the live site build.
+**Purpose:** Standalone searchable A4 PDFs and editable DOCX per variant, ATS-oriented, generated from the same composition payload and Pillar 1 canon as the screen sheet.
 
 **Owns:**
-- Production Chromium batch: [bun/src/build.js](./bun/src/build.js) with `--pdf`, Playwright, `dist/resumes/`, fit report
-- Composition emit (WeasyPrint max + flow DOCX): [bun/src/pillar3-emit.js](./bun/src/pillar3-emit.js), [bun/src/composition.js](./bun/src/composition.js), [bun/src/composition-render.js](./bun/src/composition-render.js), [assets/css/composition.css](./assets/css/composition.css), [bun/src/emit-pdf.py](./bun/src/emit-pdf.py), [bun/src/emit-docx.py](./bun/src/emit-docx.py)
+- Production WeasyPrint + DOCX batch: [bun/src/build.js](./bun/src/build.js) `--pdf` → [bun/src/pillar3-emit.js](./bun/src/pillar3-emit.js) `--all --publish`
+- Composition surface: [bun/src/composition.js](./bun/src/composition.js), [bun/src/composition-render.js](./bun/src/composition-render.js), [bun/src/header-stack.js](./bun/src/header-stack.js), [assets/css/composition.css](./assets/css/composition.css), [bun/src/emit-pdf.py](./bun/src/emit-pdf.py), [bun/src/emit-docx.py](./bun/src/emit-docx.py), [bun/src/docx-fonts.py](./bun/src/docx-fonts.py)
 - Shared verification: [bun/src/pdf-verify.js](./bun/src/pdf-verify.js), PDF checks in [bun/src/test.js](./bun/src/test.js)
-- Fitting policy: `fitProfileForBuild` / `removeNextOptional` in [assets/js/app.js](./assets/js/app.js) (build-time only)
+- Fitting policy: `fitProfileForBuild` / `removeNextOptional` in [assets/js/app.js](./assets/js/app.js) (Chromium used for A4 fit measure only — never for download PDF bytes)
 
-**Composition emit (single profile, PDF/UA-2 + DOCX):**
+**Composition emit (PDF/UA-oriented WeasyPrint + flow DOCX):**
 
 ```bash
 bun run pillar3:emit
 bun run pillar3:emit -- --profile <variant-id>
+bun run pillar3:emit:all
+bun run pillar3:publish
 ```
 
-Artifacts land in `tmp/pillar3-emit/<id>/` (PDF, DOCX, `report.json`). WeasyPrint on Windows needs GTK under `D:\KJ\Programs_Files\GTK3-Runtime`.
+Artifacts land in `tmp/pillar3-emit/<id>/` (PDF, DOCX, `report.json`). Publish copies PDF+DOCX into `dist/resumes/`. WeasyPrint on Windows needs GTK under `D:\KJ\Programs_Files\GTK3-Runtime`.
 
-**Optional by design:** `bun run build` deploys the **site only** and retains any existing `dist/resumes/`. Full Chromium PDF regeneration is explicit and slow (~45 minutes for all variants):
+**Optional by design:** `bun run build` deploys the **site only** and retains any existing `dist/resumes/`. Full WeasyPrint regeneration is explicit:
 
 ```bash
-bun run build:pdf --yes    # fit + render every variant PDF
+bun run build:pdf --yes    # Chromium fit + WeasyPrint PDF/DOCX for every variant
 ```
 
-Publishing mirrors this locally: `bun run deploy` builds and tests the site with `--skip-pdfs`, then pushes `dist/` to `origin` `gh-pages`. `bun run deploy:pdf` regenerates every variant PDF before publishing.
+Publishing mirrors this locally: `bun run deploy` builds and tests the site with `--skip-pdfs`, then pushes `dist/` to `origin` `gh-pages`. `bun run deploy:pdf` regenerates every variant PDF+DOCX before publishing.
 
-PDF availability in the browser is determined at **site build** time from `dist/resumes/{pdfFilename}`. The debug compile path (`bun run compile`) does not set `pdfAvailable`.
+PDF availability in the browser is determined at **site build** time from `dist/resumes/{pdfFilename}` with artifact engine `weasyprint`. The debug compile path (`bun run compile`) does not set `pdfAvailable`.
 
 ## Pillar 4 — Data layer
 
@@ -77,7 +79,7 @@ PDF availability in the browser is determined at **site build** time from `dist/
 
 **Owns:** [DISCOVERABILITY.md](./DISCOVERABILITY.md), [`bun/src/discoverability.js`](./bun/src/discoverability.js), gateway `robots.txt` / `sitemap.xml` / `llms.txt`, cold `#sheet` + `#agent-provenance` injection, document `<head>` meta and Open Graph, JSON-LD (`Person`, `ProfilePage`, `DigitalDocument`), variant deep-link contracts, canonical PDF fetch URLs for agents.
 
-**Does not own:** A4 geometry (pillar 1), shell chrome and controls (pillar 2), Chromium PDF rendering (pillar 3), canonical JSON source (pillar 4).
+**Does not own:** A4 geometry (pillar 1), shell chrome and controls (pillar 2), WeasyPrint PDF / DOCX emit (pillar 3), canonical JSON source (pillar 4).
 
 ## Repository paths (not deploy artifacts)
 
@@ -99,6 +101,6 @@ See [public/README.md](./public/README.md) for the `public/` folder convention.
 | PDF on disk | `dist/resumes/{pdfFilename}` from variant record |
 | Download href | `resumes/` + `profile.pdfFilename` |
 | Variant count | `data/variants.json` |
-| Document geometry | [config/typesetting.json](./config/typesetting.json) → CSS; future PDF reads the same JSON |
+| Document geometry | [config/typesetting.json](./config/typesetting.json) → CSS + composition canon snapshot |
 | Crawler gateway | `dist/robots.txt`, `dist/sitemap.xml`, `dist/llms.txt` (pillar 5) |
 | Agent-readable identity | Cold `dist/index.html` + JSON-LD from pillar 4 compile via pillar 5 |

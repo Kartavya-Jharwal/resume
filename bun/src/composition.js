@@ -6,6 +6,8 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { deriveCanon, loadCanon, ROOT } from './typesetting.js';
 import { renderCompositionBody } from './composition-render.js';
+import { annotateStackedFlags } from './header-stack.js';
+import { typograph, NNBSP_PIPE } from './microtype.js';
 
 const CACHE = resolve(ROOT, '.build-cache');
 const ROMAN = resolve(ROOT, 'assets/fonts/newsreader-variable-roman.ttf');
@@ -56,7 +58,9 @@ export function buildCanonSnapshot() {
     weight: canon.weight,
     bullet: {
       indentPt: derived.bulletIndentPt,
-      hangEm: (metrics.bulletLsbEm ?? 0) * (derived.bulletHangScale ?? 1),
+      hangEm: (
+        (metrics.bulletLsbEmRaw ?? metrics.bulletLsbEm ?? 0) + (derived.optical.hangBulletEm || 0)
+      ) * (derived.bulletHangScale ?? 1),
       textGapEm: derived.bulletTextGapEm,
       linePt: derived.bulletLinePt,
       gapPt: derived.bulletGapPt
@@ -67,7 +71,7 @@ export function buildCanonSnapshot() {
       colonHangEm: metrics.eduColonHangEm ?? derived.education.colonHangEm
     },
     metrics: {
-      dateReservedPt: metrics.dateReservedPt ?? 63,
+      dateReservedPt: metrics.dateReservedPt ?? 105,
       capOffsetPt: metrics.capOffsetPt ?? 0,
       capOffsetS0Pt: metrics.capOffsetS0Pt ?? 0
     },
@@ -86,6 +90,37 @@ function fontFaceBlock() {
   ].join('\n');
 }
 
+function escapeAttr(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;');
+}
+
+function typographDeep(value) {
+  if (value == null) return value;
+  if (typeof value === 'string') return typograph(value);
+  if (Array.isArray(value)) return value.map(typographDeep);
+  if (typeof value === 'object') {
+    const out = {};
+    for (const [key, entry] of Object.entries(value)) out[key] = typographDeep(entry);
+    return out;
+  }
+  return value;
+}
+
+/** One microtype + stacking pass shared by WeasyPrint HTML and DOCX. */
+export function prepareEmitProfile(profile, canonSnapshot = null) {
+  const canon = canonSnapshot || buildCanonSnapshot();
+  const typed = typographDeep(structuredClone(profile));
+  if (Array.isArray(typed.additional?.leadership)) {
+    typed.additional.leadership = typed.additional.leadership.map(item => typograph(item));
+  }
+  // Preserve pipe separators already compiled with NNBSP.
+  void NNBSP_PIPE;
+  return annotateStackedFlags(typed, canon);
+}
+
 export function writeCompositionBundle(profile, workDir, canonSnapshot = null) {
   mkdirSync(workDir, { recursive: true });
   if (!existsSync(resolve(CACHE, 'typesetting.css'))) {
@@ -93,6 +128,7 @@ export function writeCompositionBundle(profile, workDir, canonSnapshot = null) {
   }
 
   const canon = canonSnapshot || buildCanonSnapshot();
+  const emitProfile = prepareEmitProfile(profile, canon);
   const typesetting = readFileSync(resolve(CACHE, 'typesetting.css'), 'utf8');
   const composition = readFileSync(resolve(ROOT, 'assets/css/composition.css'), 'utf8');
   const css = [
@@ -103,17 +139,17 @@ export function writeCompositionBundle(profile, workDir, canonSnapshot = null) {
 
   writeFileSync(resolve(workDir, 'composition.css'), css, 'utf8');
 
-  const title = `${profile.name} — ${profile.role || 'Resume'}`;
+  const title = `${emitProfile.name} — ${emitProfile.role || 'Resume'}`;
   const description = [
-    profile.role,
-    profile.industry,
-    profile.summary ? String(profile.summary).slice(0, 220) : ''
+    emitProfile.role,
+    emitProfile.industry,
+    emitProfile.summary ? String(emitProfile.summary).slice(0, 220) : ''
   ].filter(Boolean).join(' · ');
   const keywords = [
-    profile.role,
-    profile.industry,
-    profile.category,
-    ...(profile.additional?.skills || []).slice(0, 12)
+    emitProfile.role,
+    emitProfile.industry,
+    emitProfile.category,
+    ...(emitProfile.additional?.skills || []).slice(0, 12)
   ].filter(Boolean);
 
   const html = `<!DOCTYPE html>
@@ -121,7 +157,7 @@ export function writeCompositionBundle(profile, workDir, canonSnapshot = null) {
 <head>
   <meta charset="utf-8">
   <title>${escapeAttr(title)}</title>
-  <meta name="author" content="${escapeAttr(profile.name)}">
+  <meta name="author" content="${escapeAttr(emitProfile.name)}">
   <meta name="description" content="${escapeAttr(description)}">
   <meta name="keywords" content="${escapeAttr(keywords.join(', '))}">
   <meta name="generator" content="Kartavya Resume Engine · WeasyPrint">
@@ -129,7 +165,7 @@ export function writeCompositionBundle(profile, workDir, canonSnapshot = null) {
   <link rel="stylesheet" href="composition.css">
 </head>
 <body>
-  <main class="sheet" id="sheet" role="main" aria-label="${escapeAttr(title)}">${renderCompositionBody(profile)}</main>
+  <main class="sheet" id="sheet" role="main" aria-label="${escapeAttr(title)}">${renderCompositionBody(emitProfile)}</main>
 </body>
 </html>
 `;
@@ -138,25 +174,19 @@ export function writeCompositionBundle(profile, workDir, canonSnapshot = null) {
   return {
     htmlPath,
     cssPath: resolve(workDir, 'composition.css'),
+    emitProfile,
     meta: {
       title,
-      author: profile.name,
-      authors: [profile.name],
+      author: emitProfile.name,
+      authors: [emitProfile.name],
       description,
       keywords,
       lang: 'en-GB',
-      profileId: profile.id,
+      profileId: emitProfile.id,
       specVersion: canon.specVersion,
       generator: 'Kartavya Resume Engine · WeasyPrint'
     }
   };
-}
-
-function escapeAttr(value) {
-  return String(value ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/"/g, '&quot;')
-    .replace(/</g, '&lt;');
 }
 
 export { ROOT, CACHE };

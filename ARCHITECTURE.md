@@ -2,7 +2,7 @@
 
 ## System boundary
 
-The deployed application is static. Bun is the build orchestrator; Chromium is a pinned typesetting/PDF engine used only when PDF generation is explicitly requested; GitHub Pages serves only `dist/`. There is no production server, database, or runtime data population.
+The deployed application is static. Bun is the build orchestrator; Chromium measures A4 fit for the site payload; WeasyPrint renders downloadable PDFs (plus editable DOCX). GitHub Pages serves only `dist/`. There is no production server, database, or runtime data population.
 
 ```text
 resume.json + variants.json
@@ -20,7 +20,7 @@ Newsreader (sheet) + Satoshi (UI)
                     |
       origin gh-pages (project Pages)
 
-Optional: Chromium fit + 87 PDFs → dist/resumes/
+Optional: Chromium fit + WeasyPrint PDF/DOCX → dist/resumes/
 ```
 
 See [PILLARS.md](./PILLARS.md) for the five-layer model. Pillar 5 ([DISCOVERABILITY.md](./DISCOVERABILITY.md)) is connective tissue for SEO, structured data, cold GEO, and agent fetch paths; implementation is phased and mostly ahead of the current build.
@@ -31,8 +31,8 @@ See [PILLARS.md](./PILLARS.md) for the five-layer model. Pillar 5 ([DISCOVERABIL
 
 The fitted production payload drives both the on-screen A4 document and PDF generation when PDFs are built. This prevents a download from silently containing different text than the selected résumé.
 
-- `bun run build` — site artifact; preserves `dist/resumes/` if present; sets `pdfAvailable` from files on disk.
-- `bun run build:pdf --yes` — adds Chromium fit and renders every variant PDF.
+- `bun run build` — site artifact; preserves `dist/resumes/` if present; sets `pdfAvailable` from current WeasyPrint artifacts.
+- `bun run build:pdf --yes` — Chromium fit + WeasyPrint PDF/DOCX for every variant.
 - `bun run compile` — unfitted debug payload; `pdfAvailable` is always false.
 - `bun run serve` / `preview` — serve bundled `dist/` only.
 
@@ -51,13 +51,13 @@ The fitted production payload drives both the on-screen A4 document and PDF gene
 
 ## Fitting policy
 
-Runtime truncation is forbidden. During an explicit PDF build, Chromium measures each profile against the fixed page and deterministically omits optional data when needed. Omissions are auditable in `.build-cache/fit-report.json`.
+Runtime truncation is forbidden. During an explicit PDF build, Chromium measures each profile against the fixed page and deterministically omits optional data when needed. Omissions are auditable in `.build-cache/fit-report.json`. Chromium is not used for download PDF bytes.
 
-## PDF engine and verification
+## PDF / DOCX engine and verification
 
-Playwright pins the Chromium revision. PDF generation runs only with `--pdf` (and `--yes` for non-interactive runs). Eight parallel workers render variants; `pdf-lib` verifies A4 MediaBox and page count.
+Download PDFs are WeasyPrint composition emits (`pillar3:emit` / `build:pdf`): tagged, full-font-embedded A4 with the Pillar 1 canon. Editable DOCX is emitted in parallel with static Newsreader instances. Playwright Chromium remains the A4 fit measurer for the site payload only.
 
-`bun/src/test.js` accepts `--skip-pdfs` for site-only checks. Full PDF assertions run after `build:pdf`.
+`bun/src/test.js` accepts `--skip-pdfs` for site-only checks. Full PDF assertions run after `build:pdf`. Artifact manifest entries use `"engine": "weasyprint"`.
 
 Site-only builds retain whatever is already under `dist/resumes/`. Orphan PDFs from renamed or removed variants can linger until a full `build:pdf` / `deploy:pdf` refresh — do not treat file presence alone as proof the catalog is current.
 

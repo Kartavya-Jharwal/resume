@@ -2,6 +2,7 @@
 /** Server-side HTML fragment renderer for pillar 3 composition (PDF/DOCX branches). */
 
 import { typograph } from './microtype.js';
+import { experienceLeadParts, projectLeadParts } from './header-stack.js';
 
 const NNBSP_PIPE = '\u202f|\u202f';
 
@@ -65,10 +66,7 @@ function renderBullets(lines) {
 function renderExperienceHeader(entry, stacked = false) {
   const stackedClass = stacked ? ' r-item-hdr--stacked' : '';
   const headerOrder = entry.headerOrder || 'company-first';
-  const primary = headerOrder === 'role-first' ? (entry.role || '') : (entry.company || '');
-  const secondary = headerOrder === 'role-first'
-    ? (entry.companyLine || entry.company || '')
-    : (entry.roleLine || entry.role || '');
+  const { primary, secondary } = experienceLeadParts(entry);
   const secondaryHtml = secondary
     ? `<span class="r-role">${text(secondary)}</span>`
     : '<span class="r-role" hidden></span>';
@@ -80,10 +78,7 @@ function renderExperience(profile) {
   if (!entries.length) return '';
   const label = profile.isMasterCV ? 'Professional Experience' : 'Relevant Experience';
   const blocks = entries.map(entry => {
-    const leadText = entry.headerOrder === 'role-first'
-      ? `${entry.role || ''} ${entry.companyLine || entry.company || ''}`
-      : `${entry.company || ''} ${entry.roleLine || entry.role || ''}`;
-    const stacked = Boolean(leadText.trim().length > 48);
+    const stacked = Boolean(entry.stacked);
     return `<article class="exp-block" data-header-order="${entry.headerOrder || 'company-first'}">${renderExperienceHeader(entry, stacked)}${renderBullets(entry.highlights)}</article>`;
   }).join('');
   return `<section id="r-experience" class="r-sec" aria-labelledby="r-experience-label"><h2 id="r-experience-label" class="r-lbl">${label}</h2><div class="r-sec-body">${blocks}</div></section>`;
@@ -94,11 +89,14 @@ function renderProjects(profile) {
   if (!entries.length) return '';
   const label = profile.isMasterCV ? 'Projects' : 'Related Projects';
   const blocks = entries.map(entry => {
+    const stacked = Boolean(entry.stacked);
+    const stackedClass = stacked ? ' r-item-hdr--stacked' : '';
+    const { primary, secondary } = projectLeadParts(entry);
     const title = entry.url
-      ? `<a class="r-co" href="${escapeHtml(entry.url)}">${text(entry.name)}</a>`
-      : `<span class="r-co">${text(entry.name)}</span>`;
-    const engagement = entry.engagementLabel
-      ? `<span class="r-role">${text(entry.engagementLabel)}</span>`
+      ? `<a class="r-co" href="${escapeHtml(entry.url)}">${text(primary)}</a>`
+      : `<span class="r-co">${text(primary)}</span>`;
+    const engagement = secondary
+      ? `<span class="r-role">${text(secondary)}</span>`
       : '<span class="r-role" hidden></span>';
     const date = entry.date
       ? `<span class="r-date">${text(entry.date)}</span>`
@@ -106,7 +104,7 @@ function renderProjects(profile) {
     const desc = entry.description
       ? `<div class="r-prose proj-desc">${text(entry.description)}</div>`
       : '';
-    return `<article class="proj-block"><div class="r-item-hdr"><div class="r-item-lead">${title}${engagement}</div>${date}</div>${desc}${renderBullets(entry.highlights)}</article>`;
+    return `<article class="proj-block"><div class="r-item-hdr${stackedClass}"><div class="r-item-lead">${title}${engagement}</div>${date}</div>${desc}${renderBullets(entry.highlights)}</article>`;
   }).join('');
   return `<section id="r-projects" class="r-sec" aria-labelledby="r-projects-label"><h2 id="r-projects-label" class="r-lbl">${label}</h2><div class="r-sec-body">${blocks}</div></section>`;
 }
@@ -143,6 +141,7 @@ function renderEducation(profile) {
 
 function renderAdditional(profile) {
   const a = profile.additional || {};
+  if (a.visible === false) return '';
   const parts = [];
   if (profile.isMasterCV && a.skillMap?.length) {
     for (const [index, group] of a.skillMap.entries()) {

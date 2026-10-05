@@ -1,0 +1,273 @@
+/* Pillar 3 composition — A4 print/PDF only.
+ * Shares Pillar 1 canon tokens from typesetting.css.
+ * WeasyPrint limits: OS/2 cap offsets always on; no text-box-trim / text-wrap pretty|balance.
+ */
+@page { size: A4; margin: 0; }
+
+@font-face {
+  font-family: 'Newsreader Resume Text';
+  src: url('../fonts/newsreader-variable-roman.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Newsreader Resume Text';
+  src: url('../fonts/newsreader-variable-italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Newsreader Resume Title';
+  src: url('../fonts/newsreader-variable-roman.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: block;
+}
+
+:root {
+  --paper: #ffffff;
+  --paper-ink: #111313;
+  --font-resume-text: "Newsreader Resume Text", Georgia, serif;
+  --font-resume-title: "Newsreader Resume Title", Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+
+html, body {
+  width: 210mm;
+  height: 297mm;
+  overflow: visible;
+  background: #fff;
+  color: var(--paper-ink);
+}
+
+.sheet {
+  width: 210mm;
+  height: 297mm;
+  background: var(--paper);
+  color: var(--paper-ink);
+  padding: var(--margin-top) var(--margin-x) var(--margin-bottom) var(--margin-x);
+  font-family: var(--font-resume-text);
+  font-size: var(--s0);
+  line-height: var(--u);
+  font-variation-settings: var(--resume-variation-text), 'GRAD' var(--grad-print, 0);
+  font-optical-sizing: none;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  text-rendering: geometricPrecision;
+  font-synthesis: none;
+  font-variant-ligatures: common-ligatures;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  letter-spacing: var(--track-body);
+  text-align: left;
+  widows: 2;
+  orphans: 2;
+  hyphens: none;
+}
+
+.r-name {
+  font-family: var(--font-resume-title);
+  font-size: var(--name-size);
+  line-height: var(--name-leading);
+  letter-spacing: var(--track-display);
+  text-align: center;
+  font-weight: var(--weight-regular);
+  font-variation-settings: var(--resume-variation-name), 'GRAD' var(--grad-print, 0);
+  margin-top: calc(-1 * var(--cap-offset-s2));
+  margin-bottom: 0;
+  bookmark-level: 1;
+  bookmark-label: content();
+  bookmark-state: open;
+}
+
+.r-ctc {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-size: var(--s0);
+  line-height: var(--u);
+  margin-top: var(--name-contact-gap);
+  margin-bottom: var(--contact-to-body-gap);
+  text-align: center;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.r-ctc span { white-space: nowrap; }
+.sheet a { color: inherit; text-decoration: none; }
+.print-link-label { display: inline; }
+.ctc-part { max-width: 100%; }
+.r-name-inner, .ctc-part > a, .r-co, .r-date, .edu-degree, .info-copy, .ctc-copy { display: inline-block; }
+
+.r-lbl {
+  padding-bottom: var(--pre-sec-pad);
+  border-bottom: 0.5pt solid var(--rule-color);
+  font-size: var(--s0);
+  font-weight: var(--weight-regular);
+  text-transform: uppercase;
+  line-height: var(--u);
+  letter-spacing: var(--track-label);
+  margin: calc(-1 * var(--cap-offset-s0)) 0 var(--label-gap) 0;
+  bookmark-level: 2;
+  bookmark-label: content();
+  bookmark-state: open;
+}
+
+.r-sec {
+  break-inside: avoid;
+  margin-top: var(--pre-sec-margin);
+}
+#r-summary { margin-top: 0; }
+#r-summary .summary-text { margin-bottom: var(--summary-tail-gap); }
+.r-sec:empty { display: none; }
+.r-sec-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--entry-gap);
+}
+
+.r-prose {
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  letter-spacing: var(--track-body);
+  text-align: left;
+  hyphens: none;
+}
+
+.exp-block .r-item-hdr,
+.proj-block .r-item-hdr {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--date-reserved-width);
+  column-gap: var(--col-gutter);
+  align-items: start;
+}
+.exp-block .r-item-lead,
+.proj-block .r-item-lead {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--entry-title-gap);
+  min-width: 0;
+}
+.exp-block .r-item-hdr .r-date,
+.proj-block .r-item-hdr .r-date {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-size: var(--s0);
+  line-height: var(--u);
+  min-width: var(--date-reserved-width);
+  white-space: nowrap;
+  text-align: right;
+}
+.exp-block .r-item-hdr .r-co,
+.proj-block .r-item-hdr .r-co {
+  font-family: var(--font-resume-text);
+  font-weight: var(--weight-emphasis);
+  font-size: var(--s0);
+  font-variation-settings: var(--resume-variation-emphasis), 'GRAD' var(--grad-print, 0);
+  flex: 0 1 auto;
+  max-width: 100%;
+  min-width: 0;
+  line-height: var(--u);
+  white-space: normal;
+  overflow-wrap: normal;
+}
+.exp-block .r-item-hdr .r-role,
+.proj-block .r-item-hdr .r-role {
+  font-family: var(--font-resume-text);
+  font-size: var(--s0);
+  font-style: italic;
+  font-weight: var(--weight-regular);
+  /* Prefer sitting beside company when ≥~42% of the lead remains;
+     otherwise wrap to a full-width second line — never crush into a
+     leftover strip (min-width:0 + 12ch was causing that). */
+  flex: 1 1 42%;
+  min-width: 42%;
+  line-height: var(--u);
+  margin: 0;
+  padding-left: 0;
+  white-space: normal;
+  overflow-wrap: normal;
+}
+.exp-block .r-item-hdr--stacked,
+.proj-block .r-item-hdr--stacked { grid-template-rows: auto auto; }
+.exp-block .r-item-hdr--stacked .r-item-lead,
+.proj-block .r-item-hdr--stacked .r-item-lead { display: contents; }
+.exp-block .r-item-hdr--stacked .r-co,
+.proj-block .r-item-hdr--stacked .r-co { grid-column: 1; grid-row: 1; max-width: none; }
+.proj-block .r-item-hdr--stacked .r-co { display: block; }
+.exp-block .r-item-hdr--stacked .r-role,
+.proj-block .r-item-hdr--stacked .r-role { grid-column: 1; grid-row: 2; flex: none; width: 100%; }
+.proj-block .r-item-hdr--stacked .r-role { display: block; }
+.exp-block .r-item-hdr + .r-ul,
+.proj-block .r-item-hdr + .proj-desc,
+.proj-block .r-item-hdr + .r-ul { margin-top: var(--lead-in-gap); }
+
+.r-ul { list-style: none; padding: 0; margin: 0; }
+.r-ul li {
+  position: relative;
+  padding-left: var(--bullet-indent);
+  margin-left: calc(-1 * var(--hang-bullet));
+  line-height: var(--bullet-line);
+}
+.r-ul li::before {
+  content: "\2022";
+  position: absolute;
+  left: calc(-1 * var(--hang-bullet));
+  width: var(--bullet-indent);
+  text-align: right;
+  padding-right: var(--bullet-text-gap);
+  box-sizing: border-box;
+}
+.r-ul li + li { margin-top: var(--bullet-gap); }
+
+.exp-block, .proj-block, .edu-block { break-inside: avoid; margin-bottom: 0; }
+.proj-desc { margin-bottom: 0; }
+.proj-desc + .r-ul { margin-top: var(--micro-gap); }
+
+.edu-school-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--date-reserved-width);
+  align-items: baseline;
+  gap: var(--col-gutter);
+  min-height: var(--u);
+}
+.edu-school-main { min-width: 0; line-height: var(--u); }
+.edu-institution {
+  font-weight: var(--weight-emphasis);
+  font-variation-settings: var(--resume-variation-emphasis), 'GRAD' var(--grad-print, 0);
+  text-decoration: none;
+  color: inherit;
+}
+.edu-date { font-style: italic; }
+.edu-degree-line, .edu-fact { line-height: var(--u); }
+.edu-degree, .edu-school { font-weight: var(--weight-emphasis); }
+.edu-fact { display: block; margin-left: var(--edu-detail-inset); }
+.edu-fact::after { content: ""; display: block; clear: both; }
+.edu-fact-label {
+  float: left;
+  font-style: italic;
+  margin-left: calc(-1 * var(--edu-colon-optical-hang));
+  margin-right: var(--edu-after-colon);
+}
+.edu-major, .edu-score, .edu-summary, .edu-honors, .edu-coursework {
+  display: block;
+  overflow: hidden;
+}
+.edu-score-line .edu-fact-label,
+.edu-score { font-weight: var(--weight-emphasis); }
+
+.r-prose.skills-text { line-height: var(--u); }
+.r-prose > b {
+  font-weight: var(--weight-emphasis);
+  font-style: italic;
+  margin-right: var(--edu-after-colon);
+}

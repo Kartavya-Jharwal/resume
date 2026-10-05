@@ -2,6 +2,7 @@
 /** Build the static microsite. PDF fitting/rendering is an explicit, confirmed mode. */
 
 import { appendFileSync, cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpus } from 'node:os';
 import { dirname, extname, join, relative, resolve, sep } from 'node:path';
 import { createInterface } from 'node:readline/promises';
 import { fileURLToPath } from 'node:url';
@@ -15,7 +16,7 @@ import {
   expandSitemapUrls,
   injectDiscoverabilityHtml
 } from './discoverability.js';
-import { A4_MEDIA_BOX, verifyPdf } from './pdf-verify.js';
+import { loadArtifactManifest, pdfIsCurrent } from './artifact-state.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const DIST = resolve(ROOT, 'dist');
@@ -23,9 +24,9 @@ const CACHE = resolve(ROOT, '.build-cache');
 const PROFILE_SOURCE = resolve(CACHE, 'profiles.full.js');
 const FIT_REPORT = resolve(CACHE, 'fit-report.json');
 const PROGRESS_LOG = resolve(CACHE, 'build-progress.log');
-const A4 = A4_MEDIA_BOX;
 const PDF_MODE = process.argv.includes('--pdf');
-const FIT_ONLY_MODE = process.argv.includes('--fit-only');
+// Every published screen payload is fitted. PDF rendering remains opt-in (WeasyPrint).
+const FIT_ONLY_MODE = !PDF_MODE || process.argv.includes('--fit-only');
 const PDF_CONFIRMED = process.argv.includes('--yes');
 const PROFILE_ARG_INDEX = process.argv.indexOf('--profile');
 const TARGET_PROFILE_ID = PROFILE_ARG_INDEX >= 0 ? process.argv[PROFILE_ARG_INDEX + 1] : '';
@@ -45,7 +46,9 @@ async function confirmPdfBuild() {
 
   const prompt = createInterface({ input: process.stdin, output: process.stdout });
   try {
-    const scope = TARGET_PROFILE_ID ? `the ${TARGET_PROFILE_ID} résumé PDF` : 'every résumé PDF';
+    const scope = TARGET_PROFILE_ID
+      ? `WeasyPrint PDF+DOCX for ${TARGET_PROFILE_ID}`
+      : 'WeasyPrint PDF+DOCX for every résumé variant';
     const answer = await prompt.question(`Generate and verify ${scope}? Continue? [y/N] `);
     if (!/^(?:y|yes)$/i.test(answer.trim())) {
       console.log('PDF generation cancelled; no build files were changed.');
@@ -213,7 +216,10 @@ async function writeProductionAssets() {
     cpSync(resolve(ROOT, 'assets/fonts', fontAsset), resolve(DIST, 'assets/fonts', fontAsset), { recursive: false });
   }
   cpSync(resolve(ROOT, 'assets/img/logos'), resolve(DIST, 'assets/img/logos'), { recursive: true });
-  cpSync(resolve(ROOT, 'assets/img/logo'), resolve(DIST, 'assets/img/logo'), { recursive: true });
+  // The legacy logo directory is local-only and absent in a clean checkout.
+  if (existsSync(resolve(ROOT, 'assets/img/logo'))) {
+    cpSync(resolve(ROOT, 'assets/img/logo'), resolve(DIST, 'assets/img/logo'), { recursive: true });
+  }
   if (existsSync(resolve(ROOT, 'assets/img/og'))) {
     cpSync(resolve(ROOT, 'assets/img/og'), resolve(DIST, 'assets/img/og'), { recursive: true });
   }
@@ -261,14 +267,6 @@ async function writeShareAssets(fallbackProfile) {
   throw new Error('Missing OG fallback image at assets/img/og-default.png');
 }
 
-async function verifyRenderedPdf(path, profile) {
-  await verifyPdf(path, {
-    label: profile.id,
-    expectedPageCount: 1,
-    expectedTitle: profile.name
-  });
-}
-
 await confirmPdfBuild();
 
 /* Fast builds retain the last confirmed PDF batch instead of regenerating it. */
@@ -285,50 +283,12 @@ const fullProfiles = compiledPayload.profiles;
 const variantAliases = compiledPayload.variantAliases;
 const proofRouter = compiledPayload.proofRouter || [];
 const sourceRevision = compiledPayload.sourceRevision;
-const buildProfiles = TARGET_PROFILE_ID
-  ? fullProfiles.filter(profile => profile.id === TARGET_PROFILE_ID)
-  : fullProfiles;
-if (TARGET_PROFILE_ID && buildProfiles.length !== 1) {
+const buildProfiles = fullProfiles;
+if (TARGET_PROFILE_ID && !fullProfiles.some(profile => profile.id === TARGET_PROFILE_ID)) {
   throw new Error(`Unknown résumé profile: ${TARGET_PROFILE_ID}`);
 }
 mkdirSync(resolve(DIST, 'public'), { recursive: true });
 writeFileSync(resolve(DIST, 'public/data.js'), profileScript(PDF_MODE ? buildProfiles : fullProfiles, variantAliases, sourceRevision, proofRouter));
-
-if (!PDF_MODE && !FIT_ONLY_MODE) {
-  for (const profile of fullProfiles) {
-    profile.pdfAvailable = Boolean(profile.pdfFilename && existsSync(resolve(DIST, 'resumes', profile.pdfFilename)));
-  }
-  writeFileSync(resolve(DIST, 'public/data.js'), profileScript(fullProfiles, variantAliases, sourceRevision, proofRouter));
-  const fallbackProfile = fullProfiles.find(profile => profile.fallback) || fullProfiles[0];
-  await writeShareAssets(fallbackProfile);
-  writeGatewayMetadata(fullProfiles, sourceRevision, proofRouter);
-  const retainedPdfs = fullProfiles.filter(profile => profile.pdfAvailable).length;
-  const priorityPath = resolve(ROOT, 'config/release-priority-variants.json');
-  const priorityIds = existsSync(priorityPath)
-    ? JSON.parse(readFileSync(priorityPath, 'utf8')).variantIds || []
-    : [];
-  const priorityMissing = priorityIds.filter(id => {
-    const profile = fullProfiles.find(entry => entry.id === id);
-    return profile && !profile.pdfAvailable;
-  });
-  writeFileSync(resolve(DIST, 'build-report.json'), `${JSON.stringify({
-    profiles: fullProfiles.length,
-    pdfs: retainedPdfs,
-    pdfGeneration: 'skipped; explicit confirmation required',
-    priorityVariants: priorityIds.length,
-    priorityMissingPdfs: priorityMissing
-  }, null, 2)}\n`);
-  console.log(`✓ Built site and ${fullProfiles.length} résumé profiles; PDF generation skipped (${retainedPdfs} retained) → dist/`);
-  process.exit(0);
-}
-
-if (FIT_ONLY_MODE && !PDF_MODE) {
-  for (const profile of fullProfiles) {
-    profile.pdfAvailable = Boolean(profile.pdfFilename && existsSync(resolve(DIST, 'resumes', profile.pdfFilename)));
-  }
-  writeFileSync(resolve(DIST, 'public/data.js'), profileScript(fullProfiles, variantAliases, sourceRevision, proofRouter));
-  writeGatewayMetadata(fullProfiles, sourceRevision, proofRouter);
-}
 
 const server = Bun.serve({
   port: 0,
@@ -354,14 +314,14 @@ try {
   const fitResults = JSON.parse(Buffer.from(fitMatch[1], 'base64').toString('utf8'));
   if (fitResults.length !== buildProfiles.length) throw new Error('Chromium fit result count does not match source profiles');
 
+  const artifactManifest = loadArtifactManifest();
+  const rendererHashes = {};
   const fittedProfiles = [];
   const reports = [];
   for (let index = 0; index < fitResults.length; index += 1) {
     const profile = buildProfiles[index];
     const result = fitResults[index];
-    result.profile.pdfAvailable = FIT_ONLY_MODE
-      ? Boolean(result.profile.pdfFilename && existsSync(resolve(DIST, 'resumes', result.profile.pdfFilename)))
-      : true;
+    result.profile.pdfAvailable = pdfIsCurrent(result.profile, artifactManifest, rendererHashes);
     fittedProfiles.push(result.profile);
     reports.push({
       id: profile.id,
@@ -382,7 +342,7 @@ try {
     ? fullProfiles.map(profile => {
       const fitted = fittedProfiles.find(entry => entry.id === profile.id);
       if (!fitted) return profile;
-      fitted.pdfAvailable = Boolean(fitted.pdfFilename && existsSync(resolve(DIST, 'resumes', fitted.pdfFilename)));
+      fitted.pdfAvailable = pdfIsCurrent(fitted, artifactManifest, rendererHashes);
       return fitted;
     })
     : fittedProfiles;
@@ -392,11 +352,15 @@ try {
   await writeShareAssets(fallbackProfile);
   writeGatewayMetadata(publishedProfiles, sourceRevision, proofRouter);
 
+  const priorityIds = JSON.parse(readFileSync(resolve(ROOT, 'config/release-priority-variants.json'), 'utf8')).variantIds;
   const totalOmissions = reports.reduce((sum, report) => sum + report.omissions.length, 0);
   const reportSummary = {
-    mode: FIT_ONLY_MODE ? 'fit-only' : 'pdf',
+    mode: FIT_ONLY_MODE ? 'site' : 'pdf',
+    pdfGeneration: FIT_ONLY_MODE ? 'skipped; retained PDFs verified against fitted content' : 'weasyprint',
     profiles: fittedProfiles.length,
-    pdfs: FIT_ONLY_MODE ? publishedProfiles.filter(profile => profile.pdfAvailable).length : fittedProfiles.length,
+    pdfs: publishedProfiles.filter(profile => profile.pdfAvailable).length,
+    priorityVariants: priorityIds.length,
+    priorityMissingPdfs: priorityIds.filter(id => !publishedProfiles.find(profile => profile.id === id)?.pdfAvailable),
     totalOmissions,
     maximumFitPasses: Math.max(...reports.map(report => report.passes)),
     metrics: JSON.parse(readFileSync(resolve(CACHE, 'font-metrics.json'), 'utf8'))
@@ -411,40 +375,22 @@ try {
     console.log(`✓ Measured A4 fit for ${fittedProfiles.length} profiles (${totalOmissions} omission(s)) → ${relative(ROOT, FIT_REPORT)}`);
   } else {
     mkdirSync(resolve(DIST, 'resumes'), { recursive: true });
+    const emitConcurrency = String(Math.max(1, cpus()?.length || 2));
+    const emitArgs = ['bun/src/pillar3-emit.js', '--publish', '--no-rebuild', '--strict', '--concurrency', emitConcurrency];
+    if (TARGET_PROFILE_ID) emitArgs.push('--profile', TARGET_PROFILE_ID);
+    else emitArgs.push('--all');
+    progress(`weasyprint-emit-started concurrency=${emitConcurrency}`);
+    runBun(emitArgs[0], emitArgs.slice(1));
+    progress('weasyprint-emit-complete');
 
-  const renderPdf = async profile => {
-    const output = resolve(DIST, 'resumes', profile.pdfFilename);
-    const renderUrl = `${server.url}?_fit=1&_profile=${encodeURIComponent(profile.id)}`;
-    await runChromium([
-      '--virtual-time-budget=750',
-      '--print-to-pdf-no-header',
-      '--no-pdf-header-footer',
-      '--export-tagged-pdf',
-      `--print-to-pdf=${output}`,
-      renderUrl
-    ]);
-    await verifyRenderedPdf(output, profile);
-    progress(`pdf ${profile.pdfFilename}`);
-  };
-
-  const PDF_CONCURRENCY = 8;
-  for (let index = 0; index < fittedProfiles.length; index += PDF_CONCURRENCY) {
-    await Promise.all(fittedProfiles.slice(index, index + PDF_CONCURRENCY).map(renderPdf));
-  }
-
-  if (TARGET_PROFILE_ID) {
-    const fittedById = new Map(fittedProfiles.map(profile => [profile.id, profile]));
-    const publishedProfiles = fullProfiles.map(profile => {
-      const published = fittedById.get(profile.id) || profile;
-      published.pdfAvailable = Boolean(published.pdfFilename && existsSync(resolve(DIST, 'resumes', published.pdfFilename)));
-      return published;
-    });
+    const publishedManifest = loadArtifactManifest();
+    for (const profile of publishedProfiles) profile.pdfAvailable = pdfIsCurrent(profile, publishedManifest, {});
     writeFileSync(resolve(DIST, 'public/data.js'), profileScript(publishedProfiles, variantAliases, sourceRevision, proofRouter));
-  }
-
-  reportSummary.pdfs = fittedProfiles.length;
-  writeFileSync(resolve(DIST, 'build-report.json'), `${JSON.stringify(reportSummary, null, 2)}\n`);
-  console.log(`✓ Built ${fittedProfiles.length} fitted profile${fittedProfiles.length === 1 ? '' : 's'} and ${fittedProfiles.length} verified A4 PDF${fittedProfiles.length === 1 ? '' : 's'} → dist/`);
+    writeGatewayMetadata(publishedProfiles, sourceRevision, proofRouter);
+    reportSummary.pdfs = publishedProfiles.filter(profile => profile.pdfAvailable).length;
+    reportSummary.priorityMissingPdfs = priorityIds.filter(id => !publishedProfiles.find(profile => profile.id === id)?.pdfAvailable);
+    writeFileSync(resolve(DIST, 'build-report.json'), `${JSON.stringify(reportSummary, null, 2)}\n`);
+    console.log(`✓ Built ${fittedProfiles.length} fitted profile${fittedProfiles.length === 1 ? '' : 's'} and WeasyPrint A4 PDF+DOCX → dist/resumes/`);
   }
 } finally {
   server.stop(true);

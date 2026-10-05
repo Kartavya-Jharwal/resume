@@ -2,7 +2,7 @@
 
 The résumé is the product. The surrounding controls make it an explorable microsite, but every view remains a precisely typeset, downloadable A4 document.
 
-The source data describes one person across many role and industry contexts. Bun validates that source, compiles **87** curated variants, minifies the website, and writes the deployable artifact to `dist/`. PDF generation is a separate, explicit step when you choose to run it.
+The source data describes one person across many role and industry contexts. Bun validates that source, compiles **88** curated variants, minifies the website, and writes the deployable artifact to `dist/`. PDF generation is a separate, explicit step when you choose to run it.
 
 The canonical URL is `https://resume.kartavya.tech`. The site is also reachable at `https://kartavya.tech/resume` and `https://kartavya-jharwal.github.io/resume`. GitHub Pages serves the `gh-pages` branch of this repository; set the custom domain to `resume.kartavya.tech` in the repo’s Pages settings.
 
@@ -11,7 +11,7 @@ See [PILLARS.md](./PILLARS.md) for the five-layer model: typesetting, screen UI,
 ## Product model
 
 - One identity supports all role variants. Cross-domain breadth is positioning and evidence, not a separate frontend persona.
-- A root visit opens the **fallback** profile (Startup Operations Manager · Early-Stage Technology Startups). Role and industry controls switch among curated variants; “Explore another profile” remains an optional feature.
+- A root visit opens the **flagship fallback** profile (Strategic Design Engineer · Founder-Led Startups). This variant blends the founder-associate lens with product design and hands-on engineering evidence. Role and industry controls switch among curated variants; “Explore another profile” remains an optional feature.
 - Searchable skills live in the source data and compiled payload. Recruiters can inspect the site, follow a focused deep link, or download the matching PDF when that file exists in `dist/resumes/`.
 - The résumé never reflows to a different document geometry. Screen rendering scales the fixed A4 page; print and PDF use the same internal layout.
 
@@ -32,13 +32,14 @@ bun run metrics        # extract font metrics used by the CSS
 bun run fonts:sync     # vendor Newsreader 1.003 TTF + WOFF2; preserves Satoshi in the manifest
 bun run compile        # unfitted debug payload → public/data.js (gitignored)
 bun run build          # create dist/ (site only; retains existing dist/resumes/)
-bun run build:pdf --yes  # fit + render all variant PDFs (~45 min)
+bun run build:pdf --yes  # Chromium fit + WeasyPrint PDF/DOCX for all variants
+bun run pillar3:publish  # WeasyPrint PDF/DOCX emit into dist/resumes/
 bun run test           # site build + production tests (--skip-pdfs)
-bun run test:pdf --yes # full PDF build + strict PDF tests
+bun run test:pdf       # full WeasyPrint PDF build + strict PDF tests
 bun run serve          # rebuild site, then serve dist/
 bun run preview        # serve dist/ without rebuilding
 bun run deploy         # build, test, publish dist/ to origin gh-pages
-bun run deploy:pdf     # full PDF build, test, then publish
+bun run deploy:pdf     # full PDF/DOCX build, test, then publish
 ```
 
 `bun run build` deletes previous `dist/` **except** `dist/resumes/` when not in PDF mode, so an existing PDF batch survives site-only rebuilds. Do not edit anything in `dist/` or `.build-cache/` by hand.
@@ -53,19 +54,21 @@ bun run deploy:pdf     # full PDF build, test, then publish
 2. Inspect Newsreader for required OpenType features, coverage, and metric extraction; copy Newsreader + Satoshi faces into `dist/`.
 3. Compile every curated profile.
 4. Bundle/minify browser JavaScript and CSS, copy self-hosted fonts/assets, write `dist/`.
-5. Mark each profile’s `pdfAvailable` from whether `dist/resumes/{pdfFilename}` exists.
+5. Mark each profile’s `pdfAvailable` from whether a current WeasyPrint artifact exists at `dist/resumes/{pdfFilename}`.
 
 ### PDF build (`bun run build:pdf --yes`)
 
-Adds Chromium measurement, deterministic optional-content fitting, and one searchable A4 PDF per variant. Omissions are recorded in `.build-cache/fit-report.json`. Words are never clipped or ellipsized.
+1. Chromium measures A4 fit and records omissions in `.build-cache/fit-report.json` (words are never clipped or ellipsized).
+2. WeasyPrint renders tagged, font-embedded A4 PDFs from the composition sheet; editable DOCX is emitted beside each PDF.
+3. Artifact manifest entries use `"engine": "weasyprint"`.
 
-Tagged PDF export is enabled, but this project does not claim PDF/UA or PDF/A conformance without an external standards validator.
+This project does not claim PDF/UA or PDF/A conformance without an external standards validator.
 
 ## Source map
 
 ```text
 data/resume.json          canonical résumé content
-data/variants.json        87 curated role × industry variants and PDF names
+data/variants.json        88 curated role × industry variants and PDF names
 data/DATA_LAYER.md        taxonomy, categories, threads, `all` tag doctrine, metadata contract
 assets/css/tokens.css     microsite UI tokens
 assets/css/typesetting.css  generated A4 geometry and type scale
@@ -94,13 +97,13 @@ output/                   ad-hoc local PDF exports (ignored)
 tmp/                      research and QA scratch (ignored)
 ```
 
-Production deploys locally: `bun run deploy` builds and tests the site (PDFs skipped), then force-pushes the contents of `dist/` to the `gh-pages` branch on `origin` (`Kartavya-Jharwal/resume`). Run `bun run deploy:pdf` when you want to refresh downloadable PDFs before publishing (~45 min).
+Production deploys locally: `bun run deploy` builds and tests the site (PDFs skipped), then force-pushes the contents of `dist/` to the `gh-pages` branch on `origin` (`Kartavya-Jharwal/resume`). Run `bun run deploy:pdf` when you want to refresh downloadable WeasyPrint PDFs and DOCX before publishing.
 
 ## Editing content
 
 Edit only the JSON source, then run `bun run test`. Variant tags must reference an ID declared in `data/variants.json`. Exactly one variant must set `fallback: true`. Each role/industry pair must remain unique, and each pair needs its own summary. Backend `category` (22 v2 buckets) is documented in [`data/DATA_LAYER.md`](./data/DATA_LAYER.md) — do not set `family` in `variants.json`.
 
-After substantive content changes, run `bun run build:pdf --yes` when you want to refresh downloadable PDFs, then inspect `.build-cache/fit-report.json` and spot-check representative output.
+After substantive content changes, run `bun run build:pdf --yes` when you want to refresh downloadable PDFs/DOCX, then inspect `.build-cache/fit-report.json` and spot-check representative output.
 
 Education is structured source data with institution links, locations, honors, and keyword-tagged coursework. The compiler ranks coursework per profile.
 

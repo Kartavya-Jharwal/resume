@@ -33,14 +33,19 @@ VARIANT_CANDIDATES = ("pdf/ua-2", "pdf/ua-1")
 def bootstrap_gtk() -> str | None:
     if sys.platform != "win32":
         return None
-    for gtk_bin in GTK_CANDIDATES:
-        if not gtk_bin.is_dir():
+    # Prefer the known-good runtime first; skip broken partial installs.
+    ordered = [path for path in GTK_CANDIDATES if path.is_dir()]
+    for gtk_bin in ordered:
+        try:
+            os.add_dll_directory(str(gtk_bin))
+            os.environ["PATH"] = str(gtk_bin) + os.pathsep + os.environ.get("PATH", "")
+            # Probe gobject so a broken install does not poison later imports.
+            import ctypes
+            ctypes.CDLL(str(gtk_bin / "libgobject-2.0-0.dll"))
+            return str(gtk_bin)
+        except OSError:
             continue
-        os.add_dll_directory(str(gtk_bin))
-        os.environ["PATH"] = str(gtk_bin) + os.pathsep + os.environ.get("PATH", "")
-        return str(gtk_bin)
     return None
-
 
 def load_meta(path: Path | None) -> dict:
     if not path or not path.exists():

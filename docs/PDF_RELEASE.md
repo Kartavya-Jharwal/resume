@@ -1,8 +1,10 @@
-# PDF release readiness (Stage 6)
+# PDF / DOCX release readiness
+
+Download artifacts are **WeasyPrint PDFs** (vector text, embedded Newsreader, tagged) plus **editable DOCX** with static Newsreader instances. Chromium is used only to measure A4 fit for the site payload — never as the download PDF renderer.
 
 ## Priority variant set (MVP)
 
-These 12 variants align with scout, partner, and associate launch audiences. Ship PDFs for these before broader coverage:
+These variants align with scout, partner, and associate launch audiences. Prefer shipping them first when batching, but production `build:pdf --yes` emits **all** variants.
 
 | Variant ID | Role · Industry |
 |------------|-----------------|
@@ -27,19 +29,23 @@ Config source: `config/release-priority-variants.json`.
 # Site only (retains existing dist/resumes/)
 bun run build
 
-# Full PDF batch (requires confirmation)
+# Fit + WeasyPrint PDF/DOCX for every variant
 bun run build:pdf --yes
 
-# Verify PDFs
+# Composition emit only (no site rebuild)
+bun run pillar3:publish
+
+# Verify on-disk PDFs against fitted payload
 bun run test:pdf
 ```
 
 ## Waiver (pre-launch)
 
-Non-priority variants may ship without on-disk PDFs. The UI surfaces an honest toast (`PDF not yet generated for this cut`) and disables download styling when `pdfAvailable: false` in `public/data.js`.
+Variants may ship without on-disk PDFs until the batch completes. The UI surfaces an honest toast (`PDF not yet generated for this cut`) and disables download styling when `pdfAvailable: false`.
 
 ## Spot-check before deploy
 
-1. Download PDF for fallback variant — text matches on-screen proof.
-2. Download PDF for one strategy and one AI variant.
-3. Confirm `build-report.json` `pdfs` count meets launch bar.
+1. Download PDF for fallback variant — vector text, not a raster sheet; typography matches the on-screen proof’s canon.
+2. Open the matching DOCX — editable text with embedded Newsreader faces.
+3. Confirm `dist/resumes/manifest.json` entries use `"engine": "weasyprint"`.
+4. Confirm `build-report.json` `pdfGeneration` is `weasyprint` and `pdfs` count meets the launch bar.
