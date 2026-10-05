@@ -17,7 +17,7 @@ The compiler ([`bun/src/compile.js`](../bun/src/compile.js)) resolves content pl
 
 | Term | Field | Notes |
 |------|-------|-------|
-| **Pair / variant** | `variants[].id` | 87 curated views; kebab-case slug |
+| **Pair / variant** | `variants[].id` | 88 curated views; kebab-case slug |
 | **Role** | `variants[].role` | PDF job title; selector level 1 |
 | **Industry** | `variants[].industry` | PDF context; selector level 2; unique with role |
 
@@ -56,7 +56,7 @@ VC is a **sector context**, not a job title family. Multiple platform roles insi
 | Private Wealth & Family Enterprise | 1 | Governance + family office |
 | PropTech & Real Estate Investment | 3 | Underwriting + hospitality assets + PropTech SaaS |
 | Product Management & Platform | 2 | PM roles (merged from standalone Product Management) |
-| UI/UX & Product Design | 6 | Dashboards, enterprise SaaS, civic UX |
+| UI/UX & Product Design | 7 | Dashboards, enterprise SaaS, civic UX |
 | Creative Strategy & Brand | 6 | ESG/carbon brand, campaign identity, FinTech narrative |
 | Spatial & Experiential Design | 3 | Museum/expo phygital + retail flagship |
 | Creative Technology & Hybrid Design | 2 | Agency prototypes + FinTech data products |

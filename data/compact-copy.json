@@ -1,0 +1,123 @@
+{
+  "variants": {
+    "early-stage-operator-yc-alumni-startups": {
+      "summary": "I build GTM instrumentation, sprint routines, and clear ownership for YC-alumni teams moving from early traction toward Series A."
+    },
+    "venture-diligence-analyst-pre-seed-funds": {
+      "summary": "I build market maps, assess teams and products, and prepare investment narratives for London pre-seed diligence."
+    },
+    "executive-translation-lead-fortune-500-strategy": {
+      "summary": "I turn operating evidence into board recommendations on market size, competitive moves, and execution gates for corporate strategy teams."
+    },
+    "ai-governance-ethics-officer-medtech": {
+      "summary": "I document human oversight, risk controls, and safeguarding for scrutiny by MedTech clinical and regulatory reviewers."
+    },
+    "behavioral-product-manager-digital-wellness": {
+      "summary": "I use behavioural insight and service design to prioritise digital-wellness features while protecting safeguarding and avoiding dark patterns."
+    },
+    "developer-experience-dx-evangelist-devtools": {
+      "summary": "I build demos, integration guides, and product feedback loops that help engineers adopt developer tools."
+    },
+    "experiential-event-producer-tech-conferences": {
+      "summary": "I produce tech events from concept to stage, aligning sponsors, community programming, and follow-through."
+    },
+    "ux-research-translation-lead-civic-tech-platforms": {
+      "summary": "I translate inclusive research and stakeholder needs into implementable civic-service journeys."
+    },
+    "management-consultant-mbb-standard-big-3-consulting": {
+      "summary": "I build exhibit-linked resilience cases, industry analysis, and recommendations from operating evidence for strategy engagements."
+    },
+    "investment-banking-analyst-growth-equity": {
+      "summary": "I combine regime-aware portfolio work and GANET models into growth-equity diligence with traceable evidence."
+    },
+    "systematic-organizational-designer-enterprise-transformation": {
+      "summary": "I design operating models, decision rights, and handoffs that help family enterprises coordinate growth across ventures."
+    },
+    "systematic-organizational-designer-civictech": {
+      "summary": "I design booking, volunteer, and accountability systems for repeatable community services."
+    },
+    "systematic-organizational-designer-deeptech-skunkworks": {
+      "summary": "I design privacy-first operating models, venture governance, and lab-to-spinout pathways for deep-tech R&D."
+    },
+    "autodidact-skunkworks-researcher-corporate-rd-labs": {
+      "summary": "I test ambiguous R&D problems through prototypes, iterative experiments, literature synthesis, and working demonstrations."
+    },
+    "founders-associate-healthcare-startup-ecosystems": {
+      "summary": "I support healthcare founders with London incubator navigation, MVP-to-GTM planning, stakeholder coordination, and platform diligence."
+    },
+    "strategic-design-engineer-founder-led-startups": {
+      "summary": "I turn customer and operating insight into product architecture, service design, and working MVPs, supporting founders through launch."
+    },
+    "chief-of-staff-founder-led-family-owned-enterprises": {
+      "summary": "I coordinate managing-director priorities, cross-property work, and confidential decision papers across founder-led ventures."
+    },
+    "family-office-analyst-private-wealth-family-enterprise": {
+      "summary": "I combine governance design, reusable financial models, and diligence narratives for family-enterprise portfolios."
+    },
+    "experiential-event-producer-financial-services-law-firms": {
+      "summary": "I produce conferences, hackathons, and lead-generation programmes for finance and law firms, with attention to brand and compliance."
+    }
+  },
+  "highlights": {
+    "work-margadarshaka-h1": "Required human review after every AI-handled call; prohibited unattended counselling and automated safeguarding judgments.",
+    "work-margadarshaka-h2": "Stopped a premature full build after feasibility tests exposed payer-user misalignment and counselling-liability risk.",
+    "work-margadarshaka-h3": "Tested demand, delivery economics, and human-review cost before authorising each build tranche.",
+    "work-margadarshaka-h4": "Ran pre-scale GTM experiments testing demand, counsellor capacity, and unit economics before marketing spend.",
+    "work-margadarshaka-h5": "Drafted cap-table scenarios and angel-outreach materials, assessing investor fit against liability and payer-user alignment risks.",
+    "work-margadarshaka-h6": "Prototyped Whisper/C++ edge inference against an INR 50 per-call compute ceiling before committing to a full voice stack.",
+    "work-margadarshaka-h7": "Designed psychometric intake that translated trait signals into counsellor prompts without automating judgment.",
+    "work-margadarshaka-h8": "Interviewed six-plus practitioners on AI-assisted career guidance and translated findings into product and positioning choices.",
+    "work-margadarshaka-h9": "Tested an affordable, SDG-aligned regional-language counselling model while protecting safeguarding spend.",
+    "work-margadarshaka-h10": "Ran two-week Scrum cycles with backlog grooming, design handoffs, and Kanban visibility for engineering and counselling teams.",
+    "work-astropatshala-h0": "Defined pricing and licensing for AstroPatshala’s packaged services, market entry, and delivery model.",
+    "work-astropatshala-h1": "Maintained two production codebases for acquisition, education, publishing, and operations, aligning deployments with licensing releases.",
+    "work-astropatshala-h2": "Packaged research publishing and course licensing for GTM through pricing tiers, channel partners, and delivery formats.",
+    "work-hult-ai-collective-h0": "Launched Hult’s student AI organisation, building its programme calendar, outreach, events, treasury controls, and technical infrastructure.",
+    "work-hult-ai-collective-h1": "Produced the HAC x Hult Finance Hackathon with Hult Banking Society, coordinating partners, speakers, workshops, and on-site delivery.",
+    "work-hult-ai-collective-h3": "Taught agentic workflows and AI-assisted software development in a guest lecture for Hult’s wider student body.",
+    "work-hult-ai-collective-h5": "Prioritised sponsors through partner-fit research and tailored outreach and follow-up for HAC events.",
+    "work-savi-hotels-resorts-jaipur-india-h0": "Led site analysis, room and F&B inventory checks, and operating agreements; readied meeting and banquet spaces before opening.",
+    "work-savi-hotels-resorts-jaipur-india-h2": "Grew from four weekly room-nights to five sell-out days in a peak week, aided by market timing, corporate MICE banquets, and walk-in lunches.",
+    "work-savi-hotels-resorts-jaipur-india-h4": "Raised repeat bookings 30% in 6 months across 4 hotels, using guest feedback to revise reception scripts, staffing, and amenities weekly.",
+    "work-savi-hotels-resorts-jaipur-india-h7": "Advanced buyer and management leads through property pitchbooks, operating-economics presentations, and tracked follow-up.",
+    "work-savi-hotels-resorts-jaipur-india-h10": "Supported four repeat corporate events for decade-long clients through on-site leadership, remote oversight, buffet QA, and live service recovery.",
+    "work-savi-hotels-resorts-jaipur-india-h12": "Converted peak demand into repeat corporate packages, alternative booking structures, and playbooks for rooms, banquets, and walk-in F&B.",
+    "work-savi-hotels-resorts-jaipur-india-h13": "Hosted pre- and post-meeting dinners for corporate and venture clients, coordinating kitchen timing and event-space ambience.",
+    "work-savi-hotels-resorts-jaipur-india-h14": "Took operating control of the leased hotel after site, inventory, and agreement checks; readied meeting and banquet spaces before revenue began.",
+    "work-srbs-group-jaipur-india-h0": "Recommended and helped execute an approximately GBP 40,000 Shimla hotel lease, assessing markets, books, asset quality, downside, operating fit, and valuation.",
+    "work-srbs-group-jaipur-india-h1": "Executed the 8-day Shimla takeover through property and inventory checks, tenancy review, risk logs, stakeholder coordination, and documented handover.",
+    "work-srbs-group-jaipur-india-h2": "Built a seven-part diligence framework covering market, operator, asset, legal, commercial, valuation, and execution risks.",
+    "work-family-real-estate-business-jaipur-india-h1": "Closed leases and sales through pricing, viewings, negotiation, and handover: GBP 800 to GBP 3,800 monthly rents and GBP 70,000 to GBP 90,000 penthouses.",
+    "work-family-real-estate-business-jaipur-india-h2": "Supported high-value residential deals through MD and partner hosting, coordinating venues, menus, and after-event relationships.",
+    "work-independent-healthcare-venture-client-anonymised-h0": "Turned stakeholder interviews into a market report and phased entry plan grounded in customer segments and product thesis.",
+    "work-independent-healthcare-venture-client-anonymised-h1": "Advanced launch readiness in two months with an MVP website, information architecture, and implementation roadmap.",
+    "proj-software-engineering-and-systems-projects-h0": "Maintained more than 20 Python and JavaScript repositories spanning 15.8 GB and 367,000 files in apps, automation, analytics, and infrastructure.",
+    "proj-software-engineering-and-systems-projects-h1": "Built CRM, ecommerce, revenue-management, and library systems with Flask, Django, and FastAPI, from data models and APIs through deployment.",
+    "proj-leased-hotel-turnaround-and-operating-model-strategy-h1": "Designed month-two mobile-first front-desk and staff workflows for the ETA case, informed by the property’s daily operations.",
+    "proj-leased-hotel-turnaround-and-operating-model-strategy-h3": "Documented a two-month kill-gate exit when the hold thesis failed, preserving offboarding, inventory, and a future-lease pitchbook.",
+    "proj-project-oulm-one-ymca-youth-community-platform-h0": "Led a 5-person OULM design team across Bedfordshire, Hertfordshire, and Luton, linking digital discovery and booking to community venues.",
+    "proj-project-oulm-one-ymca-youth-community-platform-h1": "Prioritised offline belonging over daily active users, with accountability and intentional verification friction for under-16 access.",
+    "proj-project-oulm-one-ymca-youth-community-platform-h2": "Delivered an MVP, identity, tokens, skeleton states, posters, and venue touchpoints with safeguarding-aware service handoffs.",
+    "proj-project-oulm-one-ymca-youth-community-platform-h3": "Linked digital discovery and safeguarding to 2 physical destinations: Welcome Areas and the Woodland Cafe.",
+    "proj-family-governance-and-office-access-model-h0": "Proposed decision rights, ownership, information flows, and accountability boundaries across family, business, and investment decisions.",
+    "proj-family-governance-and-office-access-model-h1": "Modelled single- and multi-family office access for HUF families, respecting cultural and legal constraints in investment, reporting, succession, and advice.",
+    "proj-family-governance-and-office-access-model-h2": "Unbundled governance, reporting, diligence, succession, and specialist advice into family-office modules for Tier 2 and Tier 3 cities.",
+    "proj-family-governance-and-office-access-model-h3": "Developed proposals and operating routines for investment approval, related-party decisions, succession, conflicts, records, and adviser handoffs.",
+    "proj-ihcl-taj-hotels-corporate-innovation-diagnostic-h1": "Proposed INR 1,500 crore (30% of IHCL’s INR 5,000 crore envelope) for Box 3 ventures, gated by repeat purchase, NPS, contribution margin, and kill thresholds.",
+    "proj-carbon-forward-conference-lead-magnet-design-h0": "Deputy-led a real-client Carbon Forward project, directing research and delivery of a carbon-market conference lead magnet.",
+    "proj-carbon-forward-conference-lead-magnet-design-h1": "Adapted validated Redshaw carbon-credit and ESG research into Carbon Forward audience messaging and lead-generation material.",
+    "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h0": "Turned carbon-credit diligence and ESG research into Redshaw Advisors’ positioning, audience architecture, and campaign system.",
+    "proj-redshaw-advisors-brand-strategy-and-campaign-kit-h1": "Created guerrilla campaign concepts and a reusable creative kit to explain carbon-market expertise and attract qualified interest.",
+    "proj-octopus-energy-battery-integration-strategy-h0": "Recommended GBP 150 million battery integration with Kraken and PowerGuard after Five Forces analysis and assessment of Kraken’s roughly 40% cost-to-serve advantage.",
+    "proj-octopus-energy-battery-integration-strategy-h1": "Prioritised 200 to 400 MW of batteries over three alternatives using RICE (253) and scenarios modelling GBP 160 million to GBP 220 million impact.",
+    "work-siya-the-restaurant-srbs-group-h0": "OCR-digitised two years of kitchen registers into SKU data for par levels, preparation forecasts, and stock-variance checks.",
+    "work-siya-the-restaurant-srbs-group-h2": "Redesigned and repriced a 191-item menu using margin and sales velocity to guide assortment, placement, pruning, and print layout.",
+    "work-siya-the-restaurant-srbs-group-h3": "Built an auditable Excel pricing model for 191 menu items, giving staff transparent formulas and repeatable decision rules.",
+    "proj-leased-hotel-turnaround-and-operating-model-strategy-h2": "Modelled room recovery and F&B sales, including MICE and walk-in lunches, as distinct levers in turnaround lease valuation.",
+    "proj-the-bard-static-publishing-engine-h0": "Built a static publishing engine for Obsidian Markdown and standalone or Pandoc HTML, with a shared registry, wikilinks, and backlinks.",
+    "proj-the-bard-static-publishing-engine-h1": "Built Jinja2 templates around a Readest-derived reader with typography themes, focus mode, progress tracking, and portable static output.",
+    "proj-software-engineering-and-systems-projects-h3": "Restored and deployed infrastructure for individual users, school events, and institutions through low-level diagnostics.",
+    "proj-paca-applied-food-science-h0": "Compared ingredients and fermentation conditions using Monte Carlo analysis of controlled small-batch culinary data.",
+    "proj-paca-applied-food-science-h1": "Translated model results into a test matrix for physical preparation and fermentation trials."
+  }
+}

@@ -6,6 +6,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PDFDocument } from 'pdf-lib';
 import { A4_MEDIA_BOX } from './pdf-verify.js';
+import { loadArtifactManifest, pdfIsCurrent } from './artifact-state.js';
 import { formatDateRange, formatExpectedDate, NNBSP_PIPE, typograph } from './microtype.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -68,7 +69,12 @@ for (const reference of localReferences) {
   assert(existsSync(resolve(DIST, path)), `production HTML references missing asset: ${reference}`);
 }
 
+const artifactManifest = loadArtifactManifest();
+const rendererHashes = {};
 for (const profile of profiles) {
+  assert(profile.additional?.visible === false, `${profile.id}: additional information must stay off the one-page résumé`);
+  assert(Array.isArray(profile.omissions) && profile.omissions.length === 0, `${profile.id}: shorten copy rather than silently deleting content`);
+  assert(profile.pdfAvailable === pdfIsCurrent(profile, artifactManifest, rendererHashes), `${profile.id}: PDF availability must reflect current content and renderer`);
   const effectiveLimits = { ...resume.custom.limits, ...(variantsById.get(profile.id)?.limits || {}) };
   assert(profile.name && profile.role && profile.family && profile.industry, `${profile.id}: identity fields are required`);
   assert(profile.family === profile.role, `${profile.id}: selector family must match role title`);

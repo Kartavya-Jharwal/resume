@@ -90,6 +90,7 @@ const globalLimits = resume.custom?.limits || {};
 const universal = resume.custom?.universal || {};
 
 /* ── Derive profile for each variant ── */
+const compactCopy = JSON.parse(readFileSync(resolve(ROOT, 'data/compact-copy.json'), 'utf8'));
 const profiles = variants.map(v => {
   const vid = v.id;
   const isMasterCV = vid === 'all';
@@ -146,7 +147,7 @@ const profiles = variants.map(v => {
     .filter(entry => entry && entry.highlights.length)
     .sort((a, b) => (a.featured - b.featured) || Number(b.direct) - Number(a.direct) || (b.score - a.score));
 
-  const explicitContent = !isMasterCV && v.content ? resolveExplicitContent(v.content, resume, limits) : null;
+  const explicitContent = !isMasterCV && v.content ? resolveExplicitContent(v.content, resume, limits, compactCopy.variants[v.id] ? compactCopy.highlights : {}) : null;
   const directWorkCount = workCandidates.filter(entry => entry.direct).length;
   const composition = explicitContent
     ? describeComposition(explicitContent.experience.length, explicitContent.projects.length)
@@ -287,7 +288,7 @@ const profiles = variants.map(v => {
     /* Summary from variant description — omit when limits.includeSummary is false */
     summary: limits.includeSummary === false
       ? ''
-      : typograph(isMasterCV ? (resume.basics.summary || '') : (v.description || resume.basics.summary || '')),
+      : typograph(isMasterCV ? (resume.basics.summary || '') : (compactCopy.variants[v.id]?.summary || v.description || resume.basics.summary || '')),
     summaryLabel: limits.includeSummary === false ? '' : summaryLabelForVariant(v),
 
     /* Sections */
@@ -297,6 +298,7 @@ const profiles = variants.map(v => {
 
     /* Additional info */
     additional: {
+      visible: false,
       enabled: hasTechnicalQualifications,
       skills: skills,
       skillMap: skillMap,
@@ -476,7 +478,7 @@ function describeComposition(experienceCount, projectCount) {
   return 'curated';
 }
 
-function resolveExplicitContent(content, resumeData, contentLimits) {
+function resolveExplicitContent(content, resumeData, contentLimits, compactHighlights = {}) {
   const workById = new Map((resumeData.work || []).map(entry => [entry.id, entry]));
   const projectById = new Map((resumeData.projects || []).map(entry => [entry.id, entry]));
   const experienceLimit = limitOrInfinity(contentLimits.experience);
@@ -496,7 +498,7 @@ function resolveExplicitContent(content, resumeData, contentLimits) {
       if (!work) throw new Error(`Unknown work id "${selection.id}" in variant content plan`);
       const highlightById = new Map((work.highlights || []).map(highlight => [highlight.id, highlight.text]));
       const highlights = (selection.highlights || [])
-        .map(highlightId => highlightById.get(highlightId))
+        .map(highlightId => compactHighlights[highlightId] || highlightById.get(highlightId))
         .filter(Boolean)
         .slice(0, limitOrInfinity(contentLimits.experienceHighlights));
       if (!highlights.length) throw new Error(`Work "${selection.id}" has no resolved highlights`);
@@ -518,7 +520,7 @@ function resolveExplicitContent(content, resumeData, contentLimits) {
       if (!project) throw new Error(`Unknown project id "${selection.id}" in variant content plan`);
       const highlightById = new Map((project.highlights || []).map(highlight => [highlight.id, highlight.text]));
       const highlights = (selection.highlights || [])
-        .map(highlightId => highlightById.get(highlightId))
+        .map(highlightId => compactHighlights[highlightId] || highlightById.get(highlightId))
         .filter(Boolean)
         .slice(0, limitOrInfinity(contentLimits.projectHighlights));
       if (!highlights.length) throw new Error(`Project "${selection.id}" has no resolved highlights`);

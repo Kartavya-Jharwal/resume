@@ -95,6 +95,7 @@ useStore.subscribe((state, prevState) => {
     var p = byId(state.profileId);
     if (p) {
       cur = p;
+      pushRecentProfile(p.id);
 
       // Update URL without polluting history (replaceState)
       var url = new URL(location.href);
@@ -268,9 +269,210 @@ function contextCountForRole(role) {
   return industries(role).length;
 }
 
+/* ---------- Matrix picker engine (additive helpers) ---------- */
+var MATRIX_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+var matrixContextCountCache = null;
+var matrixPickerQuery = { desktop: '', mobile: '' };
+var matrixFocusColumn = 'role';
+var matrixTypeaheadBuffer = '';
+var matrixTypeaheadTimer = null;
+var RECENT_PROFILES_KEY = 'resumeRecentProfiles';
+
+function invalidateMatrixCaches() {
+  matrixContextCountCache = null;
+}
+
+function cachedContextCountForRole(role) {
+  if (!matrixContextCountCache) {
+    matrixContextCountCache = {};
+    roles().forEach(function(roleName) {
+      matrixContextCountCache[roleName] = industries(roleName).length;
+    });
+  }
+  return matrixContextCountCache[role] || 0;
+}
+
+function normalizeMatrixText(value) {
+  return String(value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+function roleLetter(roleName) {
+  var ch = String(roleName || '').charAt(0).toUpperCase();
+  return /[A-Z]/.test(ch) ? ch : '#';
+}
+
+function fuzzyScore(haystack, needle) {
+  var h = normalizeMatrixText(haystack);
+  var n = normalizeMatrixText(needle).trim();
+  if (!n) return 2;
+  if (h.indexOf(n) !== -1) return 2;
+  var hi = 0;
+  for (var ni = 0; ni < n.length; ni += 1) {
+    hi = h.indexOf(n.charAt(ni), hi);
+    if (hi === -1) return 0;
+    hi += 1;
+  }
+  return 1;
+}
+
+function roleMatchesQuery(roleName, query) {
+  var q = String(query || '').trim();
+  if (!q) return true;
+  if (fuzzyScore(roleName, q) > 0) return true;
+  for (var i = 0; i < P.length; i += 1) {
+    if (roleFamily(P[i]) !== roleName) continue;
+    var profile = P[i];
+    if (
+      fuzzyScore(profile.industry, q) > 0 ||
+      fuzzyScore(profile.category || '', q) > 0 ||
+      fuzzyScore(profile.id, q) > 0
+    ) {
+      return true;
+    }
+  }
+  var aliases = window.VARIANT_ALIASES || {};
+  for (var alias in aliases) {
+    if (!Object.prototype.hasOwnProperty.call(aliases, alias)) continue;
+    var target = byId(alias);
+    if (target && roleFamily(target) === roleName && fuzzyScore(alias, q) > 0) return true;
+  }
+  return false;
+}
+
+function industryMatchesQuery(role, industryName, query) {
+  var q = String(query || '').trim();
+  if (!q) return true;
+  if (fuzzyScore(industryName, q) > 0) return true;
+  for (var i = 0; i < P.length; i += 1) {
+    var profile = P[i];
+    if (roleFamily(profile) !== role || profile.industry !== industryName) continue;
+    if (fuzzyScore(profile.category || '', q) > 0 || fuzzyScore(profile.id, q) > 0) {
+      return true;
+    }
+  }
+  var aliases = window.VARIANT_ALIASES || {};
+  for (var alias in aliases) {
+    if (!Object.prototype.hasOwnProperty.call(aliases, alias)) continue;
+    var target = byId(alias);
+    if (
+      target &&
+      roleFamily(target) === role &&
+      target.industry === industryName &&
+      fuzzyScore(alias, q) > 0
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function letterBuckets(roleList) {
+  var buckets = {};
+  MATRIX_LETTERS.forEach(function(letter) { buckets[letter] = []; });
+  buckets['#'] = [];
+  (roleList || roles()).forEach(function(roleName) {
+    var letter = roleLetter(roleName);
+    if (!buckets[letter]) buckets[letter] = [];
+    buckets[letter].push(roleName);
+  });
+  return buckets;
+}
+
+function filterRolesByQuery(query) {
+  return roles().filter(function(roleName) {
+    return roleMatchesQuery(roleName, query);
+  });
+}
+
+function filterIndustriesByQuery(role, query) {
+  var list = industries(role);
+  var q = String(query || '').trim();
+  if (!q) return list;
+  /* Role-name hits keep the full industry column so dual-column pick stays usable. */
+  if (fuzzyScore(role, q) > 0) return list;
+  return list.filter(function(name) {
+    return industryMatchesQuery(role, name, q);
+  });
+}
+
+function highlightMatrixMatch(text, query) {
+  var raw = String(text || '');
+  var q = String(query || '').trim();
+  if (!q) return esc(raw);
+  var lower = normalizeMatrixText(raw);
+  var needle = normalizeMatrixText(q);
+  var at = lower.indexOf(needle);
+  if (at === -1) return esc(raw);
+  /* ASCII-heavy labels: normalized index aligns with source slice length. */
+  return esc(raw.slice(0, at)) + '<mark class="matrix-match">' + esc(raw.slice(at, at + q.length)) + '</mark>' + esc(raw.slice(at + q.length));
+}
+
+function loadRecentProfiles() {
+  try {
+    var raw = sessionStorage.getItem(RECENT_PROFILES_KEY);
+    var parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed.filter(function(id) { return !!byId(id); }).slice(0, 3) : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function pushRecentProfile(id) {
+  if (!id || !byId(id)) return;
+  var next = [id].concat(loadRecentProfiles().filter(function(entry) { return entry !== id; })).slice(0, 3);
+  try {
+    sessionStorage.setItem(RECENT_PROFILES_KEY, JSON.stringify(next));
+  } catch (error) { /* ignore quota */ }
+}
+
+function announceMatrixLive(message) {
+  var live = document.getElementById('profileLive');
+  if (!live || !message) return;
+  /* Clear + reflow so identical Role/Industry step strings re-announce. */
+  live.textContent = '';
+  void live.offsetWidth;
+  live.textContent = message;
+}
+
+function markMatrixMicroUpdate(node) {
+  if (!node || !canAnimate()) return;
+  motionAnimate(node, {
+    opacity: [0.45, 1],
+    y: [3, 0],
+    filter: ['blur(2.5px)', 'blur(0px)']
+  }, {
+    duration: 0.36,
+    ease: [0.16, 1, 0.3, 1]
+  });
+}
+
+/* Filter chrome only — Motion One stagger; never GSAP / A4 geometry. */
+function staggerMatrixFilterOpts(scroll) {
+  if (!canAnimate() || !scroll) return;
+  var opts = Array.from(scroll.querySelectorAll('.matrix-opt:not([hidden])')).slice(0, 12);
+  if (!opts.length) return;
+  motionAnimate(opts, {
+    opacity: [0.35, 1],
+    y: [4, 0]
+  }, {
+    duration: 0.28,
+    delay: motionStagger(0.018),
+    ease: [0.16, 1, 0.3, 1]
+  });
+}
+
 function findProfile(role, industry) {
+  var roleKey = String(role || '').toLowerCase();
+  var industryKey = String(industry || '').toLowerCase();
   for (var i = 0; i < P.length; i++) {
-    if (roleFamily(P[i]) === role && P[i].industry === industry) return P[i];
+    var family = roleFamily(P[i]).toLowerCase();
+    var profileRole = String(P[i].role || '').toLowerCase();
+    if ((family === roleKey || profileRole === roleKey) && String(P[i].industry || '').toLowerCase() === industryKey) {
+      return P[i];
+    }
   }
   return null;
 }
@@ -286,14 +488,34 @@ function pickInit() {
   var role = sp.get('role');
   var industry = sp.get('industry');
   if (role && industry) {
-    for (var i = 0; i < P.length; i++) {
-      if ((roleFamily(P[i]).toLowerCase() === role.toLowerCase() || P[i].role.toLowerCase() === role.toLowerCase()) && P[i].industry.toLowerCase() === industry.toLowerCase()) {
-        return P[i];
-      }
-    }
+    var matched = findProfile(role, industry);
+    if (matched) return matched;
   }
 
   return P.find(function(profile) { return profile.fallback; }) || P[0];
+}
+
+function canonicalizeBootUrl(profile) {
+  if (!profile || BUILD_FIT_MODE) return;
+  var url = new URL(location.href);
+  var nextRole = profile.family || profile.role;
+  var nextIndustry = profile.industry;
+  var roleParam = url.searchParams.get('role');
+  var industryParam = url.searchParams.get('industry');
+  var profileId = url.searchParams.get('_profile');
+  var resolvedFromProfile = !!(profileId && byId(profileId) && byId(profileId).id === profile.id);
+  var matchedPair = !!(roleParam && industryParam && findProfile(roleParam, industryParam));
+  // Cold boot (no deep link): leave the URL alone so splash can still show.
+  if (!resolvedFromProfile && !matchedPair) return;
+  var needs =
+    roleParam !== nextRole ||
+    industryParam !== nextIndustry ||
+    resolvedFromProfile;
+  if (!needs) return;
+  url.searchParams.set('role', nextRole);
+  url.searchParams.set('industry', nextIndustry);
+  if (resolvedFromProfile) url.searchParams.delete('_profile');
+  history.replaceState({ profileId: profile.id }, '', url);
 }
 
 /* =================================================================
@@ -765,6 +987,41 @@ function initKeyboardShortcuts() {
     }
     var openShortcuts = document.getElementById('shortcutsDialog');
     if (openShortcuts && !openShortcuts.hidden) return;
+    if (mtxPopOpen || activeMobileSheet) return;
+
+    if (key === '/') {
+      event.preventDefault();
+      if (isMobileLayout()) {
+        setMobileSheet('profile', true);
+        setTimeout(function() {
+          var input = document.querySelector('#mxM .matrix-search-input');
+          if (input) input.focus();
+        }, 240);
+      } else {
+        openMtxPopFrom('search');
+      }
+      return;
+    }
+    if (key === 'r' || key === 'R') {
+      event.preventDefault();
+      if (isMobileLayout()) setMobileSheet('profile', true);
+      else openMtxPopFrom('role');
+      return;
+    }
+    if (key === 'i' || key === 'I') {
+      event.preventDefault();
+      if (isMobileLayout()) {
+        setMobileSheet('profile', true);
+        mobilePickerStep = 'industry';
+        setTimeout(function() {
+          var el = document.getElementById('mxM');
+          if (el && cur) renderMatrixPickerMobile(el, roleFamily(cur), cur.industry);
+        }, 80);
+      } else {
+        openMtxPopFrom('industry');
+      }
+      return;
+    }
 
     if (key === '+' || key === '=') { event.preventDefault(); zoom(0.05); }
     else if (key === '-' || key === '_') { event.preventDefault(); zoom(-0.05); }
@@ -919,6 +1176,7 @@ function startResumeShell() {
 
 function bootResumeDocument(waitForFonts) {
   cur = pickInit();
+  canonicalizeBootUrl(cur);
   lastMobileMode = isMobileLayout();
   initStageObserver();
   zoomReset();
@@ -1115,93 +1373,442 @@ function itemKey(parts) {
   return parts.filter(Boolean).join('|');
 }
 
+function ensureMatrixShell(container, className, datasetMatrix) {
+  var picker = container.querySelector(':scope > .matrix-picker');
+  if (!picker) {
+    picker = document.createElement('div');
+    picker.className = className;
+    container.replaceChildren(picker);
+  } else {
+    picker.className = className;
+  }
+  picker.dataset.matrix = datasetMatrix;
+  return picker;
+}
+
+function syncMatrixOptions(scroll, items, query, createMeta) {
+  syncChildren(
+    scroll,
+    items,
+    function(item) { return item.key; },
+    function() {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'matrix-opt';
+      button.setAttribute('role', 'option');
+      return button;
+    },
+    function(button, item) {
+      button.className = 'matrix-opt' + (item.selected ? ' is-active' : '') + (item.hidden ? ' is-filtered-out' : '');
+      button.hidden = !!item.hidden;
+      button.setAttribute('aria-selected', String(!!item.selected));
+      button.setAttribute('aria-hidden', item.hidden ? 'true' : 'false');
+      button.tabIndex = item.selected ? 0 : -1;
+      button.dataset.matrixAction = item.action;
+      button.dataset.matrixValue = item.value;
+      if (item.letter) button.dataset.letter = item.letter;
+      var html = highlightMatrixMatch(item.label, query);
+      if (item.countHtml) html += item.countHtml;
+      if (button._matrixHtml !== html) {
+        button.innerHTML = html;
+        button._matrixHtml = html;
+      }
+      if (createMeta) createMeta(button, item);
+    }
+  );
+}
+
+function syncLetterHeads(scroll, roleItems) {
+  Array.from(scroll.querySelectorAll('.matrix-letter-head')).forEach(function(node) {
+    node.remove();
+  });
+  var visibleRoles = roleItems
+    .filter(function(item) { return !item.hidden; })
+    .map(function(item) { return item.value; });
+  var buckets = letterBuckets(visibleRoles);
+  var letters = MATRIX_LETTERS.concat(['#']);
+  letters.forEach(function(letter) {
+    if (!buckets[letter] || !buckets[letter].length) return;
+    var head = document.createElement('div');
+    head.className = 'matrix-letter-head';
+    head.id = 'matrix-letter-' + (letter === '#' ? 'hash' : letter);
+    head.setAttribute('aria-hidden', 'true');
+    head.textContent = letter;
+    head.dataset.letter = letter;
+    var first = scroll.querySelector('.matrix-opt[data-letter="' + letter + '"]:not([hidden])');
+    if (first) scroll.insertBefore(head, first);
+  });
+}
+
+function syncAlphaRail(host, roleItems, scroll) {
+  var rail = host.querySelector(':scope > .matrix-alpha');
+  if (!rail) {
+    rail = document.createElement('nav');
+    rail.className = 'matrix-alpha';
+    rail.setAttribute('aria-label', 'Jump to letter');
+    host.appendChild(rail);
+  }
+  var visibleRoles = roleItems
+    .filter(function(item) { return !item.hidden; })
+    .map(function(item) { return item.value; });
+  var buckets = letterBuckets(visibleRoles);
+  syncChildren(
+    rail,
+    MATRIX_LETTERS.map(function(letter) {
+      return {
+        key: letter,
+        letter: letter,
+        enabled: !!(buckets[letter] && buckets[letter].length)
+      };
+    }),
+    function(item) { return item.key; },
+    function() {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'matrix-alpha-btn';
+      return button;
+    },
+    function(button, item) {
+      button.className = 'matrix-alpha-btn' + (item.enabled ? '' : ' is-empty');
+      button.disabled = !item.enabled;
+      button.tabIndex = item.enabled ? 0 : -1;
+      button.setAttribute('aria-disabled', item.enabled ? 'false' : 'true');
+      button.textContent = item.letter;
+      button.setAttribute('aria-label', item.enabled ? ('Jump to ' + item.letter) : (item.letter + ' unavailable'));
+      button.onclick = function() {
+        if (!item.enabled || button.disabled) return;
+        var target = scroll.querySelector('.matrix-letter-head[data-letter="' + item.letter + '"]')
+          || scroll.querySelector('.matrix-opt[data-letter="' + item.letter + '"]:not([hidden])');
+        if (target) {
+          target.scrollIntoView({ block: 'start' });
+          markMatrixMicroUpdate(target);
+          var opt = scroll.querySelector('.matrix-opt[data-letter="' + item.letter + '"]:not([hidden])');
+          if (opt) opt.focus();
+        }
+      };
+    }
+  );
+}
+
+function syncRecentChips(host, onPick) {
+  var recent = loadRecentProfiles();
+  var strip = host.querySelector(':scope > .matrix-recent');
+  if (!recent.length) {
+    if (strip) strip.remove();
+    return;
+  }
+  if (!strip) {
+    strip = document.createElement('div');
+    strip.className = 'matrix-recent';
+    strip.setAttribute('role', 'group');
+    strip.setAttribute('aria-label', 'Recent focuses');
+  }
+  /* Sit above matrix lists only — after sticky chrome on mobile, before columns on desktop. */
+  var anchor = host.querySelector(':scope > .matrix-picker-layout')
+    || host.querySelector(':scope > .matrix-mobile-body')
+    || host.firstChild;
+  if (strip.parentNode !== host || (anchor && strip.nextSibling !== anchor)) {
+    host.insertBefore(strip, anchor || null);
+  }
+  syncChildren(
+    strip,
+    recent.map(function(id) {
+      var profile = byId(id);
+      return {
+        key: id,
+        id: id,
+        label: roleFamily(profile) + ' · ' + profile.industry
+      };
+    }),
+    function(item) { return item.key; },
+    function() {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'matrix-recent-chip';
+      return button;
+    },
+    function(button, item) {
+      button.textContent = item.label;
+      button.setAttribute('aria-label', 'Open focus ' + item.label);
+      button.onclick = function() { onPick(item.id); };
+    }
+  );
+}
+
+function visibleMatrixOptions(listbox) {
+  return Array.from(listbox.querySelectorAll('.matrix-opt')).filter(function(opt) {
+    return !opt.hidden && opt.getAttribute('aria-hidden') !== 'true';
+  });
+}
+
+function focusMatrixOption(listbox, index) {
+  var options = visibleMatrixOptions(listbox);
+  if (!options.length) return;
+  var next = Math.max(0, Math.min(options.length - 1, index));
+  options.forEach(function(opt, i) { opt.tabIndex = i === next ? 0 : -1; });
+  options[next].focus();
+  options[next].scrollIntoView({ block: 'nearest' });
+}
+
+function typeaheadMatrixOption(listbox, character) {
+  clearTimeout(matrixTypeaheadTimer);
+  matrixTypeaheadBuffer += character.toLowerCase();
+  matrixTypeaheadTimer = setTimeout(function() { matrixTypeaheadBuffer = ''; }, 700);
+  var options = visibleMatrixOptions(listbox);
+  if (!options.length) return;
+  var start = options.indexOf(document.activeElement);
+  if (start < 0) start = 0;
+  // Repeated single-letter typeahead advances to the next match.
+  if (
+    matrixTypeaheadBuffer.length === 1 &&
+    normalizeMatrixText(options[start].textContent).indexOf(matrixTypeaheadBuffer) === 0
+  ) {
+    start = (start + 1) % options.length;
+  }
+  var match = null;
+  var i;
+  for (i = 0; i < options.length; i++) {
+    var opt = options[(start + i) % options.length];
+    if (normalizeMatrixText(opt.textContent).indexOf(matrixTypeaheadBuffer) === 0) {
+      match = opt;
+      break;
+    }
+  }
+  if (match) {
+    options.forEach(function(opt) { opt.tabIndex = opt === match ? 0 : -1; });
+    match.focus();
+    match.scrollIntoView({ block: 'nearest' });
+  }
+}
+
+function handleMatrixListboxKeydown(event, listbox, siblingListbox) {
+  if (!listbox) return false;
+  var options = visibleMatrixOptions(listbox);
+  if (!options.length) return false;
+  var active = document.activeElement;
+  var index = options.indexOf(active);
+  var onOption = index >= 0;
+  if (index < 0) index = options.findIndex(function(opt) { return opt.classList.contains('is-active'); });
+  if (index < 0) index = 0;
+  var onIndustry = (listbox.id && listbox.id.indexOf('contexts') !== -1) || matrixFocusColumn === 'industry';
+
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    focusMatrixOption(listbox, onOption ? index + 1 : index);
+    return true;
+  }
+  if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    focusMatrixOption(listbox, onOption ? index - 1 : index);
+    return true;
+  }
+  if (event.key === 'Home') {
+    event.preventDefault();
+    focusMatrixOption(listbox, 0);
+    return true;
+  }
+  if (event.key === 'End') {
+    event.preventDefault();
+    focusMatrixOption(listbox, options.length - 1);
+    return true;
+  }
+  // Desktop: Left/Right moves between role ↔ industry columns only.
+  if (event.key === 'ArrowRight' && siblingListbox && !onIndustry) {
+    event.preventDefault();
+    matrixFocusColumn = 'industry';
+    var sibRight = visibleMatrixOptions(siblingListbox);
+    var rightIdx = sibRight.findIndex(function(opt) { return opt.classList.contains('is-active'); });
+    if (sibRight.length) focusMatrixOption(siblingListbox, Math.max(0, rightIdx));
+    return true;
+  }
+  if (event.key === 'ArrowLeft' && siblingListbox && onIndustry) {
+    event.preventDefault();
+    matrixFocusColumn = 'role';
+    var sibLeft = visibleMatrixOptions(siblingListbox);
+    var leftIdx = sibLeft.findIndex(function(opt) { return opt.classList.contains('is-active'); });
+    if (sibLeft.length) focusMatrixOption(siblingListbox, Math.max(0, leftIdx));
+    return true;
+  }
+  if (event.key === 'Enter' || event.key === ' ') {
+    if (active && active.classList.contains('matrix-opt')) {
+      event.preventDefault();
+      active.click();
+      return true;
+    }
+  }
+  if (event.key.length === 1 && /[a-z0-9]/i.test(event.key) && !event.ctrlKey && !event.metaKey && !event.altKey) {
+    event.preventDefault();
+    typeaheadMatrixOption(listbox, event.key);
+    return true;
+  }
+  return false;
+}
+
+function bindMatrixDelegatedClicks(picker, handler) {
+  picker._matrixClickHandler = handler;
+  if (picker._matrixClickBound) return;
+  picker._matrixClickBound = true;
+  picker.addEventListener('click', function(event) {
+    var target = event.target.closest('[data-matrix-action]');
+    if (!target || !picker.contains(target) || target.hidden || target.disabled) return;
+    var fn = picker._matrixClickHandler;
+    if (typeof fn === 'function') fn(target.dataset.matrixAction, target.dataset.matrixValue);
+  });
+}
+
+function renderMatrixEmpty(host, message) {
+  var empty = host.querySelector(':scope > .matrix-empty');
+  if (!message) {
+    if (empty) empty.remove();
+    return;
+  }
+  if (!empty) {
+    empty = document.createElement('p');
+    empty.className = 'matrix-empty';
+    empty.setAttribute('role', 'status');
+    host.appendChild(empty);
+  }
+  empty.textContent = message;
+}
+
 function renderMatrixPicker(container, suffix, activeRole, activeIndustry) {
   if (!container || !cur) return;
 
-  container.replaceChildren();
-  var contextList = industries(activeRole);
-  var roleList = roles();
+  var query = matrixPickerQuery.desktop || '';
+  var roleList = filterRolesByQuery(query);
+  var allRoles = roles();
+  var browseRole = roleList.indexOf(activeRole) !== -1 ? activeRole : (roleList[0] || activeRole);
+  if (roleList.length && browseRole && browseRole !== desktopPickerRole && roleList.indexOf(activeRole) === -1) {
+    desktopPickerRole = browseRole;
+  }
+  var contextList = filterIndustriesByQuery(browseRole, query);
+  var fullContextList = industries(browseRole);
+  var committedRole = roleFamily(cur);
 
-  var picker = document.createElement('div');
-  picker.className = 'matrix-picker';
-  picker.dataset.matrix = suffix;
+  var picker = ensureMatrixShell(container, 'matrix-picker', suffix);
 
-  var columns = document.createElement('div');
-  columns.className = 'matrix-columns';
+  var layout = picker.querySelector(':scope > .matrix-picker-layout');
+  if (!layout) {
+    layout = document.createElement('div');
+    layout.className = 'matrix-picker-layout';
+    picker.appendChild(layout);
+  }
 
-  var roleCol = document.createElement('div');
-  roleCol.className = 'matrix-col matrix-col--roles';
-  roleCol.setAttribute('role', 'group');
-  roleCol.setAttribute('aria-labelledby', 'matrix-roles-label-' + suffix);
-  var roleKicker = document.createElement('span');
-  roleKicker.className = 'matrix-col-kicker';
-  roleKicker.textContent = 'I do';
-  var roleLabel = document.createElement('span');
-  roleLabel.className = 'matrix-col-label';
-  roleLabel.id = 'matrix-roles-label-' + suffix;
-  roleLabel.textContent = 'Role';
-  var roleScroll = document.createElement('div');
-  roleScroll.className = 'matrix-scroll';
-  roleScroll.id = 'matrix-roles-' + suffix;
-  roleScroll.setAttribute('role', 'listbox');
-  roleScroll.setAttribute('aria-labelledby', 'matrix-roles-label-' + suffix);
-
-  roleList.forEach(function(roleName) {
-    var selected = roleName === activeRole;
-    var button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'matrix-opt' + (selected ? ' is-active' : '');
-    button.setAttribute('role', 'option');
-    button.setAttribute('aria-selected', String(selected));
-    button.textContent = roleName;
-    button.onclick = function() {
-      selectMatrixOption('role', roleName);
-    };
-    roleScroll.appendChild(button);
+  syncRecentChips(picker, function(id) {
+    sel(id);
+    setMtxPop(false);
   });
 
-  roleCol.append(roleKicker, roleLabel, roleScroll);
+  var columns = layout.querySelector(':scope > .matrix-columns');
+  if (!columns) {
+    columns = document.createElement('div');
+    columns.className = 'matrix-columns';
+    layout.appendChild(columns);
+  }
 
-  var contextCol = document.createElement('div');
-  contextCol.className = 'matrix-col matrix-col--contexts' + (contextList.length <= 1 ? ' is-single' : '');
-  contextCol.setAttribute('role', 'group');
-  contextCol.setAttribute('aria-labelledby', 'matrix-contexts-label-' + suffix);
-  var contextKicker = document.createElement('span');
-  contextKicker.className = 'matrix-col-kicker';
-  contextKicker.textContent = 'for';
-  var contextLabel = document.createElement('span');
-  contextLabel.className = 'matrix-col-label';
-  contextLabel.id = 'matrix-contexts-label-' + suffix;
-    contextLabel.textContent = contextList.length === 1 ? 'Industry' : ('Industry | ' + contextList.length + ' matches');
-  var contextScroll = document.createElement('div');
-  contextScroll.className = 'matrix-scroll';
-  contextScroll.id = 'matrix-contexts-' + suffix;
-  contextScroll.setAttribute('role', 'listbox');
-  contextScroll.setAttribute('aria-labelledby', 'matrix-contexts-label-' + suffix);
+  var roleCol = columns.querySelector(':scope > .matrix-col--roles');
+  if (!roleCol) {
+    roleCol = document.createElement('div');
+    roleCol.className = 'matrix-col matrix-col--roles';
+    roleCol.setAttribute('role', 'group');
+    roleCol.setAttribute('aria-labelledby', 'matrix-roles-label-' + suffix);
+    var roleKicker = document.createElement('span');
+    roleKicker.className = 'matrix-col-kicker';
+    roleKicker.textContent = 'I do';
+    var roleLabel = document.createElement('span');
+    roleLabel.className = 'matrix-col-label';
+    roleLabel.id = 'matrix-roles-label-' + suffix;
+    roleLabel.textContent = 'Role';
+    var roleScroll = document.createElement('div');
+    roleScroll.className = 'matrix-scroll';
+    roleScroll.id = 'matrix-roles-' + suffix;
+    roleScroll.setAttribute('role', 'listbox');
+    roleScroll.setAttribute('aria-labelledby', 'matrix-roles-label-' + suffix);
+    roleScroll.setAttribute('tabindex', '0');
+    roleCol.append(roleKicker, roleLabel, roleScroll);
+    columns.appendChild(roleCol);
+  }
 
-  contextList.forEach(function(industryName) {
-    var selected = industryName === activeIndustry;
-    var button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'matrix-opt' + (selected ? ' is-active' : '');
-    button.setAttribute('role', 'option');
-    button.setAttribute('aria-selected', String(selected));
-    button.textContent = industryName;
-    button.onclick = function() {
-      if (industryName === cur.industry && roleFamily(cur) === activeRole) return;
-      selectMatrixOption('ind', industryName);
+  var contextCol = columns.querySelector(':scope > .matrix-col--contexts');
+  if (!contextCol) {
+    contextCol = document.createElement('div');
+    contextCol.className = 'matrix-col matrix-col--contexts';
+    contextCol.setAttribute('role', 'group');
+    contextCol.setAttribute('aria-labelledby', 'matrix-contexts-label-' + suffix);
+    var contextKicker = document.createElement('span');
+    contextKicker.className = 'matrix-col-kicker';
+    contextKicker.textContent = 'for';
+    var contextLabel = document.createElement('span');
+    contextLabel.className = 'matrix-col-label';
+    contextLabel.id = 'matrix-contexts-label-' + suffix;
+    var contextScroll = document.createElement('div');
+    contextScroll.className = 'matrix-scroll';
+    contextScroll.id = 'matrix-contexts-' + suffix;
+    contextScroll.setAttribute('role', 'listbox');
+    contextScroll.setAttribute('aria-labelledby', 'matrix-contexts-label-' + suffix);
+    contextScroll.setAttribute('tabindex', '0');
+    contextCol.append(contextKicker, contextLabel, contextScroll);
+    columns.appendChild(contextCol);
+  }
+
+  contextCol.className = 'matrix-col matrix-col--contexts' + (fullContextList.length <= 1 ? ' is-single' : '');
+  var contextLabelNode = contextCol.querySelector('.matrix-col-label');
+  if (contextLabelNode) {
+    contextLabelNode.textContent = fullContextList.length === 1
+      ? 'Industry'
+      : ('Industry | ' + fullContextList.length);
+  }
+
+  var roleScrollNode = roleCol.querySelector('.matrix-scroll');
+  var contextScrollNode = contextCol.querySelector('.matrix-scroll');
+  var roleItems = allRoles.map(function(roleName) {
+    var count = cachedContextCountForRole(roleName);
+    var hidden = roleList.indexOf(roleName) === -1;
+    return {
+      key: 'role:' + roleName,
+      action: 'role',
+      value: roleName,
+      label: roleName,
+      letter: roleLetter(roleName),
+      selected: roleName === browseRole,
+      hidden: hidden,
+      countHtml: count > 1 ? '<span class="matrix-opt-count"> | ' + count + '</span>' : ''
     };
-    contextScroll.appendChild(button);
   });
 
-  contextCol.append(contextKicker, contextLabel, contextScroll);
-  columns.append(roleCol, contextCol);
-  picker.appendChild(columns);
-  container.appendChild(picker);
+  syncMatrixOptions(roleScrollNode, roleItems, query);
+  syncLetterHeads(roleScrollNode, roleItems);
+  syncAlphaRail(layout, roleItems, roleScrollNode);
+
+  var industryActive = browseRole === committedRole;
+  var contextItems = fullContextList.map(function(industryName) {
+    var hidden = contextList.indexOf(industryName) === -1;
+    var selected = industryActive && industryName === activeIndustry;
+    return {
+      key: 'ind:' + industryName,
+      action: 'ind',
+      value: industryName,
+      label: industryName,
+      selected: selected,
+      hidden: hidden,
+      countHtml: ''
+    };
+  });
+  syncMatrixOptions(contextScrollNode, contextItems, query);
+  renderMatrixEmpty(picker, roleList.length ? '' : (query ? 'No matches for “' + query + '”.' : ''));
+
+  bindMatrixDelegatedClicks(picker, function(action, value) {
+    selectMatrixOption(action, value);
+  });
+
+  if (query) {
+    staggerMatrixFilterOpts(roleScrollNode);
+    staggerMatrixFilterOpts(contextScrollNode);
+  }
 
   requestAnimationFrame(function() {
-    var activeRoleBtn = roleScroll.querySelector('.matrix-opt.is-active');
-    var activeContextBtn = contextScroll.querySelector('.matrix-opt.is-active');
+    var activeRoleBtn = roleScrollNode.querySelector('.matrix-opt.is-active:not([hidden])');
+    var activeContextBtn = contextScrollNode.querySelector('.matrix-opt.is-active:not([hidden])');
     if (activeRoleBtn) activeRoleBtn.scrollIntoView({ block: 'nearest' });
     if (activeContextBtn) activeContextBtn.scrollIntoView({ block: 'nearest' });
   });
@@ -1210,87 +1817,287 @@ function renderMatrixPicker(container, suffix, activeRole, activeIndustry) {
 function resetMobilePickerState() {
   mobilePickerRole = cur ? roleFamily(cur) : null;
   mobilePickerStep = 'role';
+  matrixPickerQuery.mobile = '';
+}
+
+function syncMobileSpeedDial(host, roleItems, scroll) {
+  var rail = host.querySelector(':scope > .matrix-speed');
+  if (mobilePickerStep !== 'role') {
+    if (rail) rail.remove();
+    return;
+  }
+  if (!rail) {
+    rail = document.createElement('nav');
+    rail.className = 'matrix-speed';
+    rail.setAttribute('aria-label', 'A to Z speed dial');
+    host.appendChild(rail);
+  }
+  rail._speedScroll = scroll;
+  var present = {};
+  roleItems.forEach(function(item) {
+    if (!item.hidden) present[item.letter] = true;
+  });
+  syncChildren(
+    rail,
+    MATRIX_LETTERS.filter(function(letter) { return present[letter]; }).map(function(letter) {
+      return { key: letter, letter: letter };
+    }),
+    function(item) { return item.key; },
+    function() {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'matrix-speed-btn';
+      return button;
+    },
+    function(button, item) {
+      button.textContent = item.letter;
+      button.dataset.letter = item.letter;
+      button.tabIndex = -1;
+      button.setAttribute('aria-label', 'Jump to ' + item.letter);
+      button.onclick = null;
+    }
+  );
+
+  if (!rail._speedBound) {
+    rail._speedBound = true;
+    var clearPress = function() {
+      rail._speedScrubbing = false;
+      rail._speedLastLetter = '';
+      Array.from(rail.querySelectorAll('.matrix-speed-btn.is-active')).forEach(function(btn) {
+        btn.classList.remove('is-active');
+      });
+    };
+    var scrub = function(clientY) {
+      var rect = rail.getBoundingClientRect();
+      var ratio = (clientY - rect.top) / Math.max(rect.height, 1);
+      var buttons = Array.from(rail.querySelectorAll('.matrix-speed-btn'));
+      if (!buttons.length) return;
+      var index = Math.max(0, Math.min(buttons.length - 1, Math.floor(ratio * buttons.length)));
+      var button = buttons[index];
+      var letter = button.dataset.letter || button.textContent;
+      if (!letter || letter === rail._speedLastLetter) {
+        buttons.forEach(function(btn, i) {
+          btn.classList.toggle('is-active', i === index);
+        });
+        return;
+      }
+      rail._speedLastLetter = letter;
+      buttons.forEach(function(btn, i) {
+        btn.classList.toggle('is-active', i === index);
+      });
+      jumpMobileSpeedLetter(rail, letter, button);
+    };
+    rail.addEventListener('pointerdown', function(event) {
+      if (event.button != null && event.button !== 0) return;
+      event.preventDefault();
+      rail._speedScrubbing = true;
+      rail._speedLastLetter = '';
+      try { rail.setPointerCapture(event.pointerId); } catch (error) { /* ignore */ }
+      scrub(event.clientY);
+    });
+    rail.addEventListener('pointermove', function(event) {
+      if (!rail._speedScrubbing) return;
+      scrub(event.clientY);
+    });
+    rail.addEventListener('pointerup', clearPress);
+    rail.addEventListener('pointercancel', clearPress);
+    rail.addEventListener('lostpointercapture', clearPress);
+  }
+}
+
+function jumpMobileSpeedLetter(rail, letter, button) {
+  var scroll = rail && rail._speedScroll;
+  if (!scroll || !letter) return;
+  var target = scroll.querySelector('.matrix-letter-head[data-letter="' + letter + '"]')
+    || scroll.querySelector('.matrix-opt[data-letter="' + letter + '"]:not([hidden])');
+  if (!target) return;
+  target.scrollIntoView({ block: 'start' });
+  if (button) markMatrixMicroUpdate(button);
 }
 
 function renderMatrixPickerMobile(container, activeRole, activeIndustry) {
   if (!container || !cur) return;
 
   var browseRole = mobilePickerRole || activeRole;
-  container.replaceChildren();
-
-  var picker = document.createElement('div');
-  picker.className = 'matrix-picker matrix-picker--mobile';
-  picker.dataset.matrix = 'mobile';
+  var query = matrixPickerQuery.mobile || '';
+  var picker = ensureMatrixShell(container, 'matrix-picker matrix-picker--mobile', 'mobile');
   picker.dataset.step = mobilePickerStep;
 
-  if (mobilePickerStep === 'industry') {
-    var backBtn = document.createElement('button');
-    backBtn.type = 'button';
-    backBtn.className = 'matrix-step-back';
-    backBtn.setAttribute('aria-label', 'Back to role selection');
-    backBtn.textContent = '<- Role';
-    backBtn.onclick = function() {
-      mobilePickerStep = 'role';
-      renderMatrixPickerMobile(container, activeRole, activeIndustry);
-    };
-    picker.appendChild(backBtn);
+  var sticky = picker.querySelector(':scope > .matrix-sticky');
+  if (!sticky) {
+    sticky = document.createElement('div');
+    sticky.className = 'matrix-sticky';
   }
 
-  var kicker = document.createElement('span');
-  kicker.className = 'matrix-col-kicker';
+  var segments = sticky.querySelector(':scope > .matrix-segments');
+  if (!segments) {
+    segments = document.createElement('div');
+    segments.className = 'matrix-segments';
+    segments.setAttribute('role', 'tablist');
+    segments.setAttribute('aria-label', 'Picker step');
+  }
+  syncChildren(
+    segments,
+    [
+      { key: 'role', label: 'Role', step: 'role' },
+      { key: 'industry', label: 'Industry', step: 'industry' }
+    ],
+    function(item) { return item.key; },
+    function() {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'matrix-segment';
+      button.setAttribute('role', 'tab');
+      return button;
+    },
+    function(button, item) {
+      var selected = mobilePickerStep === item.step;
+      var industryLocked = item.step === 'industry' && industries(browseRole).length <= 1 && mobilePickerStep === 'role';
+      button.id = 'matrix-segment-' + item.step;
+      button.className = 'matrix-segment' + (selected ? ' is-active' : '');
+      button.setAttribute('aria-selected', String(selected));
+      button.setAttribute('aria-controls', 'matrix-mobile-list');
+      button.tabIndex = selected ? 0 : -1;
+      button.textContent = item.label;
+      button.disabled = industryLocked;
+      button.dataset.matrixAction = 'step';
+      button.dataset.matrixValue = item.step;
+      button.onclick = null;
+    }
+  );
+
+  var search = sticky.querySelector(':scope > .matrix-search');
+  if (!search) {
+    search = document.createElement('label');
+    search.className = 'matrix-search';
+    search.innerHTML = '<span class="matrix-search-label">Search</span><input class="matrix-search-input" type="search" enterkeyhint="search" autocomplete="off" spellcheck="false" placeholder="Filter roles or industries">';
+    var input = search.querySelector('input');
+    input.addEventListener('input', function() {
+      matrixPickerQuery.mobile = input.value;
+      renderMatrixPickerMobile(container, activeRole, activeIndustry);
+    });
+  }
+  /* Segments then search, sticky above the stepped list. */
+  sticky.appendChild(segments);
+  sticky.appendChild(search);
+  var searchInput = search.querySelector('input');
+  if (searchInput && searchInput.value !== query) searchInput.value = query;
+
+  var body = picker.querySelector(':scope > .matrix-mobile-body');
+  if (!body) {
+    body = document.createElement('div');
+    body.className = 'matrix-mobile-body';
+  }
+  if (body.parentNode === picker) {
+    picker.insertBefore(sticky, body);
+  } else {
+    picker.appendChild(sticky);
+    picker.appendChild(body);
+  }
+
+  syncRecentChips(picker, function(id) {
+    sel(id);
+    revealMobileDocument();
+    resetMobilePickerState();
+    if (activeMobileSheet === 'profile') setMobileSheet('profile', false);
+  });
+
+  var kicker = body.querySelector(':scope > .matrix-col-kicker');
+  if (!kicker) {
+    kicker = document.createElement('span');
+    kicker.className = 'matrix-col-kicker';
+    body.appendChild(kicker);
+  }
   kicker.textContent = mobilePickerStep === 'role' ? 'I do' : 'for';
 
-  var label = document.createElement('span');
-  label.className = 'matrix-col-label';
-  label.id = 'matrix-mobile-step-label';
+  var label = body.querySelector(':scope > .matrix-col-label');
+  if (!label) {
+    label = document.createElement('span');
+    label.className = 'matrix-col-label';
+    label.id = 'matrix-mobile-step-label';
+    body.appendChild(label);
+  }
   if (mobilePickerStep === 'role') {
     label.textContent = 'Role';
   } else {
     var ctxList = industries(browseRole);
-    label.textContent = ctxList.length === 1 ? 'Industry' : ('Industry | ' + ctxList.length + ' matches');
+    label.textContent = ctxList.length === 1 ? 'Industry' : ('Industry | ' + ctxList.length);
   }
 
-  var scroll = document.createElement('div');
-  scroll.className = 'matrix-scroll matrix-scroll--mobile-step';
-  scroll.setAttribute('role', 'listbox');
-  scroll.setAttribute('aria-labelledby', 'matrix-mobile-step-label');
+  var scroll = body.querySelector(':scope > .matrix-scroll');
+  if (!scroll) {
+    scroll = document.createElement('div');
+    scroll.className = 'matrix-scroll matrix-scroll--mobile-step';
+    scroll.id = 'matrix-mobile-list';
+    scroll.setAttribute('role', 'listbox');
+    scroll.setAttribute('aria-labelledby', 'matrix-mobile-step-label');
+    scroll.setAttribute('tabindex', '0');
+    body.appendChild(scroll);
+  } else if (!scroll.id) {
+    scroll.id = 'matrix-mobile-list';
+  }
 
   if (mobilePickerStep === 'role') {
-    roles().forEach(function(roleName) {
-      var selected = roleName === browseRole;
-      var count = contextCountForRole(roleName);
-      var button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'matrix-opt' + (selected ? ' is-active' : '');
-      button.setAttribute('role', 'option');
-      button.setAttribute('aria-selected', String(selected));
-      button.innerHTML = esc(roleName) + (count > 1 ? '<span class="matrix-opt-count"> | ' + count + '</span>' : '');
-      button.onclick = function() {
-        selectMatrixOptionMobile('role', roleName);
+    var roleList = filterRolesByQuery(query);
+    var roleItems = roles().map(function(roleName) {
+      var count = cachedContextCountForRole(roleName);
+      return {
+        key: 'role:' + roleName,
+        action: 'role',
+        value: roleName,
+        label: roleName,
+        letter: roleLetter(roleName),
+        selected: roleName === browseRole,
+        hidden: roleList.indexOf(roleName) === -1,
+        countHtml: count > 1 ? '<span class="matrix-opt-count"> | ' + count + '</span>' : ''
       };
-      scroll.appendChild(button);
     });
+    syncMatrixOptions(scroll, roleItems, query);
+    syncLetterHeads(scroll, roleItems);
+    syncMobileSpeedDial(picker, roleItems, scroll);
+    renderMatrixEmpty(body, roleList.length ? '' : ('No matches for “' + query + '”.'));
   } else {
-    industries(browseRole).forEach(function(industryName) {
-      var selected = industryName === activeIndustry && browseRole === activeRole;
-      var button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'matrix-opt' + (selected ? ' is-active' : '');
-      button.setAttribute('role', 'option');
-      button.setAttribute('aria-selected', String(selected));
-      button.textContent = industryName;
-      button.onclick = function() {
-        selectMatrixOptionMobile('industry', industryName);
+    var industryList = filterIndustriesByQuery(browseRole, query);
+    var fullIndustry = industries(browseRole);
+    var industryItems = fullIndustry.map(function(industryName) {
+      return {
+        key: 'ind:' + industryName,
+        action: 'ind',
+        value: industryName,
+        label: industryName,
+        selected: industryName === activeIndustry && browseRole === activeRole,
+        hidden: industryList.indexOf(industryName) === -1,
+        countHtml: ''
       };
-      scroll.appendChild(button);
     });
+    syncMatrixOptions(scroll, industryItems, query);
+    Array.from(scroll.querySelectorAll('.matrix-letter-head')).forEach(function(node) { node.remove(); });
+    syncMobileSpeedDial(picker, [], scroll);
+    renderMatrixEmpty(body, industryList.length ? '' : ('No matches for “' + query + '”.'));
   }
 
-  picker.append(kicker, label, scroll);
-  container.appendChild(picker);
+  if (query) staggerMatrixFilterOpts(scroll);
+
+  bindMatrixDelegatedClicks(picker, function(action, value) {
+    if (action === 'step') {
+      if (value === 'role') {
+        mobilePickerStep = 'role';
+        announceMatrixLive('Role step');
+        renderMatrixPickerMobile(container, activeRole, activeIndustry);
+        return;
+      }
+      if (!browseRole) return;
+      if (industries(browseRole).length <= 1) return;
+      mobilePickerStep = 'industry';
+      announceMatrixLive('Industry step for ' + browseRole);
+      renderMatrixPickerMobile(container, activeRole, activeIndustry);
+      return;
+    }
+    selectMatrixOptionMobile(action, value);
+  });
 
   requestAnimationFrame(function() {
-    var activeBtn = scroll.querySelector('.matrix-opt.is-active');
+    var activeBtn = scroll.querySelector('.matrix-opt.is-active:not([hidden])');
     if (activeBtn) activeBtn.scrollIntoView({ block: 'nearest' });
   });
 }
@@ -1309,10 +2116,14 @@ function selectMatrixOptionMobile(key, value) {
       return;
     }
     mobilePickerStep = 'industry';
+    announceMatrixLive('Industry step for ' + value);
     var el = document.getElementById('mxM');
     if (el && cur) renderMatrixPickerMobile(el, roleFamily(cur), cur.industry);
     return;
   }
+
+  // Delegated industry opts use action "ind"; accept "industry" as an alias.
+  if (key !== 'ind' && key !== 'industry') return;
 
   var match = findProfile(mobilePickerRole || roleFamily(cur), value);
   if (match) {
@@ -1327,7 +2138,46 @@ function resetDesktopPickerState() {
   desktopPickerRole = cur ? roleFamily(cur) : null;
 }
 
-function setMtxPop(open, triggerEl) {
+function ensureDesktopMatrixSearch() {
+  var head = document.querySelector('#mtxPop .mtx-pop-head');
+  if (!head) return null;
+  var titleBlock = head.querySelector('.mtx-pop-title-block');
+  if (!titleBlock) return null;
+  var search = titleBlock.querySelector('.matrix-search');
+  if (!search) {
+    search = document.createElement('label');
+    search.className = 'matrix-search matrix-search--desktop';
+    search.innerHTML = '<span class="sr-only">Search roles and industries</span><input id="matrixSearchDesktop" class="matrix-search-input" type="search" enterkeyhint="search" autocomplete="off" spellcheck="false" placeholder="Search roles or industries">';
+    titleBlock.appendChild(search);
+    var input = search.querySelector('input');
+    input.addEventListener('input', function() {
+      matrixPickerQuery.desktop = input.value;
+      renderMx();
+    });
+    input.addEventListener('keydown', function(event) {
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        var roleList = document.getElementById('matrix-roles-desktop');
+        if (roleList) focusMatrixOption(roleList, 0);
+      }
+    });
+  }
+  return search.querySelector('input');
+}
+
+function focusMtxListbox(listbox) {
+  if (!listbox) return false;
+  var options = visibleMatrixOptions(listbox);
+  if (!options.length) {
+    listbox.focus();
+    return document.activeElement === listbox;
+  }
+  var activeIdx = options.findIndex(function(opt) { return opt.classList.contains('is-active'); });
+  focusMatrixOption(listbox, activeIdx >= 0 ? activeIdx : 0);
+  return true;
+}
+
+function setMtxPop(open, triggerEl, focusTarget) {
   var pop = document.getElementById('mtxPop');
   var backdrop = document.getElementById('mtxBackdrop');
   var roleBtn = document.getElementById('focusRoleBtn');
@@ -1338,6 +2188,9 @@ function setMtxPop(open, triggerEl) {
     if (!cur || isMobileLayout()) return;
     mtxPopReturnFocus = triggerEl || document.activeElement;
     resetDesktopPickerState();
+    matrixPickerQuery.desktop = '';
+    var searchInput = ensureDesktopMatrixSearch();
+    if (searchInput) searchInput.value = '';
     renderMx();
     pop.hidden = false;
     pop.setAttribute('aria-hidden', 'false');
@@ -1346,24 +2199,61 @@ function setMtxPop(open, triggerEl) {
     pop.classList.add('on');
     mtxPopOpen = true;
     setStageInert(true);
+    document.querySelectorAll('.aside').forEach(function(aside) { aside.inert = true; });
     if (roleBtn) roleBtn.setAttribute('aria-expanded', triggerEl === roleBtn ? 'true' : 'false');
     if (industryBtn) industryBtn.setAttribute('aria-expanded', triggerEl === industryBtn ? 'true' : 'false');
     positionMtxPop(triggerEl || roleBtn);
+    matrixFocusColumn = focusTarget === 'industry' ? 'industry' : (focusTarget === 'search' ? 'search' : 'role');
 
+    if (pop._keyHandler) {
+      document.removeEventListener('keydown', pop._keyHandler);
+      pop._keyHandler = null;
+    }
     pop._keyHandler = function(event) {
       if (event.key === 'Escape') {
         event.preventDefault();
         setMtxPop(false);
         return;
       }
-      trapFocus(event, [pop, roleBtn, industryBtn]);
+      if (isTypingTarget(event.target) && event.target.classList.contains('matrix-search-input')) {
+        trapFocus(event, [pop]);
+        return;
+      }
+      var roleList = document.getElementById('matrix-roles-desktop');
+      var industryList = document.getElementById('matrix-contexts-desktop');
+      var focused = document.activeElement;
+      var activeList;
+      if (industryList && industryList.contains(focused)) {
+        activeList = industryList;
+        matrixFocusColumn = 'industry';
+      } else if (roleList && roleList.contains(focused)) {
+        activeList = roleList;
+        matrixFocusColumn = 'role';
+      } else {
+        activeList = matrixFocusColumn === 'industry' ? industryList : roleList;
+      }
+      var sibling = activeList === industryList ? roleList : industryList;
+      if (handleMatrixListboxKeydown(event, activeList, sibling)) return;
+      trapFocus(event, [pop]);
     };
     document.addEventListener('keydown', pop._keyHandler);
     backdrop.onclick = function() { setMtxPop(false); };
     window.addEventListener('resize', positionMtxPopOnResize);
     setTimeout(function() {
-      var first = pop.querySelector('.matrix-opt.is-active') || pop.querySelector('.matrix-opt');
-      if (first) first.focus();
+      if (focusTarget === 'search' && searchInput) {
+        searchInput.focus();
+        return;
+      }
+      if (focusTarget === 'industry') {
+        if (focusMtxListbox(document.getElementById('matrix-contexts-desktop'))) return;
+      }
+      if (focusMtxListbox(document.getElementById('matrix-roles-desktop'))) return;
+      if (searchInput) {
+        searchInput.focus();
+        return;
+      }
+      var closeBtn = document.getElementById('mtxPopClose');
+      if (closeBtn) closeBtn.focus();
     }, 80);
     return;
   }
@@ -1375,6 +2265,7 @@ function setMtxPop(open, triggerEl) {
   backdrop.setAttribute('aria-hidden', 'true');
   mtxPopOpen = false;
   setStageInert(false);
+  document.querySelectorAll('.aside').forEach(function(aside) { aside.inert = false; });
   if (roleBtn) roleBtn.setAttribute('aria-expanded', 'false');
   if (industryBtn) industryBtn.setAttribute('aria-expanded', 'false');
   if (pop._keyHandler) {
@@ -1383,6 +2274,7 @@ function setMtxPop(open, triggerEl) {
   }
   backdrop.onclick = null;
   window.removeEventListener('resize', positionMtxPopOnResize);
+  matrixPickerQuery.desktop = '';
   resetDesktopPickerState();
   if (mtxPopReturnFocus && document.contains(mtxPopReturnFocus)) mtxPopReturnFocus.focus();
   mtxPopReturnFocus = null;
@@ -1417,10 +2309,11 @@ function positionMtxPop(anchor) {
 }
 
 function openMtxPopFrom(which) {
+  var focusTarget = which === 'industry' ? 'industry' : (which === 'search' ? 'search' : 'role');
   var btn = which === 'industry'
     ? document.getElementById('focusIndustryBtn')
     : document.getElementById('focusRoleBtn');
-  setMtxPop(true, btn);
+  setMtxPop(true, btn, focusTarget);
 }
 
 function setMetaById(id, attr, value) {
@@ -1649,9 +2542,27 @@ function renderMx() {
 function selectMatrixOption(key, value) {
   if (key === 'role') {
     desktopPickerRole = value;
+    var ctxList = industries(value);
+    if (ctxList.length === 1) {
+      var auto = findProfile(value, ctxList[0]);
+      if (auto) {
+        sel(auto.id);
+        setMtxPop(false);
+        resetDesktopPickerState();
+        return;
+      }
+    }
+    matrixFocusColumn = 'industry';
     renderMx();
+    requestAnimationFrame(function() {
+      var industryList = document.getElementById('matrix-contexts-desktop');
+      if (industryList) focusMatrixOption(industryList, 0);
+    });
     return;
   }
+
+  // Delegated industry opts use action "ind"; accept "industry" as an alias.
+  if (key !== 'ind' && key !== 'industry') return;
 
   var browseRole = desktopPickerRole || (cur ? roleFamily(cur) : '');
   var match = findProfile(browseRole, value);
@@ -2049,6 +2960,10 @@ function renderEducation(p) {
 }
 
 function renderAdditional(p) {
+  if (p.additional && p.additional.visible === false) {
+    clearSection('r-additional');
+    return;
+  }
   var a = p.additional || {};
   var parts = [];
 
@@ -2092,6 +3007,48 @@ function renderAdditional(p) {
 
 
 
+function bindMobileSheetSwipeDismiss(sheet, which) {
+  var handle = sheet.querySelector('.mobile-sheet-handle');
+  if (!handle || handle._swipeBound) return;
+  handle._swipeBound = true;
+  var startY = 0;
+  var dragging = false;
+
+  function endDrag(event, allowDismiss) {
+    if (!dragging) return;
+    dragging = false;
+    var delta = event && typeof event.clientY === 'number' ? event.clientY - startY : 0;
+    sheet.style.transition = '';
+    sheet.style.transform = '';
+    if (allowDismiss && delta > 88) setMobileSheet(which, false);
+  }
+
+  handle.addEventListener('pointerdown', function(event) {
+    if (event.button != null && event.button !== 0) return;
+    if (!sheet.classList.contains('on')) return;
+    dragging = true;
+    startY = event.clientY;
+    sheet.style.transition = 'none';
+    try { handle.setPointerCapture(event.pointerId); } catch (error) { /* ignore */ }
+    event.preventDefault();
+  });
+  handle.addEventListener('pointermove', function(event) {
+    if (!dragging) return;
+    var delta = event.clientY - startY;
+    if (delta > 0) sheet.style.transform = 'translateY(' + Math.min(delta, 160) + 'px)';
+    else sheet.style.transform = 'translateY(0)';
+  });
+  handle.addEventListener('pointerup', function(event) {
+    endDrag(event, true);
+  });
+  handle.addEventListener('pointercancel', function(event) {
+    endDrag(event, false);
+  });
+  handle.addEventListener('lostpointercapture', function(event) {
+    if (dragging) endDrag(event, false);
+  });
+}
+
 function setMobileSheet(which, open, restoreFocus) {
   var profileSheet = document.getElementById('mobileProfileSheet');
   var toolsSheet = document.getElementById('mobileToolsSheet');
@@ -2108,6 +3065,8 @@ function setMobileSheet(which, open, restoreFocus) {
     var trigger = triggers[name];
     if (!sheet) return;
     sheet.classList.remove('on');
+    sheet.style.transition = '';
+    sheet.style.transform = '';
     if (trigger) trigger.setAttribute('aria-expanded', 'false');
     if (sheet._keyHandler) document.removeEventListener('keydown', sheet._keyHandler);
     sheet._keyHandler = null;
@@ -2131,6 +3090,15 @@ function setMobileSheet(which, open, restoreFocus) {
     if (which === 'profile') {
       resetMobilePickerState();
       renderMx();
+      /* Defer so `/` `R` `I` handlers can flip to Industry before announce. */
+      requestAnimationFrame(function() {
+        if (activeMobileSheet !== 'profile') return;
+        if (mobilePickerStep === 'industry' && mobilePickerRole && industries(mobilePickerRole).length > 1) {
+          announceMatrixLive('Industry step for ' + mobilePickerRole);
+        } else {
+          announceMatrixLive('Role step');
+        }
+      });
     }
 
     sheet.hidden = false;
@@ -2143,9 +3111,10 @@ function setMobileSheet(which, open, restoreFocus) {
     scrim.setAttribute('aria-hidden', 'false');
     sheet.classList.add('on');
     setStageInert(true);
+    bindMobileSheetSwipeDismiss(sheet, which);
 
     if (canAnimate()) {
-      motionAnimate(Array.from(sheet.querySelectorAll('.mobile-sheet-head h2, .mobile-sheet-body > .matrix-help, .matrix-picker--mobile .matrix-opt, .mobile-matrix .btn-random, .tool-toggles--mobile .tool-check, .zoom-ctrl--mobile .zoom-btn')), {
+      motionAnimate(Array.from(sheet.querySelectorAll('.mobile-sheet-head h2, .mobile-sheet-body > .matrix-help, .matrix-sticky, .matrix-picker--mobile .matrix-opt, .mobile-matrix .btn-random, .tool-toggles--mobile .tool-check, .zoom-ctrl--mobile .zoom-btn')), {
         opacity: [0, 1],
         y: [10, 0]
       }, {
@@ -2161,12 +3130,18 @@ function setMobileSheet(which, open, restoreFocus) {
         setMobileSheet(which, false);
         return;
       }
-      trapFocus(event, [sheet, trigger]);
+      if (which === 'profile' && !isTypingTarget(event.target)) {
+        var listbox = sheet.querySelector('.matrix-scroll--mobile-step');
+        if (handleMatrixListboxKeydown(event, listbox, null)) return;
+      }
+      trapFocus(event, [sheet]);
     };
     document.addEventListener('keydown', sheet._keyHandler);
     setTimeout(function() {
-      var first = sheet.querySelector('.matrix-opt, .tool-check input, .zoom-btn');
-      if (first) first.focus();
+      var search = sheet.querySelector('.matrix-search-input');
+      var first = sheet.querySelector('.matrix-opt.is-active:not([hidden]), .matrix-opt:not([hidden]), .tool-check input, .zoom-btn');
+      if (search && which === 'profile') search.focus();
+      else if (first) first.focus();
     }, 220);
     return;
   }
@@ -2260,6 +3235,7 @@ function measureA4Layout() {
   }
   var expectedRoleFontPx = tokenToCssPx('--s0');
   var expectedLeadingPx = tokenToCssPx('--u');
+  var expectedBulletLeadingPx = tokenToCssPx('--bullet-line');
 
   sheet.querySelectorAll('.r-co').forEach(function(title) {
     var lineHeight = parseFloat(getComputedStyle(title).lineHeight) || 1;
@@ -2287,7 +3263,7 @@ function measureA4Layout() {
 
   sheet.querySelectorAll('.r-ul li').forEach(function(item) {
     var lineHeight = parseFloat(getComputedStyle(item).lineHeight) || 0;
-    if (Math.abs(lineHeight - expectedLeadingPx) > 0.2) {
+    if (Math.abs(lineHeight - expectedBulletLeadingPx) > 0.2) {
       typographyIssues.push({
         element: 'bullet',
         text: item.textContent.trim().slice(0, 80),
@@ -2341,107 +3317,6 @@ function cloneProfile(profile) {
     : JSON.parse(JSON.stringify(profile));
 }
 
-function omitLast(array, label, omissions) {
-  if (!array || !array.length) return false;
-  var value = array.pop();
-  omissions.push({ type: label, value: typeof value === 'string' ? value : (value.name || value.company || value.institution || '') });
-  return true;
-}
-
-function omitLastSkill(additional, omissions) {
-  if (!additional.skills || additional.skills.length <= 8) return false;
-  var value = additional.skills.pop();
-  var groups = additional.skillMap || [];
-
-  for (var groupIndex = groups.length - 1; groupIndex >= 0; groupIndex -= 1) {
-    var keywordIndex = groups[groupIndex].keywords.lastIndexOf(value);
-    if (keywordIndex === -1) continue;
-    groups[groupIndex].keywords.splice(keywordIndex, 1);
-    if (!groups[groupIndex].keywords.length) groups.splice(groupIndex, 1);
-    break;
-  }
-
-  omissions.push({ type: 'skill', value: value });
-  return true;
-}
-
-function omitLastCoursework(profile, omissions) {
-  if (!profile.education || !profile.education.length) return false;
-  for (var educationIndex = profile.education.length - 1; educationIndex >= 0; educationIndex -= 1) {
-    var courses = profile.education[educationIndex].courses;
-    if (!courses || !courses.length) continue;
-    omissions.push({ type: 'coursework', value: courses.join('; ') });
-    profile.education[educationIndex].courses = [];
-    return true;
-  }
-  return false;
-}
-
-function omitLastEducationHighlight(profile, omissions) {
-  if (!profile.education || !profile.education.length) return false;
-  for (var educationIndex = profile.education.length - 1; educationIndex >= 0; educationIndex -= 1) {
-    var honors = profile.education[educationIndex].honors;
-    if (!honors || !honors.length) continue;
-    omissions.push({ type: 'educationHighlight', value: honors.join('; ') });
-    profile.education[educationIndex].honors = [];
-    return true;
-  }
-  return false;
-}
-
-function removeNextOptional(profile, omissions) {
-  var additional = profile.additional || {};
-  if (omitLast(additional.leadership, 'leadership', omissions)) return true;
-  if (omitLast(additional.certifications, 'certification', omissions)) return true;
-  if (omitLast(additional.languages, 'language', omissions)) return true;
-  if (additional.workAuthorization) {
-    omissions.push({ type: 'workAuthorization', value: additional.workAuthorization });
-    additional.workAuthorization = '';
-    return true;
-  }
-  if (omitLastCoursework(profile, omissions)) return true;
-  if (omitLastEducationHighlight(profile, omissions)) return true;
-
-  for (var educationIndex = profile.education.length - 1; educationIndex >= 0; educationIndex -= 1) {
-    if (profile.education[educationIndex].summary) {
-      omissions.push({ type: 'educationSummary', value: profile.education[educationIndex].institution });
-      profile.education[educationIndex].summary = '';
-      return true;
-    }
-  }
-
-  if (omitLastSkill(additional, omissions)) return true;
-
-  for (var projectIndex = profile.projects.length - 1; projectIndex >= 0; projectIndex -= 1) {
-    var project = profile.projects[projectIndex];
-    if (project.highlights && project.highlights.length > 1) {
-      return omitLast(project.highlights, 'projectHighlight', omissions);
-    }
-    if (project.description) {
-      omissions.push({ type: 'projectDescription', value: project.name });
-      project.description = '';
-      return true;
-    }
-  }
-
-  for (var experienceIndex = profile.experience.length - 1; experienceIndex >= 0; experienceIndex -= 1) {
-    var experience = profile.experience[experienceIndex];
-    if (experience.highlights && experience.highlights.length > 1) {
-      return omitLast(experience.highlights, 'experienceHighlight', omissions);
-    }
-  }
-  if (profile.projects && profile.projects.length) return omitLast(profile.projects, 'project', omissions);
-  if (profile.experience && profile.experience.length > 2) return omitLast(profile.experience, 'experience', omissions);
-  if (profile.education && profile.education.length > 1) return omitLast(profile.education, 'education', omissions);
-
-  if (profile.summary) {
-    omissions.push({ type: 'summary', value: profile.summary });
-    profile.summary = '';
-    return true;
-  }
-  return false;
-}
-
 function settleDocumentLayout() {
   var fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
   if (BUILD_FIT_MODE) return Promise.resolve(fontsReady);
@@ -2456,26 +3331,16 @@ function settleDocumentLayout() {
 async function fitProfileForBuild(profileId) {
   var source = byId(profileId);
   if (!source) throw new Error('Unknown profile: ' + profileId);
-
   var candidate = cloneProfile(source);
-  var omissions = [];
-  for (var pass = 0; pass < 300; pass += 1) {
-    candidate.omissions = omissions;
-    cur = candidate;
-    renderProfile(candidate);
-    await settleDocumentLayout();
-    var measurement = measureA4Layout();
-    if (measurement.typographyIssues.length) {
-      throw new Error(profileId + ' violates fixed PDF typography invariants: ' + JSON.stringify(measurement.typographyIssues));
-    }
-    if (measurement.resolved) {
-      return { profile: candidate, measurement: measurement, passes: pass + 1, omissions: omissions };
-    }
-    if (!removeNextOptional(candidate, omissions)) {
-      throw new Error(profileId + ' cannot fit A4 after exhausting optional content; overflow=' + measurement.overflowPx + 'px; overlong titles=' + JSON.stringify(measurement.titleOverflows));
-    }
+  candidate.omissions = [];
+  cur = candidate;
+  renderProfile(candidate);
+  await settleDocumentLayout();
+  var measurement = measureA4Layout();
+  if (!measurement.resolved) {
+    throw new Error(profileId + ' needs an editorial layout review; shorten data/compact-copy.json instead of shrinking type or dropping evidence: ' + JSON.stringify(measurement));
   }
-  throw new Error(profileId + ' exceeded the 300-pass fit guard');
+  return { profile: candidate, measurement: measurement, passes: 1, omissions: [] };
 }
 
 /* =================================================================

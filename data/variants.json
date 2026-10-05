@@ -4,7 +4,7 @@
       "id": "early-stage-operator-yc-alumni-startups",
       "role": "Startup Operations Manager",
       "industry": "Early-Stage Technology Startups",
-      "fallback": true,
+      "fallback": false,
       "targeted": true,
       "weight": 10,
       "description": "When YC-alumni teams need repeatable GTM cadence before Series A, I install funnel instrumentation, sprint rituals, and cross-functional owners so zero-to-one traction becomes an operating rhythm, not a founder bottleneck.",
@@ -3766,6 +3766,98 @@
       "category": "Executive Operations & Chief of Staff"
     },
     {
+      "id": "strategic-design-engineer-founder-led-startups",
+      "role": "Strategic Design Engineer",
+      "industry": "Founder-Led Startups",
+      "fallback": true,
+      "targeted": true,
+      "weight": 10,
+      "description": "Early-stage founders need product decisions and working systems to move together. I translate customer and operating insight into product architecture, service design, and shippable MVPs, then stay close through launch.",
+      "location": "London, UK",
+      "metrics": {
+        "Experience": "Founder + builder",
+        "Scope": "MVP to launch",
+        "Impact": "End-to-end delivery",
+        "Specialization": "Product + service design"
+      },
+      "requiredKeywords": [
+        "Strategic Design Engineer",
+        "Product Engineering",
+        "Product Design",
+        "Service Design",
+        "Startup MVPs",
+        "Founder Support",
+        "Information Architecture",
+        "Technical Delivery"
+      ],
+      "limits": {
+        "experience": 3,
+        "experienceHighlights": 2,
+        "projects": 2,
+        "projectHighlights": 2,
+        "projectDescriptions": false,
+        "skillGroups": 3,
+        "skills": 15,
+        "skillsPerGroup": 5,
+        "educationHighlights": 3,
+        "certifications": 0,
+        "languages": 0,
+        "leadership": 1
+      },
+      "pdfFilename": "Kartavya_Jharwal_Resume_Strategic_Design_Engineer.pdf",
+      "content": {
+        "experience": [
+          {
+            "id": "work-margadarshaka",
+            "highlights": [
+              "work-margadarshaka-h6",
+              "work-margadarshaka-h10"
+            ]
+          },
+          {
+            "id": "work-independent-healthcare-venture-client-anonymised",
+            "highlights": [
+              "work-independent-healthcare-venture-client-anonymised-h0",
+              "work-independent-healthcare-venture-client-anonymised-h1"
+            ]
+          },
+          {
+            "id": "work-astropatshala",
+            "highlights": [
+              "work-astropatshala-h0",
+              "work-astropatshala-h1"
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "id": "proj-nirmana-design-capstone",
+            "highlights": [
+              "proj-nirmana-design-capstone-h0",
+              "proj-nirmana-design-capstone-h2"
+            ]
+          },
+          {
+            "id": "proj-software-engineering-and-systems-projects",
+            "highlights": [
+              "proj-software-engineering-and-systems-projects-h1",
+              "proj-software-engineering-and-systems-projects-h0"
+            ]
+          }
+        ],
+        "skills": [
+          "skill-backend-and-apis",
+          "skill-product-design-and-spatial-tools",
+          "skill-founder-and-venture-building"
+        ],
+        "leadership": [
+          "lead-hult-founders-lab"
+        ]
+      },
+      "category": "UI/UX & Product Design",
+      "summaryLabel": "Strategic Design Engineer"
+    },
+    {
       "id": "gtm-analyst-startup-accelerators",
       "role": "GTM Analyst",
       "industry": "Startup Accelerators",
@@ -5803,13 +5895,13 @@
     "previewOnly": true,
     "frontendVisible": false,
     "selectableVariant": false,
-    "roleSpecificTailoringStatus": "v1.15.0: all-tag discipline on narrow-domain bullets; 87 role-specific descriptions; design depth + weak-identity content swaps."
+    "roleSpecificTailoringStatus": "v1.15.0: all-tag discipline on narrow-domain bullets; 88 role-specific descriptions; design depth + weak-identity content swaps."
   },
   "variantAliases": {
     "heavy-industry-value-engineer-agritech": "solutions-engineer-culinary-hospitality-systems",
     "culinary-ops-hybrid-architect-b2b-foodtech": "culinary-stagiaire-michelin-fine-dining-kitchens",
     "culinary-ops-hybrid-architect-airline-catering-logistics": "back-of-house-logistics-coordinator-high-volume-catering",
     "culinary-ops-hybrid-architect-stadium-hospitality": "front-of-house-reception-associate-hotels-restaurants",
-    "founders-associate-startup-accelerators": "founders-associate-healthcare-startup-ecosystems"
+    "founders-associate-startup-accelerators": "strategic-design-engineer-founder-led-startups"
   }
 }

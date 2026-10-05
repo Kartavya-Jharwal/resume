@@ -40,3 +40,13 @@ All programmatic motion is disabled in PDF fitting mode and when `prefers-reduce
 4. Animate opacity, blur, and transforms only—never résumé font size, margins, or page geometry.
 5. Preserve visible focus and a minimum `--touch-target` (44px) for chrome controls.
 6. Right-rail sections (View / Proof / Share / Listening) share kickers via `--tracking-kicker` and `--rail-section-gap`.
+
+## Matrix picker chrome (search / alpha)
+
+Role × industry selection stays on the existing dialog + listbox pattern (`#mtxPop` / `#mobileProfileSheet`). Additive chrome must follow Satoshi / mint rules:
+
+- Search fields, A–Z rails, letter heads, segment tabs, recent chips, and empty states use `--font-ui` at Regular / Medium / Bold only (`400` / `500` / `700`).
+- Mint (`--accent-mint`) marks match highlights (`.matrix-match`), active letter orientation, speed-dial press, and active segment outline — not large filled surfaces.
+- Sticky letter heads and alpha/speed rails are orientation cues; they must not compete with option text weight.
+- Filter/letter micro-motion reuses Motion One and must respect `canAnimate()` / `prefers-reduced-motion`.
+- Do not introduce a second picker framework, FAB launcher, or combobox rewrite.

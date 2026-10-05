@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.16.0",
-    "lastModified": "2026-09-04",
+    "lastModified": "2026-09-24",
     "canonical": "https://resume.kartavya.tech/data/resume.json"
   },
   "custom": {
@@ -220,7 +220,8 @@
             "executive-translation-lead-tech-conglomerates",
             "forward-deployed-innovator-enterprise-ai",
             "mlops-engineer-enterprise-applied-ai",
-            "speech-ml-engineer-regulated-language-technology"
+            "speech-ml-engineer-regulated-language-technology",
+            "strategic-design-engineer-founder-led-startups"
           ]
         },
         {
@@ -271,7 +272,8 @@
             "exhibition-designer-museums-cultural-institutions",
             "product-manager-startup-accelerators",
             "strategic-interaction-designer-spatial-computing",
-            "visual-designer-campaign-identity-systems"
+            "visual-designer-campaign-identity-systems",
+            "strategic-design-engineer-founder-led-startups"
           ]
         },
         {
@@ -334,7 +336,8 @@
             "systematic-organizational-designer-enterprise-transformation",
             "systems-designer-startup-accelerators",
             "venture-diligence-analyst-pre-seed-funds",
-            "zero-cost-growth-hacker-d2c-marketplaces"
+            "zero-cost-growth-hacker-d2c-marketplaces",
+            "strategic-design-engineer-founder-led-startups"
           ],
           "id": "work-astropatshala-h0"
         },
@@ -360,7 +363,8 @@
             "systematic-organizational-designer-enterprise-transformation",
             "systems-designer-startup-accelerators",
             "venture-diligence-analyst-pre-seed-funds",
-            "zero-cost-growth-hacker-d2c-marketplaces"
+            "zero-cost-growth-hacker-d2c-marketplaces",
+            "strategic-design-engineer-founder-led-startups"
           ],
           "id": "work-astropatshala-h1"
         },
@@ -1139,7 +1143,8 @@
             "systematic-organizational-designer-civictech",
             "ui-ux-designer-startup-accelerators",
             "ux-research-translation-lead-civic-tech-platforms",
-            "visual-designer-campaign-identity-systems"
+            "visual-designer-campaign-identity-systems",
+            "strategic-design-engineer-founder-led-startups"
           ],
           "id": "work-independent-healthcare-venture-client-anonymised-h0"
         },
@@ -1164,7 +1169,8 @@
             "systematic-organizational-designer-civictech",
             "ui-ux-designer-startup-accelerators",
             "ux-research-translation-lead-civic-tech-platforms",
-            "visual-designer-campaign-identity-systems"
+            "visual-designer-campaign-identity-systems",
+            "strategic-design-engineer-founder-led-startups"
           ],
           "id": "work-independent-healthcare-venture-client-anonymised-h1"
         }
@@ -1202,7 +1208,8 @@
         "gtm-analyst-startup-accelerators",
         "ui-ux-designer-startup-accelerators",
         "systems-designer-startup-accelerators",
-        "all"
+        "all",
+        "strategic-design-engineer-founder-led-startups"
       ],
       "id": "lead-hult-founders-lab"
     },
@@ -1469,7 +1476,8 @@
         "developer-experience-dx-evangelist-devtools",
         "early-stage-operator-yc-alumni-startups",
         "all",
-        "devops-associate-startup-accelerators"
+        "devops-associate-startup-accelerators",
+        "strategic-design-engineer-founder-led-startups"
       ],
       "id": "skill-backend-and-apis"
     },
@@ -1566,7 +1574,8 @@
         "all",
         "product-manager-startup-accelerators",
         "ui-ux-designer-startup-accelerators",
-        "systems-designer-startup-accelerators"
+        "systems-designer-startup-accelerators",
+        "strategic-design-engineer-founder-led-startups"
       ],
       "id": "skill-product-design-and-spatial-tools"
     },
@@ -1589,7 +1598,8 @@
         "project-manager-startup-accelerators",
         "founders-associate-healthcare-startup-ecosystems",
         "gtm-analyst-startup-accelerators",
-        "ui-ux-designer-startup-accelerators"
+        "ui-ux-designer-startup-accelerators",
+        "strategic-design-engineer-founder-led-startups"
       ],
       "id": "skill-founder-and-venture-building"
     },
@@ -1710,7 +1720,8 @@
             "devops-associate-startup-accelerators",
             "enterprise-resilience-engineer-managed-service-providers",
             "open-source-community-lead-open-source-foundations",
-            "tactical-it-systems-administrator-managed-service-providers"
+            "tactical-it-systems-administrator-managed-service-providers",
+            "strategic-design-engineer-founder-led-startups"
           ],
           "id": "proj-software-engineering-and-systems-projects-h0"
         },
@@ -1724,7 +1735,8 @@
             "devops-associate-startup-accelerators",
             "enterprise-resilience-engineer-managed-service-providers",
             "open-source-community-lead-open-source-foundations",
-            "tactical-it-systems-administrator-managed-service-providers"
+            "tactical-it-systems-administrator-managed-service-providers",
+            "strategic-design-engineer-founder-led-startups"
           ],
           "id": "proj-software-engineering-and-systems-projects-h1"
         },
@@ -2389,7 +2401,8 @@
             "innovation-ecosystem-architect-university-innovation-hubs",
             "phygital-spatial-designer-museumexpo-design",
             "strategic-interaction-designer-spatial-computing",
-            "ui-ux-designer-startup-accelerators"
+            "ui-ux-designer-startup-accelerators",
+            "strategic-design-engineer-founder-led-startups"
           ],
           "id": "proj-nirmana-design-capstone-h0"
         },
@@ -2417,7 +2430,8 @@
             "hybrid-creative-technologist-elite-digital-agencies",
             "phygital-spatial-designer-museumexpo-design",
             "strategic-interaction-designer-spatial-computing",
-            "ui-ux-designer-startup-accelerators"
+            "ui-ux-designer-startup-accelerators",
+            "strategic-design-engineer-founder-led-startups"
           ],
           "id": "proj-nirmana-design-capstone-h2"
         }

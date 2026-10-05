@@ -615,6 +615,21 @@ if (existsSync(distDataPath)) {
   }
 }
 
+// Concise display copy remains anchored to stable source evidence IDs.
+const compactCopy = readJson('data/compact-copy.json');
+const variantIdsForCopy = new Set(variants.map(variant => variant.id));
+const sourceHighlights = new Map([...(resume.work || []), ...(resume.projects || [])]
+  .flatMap(entry => (entry.highlights || []).map(highlight => [highlight.id, highlight.text])));
+for (const [id, copy] of Object.entries(compactCopy.variants || {})) {
+  if (!variantIdsForCopy.has(id)) errors.push(`compact-copy.json: unknown variant ${id}`);
+  requireText(copy.summary, `compact-copy.json: ${id}.summary`);
+}
+for (const [id, text] of Object.entries(compactCopy.highlights || {})) {
+  if (!sourceHighlights.has(id)) errors.push(`compact-copy.json: unknown highlight ${id}`);
+  requireText(text, `compact-copy.json: ${id}`);
+  if (text.length > (sourceHighlights.get(id) || '').length) warnings.push(`compact-copy.json: ${id} is longer than its source`);
+}
+
 if (warnings.length) warnings.forEach(message => console.warn(`warning: ${message}`));
 if (errors.length) {
   errors.forEach(message => console.error(`error: ${message}`));
